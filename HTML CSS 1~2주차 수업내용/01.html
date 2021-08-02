@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0; padding: 0;}
+        div{width: 150px; height:100px}
+        .box1{
+            float:left;
+            width:100%;
+            background-color: aqua;
+        }
+        .box2{
+            float:right;
+            width:50%;
+            background-color: rgb(255, 0, 64);
+        }
+        .box3{
+            width:50%;
+            clear:right;
+            background-color: rgb(226, 223, 43);
+        }
+        .box3:hover{
+            width:52%;
+            transition:1s;
+            background-color: rgba(157, 255, 0, 50%);
+        }
+        .box3:active{
+            background-color: rgba(157, 255, 0, 20%);
+        }
+        .box4{
+           
+        }
+        .box4:focus{
+            transition:1s;
+            background-color: rgb(157, 255, 0);
+        }
+        .box4:disabled{
+
+        }
+        .box5{
+            width:60%;
+            background-color: hsla(200, 50%, 50%, 0.5)
+            /* hsla(색상, 채도, 명도, 투명도);
+            색상 == 0~255;
+            채도 == 0%~100%;
+            명도 == 0%~100%;
+            투명도 = 0~1 |  0~100%; */
+        }
+        .box6{
+            width:60%;
+            background:#2bdd1f; /*그라데이션 효과가 적용이 안될때 기본 배경색 설정*/
+            background:-webkit-linear-gradient(245deg, #dd251f 20%, #68ff10 50%, #a20ff7 80%);
+            background:-ms-linear-gradient(top, #2bdd1f 0%, #934f7f 35%, #7db9e8 100%);
+            background:-o-linear-gradient(top, #2bdd1f 0%, #934f7f 35%, #7db9e8 100%);
+            /*  linear-gradient(방향deg,색상1 0%, 색상2 50%)
+                linear-gradient(top/right/bottom/left,색상1, 색상2)
+                radial-gradient() 
+            */
+        }
+        .box6:hover{
+            transition:1s;
+            background-color: rgb(157, 255, 0);
+        }
+        .box7{
+            background-color: blueviolet;
+            background:-webkit-radial-gradient(red,blue,green);
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">box1</div>
+    <div class="box2">box2</div>
+    <div class="box3">box3</div>
+    <div class="box3">box3</div>
+    <div class="box3">box3</div>
+    <div class="box3">box3</div>
+    <div class="box3">box3</div>
+    <input class="box4" type="text" value="텍스트" >box4</div>
+    <div class="box5">box5</div>
+    <div class="box6">box6</div>
+    <div class="box7">box7</div>
+</body>
+</html>

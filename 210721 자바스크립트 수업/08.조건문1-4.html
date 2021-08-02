@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    'use strict';
+    var a = 10, b = 5, c,  op;
+    op = prompt("연산자를 선택하세요 , (+,-,*,/)");
+    switch(op){
+      case "+" : c = a + b
+        document.write("더하기를 선택하셨습니다. 값은" + c);
+        break; 
+      case "-" : c = a - b
+        document.write("빼기를 선택하셨습니다. 값은" + c);
+        break;
+      case "*" : c = a * b
+        document.write("곱하기를 선택하셨습니다. 값은" + c);
+        break;
+      case "/" : c = a / b
+        document.write("나누기를 선택하셨습니다. 값은" + c);
+        break;
+      default : 
+        document.write("잘못 누르셨습니다.")
+    }
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

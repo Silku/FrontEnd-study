@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String 객체</title>
+    <script>
+        'use strict'
+        // String 객체 : 문자열을 손쉽게 만들고 다룰 수 있도록 함.
+        // const str = 'javascript';
+        // const str = new String('javascript');
+        const str1 = "안녕하세요. javascript ㅎㅎ"
+
+
+        // length : 문자열의 길이를 저장
+        console.log(str1.length); //Jquery = size()
+
+
+        // indexOf() : 매개변수로 전달된 문자열이 처음 등장하는 위치를 리턴
+        console.log(str1.indexOf('녕'))
+        console.log(str1.indexOf('j')) //7번째
+        console.log(str1.indexOf('Java')) //-1 대소문자 구분함
+        console.log(str1.lastIndexOf('j')) //
+        
+        console.log('chartAt()')
+        // charAt() : 매개변수로 전달된 인덱스에 위치한 문자를 리턴
+        console.log(str1.charAt(7));
+        
+        // includes() : 매개변수로 전달된 문자열이 포함되어 있는지 여부를 boolean으로 리턴 , 대소문자를 구분함.
+        console.log(str1.includes('Java'))
+        console.log(str1.includes('java'))
+
+        // substring(10,2) : 매개변수로 전달된 시작 인덱스부터 종료 인덱스 바로 앞까지 문자열을 추출하여 리턴
+        console.log(str1.substring(7,11)) //7번부터 11번째 문자인 java를 리턴
+        console.log(str1.substring(7)) //7번부터 끝까지
+        
+        // substr() : 매개변수로 전달된 시작 인덱스부터 매개변수로 전달된 개수만큼 문자열을 추출하여 리턴
+        console.log(str1.substr(7,6)) // javasc , 7번부터 뒷자리 수만큼 글자 출력,매우 자주사용!!!
+        
+
+        console.log('--------------------')
+        // split() : 매개변수로 전달된 구분자를 기준으로 문자열을 나눈 후 하나의 배열에 저장
+        const str2 = "드라이브, 영화감상, 게임 , 쇼핑 , 잠자기 , 여행"
+        const hobby = str2.split(',')
+        console.log(hobby)
+        console.log(hobby[0])
+        console.log(hobby[1])
+        console.log(hobby[2])
+        console.log(hobby[3])
+
+        
+        // replace() : 원본 문자열을 전달된 문자열로 치환 replace(찾는문자, 치환할 문자)
+        console.log(str1.replace('안녕하세요','hello')) 
+        console.log(str1.replace('java','type'))
+         
+        // trim() : 문자열의 앞뒤 공백을 제거
+        const str4 = '         Java     Script      '
+        console.log(str4.trim());
+        console.log(`|${str4}|`)
+        console.log(`|${str4.trim()}|`)
+
+        // toUpperCase() : 문자열의 영문자 중 소문자를 모두 대문자로 변환
+        // toLowerCase() : 문자열의 영문자 중 대문자를 모두 소문자로 변환
+        console.log(str4.toLowerCase());
+        console.log(str4.toUpperCase());
+
+        console.log(str4.toLocaleLowerCase());
+        console.log(str4.toLocaleUpperCase());
+
+
+        
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

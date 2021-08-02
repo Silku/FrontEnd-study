@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+</head>
+<style>
+    legend{
+        font-size: larger;
+        font-weight: bold;
+        color:rgb(0, 255, 166)
+        
+    }
+    fieldset{
+        background-color: rgb(245, 255, 255);
+        width:100%;
+        height: 500px;
+        text-align: center;
+    }
+    #container {
+        box-sizing: border-box;
+        margin: 0 auto;
+        width: 1200px;
+        height: 100%;
+    }
+
+    #nav {
+        display: flex;
+        color: white;
+        background-color: black;
+        flex-flow: nowrap;
+        width: 100%;
+        margin: 0;
+        font-size: large;
+    }
+
+    #nav ul {
+        margin: 5px 0px;
+        padding: 5px;
+        justify-content: space-between;
+        display: flex;
+        list-style-type: none;
+        width: 100%;
+    }
+
+    #nav a {
+        color: #ffffff;
+        text-decoration: none;    
+    }
+    #signin{
+        margin : 5px 10px 5px 10px;
+        display:flex;
+        justify-content: center;
+        width : 100%;
+    }
+</style>
+
+<body>
+    <div id="container">
+        <div id="nav">
+            <ul>
+                <a href="https://code.visualstudio.com/">
+                    <li>visual Studio code</li>
+                </a>
+                <li>docs</li>
+                <li>updates</li>
+                <li>blog</li>
+                <li>api</li>
+                <li>extensions</li>
+                <li>faq</li>
+                <li>learn</li>
+            </ul>
+        </div>
+        <div id="main1">
+            <ul>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+        <div id="main2">
+            <ul>
+                <li>
+
+                </li>
+            </ul>
+        </div>
+        <div>
+            <h1>연습용 문자열</h1>
+            <fieldset>
+                <legend>네이버 회원가입 </legend>
+                <div id = "signin">
+                    아이디
+                    <input id ="idinput" type="text">
+                </div>
+
+                <!-- <label>이름도 넣어보까 레이블</label>
+                <input type="text">
+                <p>     
+                <label>패스워드</label>
+                <input type="password">
+                <p>
+                <label>회원가입 버튼 썹밋</label>
+                <input type="submit">
+                <button type="button">이것도 버튼인데?</button>
+                <button tpye="button">뒤로가기</button> -->
+            </fieldset>
+        </div>
+    </div>
+
+    <script>
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <style>
+       *{ margin: 0; padding: 0;}
+        ul, li{ list-style: none;}
+        a{ text-decoration: none; color: #333;}
+
+
+         #main_img_area{width: 100%; height: 350px; overflow: hidden; position: relative;} 
+        .imgs_area{width: 100%; height: 350px; position: relative;}
+        .imgs_area > ul{}
+        .imgs_area > ul > li{width: 100%; height: 350px; position: absolute; top:0;}
+        .imgs_area > ul > li.img1{ background-color: red; left:0%;}
+        .imgs_area > ul > li.img2{ background-color: green; left:100%;}
+        .imgs_area > ul > li.img3{ background-color: blue; left:200%;}
+
+        #main_img_area .btns{ position: absolute; bottom: 50px; left: 50%; margin-left: -32.5px;}
+        #main_img_area .btns li{ float: left; margin-right: 10px;
+                                 width: 15px; height: 15px; 
+                                 border-radius: 50%; cursor: pointer;
+                                 background-color: #fff;}
+        #main_img_area .btns li.on{background-color: blueviolet;}                                 
+        #main_img_area .l_btn{position: absolute; top:170px; left: 100px; 
+                              z-index: 2000; font-size: 20px; cursor: pointer;}  
+        #main_img_area .r_btn{position: absolute; top:170px; right: 100px;
+                              z-index: 2000;  font-size: 20px;  cursor: pointer;}                      
+   </style>
+  <script src="js/jquery.js"></script>
+</head>
+<body>
+    <div id="main_img_area">
+        <!--메인이미지영역-->
+        <div class="imgs_area">
+        <ul class="imgs">
+            <li class="img1">메인이미지1</li> //0
+            <li class="img2">메인이미지2</li> //1
+            <li class="img3">메인이미지3</li> //2
+        </ul>
+        </div>
+
+        <!--버튼영역-->
+        <ul class="btns">
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <!--좌우버튼영역-->
+         <span class="l_btn">왼쪽</span> 
+         <span class="r_btn">오른쪽</span>
+    </div>
+    
+
+    <script>
+     $(document).ready(function(){
+      var current = 0;
+      var setIntervalI
+
+    // //마우스를 눌렀을때 슬라이드 되게하는 함수    
+     $(".btns > li").click(function(){
+        $(".btns > li").removeClass("on");//적용된 on클래스의 스타일을 해제
+        $(this).addClass("on");//스타일을 먼저 선언하고 제이쿼리 선택자 없지 적용하는 방법 
+        var tg = $(this).index();//형제들과 비교해서 일련의 번호를 설정
+        move(tg);
+
+     });
+     
+     $(".l_btn").click(function(){
+        var n = current + 1 ; //0 1 2 
+                if(n == 3){
+                    n = 0; //초기값 0으로 되돌림
+                }
+                move(n);//함수호출;
+     });
+     $(".r_btn").click(function(){
+        var n = current + 1 ; //0 1 2 
+                if(n == 3){
+                    n = 0; //초기값 0으로 되돌림
+                }
+                move2(n);//함수호출;
+     });
+    
+
+
+     $("#main_img_area").hover(//자동실행을 조절 마우스 이벤트
+         function(){
+            clearInterval(setIntervalId);
+         },
+         function(){
+            timer();
+         }
+     );
+
+    timer();
+    // //자동실행을 하게 하는 함수   
+     function timer(){
+      // setInterval(실행문,시간); 정해진 시간 간격으로 자동 움직을 설정
+      // clearInterval(); 자동 움직을 해지(정지)
+      setIntervalId = setInterval(function(){
+                var n = current + 1 ; //0 1 2 
+                if(n == 3){
+                    n = 0; //초기값 0으로 되돌림
+                }
+                move(n);//함수호출
+      },3000);
+    }//timer()닫기
+    
+    
+
+    //슬라이드 되게하는 함수   
+       function move(n){
+        if(current == n) return;
+        //현재 보이는 슬라이드번호 다음으로 눌렀던 슬라이드번호 같을경우 작동중지 설정
+        var currentEl = $(".imgs > li").eq(current);
+        var nextEl  = $(".imgs > li").eq(n);
+        // li:nth-child(1) == eq(0); 몇번째
+        // li:nth-child(2) == eq(1);
+        currentEl.css({left:0}).animate({left:'-100%'});
+        nextEl.css({left:"100%"}).animate({left:0});
+
+        current = n;// 현재 nextEl를 currentEl 대입시킨 다음 슬라이드 위해서
+       }
+          
+       //슬라이드 되게하는 함수 (오른쪽방향)  
+       function move2(n){
+        if(current == n) return;
+        //현재 보이는 슬라이드번호 다음으로 눌렀던 슬라이드번호 같을경우 작동중지 설정
+        var currentEl = $(".imgs > li").eq(current);
+        var nextEl  = $(".imgs > li").eq(n);
+        // li:nth-child(1) == eq(0); 몇번째
+        // li:nth-child(2) == eq(1);
+        currentEl.css({left:0}).animate({left:'100%'});
+        nextEl.css({left:"-100%"}).animate({left:0});
+
+        current = n;// 현재 nextEl를 currentEl 대입시킨 다음 슬라이드 위해서
+       }
+
+
+     });
+
+    </script>
+</body>
+</html>

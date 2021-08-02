@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체의 프로퍼티</title>
+    <script>
+        'use strict'
+        const user = {
+            userid:'apple',
+            name:'사과',
+            gender:'여자',
+            hp:'01011112222',
+            birthday:'20200101',
+
+            memberid : function(){//함수를 속성으로 포함할수 있다.
+               return "korea" + this.name;
+            }
+        };
+        console.log(user.userid);
+        console.log(user.name);
+        console.log(user.gender);
+        console.log(user.hp);
+        console.log(user.birthday);
+        console.log(user.memberid);
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

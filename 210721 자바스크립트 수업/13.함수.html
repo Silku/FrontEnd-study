@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+    <script>
+      'use strict'
+        function func1(num){
+          document.write(`전달받은 매개변수값은 ${num}입니다.`)
+        }
+        // ------------------------------------------
+        function func2(start, end){
+          let sum = 0;
+          for(let i = start; i <=end; i++){
+            sum = sum + i; //sum+= i;
+          }
+            document.write(`${start}부터 ${end}까지의 총합은 ${sum}입니다.`)
+        }
+        // ------------------------------------------
+        
+        function func3(num1=1, num2=1){
+          document.write(`${num1} + ${num2} = ${num1 + num2}`)
+          document.write(`${num1} - ${num2} = ${num1 - num2}`)
+          document.write(`${num1} * ${num2} = ${num1 * num2}`)
+          document.write(`${num1} / ${num2} = ${num1 / num2}`)
+        }
+        // ------------------------------------------
+        function func4(num1, num2, ...num3){
+          document.write(`num1의 값 : ${num1}`)
+          document.write(`num2의 값 : ${num2}`)
+          document.write(`num3의 값 : ${num3}`)
+        }
+
+        // ------------------------------------------
+        function func5(score){
+          for(let i of score){
+            console.log(i);
+          }
+        }
+      
+        func1(10);
+        func2(1,100);
+        func3(5,3);
+        func4(100,90,40,50,80,90,30);
+        func5(100,90,40,50,80,90,30);
+    </script>
+</head>
+<body>
+  
+</body>
+</html>

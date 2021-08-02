@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            display: flex;
+            width:80%; height: 100px; border:3px solid #000;
+        }
+        .box1 > div{
+            float:left;
+            width:150px; height: 100px;
+        }
+        .box1-1{
+            background-color: red;
+            flex-basis:50%;
+        }
+        .box1-2{
+            background-color: blue;
+            flex-basis:100%;
+        }
+        .box1-3{
+            background-color: green;
+            flex-basis:100%;
+        }
+    </style>
+</head>
+<body>
+    <h2>부모 flex-wrap, justify-content, align-items<br>
+        자식 align-self, order, flex-grow, flex-shrink, flex-basis
+        <br>
+        flex-grow 플렉스 컨테이너 아이템들이 차지할 너비들에 대한 증가형 숫자를 지정합니다.
+        <br>
+        flex-shrink 플렉스 컨테이너 아이템들이 차지할 너비들에 대한 감소형 숫자를 지정합니다.
+        <br>
+        flex-basis 플렉스 컨테이너 아이템의 길이를 지정합니다. 기본값 0
+        <br>
+        한번에 설정하는법: 
+        flex : flex-grow ,flex-shrink, flex-basis  // ex flex : 2 2 0;
+    </h2>
+    <div class="box1">
+        <div class="box1-1"></div>
+        <div class="box1-2"></div>
+        <div class="box1-3"></div>
+    </div>
+</body>
+</html>

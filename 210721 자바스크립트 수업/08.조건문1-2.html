@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    var price, price2;
+    price = prompt("가격을 입력해 주십시오.");
+    if(price > 10000){
+      price2 = price*0.1
+      console.log(typeof price2);
+      console.log(price2);
+    }else if(price >= 5000){
+      price2 = price*0.05;
+      console.log(price2);
+    }else if(price >= 3000){
+      price2 = price*0.03;
+      console.log(price2);
+    }else{
+      price2 = price;
+    }
+    document.write("할인가격은" + price2 + "원 입니다");
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

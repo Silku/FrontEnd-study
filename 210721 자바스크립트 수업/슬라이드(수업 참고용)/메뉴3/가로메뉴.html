@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery.js"></script>
+    <style>
+        *{ margin: 0; padding: 0;}
+        ul, li{ list-style: none;}
+        a{ text-decoration: none; color: #333;}
+
+        /* 가로메뉴1 */
+        .nav1{ margin: 50px; 
+               width: 500px; height: 30px; 
+               border: 2px solid #000;}
+        .nav1 > li{float: left; width: 125px; height: 30px;
+                   position: relative;}
+        .nav1 > li > a{ display: block; 
+                        width: 100%; height: 30px;
+                        text-align: center;}
+        .nav1 > li > a:hover{ background-color:bisque}
+        
+        .s_nav{ position: absolute; left: 0; top:32px;
+                width: 100%;}
+        .s_nav > li{ margin-bottom: 1px;}
+        .s_nav > li > a{ display: block; text-align: center;
+                          width: 100%; height: 30px;
+                          background-color: cornsilk;}
+        /* .s_nav > li > a:hover{ background-color: coral;}                  */
+        .s_nav > li > a.on{ background-color: coral;}                   
+    </style>
+</head>
+<body>
+
+    
+      <script>
+    
+           $(document).ready(function(){
+           $(".s_nav").hide();//기본적으로 모든 서브메뉴는 숨김
+           //$(".s_nav").css({display:none});
+
+           $(".nav1 > li").hover(//각각의 주메뉴에 마우스를 hover했을때
+               function(){//마우스가 주메뉴에 올라갈때
+                //$(this).find(".s_nav").show();//해당되는 서브메뉴 보임
+                //$(this).find(".s_nav").fadeIn(2000);
+                //$(this).stop().find(".s_nav").slideDown();
+                //$(this).find(".s_nav").show().css({height:"0px"}).animate({height:"100%"});
+                $(this).find(".s_nav") //마우스이벤트가 적용된 대상을 의미
+                       .show()//서브메뉴의 기본값 반대 보임으로 설정
+                       .css({opacity:0}) // 애니메이션 초기값 투명도 0
+                       .animate({opacity:1},1000); // 애니메이션이 적용되는 값
+
+               },
+                function(){//마우스가 주메뉴에 올라갔다가 다시 나갈때
+                //$(".s_nav").hide();// 해당되는 메뉴 숨김
+                //$(".s_nav").fadeOut();
+                //$(".s_nav").slideUp();
+                $(".s_nav").hide();
+               }
+           );
+
+           $(".s_nav > li > a").mouseover(function(){
+                    $(this).addClass("on");  
+                    //스타일시트를 먼저 선언해놓고 그속성을 선택자 없이 적용하는 방법
+           });
+           $(".s_nav > li > a").mouseout(function(){
+                   $(".s_nav > li > a").removeClass("on")
+                     //addClass("on")의 반대로 적용된 클래스효과를 빼는 방법
+            });
+
+
+          });
+      </script>
+
+       <ul class="nav1">
+           <li class="mn1"><a href="#">menu</a>
+               <ul class="s_nav">
+                   <li><a href="#">s_menu</a></li>
+                   <li><a href="#">s_menu</a></li>
+                   <li><a href="#">s_menu</a></li>
+                   <li><a href="#">s_menu</a></li>
+               </ul>
+            </li>
+            <li class="mn2"><a href="#">menu</a>
+                <ul class="s_nav">
+                    <li><a href="#">s_menu</a></li>
+                    <li><a href="#">s_menu</a></li>
+                    <li><a href="#">s_menu</a></li>
+                    <li><a href="#">s_menu</a></li>
+                </ul>
+             </li>
+             <li class="mn3"><a href="#">menu</a>
+                <ul class="s_nav">
+                    <li><a href="#">s_menu</a></li>
+                    <li><a href="#">s_menu</a></li>
+                    <li><a href="#">s_menu</a></li>
+                    <li><a href="#">s_menu</a></li>
+                </ul>
+             </li>
+             <li class="mn4"><a href="#">menu</a>
+                <ul class="s_nav">
+                    <li><a href="#">s_menu</a></li>
+                    <li><a href="#">s_menu</a></li>
+                    <li><a href="#">s_menu</a></li>
+                    <li><a href="#">s_menu</a></li>
+                </ul>
+             </li>
+       </ul>
+</body>
+</html>

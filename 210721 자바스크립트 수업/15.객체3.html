@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체의 생성자</title>
+    <script>
+        'use strict'
+        //객체를 하나 생성하는 방법
+        const Car = {
+            name : '소나타',
+            color: 'black',
+            start:function(){
+                return '시동을 켭니다';
+            }
+        }
+        console.log(Car.name);
+        console.log(Car.color);
+        console.log(Car.start());
+
+        //객체를 하나 이상 생성하는 방법
+        function Dog(name, color){
+            this.name = name;
+            this.color = color; 
+            this.sleep = function(){
+               return `${name}가 잠을 잡니다`;
+            }
+        }
+
+        const Rucy = new Dog('루시','흰색')
+        console.log(Rucy.name);
+        console.log(Rucy.color);
+        console.log(Rucy.sleep());
+        const Ppomi = new Dog('뽀미','갈색')
+        console.log(Ppomi.name);
+        console.log(Ppomi.color);
+        console.log(Ppomi.sleep());
+        const Jindol = new Dog('진돌','검정색')
+        console.log(Jindol.name);
+        console.log(Jindol.color);
+        console.log(Jindol.sleep());
+                 
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

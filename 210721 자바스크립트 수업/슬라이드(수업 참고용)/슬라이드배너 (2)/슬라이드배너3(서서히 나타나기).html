@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <style>
+       *{ margin: 0; padding: 0;}
+        ul, li{ list-style: none;}
+        a{ text-decoration: none; color: #333;}
+
+
+         #main_img_area{width: 100%; height: 350px; overflow: hidden; position: relative;} 
+        .imgs_area{width: 100%; height: 350px; position: relative;}
+        .imgs_area > ul{}
+        .imgs_area > ul > li{width: 100%; height: 350px; position: absolute; top:0;}
+        .imgs_area > ul > li.img1{ background-color: red; left:0%; z-index: 300;}
+        .imgs_area > ul > li.img2{ background-color: green; left:0%; z-index: 200;}
+        .imgs_area > ul > li.img3{ background-color: blue; left:0%;  z-index: 100;}
+
+        #main_img_area .btns{ position: absolute; bottom: 50px; left: 50%; margin-left: -32.5px; z-index: 1000;}
+        #main_img_area .btns li{ float: left; margin-right: 10px;
+                                 width: 15px; height: 15px; 
+                                 border-radius: 50%; cursor: pointer;
+                                 background-color: #fff;}
+                                 
+   </style>
+  <script src="js/jquery.js"></script>
+</head>
+<body>
+    <div id="main_img_area">
+        <!--메인이미지영역-->
+        <div class="imgs_area">
+        <ul class="imgs">
+            <li class="img1">메인이미지1</li> //0
+            <li class="img2">메인이미지2</li> //1
+            <li class="img3">메인이미지3</li> //2
+        </ul>
+        </div>
+
+        <!--버튼영역-->
+        <ul class="btns">
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <script>
+     $(document).ready(function(){
+   
+      var current = 0;
+      var setIntervalId;
+
+   
+    // //마우스를 눌렀을때 슬라이드 되게하는 함수    
+     $(".btns > li").click(function(){
+        var tg = $(this).index();//형제들과 비교해서 일련의 번호를 설정
+        move(tg);
+
+     });
+   
+    
+
+  
+     $("#main_img_area").hover(//자동실행을 조절 마우스 이벤트
+         function(){
+            clearInterval(setIntervalId);
+         },
+         function(){
+            timer();
+         }
+     );
+
+    timer(); [2]
+    // //자동실행을 하게 하는 함수   
+     function timer(){
+      setIntervalId = setInterval(function(){
+                var n = current + 1 ; //0 1 2 
+                if(n == 3){
+                    n = 0; //초기값 0으로 되돌림
+                }
+                move(n);//함수호출
+      },5000);
+    }//timer()닫기
+    
+    
+
+    //슬라이드 되게하는 함수   [1]
+       function move(n){
+        if(current == n) return;
+        
+        var currentEl = $(".imgs > li").eq(current);
+        var nextEl  = $(".imgs > li").eq(n);
+       
+        currentEl.css({opacity:1}).animate({opacity:0},2000);
+        nextEl.css({opacity:0}).animate({opacity:1},2000);
+
+        current = n;// 현재 nextEl를 currentEl 대입시킨 다음 슬라이드 위해서
+       }
+          
+
+
+     });
+
+    </script>
+</body>
+</html>

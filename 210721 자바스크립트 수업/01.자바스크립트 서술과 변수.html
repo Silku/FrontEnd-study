@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01.자바스크립트 서술과 변수</title>
+    <script>
+        // 페이지가 로드 되었을때 작동되는 부분 서술
+
+        // 변수(variable):데이터를 저장하는 메모리 공간을 의미
+        // - 특수문자 사용불가
+        // - 변수이름 시작은 영어, 한글사용 안됨, 공백사용
+        // var , 지역변수
+        
+        // 상수 : 재정의 할 수 없는 값
+        // let , 전역변수로써 사용가능
+
+        /*
+         'use strict';
+            strict mode 사용을 한다는 의미, 문법오류시 경고문 표시
+        */
+        // 'use strict';
+        // var num = 10;
+        // console.log(num);
+        // var num2;
+        // console.log(num2);
+        // num3 = 20;
+        // console.log(num3);
+        
+        let age;
+        age = 20;
+        console.log(age);
+
+        let age1;
+        age = 20;
+        
+        let name;
+        name = "코리아";
+        console.log(name);
+
+        console.log(age+name);
+        console.log(age+age1);
+
+        let number;
+        number = "12345"
+        console.log(number);
+
+
+    </script>
+    <script scr="자바스크립트 파일경로"></script><!--외부 자바스크립트의 사용-->
+</head>
+<body>
+    <script>
+        // 사용자가 어떤 이벤트를 주었을때 자바스크립트를 서술
+    </script>
+</body>
+</html>

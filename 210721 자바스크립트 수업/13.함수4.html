@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    'use strict'
+    //최대값 구하기 자기 실습
+    function  max(num1, num2){
+      if(num1 > num2){
+      return num1;
+      }else{
+        return num2;
+      }
+    } 
+  </script>
+</head>
+<body>
+    <script>
+      'use strict'
+      const num1 = Number(prompt('첫번째 숫자를 입력하세요'));
+      const num2 = Number(prompt('첫번째 숫자를 입력하세요'));
+
+      let result = max(num1, num2)
+      console.log(`${num1} 과 ${num2}를 비교한 큰 값 ${result}`);
+
+
+    </script>
+    
+</body>
+</html>

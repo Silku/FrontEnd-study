@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체의 생성자</title>
+    <script>
+        'use strict'
+        const Dog = class{
+            constructor(name,age,color){
+                this.name = name;
+                this.age = age;
+                this.color = color;
+                this.family = '포메리안'
+            }
+            play(){
+                return `${this.name}가 즐겁게 놉니다`
+            }
+        }
+        const Rucy = new Dog('루시',10, '흰색');
+        console.log(Rucy);
+        console.log(Rucy.family);   
+        console.log(Rucy.play());
+
+        const Rucy2 = new Dog('루시2',15, '노란색');
+        console.log(Rucy2);
+        console.log(Rucy2.family);   
+        console.log(Rucy2.play());
+
+        const Rucy3 = new Dog('루시3',20, '검정색');
+        console.log(Rucy3);
+        console.log(Rucy3.family);   
+        console.log(Rucy3.play());
+        Rucy3.family ="진돗개";
+        console.log('루시3의 품종은 사실 ' + Rucy3.family);
+        console.log(Rucy3);   
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

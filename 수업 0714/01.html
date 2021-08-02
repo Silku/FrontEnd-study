@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>반응형 기초</title>
+    <style>
+        *{
+            margin:0; padding:0;
+        }
+        .box1{
+            width: 100%; height: 200px;
+            background-color: blue;
+        }
+        .box1 .box1-1{
+            float:left; width:50%;height: 200px;
+            background-color: aqua;
+            
+        }
+        .box1 .box1-2{
+            float:left; width:50%;height: 200px;
+            background-color: brown;
+        }
+        @media screen and (max-width:1000px){
+            .box1{
+            width: 100%; height: 400px;
+            background-color: blue;
+            }
+            .box1 .box1-1{
+            float:none; width:100%;height: 200px;
+            background-color: aqua;
+            
+             }
+            .box1 .box1-2{
+            float:none; width:100%;height: 200px;
+            background-color: brown;
+            } 
+        }
+/* 
+        @media 매체유형
+        all 모든매체 @media all and (){}
+        print 프린터기기 @media print and (){}
+        screen 컴퓨터 태플릿, 스마트폰 @media screen and (){}
+        speech 스크린 리더 @media speech and (){}
+
+        @media speech and (조건 : 모니터 크기){}
+        max-width, min-width */
+
+    </style>
+</head>
+<body>
+    <div class="box1">
+        <div class="box1-1"></div>
+        <div class="box1-2"></div>
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+변수의 범위
+- 자바 스크립트에서는 객체, 함수 모두 변수(상수)입니다.
+- 변수의 범위란 변수가 접근하는 변수, 객체 그리고 함수의 집합을 의미합니다
+
+1. 지역변수
+function func1(x,y){
+   //x,y ,sum 지역변수 {안에만 사용}
+  let sum = 0;
+  return sum;
+} 
+func1(1,5)
+//x,y,sum의 변수는 알수 없음.
+
+2. 전역변수
+let global =10; 
+//전역변수
+
+function func1(x,y){
+  //x,y 지역변수
+  console.log(global);
+  let sum = 0;
+      ....
+    return sum;
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03.문자열형변수</title>
+    <script>
+        'use strict'
+        const num1 = 10;
+        const num2 = 5;
+        const str1 = "Hello Javascript"
+        const str2 = "Hello World"
+        const str3 = "10"
+        console.log(num1+num2);
+        console.log(num1+str1);
+
+        var val = 1.11;
+        console.log(typeof val);
+        console.log(typeof (str2));
+        
+        console.log(str1 + " " + str2); //문자열형
+        console.log(num1+"+" + num2 +"=" + num1 +num2);
+        console.log(typeof null);
+      
+      
+        // 자료형이 number string, object가 있음을 알 수 있었다.
+
+        var str5 = "류정원 : '여러분 오늘의 자바스크립트' ";
+        console.log(str5)
+
+        var str6 = '류정원 : "여러분 오늘의 자바스크립트" ';
+        console.log(str6)
+  
+
+        /*
+        향후 수업방향 :
+            vue, node , 리액트
+            디자인제작 -> 목업 -> adobeXD
+             ->SPA 만들것 싱글 페이지 어플리케이션 
+        */
+
+
+        /*-----------------------------------------------------------
+        웹에서 스터디;
+        https://kamang-it.tistory.com/entry/JavaScript09undefined%EC%99%80-null-%EA%B7%B8%EB%A6%AC%EA%B3%A0-NaN-%EC%9D%B4%EC%83%81%ED%95%9C-%EC%82%BC%EA%B0%81%EA%B4%80%EA%B3%84-feat-boolean%EA%B9%8C%EC%A7%80-4%EA%B0%81-%EA%B4%80%EA%B3%84
+        
+        js에서의 undefined, null, NaN
+
+        var va;
+        va = va ||10;
+        console.log(va);
+        va가 초기화 되지않았다면 10을부여한다.
+        js가 and,or을 어떤 메커니즘으로 처리하는지 알아야한다.
+        만약 undefined를 숫자로 번역하게 된다면 값은 NaN이 된다.
+        
+        NaN : "이 값은 숫자가 아니다", js에서만 존재하는 값
+        NaN생성의 가능성이 있다면 동등연산, 비교연산을 행해서는 안된다.
+        자기를 동등 연산하면 false가 나오는 무친값  , 따라서 동등비교는 안되고 전용함수를 써야되는 귀족
+        console.log(isNaN(NaN));//true 
+             NaN은 isNaN을 써야만 확인할 수 있다.
+        console.log(typeof NaN);//number
+            그리고 type은 당연히 숫자이다.
+            숫자가 아닌 값이 숫자라는게 철지난 아재개그 같은 느낌이다.
+        console.log(isNaN('str'));//true
+            그리고 isNaN함수에 문자열을 넣어도 성립한다..... 문자열이 아니라 object를 넣어도 성립하게된다.
+       
+            결론 : NaN의 비교는 isNaN으로 하지 않는다면 결과를 예측할 수 없다.
+        */
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

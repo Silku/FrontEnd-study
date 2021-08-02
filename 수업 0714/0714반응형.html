@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin:0; padding:0;
+        }
+        ul,ol,li{list-style-type: none;}
+        #header{
+            /* float:left; */
+            margin: 0 auto;
+            text-align: center;
+            width:1200px; height: 110px;
+            background-color: #333;
+        }
+        #header .logo{
+            width:200px; height: 110px;
+            background-color: chartreuse;
+        }
+        #header .main_mn{
+            
+            width:200px; height: 110px;
+            background-color: hotpink;
+        }
+        #header .main_mn ul{}
+        #header .main_mn li{
+            float:left;
+            width:20%;
+            text-align: center;
+        }
+        #header .main_mn a{
+            color:#fff;
+        }
+        #header .info_mn{
+            width:200px; height: 110px;
+            background-color: cyan;
+        }
+        #main_img{   
+            width:100%; height: 250px;
+            background-color: brown;
+        }
+        #contents{
+            margin:0 auto;
+            width:100%; height:250px;
+            background-color: #ccc;
+        }
+        #contents .banner{
+           float:left; width:400px; height:150px; 
+           background-color: rgb(10, 10, 255);
+        }
+        #contents .notice{
+            float:left; width:400px; height:150px;
+            background-color: rgb(244, 244, 255);
+        }
+        #contents .news{
+            float:left; width:400px; height:150px;
+            background-color: rgb(207, 243, 0);
+        }
+        #contents .product{
+            float:left; width:800px; height:100px;
+            background-color: rgb(255, 72, 0);
+        }
+        #contents .service{
+            float:left; width:400px; height:100px;
+            background-color: rgb(0, 255, 13);
+        }
+        #footer{
+            margin:0 auto;
+            width:1200px; height: 100px;
+            background-color: maroon;
+        }
+        #footer .logo2{
+            float:left;
+            width:150px; height: 100px;
+            background-color: rgb(217, 255, 0);
+        }
+        #footer .address{
+            float:left;
+            width:1050px; height: 100px;
+            background-color: rgb(77, 79, 255);
+        }
+
+        @media screen and (max-width:1200px){
+            #header{
+            margin:0 auto;
+            width:100%; 
+            background-color: #444;
+            }
+            #header .logo{
+            width:16.6%; height: 110px;
+            background-color: chartreuse;
+            }
+            #header .main_mn{
+            width:66.6%; height: 110px;
+            background-color: hotpink;
+            }
+            #header .info_mn{
+            width:16.6%; height: 110px;
+            background-color: cyan;
+            }
+
+            #contents{
+            margin:0 auto;
+            width:100%; height:250px;
+            background-color: #ccc;
+            }
+            #contents .banner{
+            float:left; width:33.3%; height:150px; 
+            background-color: rgb(10, 10, 255);
+            }
+            #contents .notice{
+            float:left; width:33.3%; height:150px;
+            background-color: rgb(244, 244, 255);
+            }
+            #contents .news{
+            float:left; width:33.3%; height:150px;
+            background-color: rgb(207, 243, 0);
+            }
+            #contents .product{
+            float:left; width:66.7%px; height:100px;
+            background-color: rgb(255, 72, 0);
+            }
+            #contents .service{
+            float:left; width:33.3%px; height:100px;
+            background-color: rgb(0, 255, 13);
+            }
+            #footer{
+            margin:0 auto;
+            width:100%; height: 100px;
+            background-color: maroon;
+            }
+            #footer .logo2{
+            float:left;
+            width:12.5%; height: 100px;
+            background-color: rgb(217, 255, 0);
+            }
+            #footer .address{
+            float:left;
+            width:87.5%; height: 100px;
+            background-color: rgb(77, 79, 255);
+            }
+        }
+        @media screen and (max-width:800px){
+            #header{
+            margin:0 auto;
+            width:100%; 
+            background-color: #444;
+            }
+            #header .logo{
+            width:16.6%; height: 110px;
+            background-color: chartreuse;
+            }
+            #header .main_mn{
+            width:66.6%; height: 110px;
+            background-color: hotpink;
+            }
+            #header .info_mn{
+            width:16.6%; height: 110px;
+            background-color: cyan;
+            }
+
+            #contents .banner{
+            float:left; width:50%; height:150px; 
+            background-color: rgb(10, 10, 255);
+            display:none;
+            }
+            #contents .notice{
+            float:left; width:50%; height:150px;
+            background-color: rgb(244, 244, 255);
+            }
+            #contents .news{
+            float:left; width:50%; height:150px;
+            background-color: rgb(207, 243, 0);
+            }
+            #contents .product{
+            float:left; width:50%; height:100px;
+            background-color: rgb(255, 72, 0);
+            }
+            #contents .service{
+            float:left; width:50%; height:100px;
+            background-color: rgb(0, 255, 13);
+            }
+            #footer{
+            margin:0 auto;
+            width:100%; height: 100px;
+            background-color: maroon;
+            }
+            #footer .logo2{
+            float:none;
+            width:100%; height: 100px;
+            background-color: rgb(217, 255, 0);
+            }
+            #footer .address{
+            float:none;
+            width:100%; height: 100px;
+            background-color: rgb(77, 79, 255);
+            }
+        }
+        @media screen and (max-width:480px){
+            #header .main_mn ul{}
+            #header .main_mn li{
+            float:left;
+            width:25%;
+            height: 110px;
+            text-align: center;
+            line-height: 110px;
+            }
+            #header .main_mn li:nth-child(4){
+            display: none;
+            }
+            #header .main_mn a{
+            color:#fff;
+            font-size:4.8vw;
+            /* 
+            100vw=> 480px => 100%==100vw vw은 현재화면을 가로크기 100%로 계산(절대값)
+            100vh=> 480px => 100%==100vh vh은 현재화면을 세로크기 100%로 계산(절대값) 
+            */
+            }
+            #contents{
+            margin:0 auto;
+            width:100%; height:650px;
+            background-color: #ccc;
+            }
+            #contents .banner{
+            float:none; width:100%; height:150px; 
+            background-color: rgb(10, 10, 255);
+            display: block;
+            }
+            #contents .notice{
+            float:none; width:100%; height:150px;
+            background-color: rgb(244, 244, 255);
+            }
+            #contents .news{
+            float:none; width:100%; height:150px;
+            background-color: rgb(207, 243, 0);
+            }
+            #contents .product{
+            float:none; width:100%; height:100px;
+            background-color: rgb(255, 72, 0);
+            }
+            #contents .service{
+            float:none; width:100%; height:100px;
+            background-color: rgb(0, 255, 13);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="logo">logo 기본 설정값</div>
+        <div class="main_mn">main_mn
+            <ul>
+                <li><a href="#">menu1</a></li>
+                <li><a href="#">menu2</a></li>
+                <li><a href="#">menu3</a></li>
+                <li><a href="#">menu4</a></li>
+                <li><a href="#">menu5</a></li>
+            </ul>
+        </div>           
+        <div class="info_mn">info_mn</div>
+    </header>
+    <section id="main_img">main_img</section>
+    <div id="contents">
+        <article class = "banner">"banner"</article>
+        <article class = "notice">"notice"</article>
+        <article class = "news">"news"</article>
+        <article class = "product">"product"</article>
+        <article class = "service">"service"</article>
+    </div>
+    <footer id="footer">
+        <div class="logo2">logo2</div>
+        <address class="address">address</address>
+    </footer>
+</body>
+</html>

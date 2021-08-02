@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math 객체</title>
+    <script>
+        'use strict'
+        console.log(Math.min());
+        // min() : 최소값을 리턴, 매개변수가 전달되지 않으면 Infinity를 리턴,비교할수 없는 값이 포함 되어있으면 NaN을 리턴
+        console.log(Math.max());
+        // max() : 최대값을 리턴, 매개변수가 전달되지 않으면 -Infinity를 리턴, 비교할 수 없는 값이 포함되어 있으면 NaN을 리턴
+
+        console.log(Math.min(1, 10, -2222222222222224444444410,1000, 5.5, 0)); //-2.2222222222222243e+24
+        console.log(Math.min(1, 10, -20,1000, "-55.5", 0)); //-55.5
+        console.log(Math.min(1, 10, -20.5, 1000, "-이백", 0)); //NaN
+        
+        console.log('round');
+        // round() : 소수점 첫번째 자리에서 반올림 , return
+        console.log(Math.round(10.6666)); //11
+        console.log(Math.round(10.4444)); //10
+        console.log(Math.round(-10.6666)); //-11
+        console.log(Math.round(-10.4444)); //-10
+
+        console.log('ceil');
+        // ceil() : 소수점 첫번쨰 자리에서 올림
+        console.log(Math.ceil(10.6666)); //11
+        console.log(Math.ceil(10.4444)); //11
+        console.log(Math.ceil(-10.6666)); //-10
+        console.log(Math.ceil(-10.4444)); //-10
+
+        console.log('floor');
+         // floor() : 소수점 첫번째 자리에서 내림 
+        console.log(Math.floor(10.6666)); //10
+        console.log(Math.floor(10.4444)); //10
+        console.log(Math.floor(-10.6666)); //-11
+        console.log(Math.floor(-10.4444)); //-11
+       
+        
+        console.log('random');
+        // random() : 0보다 크거나 같고 1보다 작은 무작위 소수를 리턴 
+        console.log(Math.random());
+        console.log(Math.random()*10);
+        console.log(Math.floor(Math.random()*10)+1); //정수로 추출
+        console.log(Math.random()*6);
+        console.log(Math.floor(Math.random()*45)+1); //1~45추출
+
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배열</title>
+    <script>
+     'use strict';
+        const cnt = Number(prompt('입력 받을 숫자의 개수를 입력하세요'));
+        let idx = 0;
+        let arr=[];
+        while(idx < cnt){
+            arr[idx] = Number(prompt(`${idx + 1}번쨰 숫자를 입력하세요`));
+            idx++;
+            
+        }
+        let max = arr[0];
+        let min = arr[0];
+        for(let i = 0; i < arr.length; i++){
+            if(max < arr[i]){
+                max = arr[i];
+            }
+            if(min > arr[i]){
+                min = arr[i];
+            }
+        }
+        document.write(`입력한 수 ${arr}에서 가장 큰 값은 ${max} 작은값은 ${min}입니다.`)
+
+        // for(let i = 0; i<arr.length; i++){
+        //     document.write(`${arr[i]}<br>`);
+        // }
+        
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

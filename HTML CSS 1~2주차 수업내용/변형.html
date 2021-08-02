@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스타일시트 요소형태 변형</title>
+    <style>
+        *{
+            margin: 0; padding:0;
+            margin-left:50px;
+        }
+        .box1{
+            /* transition: 0.5s; */
+            width: 150px; height: 150px;
+            border : 1px solid #000;
+            margin-top:50px;
+        }
+        .box1 .box1_in{
+            transform: scale(1);
+            transition:0.5s;
+            width:140px; height:140px;
+            border : 1px solid red;
+        }
+        .box1:hover .box1_in{
+            transform: scale(0.5);
+            transition:0.5s;
+            width:140px; height:140px;
+            border : 1px solid red;
+        }
+        .box1-2{
+            /* transition: 0.5s; */
+            width: 150px; height: 150px;
+            border : 1px solid #000;
+            margin-top:50px;
+        }
+        .box1-2 .box1_in{
+            transform: scale(1);
+            transition:0.5s;
+            width:140px; height:140px;
+            border : 1px solid red;
+        }
+        .box1-2:hover .box1_in{
+            transform: scale(2);
+            transition:0.5s;
+            width:140px; height:140px;
+            border : 1px solid red;
+        }
+        .box1-3{
+            /* transition: 0.5s; */
+            width: 150px; height: 150px;
+            border : 1px solid #000;
+            margin-top:50px;
+        }
+        .box1-3 .box1_in{
+            transform: scaleX(1);
+            transition:0.5s;
+            width:140px; height:140px;
+            border : 1px solid red;
+        }
+        .box1-3:hover .box1_in{
+            transform: scaleX(2);
+            transition:0.5s;
+            width:140px; height:140px;
+            border : 1px solid red;
+        }
+        .box1-4{
+            transition: 10s;
+            width: 150px; height: 150px;
+            border : 1px solid #000;
+            margin-top:50px;
+        }
+        .box1-4 .box1_in{
+            transform: scaleY(1);
+            transition:0.5s;
+            width:140px; height:140px;
+            border : 1px solid red;
+        }
+        .box1-4:hover .box1_in{
+            transform: scaleY(2);
+            transition:0.5s;
+            width:140px; height:140px;
+            border : 1px solid red;
+        }
+        .box2-1{
+            transition: 10s;
+            width: 150px; height: 150px;
+            border : 1px solid #000;
+            margin-top:50px;
+        }
+        .box2-1 .box1_in{
+            transform: rotate(0deg);
+            transition:0.5s;
+            width:140px; height:140px;
+            border : 1px solid red;
+        }
+        .box2-1:hover .box1_in{
+            transform: rotate(-360deg);
+            transition:0.5s;
+            width:140px; height:140px;
+            border : 1px solid red;
+            background-color: red;
+            border-radius: 50%;
+        }
+        .box3-1{
+            transition: 10s;
+            width: 150px; height: 150px;
+            border : 1px solid #000;
+            margin-top:50px;
+        }
+        .box3-1 .box1_in{
+            transform: skew(0deg, 10deg);
+            transition:0.5s;
+            width:140px; height:140px;
+            border : 1px solid red;
+            
+        }
+        .box3-1:hover .box1_in{
+            transform: rotate(360deg);
+            transition:0.5s;
+            width:140px; height:140px;
+            border : 1px solid red;
+            
+        }
+        .box3-2{
+            transition: 10s;
+            width: 150px; height: 150px;
+            border : 1px solid #000;
+            margin-top:50px;
+        }
+        .box3-2 .box1_in{
+            transform: skewX(30deg);
+            transition:0.5s;
+            width:140px; height:140px;
+            border : 1px solid red;
+        }
+        .box3-2:hover .box1_in{
+            transform: skewX(-30deg);
+            transition:0.5s;
+            width:140px; height:140px;
+            border : 1px solid red;
+        }
+        .box4{
+            transition: 10s;
+            width: 150px; height: 150px;
+            border : 1px solid #000;
+            margin-top:50px;
+        }
+        .box4 .box1_in{
+            transform: translate(-40px,0);
+            transition:0.5s;
+            width:140px; height:140px;
+            border : 1px solid red;
+        }
+        .box4:hover .box1_in{
+            transform: translate(200px,-50px);
+            transition:0.5s;
+            width:140px; height:140px;
+            border : 1px solid red;
+        }
+        .box5:hover .box1_in{
+            transform: translate(200px,-50px);
+            transition:0.5s;
+            width:140px; height:140px;
+            border : 1px solid red;
+        }
+
+        /* 애니메이션 css
+            transition:  1s ;지연시간.
+            transform : scale(0.5) ; 크기.  
+                    rotate(360deg); 회전
+                    skew(0deg, 0deg); 기울기
+                    translate (1px,1px) : ;이동
+            // scale, skew,translate는 X,Y값 적용가능 scaleX,skewY 등등 */
+    </style>
+</head>
+<body>
+    <div class = "box1">
+        <div class="box1_in"></div>
+    </div>
+    <div class = "box1-2">
+        <div class = "box1_in"></div>
+    </div>
+    <div class = "box1-3">
+        <div class = "box1_in"></div>
+    </div>
+    <div class = "box1-4">
+        <div class = "box1_in"></div>
+    </div>
+
+    <div class = "box2-1">
+        <div class = "box1_in"></div>
+    </div>
+
+    <div class = "box3-1">
+        <div class = "box1_in"></div>
+    </div>
+    <div class = "box3-2">
+        <div class = "box1_in"></div>
+    </div>
+    <div class = "box4">
+        <div class = "box1_in"></div>
+    </div>
+    <div class = "box5">
+        <div class = "box1_in"></div>
+    </div>
+
+</body>
+</html>

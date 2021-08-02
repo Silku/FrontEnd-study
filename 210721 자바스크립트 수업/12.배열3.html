@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배열</title>
+    <script>
+     'use strict';
+        let arr1= ['코리아', 20, 165.5 , true]
+        document.write(`<p>${arr1}</p>`);
+        
+        arr1.push("여자");
+        document.write(`<p>${arr1}</p>`);
+
+        arr1.pop("여자");
+        document.write(`<p>${arr1}</p>`);
+
+        arr1.shift();
+        document.write(`<p>${arr1}</p>`);
+
+
+        let arr2=['호랑이','부산','학생']
+        let arr = arr1.concat(arr2);
+        document.write(`<p>${arr}</p>`);
+
+        arr = arr.join(" ");
+        document.write(`<p>${arr}</p>`);
+
+        arr2 = arr2.join(" | ");
+        document.write(`<p>${arr2}</p>`);
+
+        let arr3 = ['c', 'b', 'a', 'z', 'o']
+        document.write(`<p>${arr3}</p>`);
+        arr3.sort();
+        document.write(`<p>${arr3}</p>`);
+
+        arr3.reverse();
+        document.write(`<p>${arr3}</p>`);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

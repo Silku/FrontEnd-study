@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0; padding:0;
+        }
+        .box1{
+            margin:50px;
+            width:150px; height: 150px;
+            background-color:rgba(34 ,114, 167, 1);
+            transform: rotate(0);
+            cursor: wait;
+        }
+        .box1:hover{
+            /* transition-delay:1s; */
+            width:200px;
+            background-color: aqua;
+            transition-delay: 1s;
+            transition-duration:5s;
+            transition-property: all;
+            transform: rotate(360deg);
+            transition-timing-function: ease-in-out;
+            
+            /* transition-delay: 애니메이션의 지연시간을 지정
+            transition-duration : 애니메이션의 실행시간을 지정
+            transition-property: 어떤 속성을 변형할지 지정
+            transition-timing-function: 애니메이션의 속도를 지정
+                linear:시작부터 끝까지 같은 속도
+                ease : 천천히 시작~ 빨라지다 천천히 끝남
+                ease-in : 시작은 느리게
+                ease-out:느리게 끝냄
+                ease-in-out : 느리게 시작하고 느리게 끝냄 */
+        }
+        .box2{
+            margin:50px;
+            width:100px; height: 100px; 
+            border:5px solid #000;
+            background-image: url(../0709/img/다운로드.jpg);
+        }
+        .box2 .in_box{
+            width:100px; height: 100px; 
+            background-color: blue;
+            transform: translate(0,0);
+        }
+        .box2:hover .in_box{
+            transform: translate(500px,0);
+            transition-delay: 1s;
+            transition-duration: 3s;
+            transition-timing-function: ease-in-out;
+        }
+        .box3{
+            margin:50px;
+            width:200px; height: 150px;
+            background-color: red;
+        }
+        .box4{
+            margin:50px;
+            width:200px; height: 150px;
+            background-color: blue;
+        }
+        .box3:hover + .box4{
+            position:absolute; 
+            top:200px; left:0px;
+            transition-delay: 1s;
+            transition-duration: 3s;
+            transition-timing-function: linear;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">box1</div>
+    <div class="box2">box2
+        <div class="in_box"></div>
+    </div>
+    <div class="box3">box3</div>
+    <div class="box4">box4</div>
+</body>
+</html>

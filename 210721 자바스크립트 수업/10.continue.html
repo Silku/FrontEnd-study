@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>continue</title>
+    <script>
+     'use strict';
+     // 조건(continue 활용)
+        const num = 3;
+        for(let i = 1; i <= 100; i++){ 
+            if(i% num ==0){
+                document.write(`<br>${i}(3의배수)<br>`);
+                continue; //현재 실행문을 진행하고 처음조건으로 돌아감
+            }
+            document.write(`${i}`);
+        } 
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
