@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Object Model</title>
+</head>
+<body>
+    <h2 id ="dom">문서 객체 모델.</h2>
+    
+    <ul>
+      <li class="front">HTML</li>
+      <li class="front">CSS</li>
+      <li class="front">JavaScript</li>
+      <li class="front">Jquery</li>
+      <li class="serverside">PHP</li>
+      <li>node.js</li>
+      <li class="front">React</li>
+    </ul>
+    <script>
+      'use strict'
+      //getElementsById()
+      const id  = document.getElementById('dom');
+      id.style.color = 'deeppink';
+      
+      //getElementsByTagName()
+      const tagName  = document.getElementsByTagName('li');
+      for(let i = 0; i <tagName.length; i++){
+        tagName[i].style.color = 'gold';
+      }
+
+      //getElementsByClassName()
+      const className  = document.getElementsByClassName('front');
+      for(let i = 0; i <className.length; i++){
+        className[i].style.color = 'deepskyblue';
+      }
+
+     //querySelectorAll()
+     const querySelector = document.querySelectorAll('li.serverside')
+     for(let i = 0; i <querySelector.length; i++){
+      querySelector[i].style.color = 'red';
+      }
+    </script>
+</body>
+</html>

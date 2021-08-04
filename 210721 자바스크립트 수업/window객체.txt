@@ -1,0 +1,20 @@
+window객체
+현재 웹브라우저의 창이나 탭을 표현하기 위한 객체들이며,
+웹브라우저는 Window객체를 이용하여 브라우저 창을 표현하거나 다룰수 있습니다
+
+setTimeout() : 일정시간이 지난 후 매개변수로 제공된 함수를 실행
+clearTimeout():setTimeout에서 실행된 함수를 취소
+
+  const 함수명 = funtion(){
+    ......
+  }
+  const st = setTimeout(함수명, 3000)// 1000 => 1초
+
+clearTimeout(st)
+
+setInterval() : 일정시간마다 매개변수로 제공된 함수를 실행
+setInterval(함수명,2000) 함수를 2초 간격으로 자동실행
+
+ clearInterval() : setInterval() 에서 실행된 함수를 취소
+const se = setInterval(함수명, 2000);
+clearInterval(se); //setInterval문을 취소

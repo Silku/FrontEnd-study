@@ -61,4 +61,3 @@ const func3 = (x, y) => {
 화살표 함수로 표현
 const func1 = () => console.log('안녕하세요, JavaScript!');
 
-테스트메세지
