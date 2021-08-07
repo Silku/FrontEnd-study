@@ -1,0 +1,32 @@
+html -> 웹문서 구조 선언 언어
+css -> html의 태그의 디자인 선언 언어
+          애니메이션 및 분리된 쿼리 그외 기능들을 지원  
+          css 1,2,3(? 쿼리)
+          싸스(모듈화)
+jquery -> 동적인 부분을 선언하는 언어
+
+          자바스크립트 
+          -> Flash ( 2000년대 중반까지 사용) -> 웹표준 등장 (2007) -> 웹표준 등장과 함께 Flash제외
+          -> 제이쿼리 -> 자바스크립트 라이브화, angular , react , vue.js
+
+
+****************************************************
+Jquery 라이브러리 사용법
+
+<script src="js/jquery.js"></script>
+위와같은 로컬폴더 경로로 사용하는방식과 아래와 같은 cdn을 활용하는 방식이 있다. 단, 둘중 한가지만 사용해야함.
+<script src= "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+또는 아래와 같은 방법
+
+  [제이쿼리]
+  https://jquery.com/
+  
+-라이브러리 다운받고 연결
+  1. Downloading jQuery
+  2. jQuery Migrate Plugin
+
+-CDN방식으로 라이브러리 연결: https://cdnjs.com/ 추천
+****************************************************
+

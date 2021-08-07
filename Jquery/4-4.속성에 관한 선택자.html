@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제이쿼리라이브러리연결</title>
+    <script src="js/jquery3.6.js"></script>
+    <script src="js/jquery-migrate-1.js"></script>
+</head>
+<body>
+    <h1 id="title">위치메소드</h1>
+    <ul class="main">
+        <li>HTML</li>
+        <li class="css">css</li>
+        <li>javascript</li>
+        <li class="txt1">jquery</li>
+        <li class="txt1">php
+            <ul>
+                <li class="parent">HTML</li>
+                <li>css</li>
+                <li>javascript</li>
+                <li>jquery</li>
+                <li>php
+                    <ul class="list3-3">
+                        <li class="parentEL">HTML</li>
+                        <li>css</li>
+                        <li>javascript</li>
+                        <li>jquery</li>
+                        <li>php</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <ul class="each">
+        <li>제이쿼리 선택자 중 위치 선택자</li>
+        <li>제이쿼리 선택자 중 위치 선택자</li>
+        <li>제이쿼리 선택자 중 위치 선택자</li>
+        <li>제이쿼리 선택자 중 위치 선택자</li>
+        <li>제이쿼리 선택자 중 위치 선택자</li>
+    </ul>
+
+    <script>
+      $(document).ready(function(){//웹브라우저로 보냈을때 {}메소드들을 실행
+      
+      //$('.each > li').css('color','blue'); 한번에 자식요소 스타일 적용
+      
+      //$('.each > li').eq(0).css('color','blue'); 순서대로 한줄씩 스타일 적용
+      //$('.each > li').eq(1).css('color','blue');
+      //$('.each > li').eq(2).css('color','blue');
+      //$('.each > li').eq(3).css('color','blue');
+      //$('.each > li').eq(4).css('color','blue');
+
+        $('.each > li').each(function(){
+            $(this).css('color','blue');
+            // 아래쪽에 대상들을 똑같은 메소드를 할때 여러번 작성할 문장을 한번으로 줄이는 방법
+            //   $('.each > li').eq(0).css('color','blue'); 순서대로 한줄씩 스타일 적용
+            //   $('.each > li').eq(1).css('color','blue');
+            //   $('.each > li').eq(2).css('color','blue');
+            //   $('.each > li').eq(3).css('color','blue');
+            //   $('.each > li').eq(4).css('color','blue');
+            });
+            //$(this)의 여러개가 동시 이벤트가 적용될때 적용되는 그대상
+        });
+
+
+
+    </script>
+</body>
+</html>

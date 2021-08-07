@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제이쿼리라이브러리연결</title>
+    <script src="js/jquery3.6.js"></script>
+    <script src="js/jquery-migrate-1.js"></script>
+</head>
+<body>
+    <h1 id="title">아이디선택자</h1>
+    <ul>
+        <li id="html">HTML</li>
+        <li class="txt2">css</li>
+        <li class="txt3">javascript</li>
+        <li class="txt4">jquery</li>
+        <li class="php">php</li>
+    </ul>
+
+
+    <script>
+      $(document).ready(function(){//웹브라우저로 보냈을때 {}메소드들을 실행
+        $("#title").css({color:"red"});
+        $("#html").css('color','green');
+        $(".php").css({color:"blue"});
+       //대상.메소드().메소드();
+       //css('속성','속성값'); 1개의 스타일을 적용할때
+       //css({속성1:'속성값1',속성2:'속성값2'...}); 1개이상의 스타일을 적용할때
+
+      });
+
+
+
+
+    
+
+
+    </script>
+</body>
+</html>

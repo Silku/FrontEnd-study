@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>제이쿼리 라이브러리 연결 및 기본 사용법</title>
+  <script src="js/jquery3.6.js"></script>
+  <script src="js/jquery-migrate-1.js"></script>
+</head>
+<body>
+  <ul>
+    <h1>태그 선택자</h1>
+    <li>HTML</li>
+    <li>css</li>
+    <li>javascript</li>
+    <li>Jquery</li>
+    <li>php</li>
+  </ul>
+  <script>
+    /**************
+    $(대상)
+    //제이쿼리 함수 태그를 추가하거나 삭제 스타일 수정 
+    
+    $(대상).메소드().메소드();
+    //체이닝 기법
+    **************/
+
+    $(document).ready(function(){
+      $("h1").css('background','blue');
+      $("li").css({color:"red",background:"green"});
+      //대상.메소드().메소드();
+    });
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제이쿼리라이브러리연결</title>
+    <script src="js/jquery3.6.js"></script>
+    <script src="js/jquery-migrate-1.js"></script>
+</head>
+<body>
+    <h1>전체선택자</h1>
+    <ul>
+        <li class="html">HTML</li>
+        <li id="css">css</li>
+        <li>javascript</li>
+        <li>jquery</li>
+        <li>php</li>
+    </ul>
+
+
+    <script>
+      $(document).ready(function(){//웹브라우저로 보냈을때 {}메소드들을 실행
+        $("*").css('background','blue');
+       //대상.메소드().메소드();
+
+      });
+    </script>
+</body>
+</html>
