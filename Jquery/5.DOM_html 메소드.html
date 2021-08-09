@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>html 메소드</title>
+  <script src="js/jquery3.6.js"></script>
+  <script src="js/jquery-migrate-1.js"></script>
+  <script>
+    $(document).ready(function(){
+      // $("#wrapper").html('html문장입력');
+      // $("#warpper").html($(대상).html());
+      $("#wrapper").html($('#hidden').html());
+      $("#wrapper2").html('<h3>이곳에 내용을 바꿉니다</h3>');
+
+      // $("#wrapper").text('html문장입력');
+      // $("#warpper").text($(대상).text());
+      $('#text').text('<h1>이곳에 내용(txt)을 바꿉니다</h1>');
+    });
+  </script>
+</head>
+<body>
+    <div id="wrapper">
+      <span>이곳의 내용을 바꿉니다</span>
+    </div>
+    <div id="hidden">
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+      </ul>
+    </div>
+    <div id ="wrapper2"></div>
+    <div id = "text"></div>
+
+</body>
+</html>

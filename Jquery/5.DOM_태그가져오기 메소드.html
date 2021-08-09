@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>html 메소드</title>
+  <script src="js/jquery3.6.js"></script>
+  <script src="js/jquery-migrate-1.js"></script>
+  <script>
+    $(document).ready(function(){
+      var el= $('#hidden > ul ').eq(1);
+
+      $('.newEl_last').appendTo(el);
+      //복사될 대상 선택. 복사될 위치지정
+
+      var el2 = $('#hidden > ul').eq(0);
+      $('.newEl_first').prependTo(el2);
+      //복사될 대상 선택. 복사될 위치지정
+
+    });
+  </script> 
+</head>
+<body>
+  <div id="hidden">
+
+    <ul>
+        <li>1(위에 0을 채워주세요)</li>
+  <li>2</li>
+  <li>3</li>
+  <li>4</li>
+    </ul>
+    <ul>
+        <li>1</li>
+  <li>2</li>
+  <li>3</li>
+  <li>4(아래에 5를 채워주세요)</li>
+    </ul>
+
+</div>
+<li class="newEl_last">5</li>
+<li class="newEl_first">0</li>
+</body>
+</html>

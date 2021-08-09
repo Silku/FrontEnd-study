@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>html 메소드</title>
+  <script src="js/jquery3.6.js"></script>
+  <script src="js/jquery-migrate-1.js"></script>
+  <script>
+    $(document).ready(function(){
+      $('#hidden > ul').append('<li style="color:red">5</li>')
+      $('#hidden > ul').prepend('<li style="color:blue">0</li>')
+      $('#hidden > ul').before('<h1>선택된 대상 앞에 추가하기</h1>')
+      $('#hidden > ul').after('<h1>선택된 대상 뒤에 추가하기</h1>')
+    });
+  </script>
+</head>
+<body>
+  <div id = "hidden">
+    <ul>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4(아래에 5를 채워주세요.)</li>
+    </ul>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>html삭제메소드</title>
+  <style>
+
+  </style>
+  <script src="js/jquery3.6.js"></script>
+  <script src="js/jquery-migrate-1.js"></script>
+  <script>
+    $(document).ready(function(){
+         $('#wrap > ul > li').eq(1).remove();
+
+         $('.del_btn').click(function(){
+            $('#wrap').remove();
+         });
+         $('.input_btn').click(function(){
+            $('#wrapper > ul > li').eq(2).append($('.list').html());
+         });
+    });
+</script>
+</head>
+<body>
+
+  <div id="wrapper">
+      <ul>
+          <li>1</li>
+          <li>2</li>
+          <li>3
+              <div id="wrap">
+              <ul>
+                  <li>3-1</li>
+                  <li>3-2(이부분을 삭제)</li>
+                  <li>3-3</li>
+                  <li>3-4</li>
+                  <li>3-5</li>
+              </ul>
+              </div>
+          </li>
+          <li>4</li>
+          <li>5</li>
+          <li>6</li>
+      </ul>
+      <ul class="list">
+          <li>3-1</li>
+          <li>3-2</li>
+          <li>3-3</li>
+          <li>3-4</li>
+          <li>3-5</li>
+      </ul>
+  </div>
+  <button class="del_btn">삭제하기</button>
+  <button class="input_btn">추가하기</button>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>엘리먼트의 위치</title>
+  <style>
+    html * { margin:0; padding:0; }
+    body{ width: 5000px; height: 5000px;}
+    #wrapper { width:2000px; height:2000px; padding:30px; }
+    #info { position:fixed; }
+    #form { margin-top: 20px;}
+    #form span { color:red; }
+</style>
+  <script src="js/jquery3.6.js"></script>
+  <script src="js/jquery-migrate-1.js"></script>
+  <script>
+    $(document).ready(function(){
+        var info = $('#info');
+        
+        $(window).on('scroll',function(){
+           var sl = $(window).scrollLeft();
+           var st = $(window).scrollTop();
+
+           info.children('.scrollLeft').text(sl);
+           info.children('.scrollTop').text(st);
+        });
+       
+        var xField = $('.xField');//클래스xField 변수에 대입
+        var yField = $('.yField');//클래스yField 변수에 대입
+
+        $('.btn').click(function(){
+            $(window).scrollLeft(parseInt(xField.val()));
+            //parseInt(변수값) 변수값을 숫자형으로 변환
+            //$(대상).val() 대상의 초기값 
+            $(window).scrollTop(parseInt(yField.val()));
+        });
+    });
+</script>
+</head>
+<body>
+<div id="wrapper">
+    <div id="info">
+        <span>scrollLeft = </span><span class="scrollLeft">0</span><br>
+        <span>scrollTop = </span><span class="scrollTop">0</span>
+        <div id="form">
+            <span>이동시킬 스크롤의 위치값을 입력해 주세요.</span><br>
+            <input type="text" class="xField" value="" />
+            <input type="text" class="yField" value="" />
+            <input type="button" class="btn" value="입력" />
+        </div>
+    </div>
+</div>
+</body>
+</html>

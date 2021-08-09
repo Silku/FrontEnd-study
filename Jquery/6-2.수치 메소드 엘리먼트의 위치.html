@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>수치  메소드</title>
+  <style>
+      html * { margin:0; padding:0; }
+      #wrapper { position: absolute; width:500px; height:500px;  
+                        border:3px solid blue; left:100px; top:150px; }
+      .box { position:absolute; width:100px; height:100px; left:50px;
+               top:50px; background:red; color:white;}
+  </style>
+  <script src="js/jquery3.6.js"></script>
+  <script src="js/jquery-migrate-1.js"></script>
+  <script src="js/jquery-ui-1.10.3.custom.min.js"></script>
+  <script>
+    $(document).ready(function(){
+     var box = $('.box');
+     var poinfo = $('#position_info');
+     
+   
+     box.draggable({
+    drag:function(){
+      poinfo.find('.ol').text(box.offset().left);
+      poinfo.find('.ot').text(box.offset().top);
+      poinfo.find('.pl').text(box.position().left);
+      poinfo.find('.pt').text(box.position().top);
+    }
+  });
+
+    });
+</script>
+</head>
+<body>
+  <div id="position_info">
+      <span>offset().left = </span><span class="ol">0</span><br>
+      <span>offset().top = </span><span class="ot">0</span><br>
+      <span>position().left = </span><span class="pl">0</span><br>
+      <span>position().top = </span><span class="pt">0</span><br><br>
+      <span>box를 드래그 해보세요.</span>
+  </div>
+  <div id="wrapper">
+      <div class="box"><span>box</span></div>
+  </div>
+  
+  
+</html>

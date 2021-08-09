@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>width_height</title>
+  <style>
+      html * { margin:0; padding:0; }
+      body > span { color:red; font-size: 29px; }
+      li { margin:5px; list-style: none; border: 1px solid green; }
+      #wrapper { border: 5px solid blue; padding:30px; margin:20px; font-size:20px;}
+  </style>
+  <script src="js/jquery3.6.js"></script>
+  <script src="js/jquery-migrate-1.js"></script>
+  <script>
+      $(document).ready(function(){
+         var box = $('#wrapper');
+         var box_w = $('#wrapper').width();
+         $(window).resize(function(){
+            $('#width').text(box.width());
+            $('#height').text(box.height());
+            $('#innerWidth').text(box.innerWidth());
+            $('#innerHeight').text(box.innerHeight());
+            $('#outerWidth').text(box.outerWidth());
+            $('#outerHeight').text(box.outerHeight());
+         });
+        
+      });
+  </script>
+</head>
+<body>
+ 
+
+  <div id="wrapper">
+      <span>박스의 width = </span><span id="width">0</span><br>
+      <span>박스의 height = </span><span id="height">0</span><br>
+      <span>박스의 innerWidth = </span><span id="innerWidth">0</span><br>
+      <span>박스의 innerHeight = </span><span id="innerHeight">0</span><br>
+      <span>박스의 outerWidth = </span><span id="outerWidth">0</span><br>
+      <span>박스의 outerHeight = </span><span id="outerHeight">0</span>      
+  </div>
+  
+</body>
+</html>

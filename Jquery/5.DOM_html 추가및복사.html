@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>html추가,복사메소드</title>
+  <script src="js/jquery3.6.js"></script>
+  <script src="js/jquery-migrate-1.js"></script>
+  <script>
+    $(document).ready(function(){
+      $('#wrap > ul > li').eq(1).empty();//내용을 삭제
+
+      $('.input_btn').click(function(){ //버튼 클릭하면 text()내용입력
+        $('#wrap > ul > li').eq(1).text('3-2(이부분을 내용입력)');
+      });
+
+      $('.clone_btn').click(function(){
+         var cloneEl = $('.copy').clone();
+         $('#wrap > ul').append(cloneEl);
+      });
+    });
+</script>
+</head>
+<body>
+  <div id="wrapper">
+      <ul>
+          <li>1</li>
+          <li>2</li>
+          <li>3
+              <div id="wrap">
+              <ul>
+                  <li>3-1</li>
+                  <li>3-2(이부분을 내용삭제)</li>
+                  <li>3-3</li>
+                  <li>3-4</li>
+                  <li>3-5</li>
+              </ul>
+              </div>
+          </li>
+          <li>4</li>
+          <li>5</li>
+          <li class="copy">6</li>
+      </ul>
+      
+  </div>
+  <button class="input_btn">내용추가하기</button>
+  <button class="clone_btn">내용복사하기</button>
+</html>
