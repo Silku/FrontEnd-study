@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>마우스 이벤트</title>
+  <script src="js/jquery3.6.js"></script>
+  <script src="js/jquery-migrate-1.js"></script>
+  <script>
+  /*  
+  [단독 이벤트]
+  $(대상).마우스이벤트(function(){
+    실행문;
+  });
+
+  $(대상).문서이벤트(function(){
+    실행문;
+  });
+
+  [그룹 이벤트]
+  $(대상).bind(
+    이벤트1:function(){
+    실행문
+  });
+  */
+
+
+        $(function(){
+        // click이벤트
+           $("p").click(function(){
+             alert('텍스트를 클릭했습니다');
+           });
+
+        // mousedown(),mouseup()이벤트
+        $('p').mousedown(function(){
+              $(this).after('<p style="color:red;"><b>마우스버튼 DOWN</b></p>');
+        });
+        $('p').mouseup(function(){
+             $(this).after('<p style="color:blue;"><b>마우스버튼 UP</b></p>');
+        });
+
+
+        // hover이벤트 function() 2개가 기본선언해야함
+        $("p").hover(
+            function(){//마우스를 올렸을때
+                $("p").css('background-color','yellow');
+            },
+            function(){//마우스가 나갔을때
+                $("p").css('background-color','pink');
+            }
+        );
+        
+        //mouseover(),mouseout()이벤트
+        $('p').mouseover(function(){
+            $("p").css('background-color','yellow');
+        });
+        $('p').mouseout(function(){
+            $("p").css('background-color','pink');
+        }); 
+        
+        //mouseenter(),mouseleave()이벤트
+        $('p').mouseenter(function(){
+            $("p").css('background-color','rgb(222,222,222,0.5)');
+        });
+        $('p').mouseleave(function(){
+            $("p").css('background-color','rgb(111,111,111, 0.5) ');
+        });
+           
+        // mousemove()이벤트
+        $(document).mousemove(function(e){ 
+          //e는 함수가 작동되게 하는 이벤트 담는 매개변수
+            $('span').text(e.pageX + "," + e.pageY);
+        //     //pageX / pageY 대상의 영역에서 X좌표, Y좌표 값들
+         })
+
+        //focusin(),focusout()이벤트
+          $('div').focusin(function(){
+            $(this).css('background-color','#ffffcc');
+          });
+          $('div').focusout(function(){
+            $(this).css('background-color','#ffffff');
+          });
+
+        });
+  </script>
+</head>
+<body>
+    <p><b>여기를 마우스 적용하기</b></p>
+    <p>mousemove()연습</p>
+    <p>마우스좌표는:<span></span></p>
+  
+    <p>focusin(),focusout()연습</p>
+     <div style="border:1px solid #000; padding:10px">
+          이름: <input type="text"><br>
+          주소: <input type="text">
+     </div>
+
+</body>
+</html>
+  </script>
+</head>
+<body>
+
+
+</body>
+</html>
