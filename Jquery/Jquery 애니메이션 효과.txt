@@ -1,0 +1,29 @@
+애니메이션 효과
+
+
+$("선택자).show("시간","가속도","콜백함수");
+$("선택자").hide("시간","가속도","콜백함수");
+$("선택자").toggle("시간","가속도","콜백함수");
+
+숨김 hide()         요소를 숨깁니다.
+숨김 fadeOut()    요소가 점점 투명해지면서 사라집니다.
+숨김 slideUp()      요소가 위로 접히며 숨겨집니다.
+
+노출  show()       숨겨진 요소가 노출됩니다.
+노출  fadeIn()    숨겨진 요소가 점점 선명해집니다.
+노출  slideDown 숨겨진 요소가 아래로 펼쳐집니다.
+
+노출,숨김         toggle()hide(),show()효과를 적용합니다.
+노출,숨김         fadeToggle()fadeIn(),fadeOut()효과를 적용합니다.
+노출,숨김         slideToggle()slideUp(),slideDown() 효과를 적용합니다.
+노출,숨김         fadeTo()지정한 투명도를 적용합니다.
+
+
+animate()     다양한 동작효과
+animate({스타일속성},적용시간, 가속도, 콜백함수);
+stop()        현재 실행중인 효과를 모두 정지
+delay()     지정한 시간만큼 지연했다가 애니메이션
+
+
+참고사이트 : 
+https://min0228k.gitbook.io/-2/undefined-4/show-hide

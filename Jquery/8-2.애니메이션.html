@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>애니메이션2 animate</title>
+  <script src="js/jquery3.6.js"></script>
+  <script>
+    $(function(){
+      $('.btn1').on({
+        'click' : function(){
+          $('.txt1').animate({
+                      marginLeft:"500px",
+                      fontSize:"30px"
+          },2000,function(){
+            alert('모션 이벤트 완료');
+          })
+        }
+      })
+
+      $('.btn2').on({
+        'click' : function(){
+          $('.txt2').animate({
+                      marginLeft:"100px",
+                      marginTop :"600px",
+                      fontSize:"20px"
+          },500)
+        }
+      });
+
+      $('.btn3').on({
+        'click' : function(){
+          $('.txt3-1').delay(0).animate({marginLeft:"200px"},500,
+              function(){
+                $('.txt3-2').delay(500).animate({marginLeft:"200px"},500,
+                function(){
+                  $('.txt3-3').delay(500).animate({marginLeft:"200px"},500)
+                });
+              }
+          );
+        } 
+      });
+    });
+  </script>
+  <style>
+    .txt1{background-color: aqua;}
+    .txt2{background-color: pink;}
+  </style>
+</head>
+<body>
+  <p><button class="btn1">버튼1</button></p>
+  <span class="txt1">"500px" 이동</span>
+  <p><button class="btn2">버튼2</button></p>
+  <span class="txt2">"50px" 이동</span>
+  <p><button class="btn3">버튼3</button></p>
+  <span class="txt3">다중애니메이션</span>
+  <span class="txt3-1">다중애니메이션1</span>
+  <span class="txt3-2">다중애니메이션2</span>
+  <span class="txt3-3">다중애니메이션3</span>
+
+</body>
+</html>

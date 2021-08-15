@@ -1,17 +1,18 @@
-로딩이벤트
-  load()            선택한 이미지 또는 프레임 요소에 연동되는 소스의 로딩이 완료된후 이벤트가 발생
+[문서,화면에 관련된 이벤트]
+  load()    선택한 이미지 또는 프레임 요소에 연동되는 소스의 로딩이 완료된후 이벤트가 발생
 
   $('태그선택자, 클래스선택자, 아이디선택').load()(functioon(){
         실행문;
     });img
 
-  ready()           지정된 HTML문서 객체의 로딩이 완료된 후 이벤트가 발생
-  error()            이벤트 대상 요소에서 오류가 발생하면 이벤트가 발생
+  ready()      지정된 HTML문서 객체의 로딩이 완료된 후 이벤트가 발생
+  error()       이벤트 대상 요소에서 오류가 발생하면 이벤트가 발생
 
-  scroll()
-  resize()
+  scroll()      화면의 스크롤바에 의한 이벤트
+  resize()      화면의 사이즈에 변화에 의한 이벤트
 
-  마우스이벤트
+
+[마우스이벤트]
 
   $(대상).click(function(){
 
@@ -51,26 +52,23 @@
   blur()             포커스가 선택한 요소에서 다른 요소로 이동되었을때 이벤트가 발생하거나 선택한 요소의 포커스가 강제로 사라지도록 함
   change()        이벤트 대상인 입력요소의 값이 변경되고, 포커스가 이동되면 이벤트가 발생, 그리고 강제로 change이벤트를 발생 시킬때도 사용함
  
+ [키보드 이벤트]
   keypress()      선택한 요소에서 키보드를 눌렀을때 이벤트가 발생. 그리고 문자 키를 제외한 키의 코드값을 반환
                       기능키(f1~f12, alt, ctrl, shift, backspace, 한/영, tab) 이벤트를 발생시키지 않음
   keydown()      선택한 요소에서 키보드를 눌렀을때 이벤트가 발생. 키보드의 모든 키의 코드값을 반환
   keyup()          선택한 요소에서 키보드에서 손을 떼었을때 이벤트가 발생.
 
 
-  단독으로 이벤트 등록 메서드
+[단독으로 이벤트 등록 메서드]
    $('이벤트대상선택').이벤트 등록 메서드(function(){
          제이쿼리 메소드();
    });
  
 
-
-
-
-
-   그룹 이벤트 등록 메서드
+[그룹 이벤트 등록 메서드]
    .on()          이벤트 대상 요소에 2개이상의 이벤트를 등록.
                   사용방식에 따라 이벤트를 등록한 이후에도 
-                  동적으로 생성되거나 복제된 요소에도 이벤트가 
+                  동적으로 생성되거나 복제된 요소에도 이벤트가 발생.
 
    .on( events [, selector] [, data], handler( eventObject ) )
          events: 공백으로 구분된 하나 이상의 이벤트 타입과 옵션인 네임스페이스. "click", "keydown.myPlugin", ".myPlugin" 등이 있음
@@ -79,21 +77,6 @@
          handler(eventObject): 이벤트가 발생되면 실행될 기능. false를 반환하는 함수라면 간단하게 false 를 직접 인자로 하면 된다.
    .on( events-map [, selector] [, data] )
        events-map: 공백으로 구분된 하나 이상의 이벤트 타입과 선택적인 네임스페이스로 구성된 키(keys)들과 값(values)들의 문자열.
-
-   키보드 :input,keydown,keyup,keypress
-   마우스 :click,dblclick,mouseup,mousedown,mouseover,mousemove,mouseout,hover
-   UI :focus,blur,change
-   폼 :submit,select,change
-   브라우저 :error,resize,scroll
-   문서 :ready,load,unload
-
-   bind()         이벤트 대상 요소에 2개 이상의이벤트를 등록
-   delegate()    선택한 요소의 하위요소에 이벤트를 등록. 등록한 이후에도 동적으로 생성되거나 복제된 요소에도 이벤트가 적용
-   one()           이벤트 대상 요소에 1개이상이 이벤트를 등록. 지정한 이벤트가 1회 발생하고 자동으로 해제
-
-
-
-
 
    on() 메서드 등록 방식1
    $(이벤트대상선택).on('이벤트 종류1 이벤트 종류1', function(){
@@ -116,8 +99,19 @@
        }
    )
 
+      키보드 :input,keydown,keyup,keypress
+   마우스 :click,dblclick,mouseup,mousedown,mouseover,mousemove,mouseout,hover
+   UI :focus,blur,change
+   폼 :submit,select,change
+   브라우저 :error,resize,scroll
+   문서 :ready,load,unload
 
-  강제로 이벤트 발생
+   bind()         이벤트 대상 요소에 2개 이상의이벤트를 등록
+   delegate()    선택한 요소의 하위요소에 이벤트를 등록. 등록한 이후에도 동적으로 생성되거나 복제된 요소에도 이벤트가 적용
+   one()           이벤트 대상 요소에 1개이상이 이벤트를 등록. 지정한 이벤트가 1회 발생하고 자동으로 해제
+
+
+ [강제로 이벤트 발생]
   $('이벤트대상').trigger('이벤트종류');
   
      

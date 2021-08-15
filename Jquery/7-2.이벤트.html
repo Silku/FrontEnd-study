@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>문서 이벤트</title>
+  <script src="js/jquery3.6.js"></script>
+  <script>
+    $(function(){
+      $('.test').css('width',$(window).width()-50);
+      $('.test').css('height',$(window).height()-50);
+      $(window).resize(function(){
+      $('.test').css('width',$(window).width()-50);
+      $('.test').css('height',$(window).height()-50);
+      });
+    });
+  </script>
+</head>
+<body>
+  <div class="test" style="border:2px solid #000">
+    제이쿼리를 통한 넓이와 높이 조절  
+  </div>
+
+</body>
+</html>

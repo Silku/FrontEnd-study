@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>슬라이드 배너 만들기</title>
+  <script src="js/jquery3.6.js"></script>
+
+  <style>
+  *{margin: 0; padding: 0;}
+  a{text-decoration: none; color:#333;}
+  ul, li{ list-style: none;}
+
+    #main_img{ width: 100%; height:550px; position: relative;}
+    #main_img .img_group{width: 100%; height:550px;}
+    #main_img .images{width: 100%; height:550px; position: relative; text-align:center; line-height: 550px;}
+    #main_img .images li{width: 100%; height:550px; 
+                                      position: absolute; top:0;}
+    #main_img .images li.img01{ left: 0%; background-color: aqua; }
+    #main_img .images li.img02{ left: 100%; background-color: palegreen;}
+    #main_img .images li.img03{ left: 200%; background-color: plum;}
+
+    #main_img .btns{position: absolute; bottom:50px; left:50%; z-index: 5000;
+                              margin-left: -32.5px;}
+    #main_img .btns li{float:left; width:15px; height: 15px;
+                                margin-right: 10px;
+                                border-radius: 50%;
+                                background-color: rgba(111,111,111,0.5);}
+    #main_img .btns li a{display: block; text-indent: -9999px;}
+    #main_img .btns li.on{background-color: #333; color:#fff}
+    #main_img .l_btn{position: absolute; top:225px; left: 50px; z-index:9999;
+                                width: 50px; height: 50px; border-radius: 50%;
+                                border:2px solid #333; background-color: #fff;
+                                text-align: center; line-height: 50px; cursor: pointer;}
+    #main_img .r_btn{position: absolute; top:225px; right: 50px; z-index:9999;
+                                width: 50px; height: 50px; border-radius: 50%;
+                                border:2px solid #333; background-color: #fff;
+                                text-align: center; line-height: 50px; cursor: pointer;}
+  </style>
+</head>
+<body>
+  <div id ="main_img">
+    <div class="img_group">
+      <ul class="images">
+          <li class="img01">img01</li>
+          <li class="img02">img02</li>
+          <li class="img03">img03</li>
+      </ul>
+    </div>  
+    <ul class="btns">
+      <li><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+    </ul>
+    <div class="l_btn">L</div>
+    <div class="r_btn">R</div>
+  </div>
+  <script>
+    $(document).ready(function(){
+      var current = 0;
+      var clearIntervalId;
+      
+      $('btns > li').click(function(e){
+        e.preventDefault();
+        // a 태그 고유 이벤트를 예외처리
+        var i = $(this).index();
+        move(i);
+        console.log(i);
+      })
+
+      $('.l_btn').click(function(){
+                var l= current - 1;
+                if(l==3){
+                    l=0;
+                }
+                move(l);
+           });
+           $('.r_btn').click(function(){
+               var r= current + 1;
+                if(r==3){
+                    r=0;
+                }
+                move_return(r);
+            });
+
+
+
+
+      $('#main_img').on({
+        'mouseover' : function(){
+          clearInterval(setIntervalId);
+        },
+        'mouseout':function(){
+          timer();
+        }
+      })
+
+
+      timer();
+      function timer(){
+      // setInterval(실행함수, 시간)
+      //clearInterval(setInterval 적용된 함수)
+      
+      setIntervalId = setInterval(function(){
+        var n = current + 1;
+        if(n ==3){
+          //$('images > li').size();
+          n = 0;
+        }
+        move(n);
+      },2000);
+      }
+
+      function move(i){
+          if(current==i) return;           
+          var currentEl = $(".images > li").eq(current);
+          var nextEl = $(".images > li").eq(i);
+
+          currentEl.css({left:'0%'}).animate({left:'-100%'});
+          nextEl.css({left:'100%'}).animate({left:'0%'});
+
+          current = i
+          }  
+
+
+          function move_return(i){
+          if(current==i) return;  
+          var currentEl = $(".images > li").eq(current);
+          var nextEl = $(".images > li").eq(i);
+
+          currentEl.css({left:'0%'}).animate({left:'100%'});
+          nextEl.css({left:'-100%'}).animate({left:'0%'});
+
+          current = i
+          }  
+        });
+  </script>
+</body>
+</html>
