@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0; padding: 0;}
+        a{ text-decoration: none; color: #333;}
+           
+        #wrap{ margin:0; padding:0;}
+        #wrap > div{ width:100%; height:1000px; 
+                        position:relative;}
+        #con1{ background-color:#C60;}
+        #con2{ background-color:#F60;}
+        #con3{ background-color:#F93;}
+        #con4{ background-color:#CCF;}
+
+        .box{width:100px; height:100px;
+             border:2px solid #000;
+            }
+
+            .box1-1{ position:absolute; top:200px; left:500px;}
+            .box1-2{ position:absolute; top:500px; left:100px;}
+            .box1-3{ position:absolute; top:700px; left:1200px;}
+
+            .box2-1{ position:absolute; top:200px; left:500px;}
+            .box2-2{ position:absolute; top:500px; left:100px;}
+            .box2-3{ position:absolute; top:700px; left:1200px;}
+
+            .box3-1{ position:absolute; top:200px; left:500px;}
+            .box3-2{ position:absolute; top:500px; left:100px;}
+            .box3-3{ position:absolute; top:700px; left:1200px;}
+
+
+            #q_mn{ width:120px; height:200px; 
+                background-color:#CCC;
+                position:absolute;
+                right:10px;
+                top: 50px;
+                color: #fff;
+                }
+                #q_mn ul{ margin:0 auto; margin-top:30px; 
+                          list-style:none; width:50px;}	
+                #q_mn ul li{ margin-bottom:10px}   
+
+    </style>
+    <script src="js/jquery3.6.js"></script>
+    <script src="js/jquery-migrate-1.js"></script>
+</head>
+<body>
+
+    
+
+    <div id="wrap">
+        <div id="con1">
+          <div class="box1-1 box">box1-1</div>
+          <div class="box1-2 box">box1-2</div>
+          <div class="box1-3 box">box1-3</div>
+        </div>
+
+        <div id="con2">
+          <div class="box2-1 box">box1-1</div>
+          <div class="box2-2 box">box1-2</div>
+          <div class="box2-3 box">box1-3</div>
+        </div>
+
+        <div id="con3">
+          <div class="box3-1 box">box1-1</div>
+          <div class="box3-2 box">box1-2</div>
+          <div class="box3-3 box">box1-3</div>
+        </div>
+
+        <div id="con4"></div>
+
+     
+    </div>  
+    <div id="q_mn">
+        <ul>
+        <li><a href="#">con0</a></li>
+        <li><a href="#">con1</a></li>
+        <li><a href="#">con2</a></li>
+        <li><a href="#">con3</a></li>
+        </ul>
+    </div>  
+    <script>
+        $(function(){
+           var scene01 = 1;
+           var scene02 = 1;
+           var scene03 = 1;
+
+           $(window).scroll(function(){
+             var sct = $(document).scrollTop();
+             if(sct > 200 && scene01 == 1){
+                scene01 = 0;
+                $('.box1-1').delay(0).animate({opacity:1,top:"800px"},1000,
+                    function(){
+                        $('.box1-1').delay(200).animate({opacity:0});
+                });
+                $('.box1-2').delay(300).animate({opacity:1,top:"800px"},1000,
+                    function(){
+                        $('.box1-2').delay(200).animate({opacity:0});
+                });
+                $('.box1-3').delay(100).animate({opacity:1,top:"800px"},1000,
+                    function(){
+                        $('.box1-3').delay(200).animate({opacity:0});
+                });
+             }else if(sct < 200 && scene01 == 0){
+                scene01 = 1;
+                $('.box1-1').delay(0).css({top:'800px'}).stop().animate({
+                            opacity:1,top:'200px'},1000);
+						
+                $('.box1-2').delay(400).stop().css({top: '800px'}).animate({
+                            opacity:1,top:'500px'},1000);
+
+                $('.box1-3').delay(800).css({top:'800px'}).stop().animate({
+                            opacity:1,top:'700px'},1000);
+             }
+
+
+             if(sct > 1200 && scene02 == 1){
+                scene02 = 0;
+                $('.box2-1').delay(0).animate({opacity:1,top:"800px"},1000,
+                    function(){
+                        $('.box2-1').delay(200).animate({opacity:0.7,width:'200px'});
+                });
+                $('.box2-2').delay(300).animate({opacity:1,top:"800px"},1000,
+                    function(){
+                        $('.box2-2').delay(200).animate({opacity:1,left:'0px'});
+                });
+                $('.box2-3').delay(100).animate({opacity:1,top:"800px"},1000,
+                    function(){
+                        $('.box2-3').delay(200).animate({opacity:1,left:'2000px'})
+                });
+             }else if(sct < 1200 && scene02 == 0){
+                scene02 = 1;
+                $('.box2-1').delay(0).css({top:'800px'}).stop().animate({
+                            opacity:1,top:'200px'},1000);
+						
+                $('.box2-2').delay(400).stop().css({top: '800px'}).animate({
+                            opacity:1,top:'500px'},1000);
+
+                $('.box2-3').delay(800).css({top:'800px'}).stop().animate({
+                            opacity:1,top:'700px'},1000);
+
+             }
+
+
+
+            //퀵메뉴
+            goto();
+              function goto(){
+                var sct50 = $(document).scrollTop() + 200;
+                $('#q_mn').stop().animate({top:sct50 + "px"},500);
+              }
+
+
+           });
+
+        });
+    </script>
+</body>
+</html>

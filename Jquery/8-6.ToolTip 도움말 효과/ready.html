@@ -54,6 +54,54 @@ Contrary to popular belief, <a href="http://www.lipsum.com/" title="img/site.jpg
 
 <!------------------------ jQuery 코드 ----------------------->
 <script>
+	var temtile;
+	var type;
+	$('a').hover(
+		function(){
+			var temtile = $(this).attr('title');
+			type = $(this).attr('class');
+			if(type == 'img'){//class가 있다면 html 타입으로 내용을 설정.
+				temImg = "<img src= ' " + temtile +" ' width='100' height='100'>"
+			}
+			$('body').append('<div id="tip"></div>');
+			//도움말 될 태그를 바디에 아래쪽에 추가
+			if(type == 'img'){
+				$('#tip').html(temImg)
+			}else{
+				$('#tip').text(temtile)
+			}
+
+			//위치설정
+			var pageX = $(this).offset().left - 20;
+			var pageY = $(this).offset().top -$('#tip').innerHeight();
+			//메모 : 패딩값을포함하면 inner 보더값까지 포함하면 outer , 예 : outerHeight
+
+			$('#tip').css({left:pageX + "px" , top:pageY + "px"}).fadeIn();
+		},
+		function(){
+			$('#tip').remove();
+		}
+	);
+
+
+	/* .hover 대신 써도됨, 제이쿼리 1.8버전이후부터 추천
+	$('a').on({
+		mouseover:function(){
+
+		},
+		mouseout:function(){
+
+		}
+	})
+*/
+
+
+
+
+
+
+
+	/*
 $('a').hover(
 	function(){
 		//추가
@@ -71,7 +119,7 @@ $('a').hover(
 		$('#tip').remove()
 	}	
 );
-
+*/
 
 </script>
 

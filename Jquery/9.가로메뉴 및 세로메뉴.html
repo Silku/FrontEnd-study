@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <title>Document</title>
+    <style>
+        *{margin: 0; padding: 0;}
+        a{ text-decoration: none; color: #333;}
+        ul,li{ list-style: none;}
+
+        /* menu1 */
+        .menu1{margin: 50px; width: 300px; height: 30px;}
+        .menu1 > li{float: left; margin-right: 1px; 
+                    width: 99px; height: 30px; 
+                    background-color: burlywood;
+                    text-align: center; line-height: 30px;}
+        .menu1 > li > a{ display: block;}
+        .menu1 .sub{}
+        .menu1 .sub > li{background-color: bisque;}
+        .menu1 .sub > li > a{ color: #666;}
+        .menu1 .sub > li.on{ background-color: chocolate;}
+
+        /* menu2 */
+        #column{margin: 200px 20px; width:100%;height: 100%;}
+        .menu2{margin: 50px; width: 300px; height: 30px;}
+        .menu2 > li{margin-bottom: 1px; 
+                    width: 99px;  
+                    background-color: burlywood;
+                    text-align: center; line-height: 30px;}
+        .menu2 > li > a{ display: block;}
+        .menu2 .sub{}
+        .menu2 .sub > li{background-color: bisque; height: 30px;}
+        .menu2 .sub > li > a{ color: #666;}
+        .menu2 .sub > li.on{ background-color: chocolate;}
+    </style>
+    <script src="js/jquery3.6.js"></script>
+    <script src="js/jquery-migrate-1.js"></script>
+</head>
+<body>
+    <script>
+        $(function(){
+        // 가로메뉴
+            $('.menu1 .sub').hide();
+            $('.menu1 > li').hover(
+                function(){
+                 $(this).find('.sub').show().css({height:'0%'}).animate({height:'100%'},500);
+                },
+                function(){
+                 $(this).find('.sub').animate({height:'0%'},300, function(){ $(this).hide()});
+                }
+            );
+
+            $('.menu1 .sub li').hover(
+                function(){
+                    $(this).addClass('on');
+                },
+                function(){
+                    $(this).removeClass('on');
+                }
+            )
+
+         
+        //세로메뉴
+            var current;//처음에 보여줄 메뉴 번호를 전역변수로
+            $('.menu2 .sub').hide(); 
+            //setTimeout(실행함수,2000);
+            
+            inti(3)//함수호출하면 보여줄 서브번호 
+            function inti(n){
+            current = n;
+            setTimeout(firstmn,3000);
+            }
+
+            function firstmn(){
+            $('.menu2 > li').eq(current).find('.sub').slideDown();
+            }
+
+            $('.menu2 > li > a').click(function(){
+                //$('.menu2 .sub').slideUp(); 모든서브 무조건 다 숨기라고 하는거고
+                //$('.menu2 .sub').each(실행문)순서대 보이는 확인한후 보이는 서브 숨김 작동
+                $('.menu2 .sub').each(function(){
+                    if($(this).show()){
+                        $(this).hide()
+                    }
+                });
+
+                $(this).next().slideDown();
+            });
+
+            $('.menu2 .sub li').hover(
+                function(){
+                    $(this).addClass('on');
+                },
+                function(){
+                    $(this).removeClass('on');
+                }
+            )
+        });
+    </script>
+       <!-- 가로메뉴 -->
+        <ul class="menu1">
+            <li><a href="#">menu</a>
+                <ul class="sub">
+                    <li><a href="#">menu</a></li>
+                    <li><a href="#">menu</a></li>
+                    <li><a href="#">menu</a></li>
+                </ul>
+            </li>
+            <li><a href="#">menu</a>
+                <ul class="sub">
+                    <li><a href="#">menu</a></li>
+                    <li><a href="#">menu</a></li>
+                    <li><a href="#">menu</a></li>
+                </ul>
+            </li>
+            <li><a href="#">menu</a>
+                <ul class="sub">
+                    <li><a href="#">menu</a></li>
+                    <li><a href="#">menu</a></li>
+                    <li><a href="#">menu</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <!-- 세로메뉴 -->
+        <div id = "column">
+        <ul class="menu2">
+            <li><a href="#">menu</a>
+                <ul class="sub">
+                    <li><a href="#">menu</a></li>
+                    <li><a href="#">menu</a></li>
+                    <li><a href="#">menu</a></li>
+                </ul>
+            </li>
+            <li><a href="#">menu</a>
+                <ul class="sub">
+                    <li><a href="#">menu</a></li>
+                    <li><a href="#">menu</a></li>
+                    <li><a href="#">menu</a></li>
+                </ul>
+            </li>
+            <li><a href="#">menu</a>
+                <ul class="sub">
+                    <li><a href="#">menu</a></li>
+                    <li><a href="#">menu</a></li>
+                    <li><a href="#">menu</a></li>
+                </ul>
+            </li>
+            <li><a href="#">menu</a>
+                <ul class="sub">
+                    <li><a href="#">menu</a></li>
+                    <li><a href="#">menu</a></li>
+                    <li><a href="#">menu</a></li>
+                </ul>
+            </li>
+        </ul>
+        </div>
+</body>
+</html>
