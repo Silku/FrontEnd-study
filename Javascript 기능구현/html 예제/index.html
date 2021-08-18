@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+
+<style>
+*{ margin:0; padding:0;}
+body{ margin:0; padding:0; height: 3000px;}
+img{border:0;}
+ul, li{ list-style:none;}
+a{ text-decoration:none; color:#333;}
+
+#all{ width:100%;}
+#header{ margin:0 auto; width:1000px; height:95px; background-color:#963; position:relative; }
+#header .logo{ float:left; position:absolute; top:20px; left:50px; 
+                    width:135px; height:45pox; background-color:#F60;}
+					
+#header .top_nav{ float:left; position:absolute; top:30px; left:260px;  
+                         width:700px; height:35px; background-color:#0066FF;}
+
+#header .top_nav li.list{float:left;  margin-right:60px; position: relative;  
+                         border: 1px solid #000; height: 30px;}
+#header .top_nav li.list:last-child{ margin-right:0;}
+#header .top_nav a{ font-size:16px; color:#fff; display: block;}
+
+/* 서브메뉴 설정 */
+#header .top_nav .s_mn{position: absolute; top:30px; left:0; z-index: 3000;}
+#header .top_nav .s_mn > li{ width: 80px; height:30px; 
+                             background-color: #fff; 
+                             border-bottom:1px solid #ccc; }
+#header .top_nav .s_mn > li > a{ color:#333;}
+
+
+#header .info{ float:left; position:absolute; top:5px; right:10px; }
+#header .info li{ float:left; margin-right:10px;}
+#header .info li:last-child{ margin-right:0;}
+#header .info a{ font-size:9px; color:#fff;} 
+
+#main_img{margin:0 auto; width:1000px; height:255px; background-color:#33FFCC;
+          position: relative;}
+#main_img .imgs_area{position: relative; width: 100%; height:255px; overflow: hidden;}
+#main_img .imgs_area li{width:100%; height:255px; position:absolute; top:0; }
+#main_img .imgs_area li:nth-child(1){ background-color: red; left: 0%;}
+#main_img .imgs_area li:nth-child(2){ background-color: green; left: 100%;}
+#main_img .imgs_area li:nth-child(3){ background-color: blue; left: 200%;}
+
+#main_img .btns{position: absolute; bottom:40px; left: 50%; margin-left:-32.5px ; z-index:9999;}
+#main_img .btns > li{float: left; width:15px; height: 15px;  margin-right: 10px;
+                     border-radius: 50%; background-color: cyan;}
+#main_img .btns > li > a{ display: block; text-indent: -9999px; overflow: hidden;}
+
+#main_img .l_btn{display: inline-block; 
+                position: absolute; top:120px; left:50px; z-index: 6000;
+                width: 40px; height: 40px; border-radius:50%;
+                background-color: darkseagreen;
+                text-align: center; line-height: 40px;
+                border: 2px solid #fff;
+ }
+#main_img .r_btn{display: inline-block;  
+                position: absolute; top:120px; right:50px; z-index: 6000;
+                width: 40px; height: 40px; border-radius:50%;
+                background-color: darkseagreen;
+                text-align: center; line-height: 40px;
+                border: 2px solid #fff;}
+
+
+#contents{margin:0 auto; width:1000px; height:250px; background-color:#FF3333;}
+#contents .con01{ float:left; width:360px; height:130px; background-color:#6CF;}
+#contents .con01 .in_box{width:360px; height: 100px; background-color: azure;
+                         position: relative; overflow: hidden;}
+#contents .con01 .in_box > ul{position: absolute; top:0; left: 0;}                        
+#contents .con01 .in_box li{width:360px; height: 100px; position: absolute; top:0;}
+#contents .con01 .in_box li:nth-child(1){ background-color:blueviolet; left:0px;}
+#contents .con01 .in_box li:nth-child(2){ background-color:burlywood; left:360px;}
+#contents .con01 .in_box li:nth-child(3){ background-color:cornflowerblue; left:720px;}
+#contents .con01 .in_box li:nth-child(4){ background-color:crimson;  left:1080px;}
+#contents .con01 .con01_btns{float: right; margin-top: 7px;}
+#contents .con01 .con01_btns > li{float: left; margin-right: 10px; 
+                                  width: 15px; height: 15px;
+                                  background-color: darkgrey;
+                                  text-align: center; line-height: 15px;
+                                  cursor: pointer;}
+#contents .con01 .con01_btns > li:hover{background-color: #00FF00;}                                 
+#contents .con01 .con01_btns > li > a{ display: block; font-size: 10px;}
+
+#contents .con02{ float:left; width:320px; height:130px; background-color:#033;}
+#contents .con03{ float:left; width:320px; height:130px; background-color:#00FFFF;}
+#contents .con04{ float:left; width:360px; height:120px; background-color:#00FF00;}
+#contents .con05{ float:left; width:640px; height:120px; background-color:#F09;}
+
+#footer{margin:0 auto; width:1000px; height:105px; background-color:#339999;}
+#footer .logo{float:left; margin:35px 0 0 65px; width:120px; height:45px; background-color:#000000;}
+#footer .addr{float:left; margin:35px 0 0 60px; width:420px; height:45px; background-color:#999;}
+
+/* 퀵메뉴  */
+#q_mn{position: absolute; top:200px; right:0px; z-index: 9999;
+      width:80px; height: 150px; 
+      border: 1px solid #ccc;
+      background-color: #fff;
+      border-radius: 10px;}
+
+#q_mn a{font-size: 12px;}
+
+</style>
+<script src="js/jquery.js"></script>
+<script src="js/script.js"></script>
+</head>
+
+<body>
+<div id="all">
+<header id="header" class="box">
+  <h1 class="logo">logo</h1>
+  <nav class="top_nav">
+    <ul class="m_mn">
+     <li class="list"><a href="">menu</a>
+        <ul class="s_mn">
+             <li><a href="#">s_menu</a></li>
+             <li><a href="#">s_menu</a></li>
+             <li><a href="#">s_menu</a></li>
+             <li><a href="#">s_menu</a></li>
+        </ul>
+     </li>
+     <li class="list"><a href="">menu</a>
+        <ul class="s_mn">
+            <li><a href="#">s_menu</a></li>
+            <li><a href="#">s_menu</a></li>
+            <li><a href="#">s_menu</a></li>
+            <li><a href="#">s_menu</a></li>
+        </ul>
+     </li>
+     <li class="list"><a href="">menu</a>
+        <ul class="s_mn">
+            <li><a href="#">s_menu</a></li>
+            <li><a href="#">s_menu</a></li>
+            <li><a href="#">s_menu</a></li>
+            <li><a href="#">s_menu</a></li>
+        </ul>
+     </li>
+     <li class="list"><a href="">menu</a>
+        <ul class="s_mn">
+            <li><a href="#">s_menu</a></li>
+            <li><a href="#">s_menu</a></li>
+            <li><a href="#">s_menu</a></li>
+            <li><a href="#">s_menu</a></li>
+        </ul>
+     </li>
+     <li class="list"><a href="">menu</a>
+        <ul class="s_mn">
+            <li><a href="#">s_menu</a></li>
+            <li><a href="#">s_menu</a></li>
+            <li><a href="#">s_menu</a></li>
+            <li><a href="#">s_menu</a></li>
+        </ul>
+     </li>
+     <li class="list"><a href="">menu</a>
+        <ul class="s_mn">
+            <li><a href="#">s_menu</a></li>
+            <li><a href="#">s_menu</a></li>
+            <li><a href="#">s_menu</a></li>
+            <li><a href="#">s_menu</a></li>
+        </ul>
+     </li>
+    </ul>
+  </nav>
+  <ul class="info">
+    <li><a href="">imenu</a></li>
+    <li><a href="">imenu</a></li>
+    <li><a href="">imenu</a></li>
+  </ul>
+</header>
+
+<div id="main_img" class="box">
+    <div class="imgs_area">
+     <ul class="imgs">
+        <li></li>
+        <li></li>
+        <li></li>
+     </ul>
+    </div>   
+    <ul class="btns">
+        <li><a href="#">a</a></li>
+        <li><a href="#">a</a></li>
+        <li><a href="#">a</a></li>
+    </ul>
+  
+    <!-- 블록레벨이라는 태그 영역, 박스 / 인라인레벨이 박스안에 있는 요소(이미지, 글자, 버튼) -->
+
+
+    <a href="#" class="l_btn">왼</a>
+    <a href="#" class="r_btn">오</a>
+</div>
+
+<section id="contents" class="box">
+    <article class="con01">
+        <div class="in_box">
+          <ul>
+            <li>01</li>
+            <li>02</li>
+            <li>03</li>
+            <li>04</li>
+          </ul>
+        </div>
+        <ul class="con01_btns">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </article>
+    <article class="con02">con02</article>
+    <article class="con03">con03</article>
+    <article class="con04">con04</article>
+    <article class="con05"><h3>con05</h3></article>
+</section>
+
+<footer id="footer" class="box">
+  <h2 class="logo">logo2</h2>
+  <address class="addr"><span class="btn1">address</span></address>
+</footer>
+
+<!--퀵메뉴 -->
+<div id="q_mn">
+<ul>
+    <li><a href="#">header</a></li>
+    <li><a href="#">main_img</a></li>
+    <li><a href="#">contents</a></li>
+    <li><a href="#">footer</a></li>
+</ul>
+</div>
+
+
+</div>
+
+</body>
+</html>

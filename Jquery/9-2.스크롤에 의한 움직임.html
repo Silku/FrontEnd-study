@@ -61,15 +61,15 @@
         </div>
 
         <div id="con2">
-          <div class="box2-1 box">box1-1</div>
-          <div class="box2-2 box">box1-2</div>
-          <div class="box2-3 box">box1-3</div>
+          <div class="box2-1 box">box2-1</div>
+          <div class="box2-2 box">box2-2</div>
+          <div class="box2-3 box">box2-3</div>
         </div>
 
         <div id="con3">
-          <div class="box3-1 box">box1-1</div>
-          <div class="box3-2 box">box1-2</div>
-          <div class="box3-3 box">box1-3</div>
+          <div class="box3-1 box">box3-1</div>
+          <div class="box3-2 box">box3-2</div>
+          <div class="box3-3 box">box3-3</div>
         </div>
 
         <div id="con4"></div>
@@ -84,6 +84,7 @@
         <li><a href="#">con3</a></li>
         </ul>
     </div>  
+
     <script>
         $(function(){
            var scene01 = 1;
@@ -131,7 +132,7 @@
                 });
                 $('.box2-3').delay(100).animate({opacity:1,top:"800px"},1000,
                     function(){
-                        $('.box2-3').delay(200).animate({opacity:1,left:'2000px'})
+                        $('.box2-3').delay(200).animate({opacity:1,left:'1400px'})
                 });
              }else if(sct < 1200 && scene02 == 0){
                 scene02 = 1;
@@ -145,7 +146,33 @@
                             opacity:1,top:'700px'},1000);
 
              }
+             if(sct > 1200 && scene03 == 1){
+                scene03 = 0;
+                $('.box3-1').delay(0).animate({opacity:1,top:"800px"},1000,
+                    function(){
+                        $('.box3-1').delay(200).animate({opacity:0.5,width:'200px'}).fadeOut().fadeIn();
+                    });
+                $('.box3-2').delay(300).animate({opacity:1,top:"800px"},500,
+                    function(){
+                        $('.box3-2').delay(200).animate({opacity:1,left:'0px'})
+                    });
+                $('.box3-3').delay(100).animate({opacity:1,top:"800px"},1000,
+                    function(){
+                        $('.box3-3').delay(200).animate({opacity:1,left:'1300px'})
+                    });
+             }else if(sct < 1200 && scene03 == 0){
+                scene03 = 1;
+                $('.box3-1').delay(0).css({top:'800px'}).stop().animate({
+                            opacity:1,top:'200px'},1000);
+						
+                $('.box3-2').delay(400).stop().css({top: '800px'}).animate({
+                            opacity:1,top:'500px'},1000);
 
+                $('.box3-3').delay(800).css({top:'800px'}).stop().animate({
+                            opacity:1,top:'700px'},1000);
+
+             }
+           
 
 
             //퀵메뉴
@@ -159,6 +186,7 @@
            });
 
         });
+
     </script>
 </body>
 </html>
