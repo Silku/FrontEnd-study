@@ -40,26 +40,25 @@
 
 
 #header .h_bottom{width: 100%; height:140px;
-                  background : url(../images/bg_main_slogan.jpg) no-repeat 50% 0;
+                background : url(../images/bg_main_slogan.jpg) no-repeat 50% 0;
 }      
 
 #main_img{float: left;
-          width: 100%; height: 400px;
-          background : url(../images/main1.png) no-repeat 50% 0;}
+        width: 100%; height: 400px;
+        background : url(../images/main1.png) no-repeat 50% 0;}
 /*--메인 이미지 부분 끝---------------------------------------------------------*/
-#contents{float: left;
-          width:100%; height: 2000px;}
+#contents{float: left; width:100%;  }
 #contents .contents_in{
-          margin: 0 auto;
-          width: 1100px; height: 2000px;
-          background-color: chartreuse;
+        margin: 0 auto;
+        width: 1100px;
+        background-color: chartreuse;
 }
 #contents article{float:left;}
 #contents article > img{float:left;}
 /* 위 설정은 이미지의 공백을 없앰. */
 #contents .about{width: 275px; height: 355px; background-color: antiquewhite}
 #contents .about .about_top{height: 177.5px;
-                                         padding : 15px 15px 0 20px;}
+                                        padding : 15px 15px 0 20px;}
 #contents .about h3{font-size: 25px; text-transform: uppercase;
                                 margin-bottom: 25px;}
 #contents .about h4{font-size: 15px;
@@ -68,34 +67,79 @@
 #contents .event{width:275px; height: 355px; background-color: rgb(133, 224, 179)}
 #contents .movie{width:550px; height: 355px; background-color: rgb(73, 190, 57)}
 #contents .system{width:275px; height: 710px; background-color: rgb(215, 231, 250)}
+
 #contents .b_a_con{width:550px; height: 710px; background-color: rgb(197, 123, 141)}
-#contents .history{width:275px; height: 710px; background-color: rgb(228, 221, 161)}
-#contents .news{width:350px; height: 280px; background-color: rgb(91, 39, 187)}
-#contents .desk{width:400px; height: 280px; background-color: rgb(236, 114, 189)}
-#contents .location{width:350px; height:280px ; background-color: rgb(24, 133, 127)}
+#contents .b_a_con img{float: left;}
+#contents .b_a_con .photo_a{width:550px; height: 285px; background-color: rgb(197, 123, 141)}
+#contents .b_a_con .box{float:left; width:137px; height: 142px; position: relative;}
+#contents .b_a_con .in_box{width:131px; height: 136px; 
+                                        border:3px solid red; position: absolute;top:0; left:0; z-index: 10;
+                                        opacity: 0;}
+#contents .b_a_con .in_box:hover{opacity:0.7; transition:0.5s'
+}
+#contents .b_a_con .b_a_mn{width:550px; height: 140px; 
+                                        background-color:   #444;}
+#contents .b_a_con .ttl{padding : 25px 0 20px 0; font-size: 30px; text-align: center; color:white;}
+#contents .b_a_con .menu{margin:0 auto; width:490px; height: 30px; border:1px solid #ccc;}
+#contents .b_a_con .menu > li{float:left; width:25%; text-align: center;line-height: 30px; box-sizing: border-box; border-right: 1px solid #ccc;}
+#contents .b_a_con .menu > li:last-child{border-right: 0px;}
+#contents .b_a_con .menu > li > a{display:block; font-size: 14px; color: #fff;}
+#contents .b_a_con .menu > li > a:hover{background-color: rgb(222,111,111); transition : 0.7s}
+
+#contents .b_a_con .photo_b{width:550px; height: 285px; background-color: rgb(197, 123, 141)}
+
+#contents .history{width:275px; height: 710px;
+                        background-color: rgb(228, 221, 161)}
+#contents .news{margin-top:40px;padding-right: 20px; margin-right: 15px; 
+        width:335px; height: 215px; 
+        box-sizing: border-box; border-right: 1px solid #333; }
+#contents .news .ttl{}
+#contents .news .list{margin-top:10px;}
+#contents .news .list > li{margin-bottom:12px; padding-bottom: 12px; border-bottom:1px dotted #ccc;}
+#contents .news .list > .txt{font-size: 14px;}
+#contents .news .list > .date{font-size: 10px;}
+
+#contents .desk{margin-top:25px; padding-right: 20px; margin-right: 15px; 
+                        width:360px; height: 215px; 
+                        border-right: 1px solid #333;}
+#contents .desk img{margin-top:10px;}
+
+
+#contents .location{margin-top:25px; width:350px; height:280px ; }
+#contents .location img{margin-top:10px;}
 
 
 #footer{float: left;
         width: 100%; height: 150px;}
 #footer .f_top{width: 100%; height: 45px;
-    border-top:1px solid #ccc;
-    border-bottom:1px solid #ccc ;}
+        border-top:1px solid #ccc;
+        border-bottom:1px solid #ccc ;}
 #footer .f_top_in{margin: 0 auto;
-         width: 1200px; height: 45px;
-         background-color: aquamarine;}
+        width: 1200px; height: 45px;}    
+#footer .f_top .info_mn{float: left;}
+#footer .f_top .info_mn li{float: left; margin-right: 30px; line-height: 45px;}
+#footer .f_top .info_mn a{ font-size: 13px;}
+
+#footer .f_top .sns_mn{ float: right;}
+#footer .f_top .sns_mn li{float: left; border-right: 1px solid #ccc;}
+#footer .f_top .sns_mn li:first-child{border-left: 1px solid #ccc;}
+
+
 
 #footer .f_all_mn{width: 100%; height: 300px;
-                  background-color: #ccc;}
-#footer .f_all_mn_in{margin: 0 auto;
-         width: 1200px; height: 300px;
-         background-color: antiquewhite;}
+        background-color: #ccc;}
+#footer .f_all_mn_in{margin: 0 auto; padding-top: 35px;
+        width: 1200px; height: 300px;
+        background-color: antiquewhite;}
+#footer .f_all_mn_in .main_mn{}
+#footer .f_all_mn_in .main_mn > li{float: left; margin-right:60px;}
+#footer .f_all_mn_in .sub_mn > li:first-child{margin-bottom: 15px;} 
+#footer .f_all_mn_in .sub_mn > li:first-child > h4{ font-size: 16px;}
+#footer .f_all_mn_in .sub_mn > li{ text-align: center;}
+#footer .f_all_mn_in .sub_mn > li > a{ font-size: 13px;}
+#footer .f_all_mn_in .sub_mn > li > a:hover{ text-decoration: underline;}
+
 #footer .f_copy{
-    margin: 0 auto;
-    width: 1200px; height: 300px;
-     background-color: burlywood;}
-
-
-		   
-		   
-		   
-		   
+margin: 0 auto;
+width: 1200px; height: 300px;
+background-color: burlywood;}
