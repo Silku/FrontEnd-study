@@ -93,7 +93,7 @@
 #contents .news{margin-top:40px;padding-right: 20px; margin-right: 15px; 
         width:335px; height: 215px; 
         box-sizing: border-box; border-right: 1px solid #333; }
-#contents .news .ttl{}
+
 #contents .news .list{margin-top:10px;}
 #contents .news .list > li{margin-bottom:12px; padding-bottom: 12px; border-bottom:1px dotted #ccc;}
 #contents .news .list > .txt{font-size: 14px;}
@@ -131,7 +131,6 @@
 #footer .f_all_mn_in{margin: 0 auto; padding-top: 35px;
         width: 1200px; height: 300px;
         background-color: antiquewhite;}
-#footer .f_all_mn_in .main_mn{}
 #footer .f_all_mn_in .main_mn > li{float: left; margin-right:60px;}
 #footer .f_all_mn_in .sub_mn > li:first-child{margin-bottom: 15px;} 
 #footer .f_all_mn_in .sub_mn > li:first-child > h4{ font-size: 16px;}
