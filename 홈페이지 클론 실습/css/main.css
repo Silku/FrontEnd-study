@@ -1,74 +1,101 @@
 @charset "utf-8";
-/* css Document */
-.cons{content:''; display: block;
-        clear:both;}
-#header{ float : left; 
-                width:100%; height: 180px;}
+/* CSS Document */
+.cons:after{content:''; display: block; 
+      clear: both;}
 
-#header .h_top{margin:0 auto; width:1100px; height: 95px; background-color: beige;}
-#header .h_top .logo{float:left;}
-#header .h_top .mn_div{float:left; width:600px; height:95px;}
-#header .h_top .mn_div .info_mn{float:left; width:100%; height:47.5px;}
-#header .h_top .mn_div .info_mn li{float:left;}
-#header .h_top .mn_div .q_mn{float:left; width:100%;height:47.5px;}
-#header .h_top .mn_div .q_mn li{float:left;}
-#header .h_top .h_right{}
-#header .main_nav{width:100%; height: 45px; 
-                            border-top:1px solid #ccc;
-                            border-bottom :1px solid #ccc;
-                            box-sizing: border-box;
-                            }
-#header .main_nav ul{
-                            margin : 0 auto;
-                            width: 1100px; height: 45px;
-}                            
-#header .main_nav ul li{
-                            float:left; 
-                            width:136px; height: 45px;
-                            text-align: center; line-height: 45px;
+#header{float: left;  width:100%; }
+#header .h_top{ margin: 0 auto;
+        width: 1100px; height: 95px;
+        position: relative;}
+#header .logo{float: left;}
+#header .info_mn{position: absolute; 
+                 top:20px; left:210px;}
+#header .info_mn > li{float: left; 
+                  margin-right: 10px;}
+#header .info_mn > li > a{ font-size: 10px;}
+#header .q_mn{position: absolute; 
+              top:60px; left:210px;}
+#header .q_mn > li{float: left; margin-right:15px;}
+#header .q_mn > li> a{ font-size: 15px;}
+#header .lang{position: absolute; top:20px; right:20px;}
 
-}
-#header .main_nav ul a{
+#header .main_nav{
+        width: 100%; height: 45px;
+        border-top:1px solid #ccc;
+        border-bottom:1px solid #ccc ;
+        box-sizing:border-box;
+} 
+#header .main_nav ul{ 
+         margin: 0 auto;
+         width: 1100px; height: 45px;}
+#header .main_nav li{ float: left;
+        width:136px; height: 45px;
+        border-right:1px solid #ccc;
+        text-align: center; line-height: 45px;}
+#header .main_nav li:first-child{ width: 135px;
+         border-left:1px solid #ccc;}
+#header .main_nav a{ font-size: 16px;
+        display: block; height: 45px;
+     }
 
-                            font-size:16px;
-                            display: block;
-                            height: 45px;
-}                            
-#header .h_bottom{width:100%; height:140px;
-                            background-color: skyblue;}
-#main_img{ float : left; 
-                width:100%; height: 400px;
-                background-color: cadetblue;}
-#contents{ float : left; 
-                width:100%; height: 2000px;}
-#contents .con_in{
-                margin: 0 auto;
-                width:1200px; height: 2000px;
-                background-color: hotpink;
-}
-#footer{ float : left; 
-                width:100%; height: 150px;}
-#footer .f_top{
-            float: left; width: 100%; height: 45px;
-            border-top:1px solid #ccc;
-            border-bottom:1px solid #ccc;
-}
-#footer .f_top_in{
-            margin : 0 auto;
-            float: left; width: 1200px; height: 300px;
-            background-color: aquamarine;
-            
-}
-#footer .f_all_mn{
 
+#header .h_bottom{width: 100%; height:140px;
+                  background : url(../images/bg_main_slogan.jpg) no-repeat 50% 0;
+}      
+
+#main_img{float: left;
+          width: 100%; height: 400px;
+          background : url(../images/main1.png) no-repeat 50% 0;}
+/*--메인 이미지 부분 끝---------------------------------------------------------*/
+#contents{float: left;
+          width:100%; height: 2000px;}
+#contents .contents_in{
+          margin: 0 auto;
+          width: 1100px; height: 2000px;
+          background-color: chartreuse;
 }
-#footer .f_all_mn_in{
-            margin : 0 auto;        
-            float: left; width: 1200px; height: 300px;
-            background-color: antiquewhite;
-}
+#contents article{float:left;}
+#contents article > img{float:left;}
+/* 위 설정은 이미지의 공백을 없앰. */
+#contents .about{width: 275px; height: 355px; background-color: antiquewhite}
+#contents .about .about_top{height: 177.5px;
+                                         padding : 15px 15px 0 20px;}
+#contents .about h3{font-size: 25px; text-transform: uppercase;
+                                margin-bottom: 25px;}
+#contents .about h4{font-size: 15px;
+                                margin-bottom: 10px;}
+#contents .about p{font-size: 12px;}
+#contents .event{width:275px; height: 355px; background-color: rgb(133, 224, 179)}
+#contents .movie{width:550px; height: 355px; background-color: rgb(73, 190, 57)}
+#contents .system{width:275px; height: 710px; background-color: rgb(215, 231, 250)}
+#contents .b_a_con{width:550px; height: 710px; background-color: rgb(197, 123, 141)}
+#contents .history{width:275px; height: 710px; background-color: rgb(228, 221, 161)}
+#contents .news{width:350px; height: 280px; background-color: rgb(91, 39, 187)}
+#contents .desk{width:400px; height: 280px; background-color: rgb(236, 114, 189)}
+#contents .location{width:350px; height:280px ; background-color: rgb(24, 133, 127)}
+
+
+#footer{float: left;
+        width: 100%; height: 150px;}
+#footer .f_top{width: 100%; height: 45px;
+    border-top:1px solid #ccc;
+    border-bottom:1px solid #ccc ;}
+#footer .f_top_in{margin: 0 auto;
+         width: 1200px; height: 45px;
+         background-color: aquamarine;}
+
+#footer .f_all_mn{width: 100%; height: 300px;
+                  background-color: #ccc;}
+#footer .f_all_mn_in{margin: 0 auto;
+         width: 1200px; height: 300px;
+         background-color: antiquewhite;}
 #footer .f_copy{
-            margin : 0 auto;    
-            width: 1200px; height: 300px;
-            background-color: burlywood;
-}
+    margin: 0 auto;
+    width: 1200px; height: 300px;
+     background-color: burlywood;}
+
+
+		   
+		   
+		   
+		   
