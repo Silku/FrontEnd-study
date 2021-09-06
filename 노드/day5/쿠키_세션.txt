@@ -1,0 +1,215 @@
+cookie-parser 모듈
+요청된 쿠키를 쉽게 사용할 수 있도록 도와주는 모듈입니다. 
+express(req, res) 객체에 cookie를 사용할 수 있도록 기능을 부여합니다.
+익스프레스 객체에 미들웨어로 등록
+
+cookieParser() : 일반 쿠키를 사용하는 경우
+cookieParser('암호화하기 위한 문자') : 암호화된 쿠키를 사용하는 경우
+
+쿠키 설정하기
+res.cookie('키', '값', {
+    쿠키 생성 옵션
+});
+
+쿠키 생성 옵션
+maxAge : 만료시간을 밀리초 단위로 설정합니다.
+expires : 만료 시간을 GMT 시간으로 설정합니다.
+path ; cookie의 경로를 설정합니다. 기본 설정은 "/" 입니다.
+
+쿠키 조회하기
+req.cookies.cookie키  : 일반 쿠키
+req.signedCookies.cookie키 : 암호화된 쿠키
+
+쿠키 삭제하기
+res.clearCookie('키', {path: '경로'});
+
+
+express-session 모듈
+express에서 세션을 관리하기 위해 사용하는 미들웨어 모듈입니다.
+
+app.use(session({세션모듈의 옵션}));
+
+세션 모듈의 옵션
+secret : 쿠키를 임의로 변조하는 것을 방지하기 위한 값입니다. 이 값을 통하여 세션을 암호화하여 저장합니다.
+resave : 세션을 언제나 저장할지 지정하는 값입니다. 이 값을 false로 하는 것을 권장하고 필요에 따라 true로 설정하기도 합니다.
+saveUninitialized : 세션이 저장되기 전에 saveUninitialized 상태로 미리 만들어서 저장합니다.
+세이브언이니라이즈드   초기화 되기전 것을 저장할지 말지 여부 설정
+
+세션 초기 설정
+let 세션객체명 = req.session;
+세션객체명.변수명 = 값;
+
+let sess = req.session;
+sess.userid = 'apple';
+
+세션 변수 사용
+세션객체명.변수명;
+console.log(sess.userid);
+
+세션 삭제
+req.session.destory(() => {
+    세션 삭제시 처리할 문장;
+});
+
+
+쿠키은 웹브라우저에 특정위치에 정보가 저장되는 것이고 세션은 서버에 사용자 정보 저장되는 방식
+보안은 세션에 저장 
+자동완성이나 사용자가 열었을때 문제가 없다면 쿠키에 저장, 하지만 제한적임
+
+
+
+
+NoSQL
+Not only SQL의 약자입니다. 기존의 RDBMS(관계형 데이터베이스)의 한계를 극복하기 위해 만들어진 새로운 형태의 데이터베이스입니다. 관계형 DB가 아니므로 RDBMS처럼 고정된 스키마 및 JOIN문이 존재하지 않습니다. 
+
+NoSQL을 사용하는 이유
+가장 큰 이유는 성능 때문입니다. 
+관계형 데이터베이스는 시스템의 신뢰도를 높이는데 필요한 장치를 많이 가지고 있습니다. 
+SQL문을 읽고 실행하는데 많은 리소스를 사용하며 성능이 떨어지는 경우가 많습니다. 
+ 반대로 NoSQL은 성능을 최우선으로 생각하여 실시간으로 처리해야 할 경우나 대용량 트래픽을 감당할 수 있는 메시징 시스템등에 활용됩니다.
+
+https://db-engines.com/en/ranking
+
+mongoDB 다운로드
+https://www.mongodb.com/
+
+
+mongoDB 특징
+- NoSQL이기 때문에 관계형 데이터베이스의 테이블 개념이 없습니다.
+- 데이터가 모인 하나의 단위를 컬렉션이라고 부릅니다.
+- 데이터를 정해 놓은 컬럼의 형태로 컬렉션에 넣어야 한다는 제약이 없습니다.
+- mongoDB의 데이터베이스는 컬렉션의 집합이라고 할 수 있습니다.
+- 컬렉션은 여러개의 문서 객체를 가질 수 있습니다. 문서 객체는 속성들의 집합으로서 한 사람의 이름과 나이등을 저장하고 있는 하나의 문서 객체를 만든 후 그 안에 자바스크립트 객체와 같이 속성들을 추가하여 저장할 수 있습니다.
+
+데이터
+{"id":1, "userid":"apple", "userpw":"1111" ..} -> document
+document가 -> collection -> database
+
+document
+RDBMS의 record와 비슷한 개념입니다. 데이터 구조는 한개 이상의 key-value-pair로 이루어져 있습니다. document는 동적인 스키마를 가지고 있습니다. 같은 collection 안에 있는 document까리 다른 스키마를 가지고 있을 수 있습니다.
+{"id":1, "userid":"apple", "userpw":"1111"}
+{"id":1, "userid":"apple", "userpw":"1111", gender:"남자"}
+{"id":1, "userid":"apple", "userpw":"1111", "username":"김사과"}
+
+collection
+mongoDB의 document 그룹입니다. collection 내부에 document들이 위치하고 있습니다. RDBMS의 table과 비슷한 개념이지만 RDBMS와 달리 스키마를 따로 가지지 않습니다. 
+
+mongoDB 환경설정
+파일탐색기 -> 내 PC -> 마우스 오른쪽 버튼(속성) -> 고 급 시스템 설정 -> 환경 변수 -> 시스템 변수 -> path -> 편집 -> 새로 만들기 -> C:\Program Files\MongoDB\Server\4.4\bin
+(mongoDB 실행파일 위치)
+
+확인
+cmd -> mongo
+
+https://cmder.net/
+
+
+MongoDB 문법
+
+데이터베이스 확인
+show dbs;
+
+데이터베이스 생성 및 선택
+use 데이터베이스명;
+use fontenddb;
+* 데이터베이스가 없으면 생성, 있으면 선택합니다.
+* 데이터베이스의 자료가 없을 경우 show dbs에서 나타나지 않습니다.
+
+컬렉션 생성
+db.createCollection('컬렉션명');
+db.createCollection('testCollection');
+
+컬렉션 확인
+show collections;
+
+컬렉션 삭제
+db.컬렉션명.drop();
+db.testCollection.drop();
+
+연습용 컬렉션 만들기
+db.createCollection("member");
+
+document 추가
+db.컬렉션명.insert(객체);
+db.member.insert({'userid':'apple','userpw':'1111'});
+db.member.insert({'userid':'banana','userpw':'2222','username':'반하나'});
+db.member.insert({"userid":"orange","userpw":"3333","gender":"남자"});
+db.member.insert({"userid":"melon","userpw":"4444","gender":"남자", "username":"이메론"});
+db.member.insert({"userid":"cherry","userpw":"5555", "username":"채리","gender":"여자","point":2000});
+db.member.insert({"userid":"avocado","userpw":"6666", "username":"안카도","gender":"남자","point":1500});
+db.member.insert({"userid":"berry","userpw":"7777", "username":"배애리","gender":"여자","point":1800});
+db.member.insert({"userid":"coconut","userpw":"8888", "username":"고코넛","gender":"남자","point":1700});
+
+document 확인
+db.컬렉션명.find();
+db.컬렉션명.find().pretty();
+db.컬렉션명.find(객체).pretty();
+db.member.find();
+db.member.find().pretty();
+db.member.find({"userid":"apple"}).pretty();
+
+* _id는 각 document의 유일한 키로 쓰이는 값입니다.
+
+
+document 비교연산
+$eq : 주어진 값과 일치하는 값을 찾습니다.
+$gt : 주어진 값보다 큰 값을 찾습니다.
+$gte : 주어진 값보다 크거나 같은 값을 찾습니다.
+$lt : 주어진 값보다 작은 값을 찾습니다.
+$lte : 주어진 값보다 작거나 같은 값을 찾습니다.
+$ne : 주어진 값과 일치하지 않는 값을 찾습니다.
+$in : 주어진 배열 안에 속하는 값을 찾습니다.
+$nin : 주어진 배열 안에 속하지 않는 값을 찾습니다.
+
+문제.
+포인트가 1700점 이상인 멤버를 검색합니다.
+db.member.find({point:{$gte:1700}}).pretty();
+
+document 논리연산
+$or : 주어진 조건 중 하나라도 true일 때 true인 결과를 찾습니다.
+$and : 주어진 모든 조건이 true일 때 true인 결과를 찾습니다.
+$not : 주어진 조건이 false일 때 true, true일 때 false인 결과를 찾습니다.
+
+문제.
+아이디가 "melon"이고 이름이 "이메론"인 멤버를 검색합니다.
+db.member.find({$and:[{"userid":"melon"},{"username":"이메론"}]}).pretty();
+
+실습.
+1. 이름이 "안카도"인 멤버를 검색합니다.
+db.member.find({"username":"안카도"}).pretty();
+2. 포인트가 1800보다 작거나 같은 멤버를 검색합니다.
+db.member.find({"point":{$lte:1800}}).pretty();
+3. 아이디가 "apple" 이거나 "banana"인 멤버를 검색합니다.
+db.member.find({$or:[{"userid":"apple"},{"userid":"banana"}]}).pretty();
+4. 성별이 "여자"이고 포인트가 1700이상인 멤버를 검색합니다.
+db.member.find({$and:[{"gender":"여자"},{"point":{$gte:1700}}]}).pretty();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1.1 쿠키란 무엇인가
+
+쿠키는 유저들의 효율적이고 안전한 웹 사용을 보장하기 위하여 웹사이트에 널리 사용되고 있습니다. 쿠키는 웹사이트 접속시 접속자의 개인장치에 다운로드 되고 브라우저에 저장되는 작은 텍스트 파일입니다. 웹사이트는 쿠키를 통해 접속자의 장치를 인식하고, 접속자의 설정과 과거 이용내역에 대한 일부 데이터를 저장합니다.
+
+일반적으로 쿠키에는 만료일이 있습니다. 예를 들어, 브라우저를 닫는 경우 자동으로 삭제되는 쿠키도 있으며(세션 쿠키), 일부는 수동으로 삭제되기 전까지 남아있는 등 더 오랜기간 동안 컴퓨터에 저장되는 쿠키도 있습니다(지속적 쿠키). 본 웹사이트는 세션 및 지속적 쿠키의 사용을 통해 유저들에게 일관성 있고 간소화된 웹 경험을 제공합니다.
+
+1.2 쿠키를 사용하는 이유
+
+Kobre & Kim LLP는 아래의 목적으로 쿠키를 사용하고 있습니다. 우리는 유적들에게 최적화된 웹 환경을 제공하기 위해 신뢰성이 높은 주요 공급업체의 쿠키를 사용하고 있습니다.
+
+우리 웹사이트에 사용되는 쿠키에는 아래 네 종류가 있습니다:
+
+필수적인 쿠키: 필수적인 쿠키는 페이지 탐색, 웹사이트의 보안영역 접속, 그리고 검색을 포함한 웹사이트의 기본적인 기능의 활성화를 목적으로 사용되고 있습니다. 본 웹사이트는 필수적인 쿠키 없이 최적화된 기능 수행이 불가하므로 본 쿠키는 이용자의 별도 동의 없이 활성화 되고 있습니다.
+기능 쿠키: 기능 쿠키는 웹사이트가 접속자의 지역 및 언어 등 웹사이트의 행태 및 외관에 영향을 줄 수 있는 접속자 설정을 저장하도록 허용하며, 접속자 설정에 따라 웹사이트가 작동하도록 도움을 줍니다.
+성능 쿠키: 성능 쿠키는 정보의 익명 수집 및 보고를 통해 웹사이트 운영자가 방문자와 웹사이트 사이의 상호작용을 이해하는데에 도움을 주며, 유저와의 상호관계에 대한 통계자료를 제공함으로써 웹사이트 운영자가 더욱 최적화된 웹사이트를 개발하는데에 기여합니다.
+마케팅 쿠키: 마케팅 쿠키는 유저의 웹사이트 방문 내역을 추적하며, 쿠키 제공자가 접속자의 경향 및 웹사이트 이용 패턴을 파악하도록 함으로써 유저에게 관련성 높은 광고나 제품이 제공되는데에 기여합니다.
