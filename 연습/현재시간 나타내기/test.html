@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <form action ="" name="">
+        <input type="text" name="time">
+        <input type="button" value="시작" onclick="startTime(form)">
+        <input type="button" value="정지"  onclick="endTime()">
+    </form>
+
+    <script>
+        let state = false;
+        let intervalStop;
+
+        function startTime(fr){
+            if(state){
+                return;
+            }
+            state = true;
+            intervalStop = setInterval (() => {
+                let date = new Date();
+                let h = date.getHours() ;
+                let m = date.getMinutes() ;
+                let s = date.getSeconds();
+        
+            let str ="AM"
+            if(h>11){
+                str = "PM"
+                h-=12;
+            }
+            if(h<10) h="0"+h;
+            if(m<10) m="0"+m;
+            if(s<10) s="0"+s;
+            
+            
+            
+            fr.time.value = str+" "+ h + " : " + m + " : "  + s;
+            },1000);
+        }
+
+        function endTime(){
+            clearInterval(intervalStop);
+            state = false;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+multer 모듈
+파일 업로드를 위한 익스프레스에 적용하는 미들웨어입니다.
+
+multer()
+생성자에 diskStorage 설정과 파일 크기를 설정합니다.
+
+multer.diskStorage(
+destination : 저장될 폴더를 설정합니다.
+filename : 저장될 파일이름을 설정합니다.
+)
+
+muler({
+  storage: diskStorage 설정객체
+  limits:{
+     files:파일전송개수,
+     filesSize: 파일전송용량
+  }
+});
+
+serve-static 모듈
+특정 폴더를 요청에 의해 직접 파일에 접근할 수 있도록 기능을 제공하는 익스프레스 미드웨어
+
+morgan 모듈
+로그를 관리하기 위한 일부의 라이브러리 모듈
+
+moment.js
+날짜와 시간을 쉽게 다룰수 있도록 도와주는 자바스크립트 라이브러리
+https://momentjs.com/
+
+jquery  CDN
+http://code.jquery.com/
+
+
+
+
+과제
+
+메일 보내기
+
+아이디 : 
+이메일 : email
+제목 : title
+내용 : content
+사진 :          [찾아보기]
+        [보내기]
+
+const mailOptions = {
+    from: "김순조 <gomaci75@gmail.com";
+    to: email,
+    subject: title,
+    text: content,
+    attachments: [{'filename': filename, 'content': data}]
+};
