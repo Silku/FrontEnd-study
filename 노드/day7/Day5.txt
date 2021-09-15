@@ -1,19 +1,17 @@
 multer 모듈
 파일 업로드를 위한 익스프레스에 적용하는 미들웨어입니다.
-
-multer()
 생성자에 diskStorage 설정과 파일 크기를 설정합니다.
 
 multer.diskStorage(
-destination : 저장될 폴더를 설정합니다.
-filename : 저장될 파일이름을 설정합니다.
+destination : 저장될 폴더를 설정합니다.(위치)
+filename : 저장될 파일이름을 설정합니다.(어떻게 파일 저장_ 중복되지 않게 하기위해)
 )
 
 muler({
   storage: diskStorage 설정객체
   limits:{
      files:파일전송개수,
-     filesSize: 파일전송용량
+     filesSize: 파일전송가능용량
   }
 });
 
