@@ -1,0 +1,56 @@
+1. node.js  / npm  설치
+
+2. 커멘드(루트)
+npm install –g babel webpack webpack-dev-server 
+
+    babel -> html + js 같이사용할수 있게 묶어주는 기능
+    webpack -> es5 + es6 두가지버전을 함께 사용하기위해
+    webpack-dev-server ->webpack지원하는 서버를 이용
+
+3. 프로젝트 폴더
+  npm init 
+
+ [ 의존 패키지 및 플러그인 설치 ]
+ npm install --save react react-dom 
+npm install --save-dev babel-core babel-loader babel-preset-react babel-preset-es2015 webpack webpack-dev-server
+ 
+  
+
+  자바스크립트
+  뷰. 앵귤러  프레임워크=>틀이 설정
+  리액트 자바스크립트 라이브러리 = 라이브러리 => 인터렉티브 UI제작용 =>컴포넌트 =>spa
+   dom  js+html
+
+  리액트의 기본
+    컴포넌트
+    폼
+    라우팅
+    HTTP  
+   ------------------
+   리액트의 기본적인 처리 순서
+   app //class선언 -> render(){} -> return -> jsx
+
+  웹과 모바일앱
+  검색엔진에서 리액트
+
+ 
+
+  프로젝트 생성 명령 설치하기
+  npm install -g create-react-app
+
+  create-react-app 프로젝트명
+  cd [프로젝트이름]->이동
+  npm start -> node.js에서 해당 프로젝트가 실행
+
+  [바탕화면경로]_참고
+  cd %systemdrive%\users\%username%\desktop
+  
+  
+
+ 
+
+
+
+
+
+

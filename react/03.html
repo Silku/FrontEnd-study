@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style01.css">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js'></script>
+</head>
+<body>
+    <div id="container">
+     
+    </div>
+    <script>
+
+       //1 노란박스 크기 설정 
+       var Rectangle = React.createClass({
+        displayName: "Rectangle",
+        render: function render() {
+            var recStyle = {
+            //width:200,    
+            height: 150,
+            backgroundColor: this.props.color
+            //backgroundColor: "#cccccc"
+            };
+            return React.createElement("div", { style: recStyle });
+        }
+        });
+
+        // 안에 색을 표시하는 글자 속성 선언
+        var ColorName = React.createClass({
+        displayName: "ColorName",
+
+        render: function render() {
+            var nameStyle = {
+            fontWeight: "bold",
+            padding: 15,
+            margin: 0,
+            textAlign: "center"
+            };
+            return(
+            // <p style={nameStyle}>Blue</p>
+            React.createElement(
+                "p",
+                { style: nameStyle },
+                this.props.color
+            )
+            );
+        }
+        });
+
+       //class선언 -> render(){} -> return -> jsx
+
+        //바깥쪽박스의 그림자
+        var ColorCard = React.createClass({
+        displayName: "ColorCard",
+
+        render: function render() {
+            var cardStyle = {
+            width: 150,
+            height: 200,
+            padding: 0,
+            backgroundColor: "#fff",
+            WebkitFilter: "drop-shadow(0px 0px 5px #777)",
+            filter: "drop-shadow(0px 0px 5px #777)"
+            };
+
+            return React.createElement(
+            "div",
+            { style: cardStyle },
+            React.createElement(Rectangle, { color: this.props.color }),
+            React.createElement(ColorName, { color: this.props.color })
+            );
+        }
+        });
+
+
+        ReactDOM.render(React.createElement(
+        "div",
+        null,
+        React.createElement(ColorCard, { color: "yellow" })
+        ), document.querySelector("#container"));
+    </script>
+</body>
+</html>

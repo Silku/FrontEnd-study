@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js'></script>
+</head>
+<body>
+    <div id="container">
+      <!--       
+           <h4>홍길동</h4>
+           <h4>장길산</h4>
+           <h4>임꺽정</h4>
+           <h4>일지매</h4>
+       -->
+    </div>
+    <script>
+        var HelloWorld = React.createClass({
+        displayName: "HelloWorld", //클래스 선택자 생성
+
+        render: function render() {//html형식을 선언한 태그를 함수 설정
+            return React.createElement(
+            "h2",
+            null,
+            "Hello, ",
+            this.props.name,
+            "! ",
+            this.props.age
+            );
+        }
+        });
+        ReactDOM.render(
+            React.createElement(// 각각의 선택자에 해당하는 name값을 새로 생성
+            "div",
+            null,
+            React.createElement(HelloWorld, { name: "홍길동",age:"34" }),
+            React.createElement(HelloWorld, { name: "장길산" }),
+            React.createElement(HelloWorld, { name: "임꺽정" }),
+            React.createElement(HelloWorld, { name: "일지매" })
+            ), document.querySelector("#container"));
+    </script>
+</body>
+</html>

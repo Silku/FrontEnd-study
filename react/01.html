@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/react/15.6.1/react-dom.min.js'></script>
+</head>
+<body>
+    <div id="container"></div>
+    <script>
+        var destination = document.querySelector("#container");
+        //하나의 콤포넌트 선택
+        ReactDOM.render(React.createElement("h1", null, "하이 리액트!!"), destination);
+        //<h1>하이 리액트!!</h1>
+    </script>
+</body>
+</html>
