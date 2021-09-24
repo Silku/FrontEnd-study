@@ -1,0 +1,45 @@
+[리액트 초기화 첫번째]
+
+1.
+Node.JS, NPM 설치
+
+2. 
+의존패키지- 프로젝트 폴더에서 설치
+npm init
+npm install --save react react-dom //리액트설치
+npm install --save-dev babel-core babel-loader babel-preset-react babel-preset-es2015 
+
+3.
+babel /  webpack 개별적연결
+
+
+
+[리액트 초기화 두번째]
+1.
+프로젝트 생성 명령 설치하기
+npm install -g create-react-app
+
+2.
+create-react-app 프로젝트명(프로젝트 명으로 폴더 생성)
+-->PowerShell 실행 정책을 변경하는 방법
+   검색창에서 Window PowerShell 실행
+   커서가 입력대기 상태일때 Get-ExecutionPolicy 입력하고 실행하면
+    Restriced 제한이라고 메시지가 보이고
+   --->해제하기위해서 Set-ExecutionPolicy RemoteSigned 입력하고 실행
+   권한 설정부분 표시 Y, A, N , L, S등이 표시되는 그중에 A 선택을 하시면
+   RemoteSigned 표시 권한설정 
+
+다시 create-react-app 프로젝트명 
+
+
+
+
+3.
+터미널 이동
+cd [프로젝트이름]->이동
+
+
+4.
+npm start
+
+

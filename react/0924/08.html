@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Props</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!-- <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> -->
+    <script src="./babel.js"></script>
+    <style>
+       *{margin: 0 ; padding: 0;}
+       .container{ width:100%; border: 2px solid red; }
+       .row{width:1000px; border: 2px solid #000; height: 60px;}
+       .row > div{ float: left;}
+       .col-2{width:20%; background-color: bisque;}
+       .col-8{width:80%; background-color: cadetblue;}
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+    //JSX를 사용하여 HTML을 JavaScript로 변환
+    //class명을 className으로 사용하고 스타일 적용
+    //Props는  properties 의 줄임말
+    //어떠한 값을 컴포넌트에게 전달해줘야 할 때, props 를 사용
+    //컴포넌트 1개이상이면  <div></div> 묶어줍니다 -> 다른방식 태그를 빼고 넣는 방식 <> </> 한다
+    //<> </>를 프레이먼트라고 하면 태그없이 기호로 묶어주는 기능
+    //function(){} 반드시 중괄호 안에 return();안에 태그를 추가
+    
+      let title = "JSX 표현식(Expression)"
+      let seeSharp = {
+          title: "react",
+          description: "내용이 들어오는 곳...."
+      }
+
+      function BookTitle(){
+        return(  
+        <div className="row">
+          <h1>My Book</h1>
+        </div>
+        );
+      }
+   
+      function BookCard(props){
+        return(
+        <div className="container">
+            <div className="row">
+                <div className="col-2">
+                    {props.title}
+                </div>
+                <div className="col-8">
+                    {props.description}
+                </div>
+            </div>
+        </div>
+        );
+      }
+
+      function BookList(){
+          return(
+          <>    
+           <BookCard title="react제목1" description="react1 설명문입니다"/>
+           <BookCard title="react제목2" description="react2 설명문입니다"/>
+           <BookCard title="react제목3" description="react3 설명문입니다"/>
+           <BookCard/>
+          </> 
+          );
+      }
+
+      const BookFooter = ()=> <p>하단 내용이 보이는 곳입니다</p>
+
+      const Copyright = ()=> {
+          return(<p>Copyright &copy;</p>);
+      }    
+
+      function BookApp(){
+        return( 
+        <div>
+            <BookTitle />
+            <BookList />
+            <BookFooter />
+            <Copyright />
+        </div>
+        );
+      }
+
+
+      //최종 렌더링
+      ReactDOM.render(
+        <BookApp />
+      ,
+          document.getElementById("root")
+      );
+
+     // React.createElement("div",{"style":{"border":"1px solid red"}},document.getElementById("root"));
+     // React.createElement("추가할태그",{"스타일":{"속성":"속성값"}},document.getElementById("지정대상"));
+    </script>
+</body>
+</html>

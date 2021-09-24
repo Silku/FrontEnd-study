@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/javascript">
+      ReactDOM.render(
+        React.createElement("div",{"style":{"border":"1px solid red"}},
+          React.createElement("h1",{"style":{"color":"blue"}},"안녕하세요"),
+          React.createElement("h2",{"style":{"color":"red"}},"안녕하세요"),
+          React.createElement("h3",{"style":{"color":"green"}},"안녕하세요"),
+        ),
+          document.getElementById("root")
+      );
+
+     // React.createElement("div",{"style":{"border":"1px solid red"}},document.getElementById("root"));
+     // React.createElement("추가할태그",{"스타일":{"속성":"속성값"}},document.getElementById("지정대상"));
+    </script>
+</body>
+</html>

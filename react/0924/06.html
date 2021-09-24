@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSX 표현식(Expression)</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!-- <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> -->
+    <script src="./babel.js"></script>
+    <style>
+       *{margin: 0 ; padding: 0;}
+       .container{ border: 2px solid red; }
+       .row{ margin: 0 auto; width:1000px; border: 2px solid #000; height: 20px;}
+       .row > div{ float: left;}
+       .col-2{width:20%; background-color: bisque;}
+       .col-8{width:80%; background-color: cadetblue;}
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+    //JSX를 사용하여 HTML을 JavaScript로 변환
+    //class명을 className으로 사용하고 스타일 적용
+      let title = "JSX 표현식(Expression)"
+      let seeSharp = {
+          title: "react",
+          description: "내용이 들어오는 곳...."
+      }
+
+      ReactDOM.render(
+        <div className="container">
+            <div className="row">
+                <div className="col-2">
+                    {seeSharp.title}
+                </div>
+                <div className="col-8">
+                    {seeSharp.description}
+                </div>
+            </div>
+        </div>
+      ,
+          document.getElementById("root")
+      );
+
+     // React.createElement("div",{"style":{"border":"1px solid red"}},document.getElementById("root"));
+     // React.createElement("추가할태그",{"스타일":{"속성":"속성값"}},document.getElementById("지정대상"));
+    </script>
+</body>
+</html>
