@@ -1,0 +1,22 @@
+
+1.cmd 창에서 node, npm, npx 버전을 각각 확인한다.
+  (아래처럼 버전이 나오면 설치는 완료된 것. 만약 버전이 나오지 않으면 다시 설치해야 함)
+  node.js 버전 확인　➡ node --version
+  npm 버전 확인　➡ npm --version
+  npx 버전 확인　➡ npx --version
+
+
+2.아래 코드를 cmd 창에 입력한다.
+  npm config set cache C:\tmp\nodejs\npm-cache --global
+
+3.react app을 생성할 폴더로 이동한다.
+  cd C:\Users\...
+
+4.npx 를 이용해 react app을 생성한다
+  npx create-react-app 폴더명
+
+----------->아래와 같이 Happy hacking ! 이 나오면 react app CRA 완료!
+ happy hacking
+
+
+- 21.09.29

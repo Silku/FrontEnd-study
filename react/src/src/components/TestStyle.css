@@ -1,0 +1,99 @@
+.TestTitle{
+    width:100%; 
+    height: 150px; 
+    background-color: blueviolet;
+    text-align: center;
+}
+/* 기본스타일 */
+*{margin:0; padding: 0;}
+body{ font-family:"맑은고딕"; font-size:12px; color:#444;}
+img{border:0}
+ul, li{list-style: none;}
+
+
+
+
+/* 상단부분 */
+.header{ width: 100%; height: 100px; 
+         background-color: cornflowerblue;}
+.header_in{ margin: 0 auto; width: 1200px; height: 100px; 
+          background-color: darkgoldenrod;}
+.logo{ float: left; margin: 20px 0 0 80px;
+       width:120px; height: 60px; 
+       background-color: darkmagenta ;
+       font-size: 20px;}
+
+ .main_nav{float: right; margin: 25px 80px 0 0; }
+ .main_nav ul{border:1px solid #000;}
+ .main_nav li{display:inline-block;
+              border-right:1px solid #000;
+              width:120px; height: 50px;
+              text-align: center; line-height:50px;
+              font-size: 16px;  color: #000;
+              }
+              
+
+
+/* 메인이미지부분 */
+.mainArea{width: 100%; height: 350px;
+         background-color: cadetblue;  
+ }
+
+
+/* 콘텐츠부분 */
+.contents{width:100%;}
+.contents{margin: 0 auto; width:1200px;}
+    .news{width: 100%; height: 250px;}
+    .news_h{ width: 100%; height: 30px;
+             background-color: rgba(228, 128, 91, 1);}
+    .news_h > h3{ float: left; margin:7.5px 0 0 5%; 
+                  font-size: 15px; 
+                  font-weight: 700;  color: #fff;}
+    .news_h > span{float: right; margin: 10px 5% 0 0; 
+                   font-size: 10px; color: #ccc;}
+    .news_b{width: 100%; height: 220px; border:1px solid #ccc; 
+            box-sizing: border-box;  }
+    .news_b > ul{float: left; margin:60px 0 0 10%;
+                 width: 80%;}
+    .news_b li{ font-size: 14px; letter-spacing:5px;
+                margin-bottom:10px;
+                color: #444;
+                border-bottom:1px dotted #ccc; }
+
+
+    .product{width: 100%; height: 250px;
+              background-color: #ccc;}           
+    .product > ul{float:left; margin:30px 0 0 30px;}
+    .product > ul > li{display: inline-block; margin-right:7.5px; 
+                       width:222px; height: 220px;}
+    .product img{width: 100%;}  
+
+
+
+    .gallery{width: 100%; height: 370px;
+             border:2px double #444;
+             box-sizing: border-box;}
+    .gallery img{width: 100%; height: 100%;}
+    .gallery .l_img{float: left; margin:10px 0 0 200px;
+                    width:350px; height:350px;}
+    .gallery .list{ float: left; margin: 15px 0 0 60px; 
+                     width: 335px; height: 335px;
+                     border:1px solid #000}
+    .gallery .list > li{float: left;  width: 150px; height:150px ; 
+                        border: 1px solid red;}
+    .gallery .list > li:nth-child(1){margin: 10px 10px 0 10px;}
+    .gallery .list > li:nth-child(2){margin: 10px 10px 0 0px;}
+    .gallery .list > li:nth-child(3){margin: 10px 10px 0 10px;}
+    .gallery .list > li:nth-child(4){margin: 10px 10px 0 0px;}
+    
+
+    .info{width:100%; height: 200px; background-color: beige;}
+    .info .helpDesk{float: left; margin:20px 0 0 15px; 
+                    width: 300px; height: 160px;
+                    background-color: cadetblue;
+                    text-align:center ;}
+    .info .helpDesk h3{font-size: 25px; padding: 25px 0 15px 0; }
+    .info .helpDesk p{font-size: 15px;}
+    .info .location{float: right; margin: 20px 15px 0 0; width: 850px; height: 180px;}
+    .info .location iframe{border:0;}
+    
