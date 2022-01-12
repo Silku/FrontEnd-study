@@ -1,0 +1,18 @@
+npm init svelte@next my-app
+cd my-app
+npm install
+npm run dev
+
+http://localhost:3000
+
+
+========
+svelte 핵심 = router
+
+=> src/routes
+이 폴더 안에있는 코드베이스에 의해 어플리케이션의 구조가 정의된다.
+
+라우터에는 page와 endpoint의 두가지 유형이 있다.
+
+페이지는 일반적으로 사용자에게 표시할 html을 생성함.(css, js 포함)
+기본적으로 서버와 클라이언트 양쪽 어디서든 설정이 가능하다.
