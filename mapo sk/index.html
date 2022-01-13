@@ -7,6 +7,9 @@
     <title>https://www.navercorp.com/</title>
     <link rel="stylesheet" href="css/index.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 </head>
 <body>
     <header>
@@ -16,17 +19,67 @@
                 <a href="#">
                     <li class="g_nav_menu">네이버
                         <ul class="g_nav_drop_cont">
-                            <li>네이버</li>
-                            <li>네이버</li>
-                            <li>네이버</li>
+                            <li>네이버 리스트
+                                <ul>
+                                    <ll>회사 소개</ll>
+                                    <ll>회사 연혁</ll>
+                                </ul>
+                            </li>
+                            <li>네이버 리스트</li>
+                            <li>네이버 리스트</li>
                         </ul>
                     </li>
                 </a>
-                <a href="#"><li class="g_nav_menu">서비스</li></a>
-                <a href="#"><li class="g_nav_menu">가치실현</li></a>
-                <a href="#"><li class="g_nav_menu">홍보</li></a>
-                <a href="#"><li class="g_nav_menu">투자정보</li></a>
-                <a href="#"><li class="g_nav_menu">채용</li></a>
+                <a href="#">
+                    <li class="g_nav_menu">서비스
+                        <ul class="g_nav_drop_cont">
+                            <li>서비스 리스트</li>
+                            <li>서비스 리스트</li>
+                            <li>서비스 리스트</li>
+                            <li>서비스 리스트</li>
+                        </ul>
+                    </li>
+                </a>
+                <a href="#">
+                    <li class="g_nav_menu">가치실현
+                        <ul class="g_nav_drop_cont">
+                            <li>가치실현 리스트</li>
+                            <li>가치실현 리스트</li>
+                            <li>가치실현 리스트</li>
+                            <li>가치실현 리스트</li>
+                        </ul>
+                    </li>
+                </a>
+                <a href="#">
+                    <li class="g_nav_menu">홍보
+                        <ul class="g_nav_drop_cont">
+                            <li>홍보 리스트</li>
+                            <li>홍보 리스트</li>
+                            <li>홍보 리스트</li>
+                            <li>홍보 리스트</li>
+                        </ul>
+                    </li>
+                </a>
+                <a href="#">
+                    <li class="g_nav_menu">투자정보
+                        <ul class="g_nav_drop_cont">
+                            <li>투자정보 리스트</li>
+                            <li>투자정보 리스트</li>
+                            <li>투자정보 리스트</li>
+                            <li>투자정보 리스트</li>
+                        </ul>
+                    </li>
+                </a>
+                <a href="#">
+                    <li class="g_nav_menu">채용
+                        <ul class="g_nav_drop_cont">
+                            <li>채용 리스트</li>
+                            <li>채용 리스트</li>
+                            <li>채용 리스트</li>
+                            <li>채용 리스트</li>
+                        </ul>
+                    </li>
+                </a>
             </ul>
         </div>
         <div class="change_language">
@@ -40,8 +93,35 @@
         </div>
     </header>
     <main>
-        <video src="src/SME_video.mp4" autoplay loop muted>
+                <!-- Slider main container -->
+        <div class="swiper">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide">
+                    <video src="src/SME_video.mp4" autoplay loop muted>
+                </div>
+                <div class="swiper-slide">
+                    <img src="src/img_main_slide3.jpg">
+                </div>
+                <div class="swiper-slide">
+                    <img src="src/img_main_slide5.jpg">
+                </div>
+                <div class="swiper-slide">
+                    <img src="src/img_main_slide6.jpg">
+                </div>
+            </div>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination"></div>
         
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        
+            <!-- If we need scrollbar -->
+            <div class="swiper-scrollbar"></div>
+        </div>
+
     </main>
     <div class="main_content">
         <section class="section_news">
@@ -57,7 +137,7 @@
 네이버 모바일에서 언론사를 구독해 보는 사용자 수가 2,300만 명을 넘어섰고, 한 사람당 평균 7개의 언론사를 
 						</p>
                     </div>
-                    <a href="#">
+                    <a class="goto"  href="#">
                         바로가기
                         <span>></span>
                     </a>
@@ -68,7 +148,7 @@
                         <p>보다 간편하게, 더욱 안전하게 네이버가 어쩌구 저쩌구</p>
                         <p>보다 간편하게, 더욱 안전하게 네이버 국민 인증서 '네이버 인증서로 어쩌구</p>
                     </div>
-                    <a href="#">
+                    <a class="goto" href="#">
                         바로가기
                         <span>></span>
                     </a>
@@ -79,7 +159,7 @@
                         <p>보다 간편하게, 더욱 안전하게 네이버가 어쩌구 저쩌구</p>
                         <p>보다 간편하게, 더욱 안전하게 네이버 국민 인증서 '네이버 인증서로 어쩌구</p>
                     </div>
-                    <a href="#">
+                    <a class="goto" href="#">
                         바로가기
                         <span>></span>
                     </a>
@@ -90,7 +170,7 @@
                         <p>보다 간편하게, 더욱 안전하게 네이버가 어쩌구 저쩌구</p>
                         <p>보다 간편하게, 더욱 안전하게 네이버 국민 인증서 '네이버 인증서로 어쩌구</p>
                     </div>
-                    <a href="#">
+                    <a class="goto" href="#">
                         결산공고 보러가기
                         <span>></span>
                     </a>
@@ -98,32 +178,44 @@
             </ul>
         </section>
         <section class="section_product">
-            <ul>
-                <li>
+            <ul class="product_list_cont">
+                <li class="product_box">
                     <img src="/src/img_main_content3.png">
+                    <div class="up_text">
+                        <dl>
+							<dt>ARC</dt>
+							<dd>멀티 로봇 인텔리전스 시스템</dd>
+						</dl>
+                    </div>
                 </li>
-                <li>
+                <li class="product_box">
                     <img src="/src/img_main_content4.png">
+                    <div class="up_text">
+						<dl>
+							<dt>On-road intelligence</dt>
+							<dd>도로 위 자율주행을 위한 통합 솔루션</dd>
+						</dl>
+                    </div>
                 </li>
-                <li>
+                <li class="product_box">
                     <img src="/src/img_main_content5.png">
                 </li>
-                <li>
+                <li class="product_box">
                     <img src="/src/img_main_content6.png">
                 </li>
-                <li>
+                <li class="product_box">
                     <img src="/src/img_main_content7.png">
                 </li>
-                <li>
+                <li class="product_box">
                     <img src="/src/img_main_content8.png">
                 </li>
-                <li>
+                <li class="product_box">
                     <img src="/src/img_main_content10.png">
                 </li>
-                <li>
+                <li class="product_box">
                     <img src="/src/img_main_content11.png">
                 </li>
-                <li>
+                <li class="product_box">
                     <img src="/src/img_main_content12.png">
                 </li>
             </ul>

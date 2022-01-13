@@ -5,7 +5,7 @@ const header = document.querySelector('header');
 // header.style.display = "none"
 // header.style.backgroundColor = "#fff"
 
-
+// header.style.color = "#ababab";
 
 
 // 스크롤시 헤더가 가리는 기능
@@ -46,14 +46,16 @@ $(document).ready(function(){
         lastScrollTop = st;
     }
     
+
+    // 네비바 호버시 기능
     $('.g_nav').delegate('.g_nav_menu', 'mouseenter', function(){
+		$(this).find('.g_nav_drop_cont').stop().slideDown(500);
+	});
+	$('.g_nav').delegate('.g_nav_menu', 'focusin', function(){
 		$(this).find('.g_nav_drop_cont').stop().slideDown(500);
 	});
     $('.g_nav').delegate('.g_nav_menu', 'mouseleave', function(){
 		$(this).find('.g_nav_drop_cont').stop().slideUp(250);
-	});
-	$('.g_nav').delegate('.g_nav_menu', 'focusin', function(){
-		$(this).find('.g_nav_drop_cont').stop().slideDown(500);
 	});
 	$('.g_nav').delegate('.g_nav_menu', 'focusout', function(){
 		$(this).find('.g_nav_drop_cont').stop().slideUp(250);
@@ -66,3 +68,36 @@ $(document).ready(function(){
 });
 
 // Math.abs 주어진 숫자의 절대값을 반환함.
+
+
+
+// swiper.js
+const swiper = new Swiper('.swiper', {
+    // Optional parameters
+    direction: 'horizontal',
+    loop: true,
+    autoplay:{
+        delay:2000
+    },
+    speed:1500,
+    fadeEffect:{
+        crossFade:true
+    },
+    // If we need pagination
+    // pagination: {
+    //   el: '.swiper-pagination',
+    // },
+  
+    // Navigation arrows
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  
+    // And if we need scrollbar
+    scrollbar: {
+      el: '.swiper-scrollbar',
+    },
+  });
+
+  swiper.autoplay.start();
