@@ -30,7 +30,7 @@
         }
         
         setDataset();
-        nextPageAdd()
+        // nextPageAdd()
     });
     
     // function search() {
@@ -67,6 +67,45 @@
                     boardDataset = data;	
                     console.log(boardDataset)
                 }
+                var prObj = null;
+                if(data.length > 0){
+                    var htmlString = '';
+                    for(var i=0; i <data.length; i++){
+                        prObj = data[i]
+                        console.log(data.title)
+                    }
+                }
+                // var prObj;
+                // if(data.length > 0){				
+                //     var htmlString = '';
+                //     for(var i=0 ; i <data.length ; i++){
+                        
+                //         prObj = data[i];
+                        
+                //         htmlString = '<li class="report_list">';					
+                //         htmlString += '<a href="javascript:;" onclick="showPopup(' + boardDataset.length + ')" >';
+                        
+                //         if(prObj.screenShotFilePath!=null && prObj.screenShotFilePath!=""){
+                //             htmlString += '<div class="report_img_box" style="background-image: url(' + prObj.screenShotFilePath  +');"><span class="blind">기본이미지</span></div>';	
+                //         }else{
+                //             htmlString += '<div class="report_img_box" style="background-image: url(/img/ko/promotion/img_promotion_tv1.png);"><span class="blind">기본이미지</span></div>';
+                //         }
+                        
+                //         htmlString += '<div class="report_info_box"><h3 class="report_info_title">';
+                //         htmlString += prObj.title; //+prObj.mediaTitle2;
+                //         htmlString += '</h3><span class="report_info_date">';
+                //         htmlString += prObj.yearType;
+                //         htmlString += '</span></div></a></li>';
+                        
+                //         boardDataset.push(prObj);
+                //         report_container.append(htmlString);
+                //     }				
+                //     currentPage.val(parseInt(currentPage.val())+1);
+                // }
+                
+                // if( data == null || data.length == 0 || prObj.endCount >=  prObj.rowCount ){
+                //     $('#more_btn_area').hide();
+                // }
             }
         });
     }

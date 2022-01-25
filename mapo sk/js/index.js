@@ -48,17 +48,17 @@ $(document).ready(function(){
     
 
     // 네비바 호버시 기능
-    $('.g_nav').delegate('.g_nav_menu', 'mouseenter', function(){
-		$(this).find('.g_nav_drop_cont').stop().slideDown(500);
+    $('.gnb_menu').delegate('.gnb_menu_item', 'mouseenter', function(){
+		$(this).find('.gnb_dropMenu_wrap').stop().slideDown(500);
 	});
-	$('.g_nav').delegate('.g_nav_menu', 'focusin', function(){
-		$(this).find('.g_nav_drop_cont').stop().slideDown(500);
+	$('.gnb_menu').delegate('.gnb_menu_item', 'focusin', function(){
+		$(this).find('.gnb_dropMenu_wrap').stop().slideDown(500);
 	});
-    $('.g_nav').delegate('.g_nav_menu', 'mouseleave', function(){
-		$(this).find('.g_nav_drop_cont').stop().slideUp(250);
+    $('.gnb_menu').delegate('.gnb_menu_item', 'mouseleave', function(){
+		$(this).find('.gnb_dropMenu_wrap').stop().slideUp(250);
 	});
-	$('.g_nav').delegate('.g_nav_menu', 'focusout', function(){
-		$(this).find('.g_nav_drop_cont').stop().slideUp(250);
+	$('.gnb_menu').delegate('.gnb_menu_item', 'focusout', function(){
+		$(this).find('.gnb_dropMenu_wrap').stop().slideUp(250);
 	});
 	
 	$('.btn_sitemap').click(function() {
