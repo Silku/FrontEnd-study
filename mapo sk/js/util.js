@@ -341,8 +341,9 @@ var UT = {
     	
     	var _async =  ajaxParam.async!=null?ajaxParam.async:true;
     	var useLodingImg =  ajaxParam.useLodingImg!=null?ajaxParam.useLodingImg:true ;
-    	var send_type = "POST"; // 전송 타입
-    	if(UT.isNotEmpty(ajaxParam.type) && ( ajaxParam.type==="POST" || ajaxParam.type==="GET" )  ){
+    	var send_type = "GET"; // 전송 타입
+        // POST , get 원본은 post - tw 수정
+    	if(UT.isNotEmpty(ajaxParam.type) && ( ajaxParam.type==="GET" || ajaxParam.type==="GET" )  ){
     		send_Type = ajaxParam.type;
     	}
     	
@@ -810,7 +811,7 @@ var UT = {
      *         var me = this;
      *         ...
      *         if (UT.isDate(param)) {
-     *             ...
+     *             
      *         }
      *     }
      */

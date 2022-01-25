@@ -1,38 +1,3 @@
-@charset "UTF-8";
-@font-face {
-  font-family: 'NanumBarunGothic';
-  src: local(NanumBarunGothic);
-  src: url("../../font/NanumBarunGothic.eot");
-  src: url("../../font/NanumBarunGothic.woff") format("woff"), url("../../font/NanumBarunGothic.otf") format("opentype");
-}
-
-@font-face {
-  font-family: 'NanumSquare-L';
-  src: local(NanumSquareOTFLight);
-  src: url("../../font/NanumSquareOTFLight.eot");
-  src: url("../../font/NanumSquareOTFLight.woff") format("woff"), url("../../font/NanumSquareOTFLight.otf") format("opentype");
-}
-
-@font-face {
-  font-family: 'NanumSquare';
-  src: local(NanumSquareOTFRegular);
-  src: url("../../font/NanumSquareOTFRegular.eot");
-  src: url("../../font/NanumSquareOTFRegular.woff") format("woff"), url("../../font/NanumSquareOTFRegular.otf") format("opentype");
-}
-
-@font-face {
-  font-family: 'NanumSquare-B';
-  src: local(NanumSquareOTFBold);
-  src: url("../../font/NanumSquareOTFBold.eot");
-  src: url("../../font/NanumSquareOTFBold.woff") format("woff"), url("../../font/NanumSquareOTFBold.otf") format("opentype");
-}
-
-@font-face {
-  font-family: 'NanumSquare-EB';
-  src: local(NanumSquareOTFExtraBold);
-  src: url("../../font/NanumSquareOTFExtraBold.eot");
-  src: url("../../font/NanumSquareOTFExtraBold.woff") format("woff"), url("../../font/NanumSquareOTFExtraBold.otf") format("opentype");
-}
 
 * {
   -webkit-box-sizing: border-box;
@@ -601,7 +566,7 @@ header.active {
 }
 
 header.active .header_logo {
-  background: url(../../img/ko/header_logo_v2.png);
+  background: url(../src/header_logo_v2.png);
 }
 
 header.active .gnb_menu {
@@ -667,6 +632,7 @@ header.active + .sitemap_dimmed {
 
 .sitemap_container {
   width: 1280px;
+  /* background-color: red; */
   margin: 0 auto;
   padding: 35px 35px 70px;
 }
@@ -2154,7 +2120,7 @@ header.active + .sitemap_dimmed {
   width: 16px;
   height: 7px;
   margin: -5px 0 0 0;
-  background: url(../../img/ko/sprite.png) no-repeat;
+  background: url(../src/sprite.png) no-repeat;
   -webkit-background-size: 474px 1500px;
   background-size: 474px 1500px;
   background-position: -169px -39px;
@@ -2623,7 +2589,7 @@ header.active + .sitemap_dimmed {
   width: 15px;
   height: 12px;
   margin: -6px 0 0 -7px;
-  background: url(../../img/ko/sprite.png) no-repeat;
+  background: url(../src/sprite.png) no-repeat;
   -webkit-background-size: 474px 1500px;
   background-size: 474px 1500px;
   background-position: -148px -26px;
@@ -2707,7 +2673,7 @@ header.active + .sitemap_dimmed {
   top: 3px;
   width: 2px;
   height: 10px;
-  background: url(../../img/ko/sprite.png) no-repeat;
+  background: url(../src/sprite.png) no-repeat;
   -webkit-background-size: 474px 1500px;
   background-size: 474px 1500px;
   background-position: -122px -45px;
@@ -3560,8 +3526,7 @@ header.active + .sitemap_dimmed {
   width: 20px;
   height: 20px;
   margin: -10px 0 0 -10px;
-  background: url(../../img/ko/sprite.png) no-repeat;
-  -webkit-background-size: 474px 1500px;
+  background: url(../src/sprite.png) no-repeat;
   background-size: 474px 1500px;
   background-position: -169px 0;
 }
@@ -3617,7 +3582,7 @@ header.active + .sitemap_dimmed {
   width: 46px;
   height: 46px;
   margin: 0 0 0 -23px;
-  background: url(../../img/ko/sprite.png) no-repeat;
+  background: url(../src/sprite.png) no-repeat;
   -webkit-background-size: 474px 1500px;
   background-size: 474px 1500px;
   background-position: -146px -50px;
@@ -3645,7 +3610,7 @@ header.active + .sitemap_dimmed {
 .report_list a {
   display: block;
   width: calc(100% - 40px);
-  height: 100%;
+  /* height: 100%; */
   margin: 0 auto;
 }
 
@@ -3945,7 +3910,7 @@ header.active + .sitemap_dimmed {
   width: 14px;
   height: 16px;
   margin: -8px 0 0 -7px;
-  background: url(../../img/ko/sprite.png) no-repeat;
+  background: url(../src/sprite.png) no-repeat;
   -webkit-background-size: 474px 1500px;
   background-size: 474px 1500px;
   background-position: -194px 0;
@@ -4168,7 +4133,7 @@ header.active + .sitemap_dimmed {
   position: absolute;
   left: 50%;
   top: 50%;
-  background: url(../../img/ko/sprite.png) no-repeat;
+  background: url(../src/sprite.png) no-repeat;
   -webkit-background-size: 474px 1500px;
   background-size: 474px 1500px;
 }
@@ -5505,7 +5470,7 @@ header.active + .sitemap_dimmed {
   width: 95px;
   height: 77px;
   margin: 0 auto 36px;
-  background: url(../../img/ko/sprite.png) no-repeat;
+  background: url(../src/sprite.png) no-repeat;
   -webkit-background-size: 474px 1500px;
   background-size: 474px 1500px;
   background-position: 0 -875px;
@@ -7497,7 +7462,7 @@ header.active + .sitemap_dimmed {
   bottom: 198px;
   width: 46px;
   height: 46px;
-  background: url(../../img/ko/sprite.png) no-repeat;
+  background: url(../src/sprite.png) no-repeat;
   -webkit-background-size: 474px 1500px;
   background-size: 474px 1500px;
   opacity: .8;
@@ -8650,4 +8615,4 @@ footer {
   }
 }
 
-/*# sourceMappingURL=maps/navercorp.css.map */
+/* sourceMappingURL=maps/navercorp.css.map */

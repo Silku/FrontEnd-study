@@ -1,38 +1,4 @@
-@charset "UTF-8";
-@font-face {
-  font-family: 'NanumBarunGothic';
-  src: local(NanumBarunGothic);
-  src: url("../../font/NanumBarunGothic.eot");
-  src: url("../../font/NanumBarunGothic.woff") format("woff"), url("../../font/NanumBarunGothic.otf") format("opentype");
-}
 
-@font-face {
-  font-family: 'NanumSquare-L';
-  src: local(NanumSquareOTFLight);
-  src: url("../../font/NanumSquareOTFLight.eot");
-  src: url("../../font/NanumSquareOTFLight.woff") format("woff"), url("../../font/NanumSquareOTFLight.otf") format("opentype");
-}
-
-@font-face {
-  font-family: 'NanumSquare';
-  src: local(NanumSquareOTFRegular);
-  src: url("../../font/NanumSquareOTFRegular.eot");
-  src: url("../../font/NanumSquareOTFRegular.woff") format("woff"), url("../../font/NanumSquareOTFRegular.otf") format("opentype");
-}
-
-@font-face {
-  font-family: 'NanumSquare-B';
-  src: local(NanumSquareOTFBold);
-  src: url("../../font/NanumSquareOTFBold.eot");
-  src: url("../../font/NanumSquareOTFBold.woff") format("woff"), url("../../font/NanumSquareOTFBold.otf") format("opentype");
-}
-
-@font-face {
-  font-family: 'NanumSquare-EB';
-  src: local(NanumSquareOTFExtraBold);
-  src: url("../../font/NanumSquareOTFExtraBold.eot");
-  src: url("../../font/NanumSquareOTFExtraBold.woff") format("woff"), url("../../font/NanumSquareOTFExtraBold.otf") format("opentype");
-}
 
 * {
   -webkit-box-sizing: border-box;
@@ -1834,9 +1800,9 @@ header.active + .sitemap_dimmed {
 }
 
 .service_menu .service_item.webtoon:before {
-  width: 56px;
+  width: 59px;
   height: 54px;
-  background-position: 0 -1360px;
+  background-position: -62px -257px;
 }
 
 .service_menu .service_item.vlive:before {
@@ -1865,10 +1831,10 @@ header.active + .sitemap_dimmed {
 }
 
 .service_menu .service_item.media:before {
-  width: 80px;
-  height: 27px;
+  width: 70px;
+  height: 50px;
   margin-top: 13px;
-  background-position: -60px -1360px;
+  background-position: -54px -260px;
 }
 
 .service_menu .service_item.clova:before {
@@ -1893,9 +1859,9 @@ header.active + .sitemap_dimmed {
 
 .service_menu .service_item.commerce_solution:before {
   margin-top: -3px;
-  width: 50px;
+  width: 60px;
   height: 56px;
-  background-position: -201px -737px;
+  background-position: -67px -257px;
 }
 
 .service_menu .service_item.ad > p:after {
