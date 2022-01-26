@@ -1,33 +1,7 @@
     var boardDataset = [];
     
     $(document).ready(function() {
-        var select_box = 	$(".btn_select");
-    
-        select_box.bind("click",function(){ 				// 셀렉트 박스 열고 닫기
-            select_box.attr("aria-expanded","true");		
-            $(".select_item").attr("aria-selected","false");					// 열려있는 모든 셀렉트박스 닫기
-            //$(this).children(".select_item").toggleClass("on"); 	// 선택된 셀렉트 박스의 option 토글
-            $(window).bind("click",function(){ 					// 셀렉트 박스가 선택되면 모든 윈도우에 이벤트 추가
-                select_box.attr("aria-expanded","false");				// 모든윈도우가 클릭되면 옵션 박스 의 on 삭제
-                $(window).unbind("click");							// 윈도우의 클릭이벤트 삭제
-            });
-            return false;
-        });
-        $('.select_item').bind('click', function(){ 				// 옵션 리스트 선택시 텍스트 교체
-            $(this).attr("aria-selected","true");
-            $('.btn_select').text($(this).text());
-            $('#yearType').val($(this).attr("data-media_year"));
-            //$('#yearType').val($(this).attr("data-yearType"));
-            select_box.attr("aria-expanded","false");	
-            $(window).unbind("click");	
-            search();
-            return false;
-        });
-        
-        var selecteditem = $(".select_item[aria-selected='true']")
-        if(selecteditem.length > 0){
-            $('.btn_select').text(selecteditem.text());
-        }
+
         
         setDataset();
         // nextPageAdd()
