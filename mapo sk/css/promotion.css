@@ -1,25 +1,23 @@
 @font-face {
   font-family: 'NanumSquare-L';
-  src: url("../NanumSquareOTFLight.woff") format("woff");
+  src: url("../font/NanumSquareOTFLight.woff") format("woff");
 }
 
 @font-face {
   font-family: 'NanumSquare';
-  src: url("../NanumSquareOTFRegular.woff") format("woff");
+  src: url("../font/NanumSquareOTFRegular.woff") format("woff");
 }
 
 @font-face {
   font-family: 'NanumSquare-B';
-  src: url("../NanumSquareOTFBold.woff") format("woff");
+  src: url("../font/NanumSquareOTFBold.woff") format("woff");
 }
 
 @font-face {
   font-family: 'NanumSquare-EB';
-  src: url("../NanumSquareOTFExtraBold.woff") format("woff");
+  src: url("../font/NanumSquareOTFExtraBold.woff") format("woff");
 }
 * {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
@@ -258,7 +256,7 @@ header:hover {
   width: 87px;
   height: 17px;
   margin: 32px 0 0 30px;
-  background: url(../../img/ko/header_logo.png);
+  /* background: url(../../img/ko/header_logo.png); */
   -webkit-background-size: 87px 17px;
   background-size: 87px 17px;
 }
@@ -315,7 +313,7 @@ nav {
   top: 31px;
   width: 18px;
   height: 18px;
-  background: url(../src/sprite.png) no-repeat;
+  /* background: url(../src/sprite.png) no-repeat; */
   -webkit-background-size: 474px 1500px;
   background-size: 474px 1500px;
   background-position: -59px 0;
@@ -584,7 +582,7 @@ header.active {
 }
 
 header.active .header_logo {
-  background: url(../src/header_logo_v2.png);
+  /* background: url(../src/header_logo_v2.png); */
 }
 
 header.active .gnb_menu {
@@ -8454,7 +8452,7 @@ footer {
   font-size: 0;
   line-height: 0;
   text-indent: -999px;
-  background: url(../../img/ko/footer_copy.png) no-repeat;
+  /* background: url(../../img/ko/footer_copy.png) no-repeat; */
   overflow: hidden;
 }
 
@@ -8465,7 +8463,7 @@ footer {
   width: 63px;
   height: 13px;
   margin: 0 auto;
-  background: url(../../img/ko/footer_logo.png) no-repeat;
+  /* background: url(../../img/ko/footer_logo.png) no-repeat; */
   -webkit-background-size: 63px 13px;
   background-size: 63px 13px;
 }
