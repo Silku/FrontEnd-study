@@ -124,10 +124,7 @@
 var boardDataset = [];
 var selectedPageIndex = 1;
 
-// 진행 내용 : selectedPageIndex를 전역변수로 잡고
-//  pagination a click시 실행되는 selectedpage의 값을 어떻게든 밖으로 꺼낸다음 
-//  writeData()가 실행될때 selectedpageIndex의 값을 받아 페이지 처리해보는 상상함
-//  안되서 멘붕하고 퇴근함.
+
 
 setInterval(() => {
     console.log("현재 선택된 페이지 : " + selectedPageIndex )
@@ -207,6 +204,7 @@ function setDataset(){
                     return selectedPageIndex;
                 });
                 // console.log("현재페이지 : " + currentPage)
+                console.log('현재 체크:' +selectedPageIndex)
                 writeData(selectedPageIndex)
 
             }
@@ -220,10 +218,14 @@ function setDataset(){
             function writeData(selectedPageIndex){
                 // console.log(boardDataset.slice(0,dataPerPage))
                 // console.log(boardDataset.slice((0+dataPerPage),(dataPerPage+dataPerPage)))
-
+                console.log('깂 확인 :' + selectedPageIndex )
                 let data = boardDataset.slice(0,dataPerPage)
+                // let data = boardDataset.slice(5,10)
                 console.log(data)
                 console.log()
+                // investors_table.children('tbody').remove()
+                // investors_table.children('tbody').css('background-color','red')
+                investors_table.children('tbody').empty()
                 let htmlString = "";
                 for(let i = 0; i < dataPerPage; i++){
                     htmlString = '<tr><td>'
