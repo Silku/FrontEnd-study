@@ -1274,7 +1274,7 @@ body.search-results .jupiterx-content .woocommerce ~ .jupiterx-post:first-of-typ
 .jupiterx-social-share-reddit:hover{background-color:#e03300}
 .jupiterx-social-share-digg{background-color:#005be2}
 .jupiterx-social-share-digg:hover{background-color:#024fc2}
-@font-face{font-family:"jupiterx";src:url("../../../../themes/jupiterx/lib/assets/fonts/jupiterx.eot");src:url("../../../../themes/jupiterx/lib/assets/fonts/jupiterxd41d.eot?#iefix") format("eot"),url("../../../../themes/jupiterx/lib/assets/fonts/jupiterx.html") format("woff2"),url("../../../../themes/jupiterx/lib/assets/fonts/jupiterx.woff") format("woff"),url("../../../../themes/jupiterx/lib/assets/fonts/jupiterx.ttf") format("truetype"),url("../../../../themes/jupiterx/lib/assets/fonts/jupiterx.svg#jupiterx") format("svg")}
+@font-face{font-family:"jupiterx";src:url("../font/jupiterx.eot");src:url("../font/jupiterxd41d.eot?#iefix") format("eot"),url("../font/jupiterx.html") format("woff2"),url("../font/jupiterx.woff") format("woff"),url("../font/jupiterx.ttf") format("truetype"),url("../font/jupiterx.svg#jupiterx") format("svg")}
 [class^="jupiterx-icon-"]:before,[class*=" jupiterx-icon-"]:before{font-family:"jupiterx";-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-style:normal;font-variant:normal;font-weight:normal;speak:none;text-decoration:none;text-transform:none;line-height:1}
 .jupiterx-icon-creative-market:before{content:""}
 .jupiterx-icon-long-arrow:before{content:""}

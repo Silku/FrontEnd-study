@@ -1,3 +1,17 @@
+/* origin source by useanyfont */
+@font-face {
+  font-family: 'kopub';
+  font-style: normal;
+  src: url('../font/kopub.eot');
+  src: local('kopub'), url('../font/kopub.eot') format('embedded-opentype'), url('../font/kopub.woff') format('woff');
+}
+.kopub{font-family: 'kopub' !important;}
+
+p, blockquote, li, a{
+font-family: 'kopub' !important;
+}
+/* origin source by useanyfont END */
+
 .elementor-widget-heading.elementor-widget-heading .elementor-heading-title {
   color: #168ece;
 }
