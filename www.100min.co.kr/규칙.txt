@@ -1,0 +1,17 @@
+1) 폴더 구분 : 
+css/font/img/js
+
+
+
+2) 주석 : 
+주요 css or js 소스
+[100min] 
+
+
+
+3) 이미지 파일 : 
+page_image_number.확장자
+예) history_image_1.png
+
+- 별도 사이즈 표시가 되어있는 이미지의 경우 사이즈 표시는 원본 그대로 남겨둠.
+예) index_image_1_300x200.png

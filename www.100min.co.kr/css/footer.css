@@ -1,10 +1,11 @@
-/* footer, 배민 주아체 */
+/* 배민 주아체 */
 @font-face {
   font-family: 'BMJUA';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/BMJUA.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
+
 
 .elementor-241
   .elementor-element.elementor-element-21b10268
@@ -59,7 +60,9 @@
 .elementor-241
   .elementor-element.elementor-element-18c40b5.elementor-widget-heading
   .elementor-heading-title {
-  color: #000000;
+    /* footer_addr_title */
+    color: #000000;
+    font-family: 'BMJUA';
 }
 .elementor-241
   .elementor-element.elementor-element-18c40b5
@@ -69,7 +72,7 @@
   font-weight: 600;
   text-transform: uppercase;
   line-height: 23px;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
 }
 .elementor-241
   .elementor-element.elementor-element-18c40b5
@@ -164,11 +167,10 @@
   .elementor-element.elementor-element-7be1417d
   .elementor-icon-box-content
   .elementor-icon-box-title {
+  /* footer_copyright */
   color: #ffffff;
   font-size: 13px;
   line-height: 35px;
-  font-family: 'BMJUA';
-  /* cc */
 }
 .elementor-241
   .elementor-element.elementor-element-7be1417d

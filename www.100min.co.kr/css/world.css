@@ -47,7 +47,7 @@
   .elementor-element.elementor-element-6348a67
   > .elementor-motion-effects-container
   > .elementor-motion-effects-layer {
-  background-image: url("../img/AdobeStock_220063190-e1567558530249.jpg");
+  background-image: url("../img/world_background.jpg");
   background-position: bottom right;
   background-size: cover;
 }
@@ -1141,7 +1141,14 @@
   transition: background 0.3s, border-radius 0.3s, opacity 0.3s;
 }
 .elementor-702 .elementor-element.elementor-element-f49fee7 {
+  /* 차트 위치 */
+  margin: 0 auto;
   text-align: center;
+  width: 80%;
+}
+.elementor-702 .elementor-element.elementor-element-f49fee7 #myChart{
+  max-width: 844px;
+  max-height: 351px;
 }
 .elementor-702
   .elementor-element.elementor-element-355a7db7
