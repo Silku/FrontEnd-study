@@ -4,7 +4,7 @@ css/font/img/js
 
 
 2) 주석 : 
-주요 css or js 소스
+주요 css or js 소스 주석 표시
 [100min] 
 
 

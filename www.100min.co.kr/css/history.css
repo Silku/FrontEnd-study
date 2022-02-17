@@ -153,6 +153,18 @@
   line-height: 1.8em;
   letter-spacing: 0px;
 }
+.elementor-186 .elementor-element.elementor-element-f0573b7 table{
+  /* table */
+  text-align: center;
+  border-collapse: separate;
+  border-spacing: 12px;
+}
+.elementor-186 .elementor-element.elementor-element-f0573b7 table td:nth-child(2){
+  text-align: right;
+}
+.elementor-186 .elementor-element.elementor-element-f0573b7 table td:last-child{
+  text-align: left;
+}
 .elementor-186
   .elementor-element.elementor-element-1cfd50e
   > .elementor-widget-container {
