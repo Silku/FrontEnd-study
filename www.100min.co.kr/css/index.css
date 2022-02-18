@@ -776,10 +776,11 @@
 .elementor-6
   .elementor-element.elementor-element-139f1c4
   .elementor-heading-title {
+  /* 취약계층 케어, 찾아가는 세탁소 */
   font-size: 20px;
   font-weight: 700;
   text-transform: uppercase;
-  line-height: 20px;
+  line-height: 30px;
   letter-spacing: 1px;
 }
 .elementor-6
@@ -789,6 +790,8 @@
   padding: 0px 0px 5px 0px;
 }
 .elementor-6 .elementor-element.elementor-element-0bc0099 {
+  /*서울시 및 자치구와 협업하여 찾아가는 침구류 세탁 서비스를 제공합니다. */
+  margin-top: -10px;
   color: #555555;
   font-size: 15px;
   font-weight: 300;
@@ -827,10 +830,11 @@
 .elementor-6
   .elementor-element.elementor-element-468069a
   .elementor-heading-title {
+    /*도시재생과 만난 커뮤니티, 우리동네빨래방  */
   font-size: 19px;
   font-weight: 700;
   text-transform: uppercase;
-  line-height: 20px;
+  line-height: 30px;
   letter-spacing: 1px;
 }
 .elementor-6
@@ -840,6 +844,8 @@
   padding: 0px 0px 5px 0px;
 }
 .elementor-6 .elementor-element.elementor-element-d29d0f6 {
+  /* 포용적 도시재생 사업모델, 곧 오픈합니다. */
+  margin-top: -10px;
   color: #555555;
   font-size: 15px;
   font-weight: 300;
