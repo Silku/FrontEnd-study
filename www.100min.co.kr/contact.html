@@ -28,9 +28,9 @@
 			padding: 0 !important;
 		}
 	</style>
-    <link rel='stylesheet' id='wp-block-library-css' href='css/style.min4827.css?ver=5.2.14' type='text/css'
+	<link rel='stylesheet' id='wp-block-library-css' href='css/style.min4827.css?ver=5.2.14' type='text/css'
 		media='all' />
-    <link rel='stylesheet' id='wp-block-library-theme-css' href='css/theme.min4827.css?ver=5.2.14' type='text/css'
+	<link rel='stylesheet' id='wp-block-library-theme-css' href='css/theme.min4827.css?ver=5.2.14' type='text/css'
 		media='all' />
 
 	<!-- [wp plugins] -->
@@ -47,7 +47,8 @@
 		media='all' />
 	<link rel='stylesheet' id='font-awesome-css' href='css/font-awesome.min1849.css?ver=4.7.0' type='text/css'
 		media='all' />
-	<link rel='stylesheet' id='raven-frontend-css' href='css/frontend.min2fca.css?ver=1.4.0' type='text/css' media='all' />
+	<link rel='stylesheet' id='raven-frontend-css' href='css/frontend.min2fca.css?ver=1.4.0' type='text/css'
+		media='all' />
 	<link rel='stylesheet' id='flatpickr-css' href='css/flatpickr.mineda1.css?ver=4.1.4' type='text/css' media='all' />
 
 	<link rel='stylesheet' id='google-fonts-1-css'
@@ -741,9 +742,7 @@
 													<div class="elementor-widget-container">
 														<form
 															class="raven-form raven-flex raven-flex-wrap raven-flex-bottom"
-															method="post" name="New form">
-															<input type="hidden" name="post_id" value="200" />
-															<input type="hidden" name="form_id" value="318cb1d" />
+															method="post" action="mail.php">
 															<div id="raven-field-group-ebff4ec"
 																class="raven-flex-wrap raven-field-type-checkbox raven-field-group elementor-column elementor-col-100">
 																<label for="form-field-ebff4ec"
@@ -753,8 +752,7 @@
 																		class="raven-field-option"><input
 																			type="checkbox"
 																			value="사회복지 서비스 (찾아가는 세탁소, 돌봄, 보건복지, 도시재생 등)"
-																			id="form-field-ebff4ec-0"
-																			name="fields[ebff4ec][]"
+																			id="form-field-ebff4ec-0" name="sort"
 																			class="raven-field"> <label
 																			for="form-field-ebff4ec-0"
 																			class="raven-field-label">사회복지 서비스 (찾아가는
@@ -762,8 +760,7 @@
 																		class="raven-field-option"><input
 																			type="checkbox"
 																			value="친환경 Solution (Pre-cycle, 세척서비스, 재생아이스팩 등)"
-																			id="form-field-ebff4ec-1"
-																			name="fields[ebff4ec][]"
+																			id="form-field-ebff4ec-1" name="sort"
 																			class="raven-field"> <label
 																			for="form-field-ebff4ec-1"
 																			class="raven-field-label">친환경 Solution
@@ -772,8 +769,7 @@
 																		class="raven-field-option"><input
 																			type="checkbox"
 																			value="IT Consulting (홈페이지, App, Web, O2O, 결제 System, Kiosk 등)"
-																			id="form-field-ebff4ec-2"
-																			name="fields[ebff4ec][]"
+																			id="form-field-ebff4ec-2" name="sort"
 																			class="raven-field"> <label
 																			for="form-field-ebff4ec-2"
 																			class="raven-field-label">IT Consulting
@@ -782,8 +778,7 @@
 																		class="raven-field-option"><input
 																			type="checkbox"
 																			value="기타 문의 (빨래방, IoT자판기 및 그외 문의, 제휴 제안 등)"
-																			id="form-field-ebff4ec-3"
-																			name="fields[ebff4ec][]"
+																			id="form-field-ebff4ec-3" name="sort"
 																			class="raven-field"> <label
 																			for="form-field-ebff4ec-3"
 																			class="raven-field-label">기타 문의 (빨래방, IoT자판기
@@ -794,33 +789,33 @@
 																<label for="form-field-0056ccb"
 																	class="raven-field-label">
 																	성함(필수) </label>
-																<input type="text" name="fields[0056ccb]"
-																	id="form-field-0056ccb" class="raven-field"
-																	placeholder="" data-type="text" required="required">
+																<input type="text" name="name" id="form-field-0056ccb"
+																	class="raven-field" placeholder="" data-type="text"
+																	required="required">
 															</div>
 															<div id="raven-field-group-507e08c"
 																class="raven-flex-wrap raven-field-type-email raven-field-group elementor-column elementor-col-50 raven-field-required">
 																<label for="form-field-507e08c"
 																	class="raven-field-label">
 																	이메일(필수) </label>
-																<input type="email" name="fields[507e08c]"
-																	id="form-field-507e08c" class="raven-field"
-																	placeholder="" data-type="email"
-																	required="required"/>
+																<input type="email" name="mail" id="form-field-507e08c"
+																	class="raven-field" placeholder="" data-type="email"
+																	required="required" />
 															</div>
 															<div id="raven-field-group-e5d9ab6"
 																class="raven-flex-wrap raven-field-type-textarea raven-field-group elementor-column elementor-col-100 raven-field-required">
 																<label for="form-field-e5d9ab6"
 																	class="raven-field-label">
 																	문의내용 </label>
-																<textarea type="textarea" name="fields[e5d9ab6]"
+																<textarea type="textarea" name="text"
 																	id="form-field-e5d9ab6" class="raven-field"
 																	placeholder="문의 내용을 적어주세요." data-type="textarea"
 																	required="required" rows="5"></textarea>
 															</div>
 															<div
 																class="raven-field-group raven-field-type-submit-button elementor-column elementor-col-100 justify">
-																<button type="submit" id="submit_btn" class="raven-submit-button">
+																<button type="submit" id="submit_btn"
+																	class="raven-submit-button">
 																	<i class="fa fa-check" aria-hidden="true"></i>
 																	백의민족에게 문의하기 </button>
 															</div>
@@ -1065,10 +1060,14 @@
 																			<div class="elementor-widget-container">
 																				<div
 																					class="elementor-text-editor elementor-clearfix">
-																					<p>본사 : 서울특별시 마포구 큰우물로 76, 4층 403호(도화동)<br />
-연구소 : 서울특별시 마포구 성미산로 17길 79, 1층<br />
-클린센터 : 경기도 광주시 도척면 도척로 76-45 <br/>
-사업자번호 : 606-86-62623<br />통신판매업 :
+																					<p>본사 : 서울특별시 마포구 큰우물로 76, 4층
+																						403호(도화동)<br />
+																						연구소 : 서울특별시 마포구 성미산로 17길 79,
+																						1층<br />
+																						클린센터 : 경기도 광주시 도척면 도척로 76-45
+																						<br />
+																						사업자번호 : 606-86-62623<br />통신판매업
+																						:
 																						제2018-서울마포-0341호<br />대표자 :
 																						이광훈<br />전화번호 :
 																						02-2061-2400<br />이메일 :
@@ -1138,7 +1137,8 @@
 															</div>
 															<div class="elementor-icon-box-content">
 																<span class="elementor-icon-box-title">
-																	<span>Copyright 2015 - 2022 (주)백의민족 All Rights Reserved.</span> 
+																	<span>Copyright 2015 - 2022 (주)백의민족 All Rights
+																		Reserved.</span>
 																</span>
 															</div>
 														</div>
@@ -1176,17 +1176,7 @@
 		var elementorFrontendConfig = { "environmentMode": { "edit": false, "wpPreview": false }, "is_rtl": false, "breakpoints": { "xs": 0, "sm": 480, "md": 768, "lg": 1025, "xl": 1440, "xxl": 1600 }, "version": "2.6.8", "urls": { "assets": "https:\/\/www.100min.co.kr\/wp-content\/plugins\/elementor\/assets\/" }, "settings": { "page": [], "general": { "elementor_global_image_lightbox": "yes", "elementor_enable_lightbox_in_editor": "yes" } }, "post": { "id": 200, "title": "\ubb38\uc758", "excerpt": "" } };
 	</script>
 	<script type='text/javascript' src='js/frontend.min91ac.js?ver=2.6.8'></script>
-	<script type='text/javascript'>
-		/* <![CDATA[ */
-		var jetElements = { "ajaxUrl": "https:\/\/www.100min.co.kr\/wp-admin\/admin-ajax.php", "messages": { "invalidMail": "Please specify a valid e-mail" } };
-/* ]]> */
-	</script>
 	<script type='text/javascript' src='js/jet-elements.mindb21.js?ver=1.15.12'></script>
-	<script type='text/javascript'>
-		/* <![CDATA[ */
-		var _wpUtilSettings = { "ajax": { "url": "\/wp-admin\/admin-ajax.php" } };
-/* ]]> */
-	</script>
 	<script type='text/javascript' src='js/wp-util.min4827.js?ver=5.2.14'></script>
 	<script type='text/javascript' src='js/frontend.min2fca.js?ver=1.4.0'></script>
 	<script type='text/javascript' src='js/flatpickr.mineda1.js?ver=4.1.4'></script>
