@@ -1,0 +1,21 @@
+
+.main_title{
+    width: 800px;
+    margin : 20px auto;
+}
+.form_container{
+    width: 800px;
+    /* background-color: red; */
+    margin: 30px auto;
+}
+.item{
+    background-color: rgb(163, 245, 245);
+}
+.radio_row{
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-start;
+}
+.radio_row label{
+    margin-right: 20px;
+}
