@@ -51,7 +51,7 @@ header{
     display: flex;
     justify-content: space-between;
     align-items:flex-end;
-    width: 1400px;
+    width: 1285px;
     height: 130px;
     
     /* background-color: red; */
@@ -80,8 +80,48 @@ header{
 
 #gnb_nav .gnb_menu .contact{
     margin-top: 40px;
-
 }
+#gnb_nav .gnb_menu .contact a{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    transform: translate(0, 100%);
+}
+#gnb_nav .gnb_menu .contact a::before{
+    content: "";
+    display: block;
+    width: 150%;
+    height: 150%;
+    border-radius: 50%;
+    border: solid 1px rgba(0, 0, 0, 0.25);
+    background-color: #fff;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -65%);
+    z-index: -1;
+}
+#gnb_nav .gnb_menu .contact a .line-anime{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    transform: rotate(-90deg);
+    opacity: 0.5;
+}
+#gnb_nav .gnb_menu .contact a .line-anime circle{
+    fill: transparent;
+}
+
+
+
+
+
+
+
 
 .wrapper{
     display: block;
@@ -363,10 +403,16 @@ main .text_area p:nth-child(2){
     flex-flow: row nowrap;
     border-spacing: 20px 60px;
     border-collapse: separate;
+    font-size: 14px;
+}
+.section_news .content table thead{
+    width: 40%;
 }
 .section_news .content table thead tr{
+    text-align: left;
     flex-flow: row nowrap;
 }
+
 .section_news .content table thead tr .date{
     color:#ababab;
 }
@@ -379,11 +425,27 @@ footer{
     width: 100%;
 }
 footer .contact{
+    position: relative;
     margin: 400px 0px 300px;
     height: 100px;
     width: 100%;
     text-align: center;
     font-size: 96px;
+}
+footer .contact:before {
+    position: absolute;
+    top: 50;
+    left: 50;
+    font-family: 'DM Serif Display', serif;
+    font-weight: bolder;
+    transform: translate(0%, -30%);
+    content: "Get in touch";
+    display: block;
+    color: #f4f4f4;
+    font-size: 240px;
+    z-index: -1;
+    white-space: nowrap;
+    pointer-events: none;
 }
 .footer_bottom{
     display: flex;
@@ -415,4 +477,15 @@ footer .contact{
     background-color: black;
     border-radius: 50%;
     color: white;
+}
+/* -- */
+section .bg-text {
+    font-size: 240px;
+    color: #f4f4f4;
+    line-height: 1.2;
+    font-family: "DM Serif Display", serif;
+    position: absolute;
+    z-index: -1;
+    white-space: nowrap;
+    pointer-events: none;
 }
