@@ -1,0 +1,194 @@
+a, body, p, h1, h2, h3, ol, ul, li, dl,dd,dt, table ,th, td, input, textarea,button, select{
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+ol,ul,li{
+    list-style : none;
+}
+
+textarea {
+    resize: none;
+}
+
+.flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+html{
+    overflow: hidden;
+    background-color: rgb(17, 87, 64);
+}
+
+
+header{
+    display: flex;
+    position: fixed;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 120px;
+    /* background-color: red; */
+    z-index: 999;
+}
+header .gnb_menu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: row nowrap;
+    width: 250px;
+    height: 120px;
+    background-color: green;
+}
+header .gnb_menu .menu_wrapper{
+    width: 120px;
+    height: 120px;
+}
+header .gnb_menu .logo{
+    text-align: center;
+}
+header .gnb_menu button{
+    width: 120px;
+    height: 120px;
+    background-color: rgb(155, 227, 191);
+    border: none;
+    cursor: pointer;
+}
+header .gnb_menu button:hover{
+    opacity: 0.5;
+}
+header .gnb_menu span:after{
+    content: "--";
+}
+
+header .gnb_item{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(222,222,222,0.2);
+}
+header .gnb_item .gnb_btn{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+    margin-right: 50px;
+    width: 123px;
+    height: 50px;
+    background-color: rgba(17, 87, 64 , 0.1);
+    color: #fff;
+    border-radius: 9999px;
+    overflow: hidden;
+    transition-duration: 1000ms;
+    transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+}
+header .gnb_item .gnb_btn .origin{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transform: translateY(0%);
+}
+header .gnb_item .gnb_btn .effect{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transform: translateY(100%);
+}
+
+header .gnb_item .gnb_btn:hover .origin{
+    transform: translateY(-100%);
+    transition-property: transform;
+	transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+	transition-duration: 1050ms;
+}
+header .gnb_item .gnb_btn:hover .effect{
+    transform: translateY(0%);
+    transition-property: transform;
+	transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+	transition-duration: 1050ms;
+}
+
+header .gnb_item .btn_contact{
+    background-color: rgba(    249, 56, 34);
+
+}
+header .gnb_item .btn_login{
+    background-color: rgba(155, 227, 191);
+}
+
+
+.sidebar{
+    left: 0;
+    top: 0;
+    position: fixed;
+    width: 130px;
+    height: 100%;
+    background-color: rgb(17, 87, 64);
+    border-right : 1px solid rgba(255,255,255, 0.25);
+    z-index: -1;
+}
+
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+
+}
+.section_1{
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(17, 87, 64);
+    border-top: #fff;
+    /* background-image: url(/img/hero-parallax-1.png); */
+    /* background-position: (top) */
+    /* background-image: url(/img/hero-parallax-2.png); */
+    /* background-image: url(/img/hero-parallax-3.png); */
+}
+.section_1 .bg_img{
+    width: 100%;
+    height:100%;
+    position: relative;
+    /* object-fit: cover; */
+}
+.section_1 .bg_img img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.section_2{
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(198, 198, 238);
+    border-top: #fff;
+}
+.section_3{
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(95, 95, 189);
+    border-top: #fff;
+}
+.section_4{
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(196, 196, 243);
+    border-top: #fff;
+}
+.section_5{
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(114, 114, 116);
+    border-top: #fff;
+}
