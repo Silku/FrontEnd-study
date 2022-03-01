@@ -45,11 +45,13 @@ header .gnb_menu{
     flex-flow: row nowrap;
     width: 250px;
     height: 120px;
-    background-color: green;
+    background-color: rgb(17, 87, 64);
+    
 }
 header .gnb_menu .menu_wrapper{
-    width: 120px;
+    width: 130px;
     height: 120px;
+    border-bottom: 1px solid rgb(155, 227, 191);
 }
 header .gnb_menu .logo{
     text-align: center;
@@ -145,7 +147,7 @@ section{
     justify-content: center;
     align-items: center;
     color: white;
-
+    transition:all ease-in-out 2s;
 }
 .section_1{
     width: 100%;
