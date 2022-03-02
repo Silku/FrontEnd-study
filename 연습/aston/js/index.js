@@ -13,7 +13,7 @@ $(window).on("wheel", function(e) {
     if(mHtml.is(":animated")) return;
     if(e.originalEvent.deltaY > 0) {
     // deltaY > 0 휠을 아래로 스크롤할때
-        if(page == 5){
+        if(page == 7){
             page = 0;
             return
         }
