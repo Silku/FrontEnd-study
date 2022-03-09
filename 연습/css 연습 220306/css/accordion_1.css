@@ -21,6 +21,7 @@ tbody{
     /* display: none; */
     height: 0px;
     overflow: hidden;
+    /* transition: all 0.5s; */
 }
 .panel-faq-answer p{
 }
@@ -39,5 +40,8 @@ tbody{
     color: #fff;
 }
 .active {
-
+    display: block;
+    height: 100%;
 }
+
+
