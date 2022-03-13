@@ -1,0 +1,10 @@
+button{
+    width: 120px;
+    background-color: aquamarine;
+}
+button:hover{
+    background-color: #fff;
+    transition: all 0.5s;
+    /* cursor : wait; */
+    cursor: grab;  /*wait help not-allowed crosshair zoom-in*/
+}
