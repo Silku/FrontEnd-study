@@ -1,6 +1,18 @@
+
+
+
+
 button{
-    width: 120px;
-    background-color: aquamarine;
+    width :120px;
+    /* height: 5 0px; */
+    text-align :center;
+    color: rgba(255,255,255,0.9);
+    border-radius :50px;
+    box-sizing: border-box;
+    border: none;
+    background :linear-gradient(-45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
+    background-size : 600%;
+    animation : anime 8s linear infinite;
 }
 button:hover{
     background-color: #fff;
@@ -8,3 +20,26 @@ button:hover{
     /* cursor : wait; */
     cursor: grab;  /*wait help not-allowed crosshair zoom-in*/
 }
+
+.btn2{
+position: absolute;
+margin-top : -70px;
+z-index :-1;
+filter :blur(30px);
+opacity :0.8;
+}
+
+@keyframes anime {
+    0% {
+        background-position : 0% 50%;
+    }
+
+    50%{
+        background-position : 100% 50%;
+    }
+
+    100%{
+        background-position :0% 50%;
+    }
+}
+

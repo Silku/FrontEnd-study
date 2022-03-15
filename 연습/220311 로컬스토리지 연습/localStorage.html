@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/localStorage.css">
     <script src="js/localStorage.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -16,6 +17,7 @@
             <small class="text-muted">with localStorage - setItem, getItem</small>
         </h3>
         <br/>
+        <button class="getAjax float-md-right">ajaxRead</button>
         <table class="table table-bordered table-striped table-dark table-hover">
             <caption>Method of localStorage</caption>
             <thead class="thead-light text-center">
@@ -44,6 +46,7 @@
                 </tr>
             </tbody>
         </table>
+        <div id="userInfo"></div>
     </div>
 </body>
 </html>

@@ -39,4 +39,29 @@ window.onload = () => {
     input.value = '';
     input2.value = '';
   });
+
+  const btnGetAjax = document.querySelector('.getAjax');
+  btnGetAjax.addEventListener('click', function () {
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      // .then((response) => console.log(response))
+      .then((response) => response.json(), console.log('성공'))
+      .then((data) => {
+        console.log(data);
+        const id = document.createElement('div');
+        const title = document.createElement('div');
+        const body = document.createElement('div');
+
+        const userInfo = document.getElementById('userInfo');
+        for (let i = 0; i < 5; i++) {
+          id.textContent = data[i].id;
+          title.textContent = data[i].title;
+          body.textContent = data[i].body;
+
+          userInfo.appendChild(id);
+          userInfo.appendChild(title);
+          userInfo.appendChild(body);
+        }
+      })
+      .catch((error) => console.log('error!'));
+  });
 };
