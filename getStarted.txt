@@ -1,3 +1,5 @@
+스벨트 시작하기
+
 npm init svelte@next my-app
 cd my-app
 npm install
