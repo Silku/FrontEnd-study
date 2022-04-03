@@ -5,7 +5,12 @@ const endPoint = 12;
 const select = [];
 
 function calResult() {
-  let pointArray = [
+  // max(...) ...은 전개구문, 선택한 배열을 펼쳐줌
+  // =>결과적으로  배열의 최대값을 갖는 인덱스를 반환하게 됨
+  let result = select.indexOf(Math.max(...select));
+  return result;
+  /* data.js  변경, 알고리즘 변경
+  let poin tArray = [
     { name: 'mouse', value: 0, key: '0' },
     { name: 'cow', value: 0, key: '1' },
     { name: 'tiger', value: 0, key: '2' },
@@ -29,9 +34,12 @@ function calResult() {
       }
     }
   }
+  */
+
   // sort compareFunction(a,b)
   // => 0을 기준으로 0보다 작다면 a가 먼저옴
   // => 0을 기준으로 0보다 크다면 b가 먼저옴
+  /*
   var resultArray = pointArray.sort(function (a, b) {
     if (a.value > b.value) {
       return -1;
@@ -44,6 +52,7 @@ function calResult() {
   console.log(resultArray);
   let resultword = resultArray[0].key;
   return resultword;
+  */
 }
 
 function goResult() {
@@ -83,7 +92,10 @@ function addAnswer(answerText, qIdx, idx) {
         children[i].style.animation = 'fadeOut 0.5s';
       }
       setTimeout(() => {
-        select[qIdx] = idx;
+        var target = qnaList[qIdx].a[idx].type;
+        for (let i = 0; i < target.length; i++) {
+          select[target[i]] += 1;
+        }
         for (let i = 0; i < children.length; i++) {
           children[i].style.display = 'none';
         }
