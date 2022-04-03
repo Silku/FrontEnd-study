@@ -30,3 +30,24 @@
     /* background-color: rgba(0,255,255,0.8);
     color: #fff; */
 }
+.status{
+    width: 80%;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 20px;
+}
+
+.statusBar{
+    /* width: 100%; */
+    height: 100%;
+    border-radius: 20px;
+    background-color: #fff;
+    background-image: 
+        radial-gradient(at top left, #12c1dc, transparent),
+        radial-gradient(at top right, #dadddc, transparent),
+        radial-gradient(at bottom right, #12c1dc, transparent);
+}
+
+#result{
+    display: none;
+}
