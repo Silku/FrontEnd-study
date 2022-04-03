@@ -9,6 +9,7 @@
     color: #fff;
 }
 #qna{
+    display: none;
 }
 .qBox{
     background-color: whitesmoke;
