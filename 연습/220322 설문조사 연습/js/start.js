@@ -2,12 +2,14 @@ const main = document.querySelector('#main');
 const qna = document.querySelector('#qna');
 const result = document.querySelector('#result');
 const endPoint = 12;
-const select = [];
+const select = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 function calResult() {
   // max(...) ...은 전개구문, 선택한 배열을 펼쳐줌
   // =>결과적으로  배열의 최대값을 갖는 인덱스를 반환하게 됨
-  let result = select.indexOf(Math.max(...select));
+  console.log(select);
+  var result = select.indexOf(Math.max(...select));
+  console.log(result)
   return result;
   /* data.js  변경, 알고리즘 변경
   let poin tArray = [
@@ -55,6 +57,22 @@ function calResult() {
   */
 }
 
+function setResult(){
+  let point = calResult();
+  const resultName = document.querySelector('.resultName');
+  resultName.innerHTML = infoList[point].name;
+  
+  var resultImg = document.createElement('img')
+  const imgDiv = document.querySelector('#resultImg');
+  // var imgUrl = 'img/image-' + point + '.png';
+  var imgUrl = 'img/image_0.jpg';
+  resultImg.src = imgUrl;
+  resultImg.alt = point;
+  imgDiv.appendChild(resultImg);
+  const resultDesc = document.querySelector('.resultDesc');
+  resultDesc.innerHTML = infoList[point].desc;
+
+}
 function goResult() {
   qna.style.WebkitAnimation = 'fadeOut 1s';
   qna.style.animation = 'fadeOut 1s';
@@ -70,7 +88,8 @@ function goResult() {
     goNext(qIdx);
   }, 450);
   console.log(select);
-  calResult();
+  setResult();
+  // calResult();
 }
 function addAnswer(answerText, qIdx, idx) {
   var a = document.querySelector('.answerBox');
