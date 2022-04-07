@@ -68,6 +68,7 @@ function setResult(){
   var imgUrl = 'img/image_0.jpg';
   resultImg.src = imgUrl;
   resultImg.alt = point;
+  resultImg.classList.add('img-fluid')
   imgDiv.appendChild(resultImg);
   const resultDesc = document.querySelector('.resultDesc');
   resultDesc.innerHTML = infoList[point].desc;

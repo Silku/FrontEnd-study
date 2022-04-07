@@ -5,6 +5,10 @@
     text-align: center;
 }
 
+p{
+    font-size: 20px;
+}
+
 .start{
     color: #fff;
 }
@@ -51,4 +55,13 @@
 
 #result{
     display: none;
+    width: 80%;
+    background-color: #fff;
+    text-align: center;
+}
+
+.resultName
+
+.resultDesc{
+    font-size: 20px;
 }
