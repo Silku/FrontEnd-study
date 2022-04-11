@@ -64,11 +64,11 @@ function setResult(){
   
   var resultImg = document.createElement('img')
   const imgDiv = document.querySelector('#resultImg');
-  // var imgUrl = 'img/image-' + point + '.png';
-  var imgUrl = 'img/image_0.jpg';
+  var imgUrl = 'img/image_' + point + '.png';
+  // var imgUrl = 'img/image_0.jpg';
   resultImg.src = imgUrl;
   resultImg.alt = point;
-  resultImg.classList.add('img-fluid')
+  resultImg.classList.add('img-fliud')
   imgDiv.appendChild(resultImg);
   const resultDesc = document.querySelector('.resultDesc');
   resultDesc.innerHTML = infoList[point].desc;

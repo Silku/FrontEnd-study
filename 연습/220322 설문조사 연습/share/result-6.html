@@ -34,62 +34,36 @@
     <title>연애 심리테스트</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/default.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="../css/default.css">
+    <link rel="stylesheet" href="../css/main.css">
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script>
         Kakao.init('200fe74968bedefbfe0cbf324c8eec39');
         Kakao.isInitialized();
     </script>
 </head>
-<body>
-    <div class="container">
-        <section id="main" class="col-12 mx-auto mt-5 py-5 px-3">
-            <h3>연애 심리테스트</h3>
+    <body>
+        <section id="shareResult"  class="col-12 mx-auto mt-5 py-5 px-3">
+            <h3>당신의 결과는?!</h3>
+            <div class="resultName">
+                <p>어 오늘 머리 바꿨네 잘 어울린다, 센스가 뛰어난 '말'</p>
+            </div>
             <div class="col-6 mx-auto">
-                <img src="img/main.png" alt="mainImage" class="img-fluid">
-            </div>
-            <p>연애 심리테스트입니다.<br>
-                아래의 시작하기 버튼을 눌러주세요.
-            </p>
-            <button type="button" class="btn btn-info mt-3 start" onclick="js:begin()">시작하기</button>
-        </section>
-
-        <section id="qna">
-
-            <div class="qBox my-5 py-3 mx-auto">
-
-            </div>
-            <div class="answerBox">
                 
-            </div>
-            <div class="status mx-auto mt-5">
-                <div class="statusBar">
-
-                </div>
-            </div>
-        </section>
-        <section id="result"  class="col-12 mx-auto mt-5 py-5 px-3">
-            <h3>결과 안내</h3>
-            <div class="resultName"></div>
-            <div class="col-6 mx-auto">
                 <div id="resultImg" class="my-3 col-lg-6 col-md-8 col-sm-10 col-12 mx-auto">
+                    <img src="../img/image_0.png" alt="0" class="img-fluid">
                 </div>
             </div>
             <p>연애 심리테스트 결과입니다.<br>
-                아래의 공유하기를 눌러주세요.
+                아래의 메인화면을 눌러주세요.
             </p>
-            <div class="resultDesc"></div>
-            <button type="button" class="kakao mt-3 py-2 px-3" onclick="js:setShare()">공유하기</button>
+            <div class="resultDesc">연애할 때, 센스가 넘쳐나는 당신! 말재주가 뛰어나며 처세술이 뛰어나, 상대방의 호감을 금방 얻는답니다. 낙천적이고 유연한 성격을 가지고 있으며, 구속받는 것을 싫어하는 스타일이에요. 소중한 사람들을 위해 희생할 줄도 알지만, 쾌략 지향적인 경우가 많아 사치와 허영에 물드는 경우가 다반수입니다. 한탕 주의에 빠져 쉽게 망가질 수 있기 때문에 이 점을 주의해야 된답니다!</div>
+            <button type="button" class="gohome mt-3 py-2 px-3" onclick="js:moveHome()">메인화면</button>
         </section>
-        <div class="wrap">
-            <div class="aurora-base aurora-one"></div>
-            <div class="aurora-base aurora-two"></div>
-            <div class="aurora-base aurora-three"></div>
-        </div>
-    </div>
-    <script src="js/data.js"></script>
-    <script src="js/start.js" charset="utf-8"></script>  
-    <script src="js/share.js" charset="utf-8"></script>  
-</body>
-</html>
+        <script>
+            function moveHome(){
+                location.href="../index.html"
+            }
+        </script>
+    </body>
+</html> 
