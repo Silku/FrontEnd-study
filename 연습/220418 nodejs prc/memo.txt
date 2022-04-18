@@ -8,3 +8,16 @@ node 1_test.js
 
 터미널애서 서버종료 
 ctrl + c
+
+
+3. fs 모듈 
+- 파일처리와 관련된 모듈
+- node.js에서 가장 중요하고 기초가 되는모듈
+
+메소드 
+readFile() : 파일을 비동기적으로 읽음
+readFileSync() : 파일을 동기적으로 읽음
+writeFile() : 파일을 비동기적으로 씀
+writeFileSync(): 파일을 동기적으로 씀 
+
+4.
