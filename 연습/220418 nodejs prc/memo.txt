@@ -1,0 +1,10 @@
+1. package.json 생성하기
+npm init 으로 package.json 생성
+
+
+2. Node.js 실행하기
+node 1_test.js
+
+
+터미널애서 서버종료 
+ctrl + c
