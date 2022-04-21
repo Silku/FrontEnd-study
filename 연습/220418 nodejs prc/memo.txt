@@ -35,4 +35,17 @@ exit : 프로그램이 종료되거나 종료되는 시점 확인할수 있음.
 
 메소드 
 createServer() : 서버 생성
-writeHead() : 헤더를 구성
+writeHead() : 응답 헤더를 구성
+end(): 응답 body를 작성
+listen(): 서버를 실행하고 클라이언트를 기다림
+
+MIME 타입
+https://developer.mozilla.org/ko/docs/Web/HTTP/Basics_of_HTTP/MIME_types
+text/plain : 일반적인 text
+text/html : html 파일
+text/css : css 파일
+text/xml : 
+image/jpeg : 
+image/png : 
+video/mpeg : 
+audio/mp3 :
