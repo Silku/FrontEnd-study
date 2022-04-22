@@ -3,11 +3,13 @@ const fs = require('fs');
 
 http
   .createServer((req, res) => {
-    fs.readFile('heart.png', (err, data) => {
+    fs.readFile('only.mp3', (err, data) => {
+      // fs.readFile('heart.png', (err, data) => {
       if (err) {
         console.log('에러발생!');
       } else {
-        res.writeHead(200, { 'content-type': 'image/png' });
+        res.writeHead(200, { 'content-type': 'audio/mp3' });
+        // res.writeHead(200, { 'content-type': 'image/png' });
         res.end(data);
       }
     });
