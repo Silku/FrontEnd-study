@@ -61,3 +61,20 @@ npm install 모듈명
 npm i 모듈명
 (npm i express)
 -> 설치후 package.json에 dependency 자동 추가, node_modules 폴더,package-lock.json 생성됨.
+-> 추후 다른 프로젝트를 진행할 경우
+    package.json을 프로젝트 폴더에 넣고 터미널에 npm install 치면 dependencies에 등록된 정보에 따라 설치가 됨.
+
+메소드
+get() : 사용자 정보를 전달 받음
+use(): 미들웨어를 등록
+
+이벤트 
+request : 클라이언트가 서버에 요청할때 발생하는 이벤트
+connection : 클라이언트가 서버에 접속할 때 발생하는 이벤트
+close : 서버가 종료될 때 발생하는 이벤트
+
+내장객체 
+server 객체
+createServer() 
+request 객체
+response 객체 
