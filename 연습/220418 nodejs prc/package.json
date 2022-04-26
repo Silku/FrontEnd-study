@@ -4,11 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start" : "nodemon 13_express2.js"
+    "start": "nodemon 15_ejs1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^3.1.7",
     "express": "^4.17.3"
   }
 }

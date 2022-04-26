@@ -124,4 +124,28 @@ Representation State Transfer
 Router 미들웨어
 - 사용자의 다양한 요청이 들어왔을때 use() 메소드로 설정한 미들웨어가 항상호출되는 불편한 점을 개선.
 
+라우터 객체 .route('member/login').get() or post()
+app.use('/', 라우터 객체)
 
+에러페이지 처리
+- Router 적용후에 사용.
+app.all('*', (req, res) => {
+  res.status(404).send('<h2>페이지를 찾을 수 없습니다!</h2>');
+});
+
+
+10.템플릿 엔진 
+View를 구현하기 위한 템플릿
+
+EJS(Embedded JS) 모듈
+ - 특정한 형식인 파일로 부터 HTML페이지를 생성하는 모듈
+//npm i ejs
+
+ EJS 문법
+ <% ~~code~~ %> : 자바스크립트 코드를 입력하는 영역
+ <%=변수%> : 데이터 출력
+ <%-변수%> : ejs파일 전체를 전달
+
+EJS데이터 전달
+render() : 메소드의 매개변수에 전달하고자 하는 데이터를 입력
+ejs.render(data)
