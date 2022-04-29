@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title 사용자 정보
+    body 
+        #header
+            h2 사용자 아이디 : #{userid}
+        hr
+        #header 
+            h2 사용자 이름 : #{username}
+            p = desc
+        hr
+        .article
+            a(href='https://www.naver.com', title='네이버로 가기') 네이버로 이동하기
+        hr
+        .for
+            -for(let i = 0; i<10; i++){
+                p 
+                    a(href='./#{i}') 책갈피 #{i}
+            -}

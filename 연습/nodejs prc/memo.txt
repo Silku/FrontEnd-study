@@ -1,0 +1,155 @@
+1. package.json 생성하기
+npm init 으로 package.json 생성
+
+
+2. Node.js 실행하기
+node 1_test.js
+
+
+터미널애서 서버종료 
+ctrl + c
+
+
+3. fs 모듈 
+- 파일처리와 관련된 모듈
+- node.js에서 가장 중요하고 기초가 되는모듈
+
+메소드 
+readFile() : 파일을 비동기적으로 읽음
+readFileSync() : 파일을 동기적으로 읽음
+writeFile() : 파일을 비동기적으로 씀
+writeFileSync(): 파일을 동기적으로 씀 
+
+4.이벤트 루프
+- Node.js는 서버가 실행되면 변수들을 초기화 하고 함수를 선언하고 이벤트가 발생할때까지 기다림
+- 이벤트가 감지되었을때 callBack 함수를 호출
+
+
+5.시스템 이벤트
+exit : 프로그램이 종료되거나 종료되는 시점 확인할수 있음.
+
+
+6.http 모듈
+- Node.js에서 가장 기본적이며 중요한 서버모듈
+- http 웹서버 생성과 관련된 모든 기능 담당
+
+메소드 
+createServer() : 서버 생성
+writeHead() : 응답 헤더를 구성
+end(): 응답 body를 작성
+listen(): 서버를 실행하고 클라이언트를 기다림
+
+MIME 타입
+https://developer.mozilla.org/ko/docs/Web/HTTP/Basics_of_HTTP/MIME_types
+text/plain : 일반적인 text
+text/html : html 파일
+text/css : css 파일
+text/xml : 
+image/jpeg : 
+image/png : 
+video/mpeg : 
+audio/mp3 :
+
+
+7.express 모듈
+ - http 모듈만 사용하면 직접 많은 기능을 개발해야함.
+ - 간단한 코드로 웹 서버 기능의 대부분을 구현할수 있게 해주는 모듈
+ - 미들웨어와 라우터를 이용하여 편리하게 웹 서버를 구성할 수 있음
+
+package 설치
+npm install 모듈명
+npm i 모듈명
+(npm i express)
+-> 설치후 package.json에 dependency 자동 추가, node_modules 폴더,package-lock.json 생성됨.
+-> 추후 다른 프로젝트를 진행할 경우
+    package.json을 프로젝트 폴더에 넣고 터미널에 npm install 치면 dependencies에 등록된 정보에 따라 설치가 됨.
+
+메소드
+get() : 사용자 정보를 전달 받음
+use(): 미들웨어를 등록
+redirect() : 웹페이지의 경로를 강제로 이동
+write() : 클라이언트에게 전송할 데이터를 작성
+
+이벤트 
+request : 클라이언트가 서버에 요청할때 발생하는 이벤트
+connection : 클라이언트가 서버에 접속할 때 발생하는 이벤트
+close : 서버가 종료될 때 발생하는 이벤트
+
+내장객체 
+server 객체
+createServer() 메소드를 생성하여 생성
+
+request 객체
+클라이언트가 서버에게 전달하는 메세지 또는 정보를 받는 객체
+
+response 객체 
+서버에서 클라이언트로 응답 메세지를 전달하는 객체
+
+query : 클라이언트에서 GET방식으로 전송한 요청 파라미터를 확인
+body : 클라이언트에서 POST방식으로 전송한 요청 파라미터를 확인
+(단 , post 방식을 통한 요청 파라미터를 확인하려면 body-parser와 같은 모듈을 사용해야 함.)
+
+
+8.Nodemon : 
+서버 코드를 변경할 때 마다 서버를 재시작하도록 하는 모듈
+
+npm install -g nodemon
+(-g : 글로벌 설치, pc에)
+1)이후 package.json => script를 변경
+2)예를들어 start로 지정해뒀을경우 npm start하면 value에 있는 스크립트 파일을 실행함
+ ex ) "start" : "nodemon 13_express2.js"
+3)저장시 새로고침도 됨
+
+app.use(bodyParser.urlencoded({ extended: false }));
+urlencoded()
+- body-parser를 사용하면 자동으로 req에 body 속성이 추가되고 저장됨
+- 기본 인코딩 utf-8
+
+{extended:false}
+중첩된 객체표현을 허용할지 여부를 체크
+
+URL 파싱 (두가지 방식이 있는데 중복되서 오류가 발생할수 있으므로 extended:false를 줌)
+qs
+query-string
+
+
+9.post 보내기 테스트
+postman => 
+확인할것 : post, url ,body(x-www-form-urlencoded)
+
+REST ? 
+Representation State Transfer
+자원(url)을 이름으로 구분하여 해당자원의 상태를 주고 받는것을 의미
+
+Router 미들웨어
+- 사용자의 다양한 요청이 들어왔을때 use() 메소드로 설정한 미들웨어가 항상호출되는 불편한 점을 개선.
+
+라우터 객체 .route('member/login').get() or post()
+app.use('/', 라우터 객체)
+
+에러페이지 처리
+- Router 적용후에 사용.
+app.all('*', (req, res) => {
+  res.status(404).send('<h2>페이지를 찾을 수 없습니다!</h2>');
+});
+
+
+10.템플릿 엔진 -EJS
+- View를 구현하기 위한 템플릿
+
+EJS(Embedded JS) 모듈
+ - 특정한 형식인 파일로 부터 HTML페이지를 생성하는 모듈
+//npm i ejs
+
+ EJS 문법
+ <% ~~code~~ %> : 자바스크립트 코드를 입력하는 영역
+ <%=변수%> : 데이터 출력
+ <%-변수%> : ejs파일 전체를 전달
+
+EJS데이터 전달
+render() : 메소드의 매개변수에 전달하고자 하는 데이터를 입력
+ejs.render(data)
+
+
+11.템플릿 엔진 - PUG(Jade)
+  http://jade-lang.com
