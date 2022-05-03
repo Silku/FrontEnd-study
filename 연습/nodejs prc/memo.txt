@@ -180,3 +180,12 @@ const 객체명 = {
   text : '내용'
   (html : html코드)
 }
+
+보안수준이 낮은앱의 액세스
+https://myaccount.google.com/lesssecureapps
+
+계정 액세스 사용을 허용
+https://accounts.google.com/DisplayUnlockCaptcha
+
+네이버일경우  smpt 설정
+https://velog.io/@jiwon/-Nodemailer%EB%A1%9C-%EC%9D%B8%EC%A6%9D-%EA%B4%80%EB%A0%A8-%EC%9D%B4%EB%A9%94%EC%9D%BC-%EB%B3%B4%EB%82%B4%EA%B8%B0-d4k4pqoot4
