@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메일보내기 테스트</title>
+</head>
+<style>
+    body{
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+    }
+    body .wrap{
+        width: 100%;
+        display: flex;
+        flex-flow: column nowrap;
+    }
+    body .wrap span{
+        display: inline-block;
+        width: 150px;
+        text-align: center;
+    }
+    textarea{
+        resize: none;
+    }
+</style>
+<body>
+    <h2>메일 보내기 테스트</h2>
+    <form method="post" action="/sendmail">
+        <div class="wrap">
+            <p><label><span>보내는 아이디 : </span><input type="text" name="userId"></label></p>
+            <p><label><span>보내는 이메일 : </span><input type="text" name="sendEmail"></label></p>
+            <p><label><span>받는 아이디 : </span><input type="text" name="touserId"></label></p>
+            <p><label><span>받는 이메일 : </span><input type="text" name="touserEmail"></label></p>
+            <p><label><span>제목 : </span><input type="text" name="title"></label></p>
+        </div>  
+        <p>내용</p>
+        <p><textarea name="content" cols="60" rows="5"></textarea></p>
+        <p><input type="submit" value="보내기"></p>
+    </form>
+</body>
+</html>

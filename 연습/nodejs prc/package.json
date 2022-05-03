@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon 20_nodemailer.js"
+    "start": "nodemon 21_nodemailer1.js"
   },
   "author": "",
   "license": "ISC",
