@@ -7,4 +7,10 @@ module.exports = (app) => {
       length: 10,
     });
   });
+
+  // http://127.0.0.1:3000/about
+  app.get('/about', (req, res) => {
+    // views/about.html
+    res.render('about.html');
+  });
 };

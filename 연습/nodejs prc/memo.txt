@@ -190,3 +190,42 @@ https://accounts.google.com/DisplayUnlockCaptcha
 
 네이버일경우  smpt 설정
 https://velog.io/@jiwon/-Nodemailer%EB%A1%9C-%EC%9D%B8%EC%A6%9D-%EA%B4%80%EB%A0%A8-%EC%9D%B4%EB%A9%94%EC%9D%BC-%EB%B3%B4%EB%82%B4%EA%B8%B0-d4k4pqoot4
+
+
+13. 사용자 정의 모듈
+
+1) 
+module.exports = () =>{
+  modulecodes...
+  ...
+  ...
+}
+
+const 객체명 = require('파일명');
+
+
+2) 
+모듈코드 작성
+...
+...
+
+module.export = 변수;
+const 객체명 = require('변수명');
+
+
+14.JSON(JavaScript Object Notation)
+데이터를 교환하고 저장하기 위해 만들어진 텍스트 기반의 데이터 교환 표준
+
+
+{
+  "userid":"tang",
+  "userpw":"1234"
+  "hobby":[
+    "드라이브",
+    "쇼핑",
+    "음악감상"
+  ]
+}
+
+JSON 문법 검증사이트 
+https://jsonlint.com
