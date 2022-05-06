@@ -229,3 +229,11 @@ const 객체명 = require('변수명');
 
 JSON 문법 검증사이트 
 https://jsonlint.com
+
+JSON.parse()
+JSON 포맷으로 되어있는 문자열을 JSON 객체로 변환
+=> JSON.parse(Stirng 문자열)
+
+JSON.stringify()
+JSON 객체를 JSON포맷의 문자열로 변환
+=> JSON.stringify(JSON 객체)
