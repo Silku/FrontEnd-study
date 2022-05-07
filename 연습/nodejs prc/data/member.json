@@ -1,22 +1,26 @@
 {
-    "apple":{
-        "name":"사과",
-        "password":"1111",
-        "gender":"여"
-    },
-    "banana":{
-        "name":"바나나",
-        "password":"2222",
-        "gender":"여"
-    },
-    "orange":{
-        "name":"오렌지",
-        "password":"3333",
-        "gender":"남"
-    },
-    "melon":{
-        "name":"멜론",
-        "password":"4444",
-        "gender":"남"
-    }
+	"apple": {
+		"name": "사과",
+		"password": "1111",
+		"gender": "여"
+	},
+	"banana": {
+		"name": "바나나",
+		"password": "2222",
+		"gender": "여"
+	},
+	"orange": {
+		"name": "오렌지",
+		"password": "3333",
+		"gender": "남"
+	},
+	"melon": {
+		"name": "멜론",
+		"password": "4444",
+		"gender": "남"
+	},
+	"avocado": {
+		"password": "1111",
+		"name": "아보카"
+	}
 }
