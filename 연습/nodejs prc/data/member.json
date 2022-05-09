@@ -18,9 +18,5 @@
 		"name": "멜론",
 		"password": "4444",
 		"gender": "남"
-	},
-	"avocado": {
-		"password": "1111",
-		"name": "아보카"
 	}
 }

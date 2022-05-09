@@ -79,4 +79,70 @@ module.exports = (app, fs) => {
       }
     });
   });
+
+  // http://127.0.0.1:3000/updateMember/avocado
+  app.put('/updateMember/:userid', (req, res) => {
+    const result = {};
+    const userid = req.params.userid;
+    if (!req.body['password'] || !req.body['name']) {
+      result['code'] = 100; //100:실패
+      result['msg'] = '매개변수를 찾을수 없습니다.';
+      res.json(result);
+      return false;
+    }
+    fs.readFile(__dirname + '/../data/member.json', 'utf-8', (err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        const member = JSON.parse(data);
+        member[userid] = req.body;
+        fs.writeFile(
+          __dirname + '/../data/member.json',
+          JSON.stringify(member, null, '\t'),
+          'utf-8',
+          (err, data) => {
+            if (err) {
+              console.log(err);
+            } else {
+              result['code'] = 200;
+              result['msg'] = '성공';
+              res.json(result);
+            }
+          }
+        );
+      }
+    });
+  });
+  // http://127.0.0.1:3000/deleteMember/avocado
+  app.delete('/deleteMember/:userid', (req, res) => {
+    const result = {};
+    fs.readFile(__dirname + '/../data/member.json', 'utf-8', (err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        const member = JSON.parse(data);
+        if (!member[req.params.userid]) {
+          result['code'] = 102; //102:실패
+          result['msg'] = '사용자를 찾을수 없습니다.';
+          res.json(result);
+          return false;
+        }
+        delete member[req.params.userid];
+        fs.writeFile(
+          __dirname + '/../data/member.json',
+          JSON.stringify(member, null, '\t'),
+          'utf-8',
+          (err, data) => {
+            if (err) {
+              console.log(err);
+            } else {
+              result['code'] = 200;
+              result['msg'] = '성공';
+              res.json(result);
+            }
+          }
+        );
+      }
+    });
+  });
 };
