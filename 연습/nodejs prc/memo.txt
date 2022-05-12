@@ -237,3 +237,51 @@ JSON 포맷으로 되어있는 문자열을 JSON 객체로 변환
 JSON.stringify()
 JSON 객체를 JSON포맷의 문자열로 변환
 => JSON.stringify(JSON 객체)
+
+
+15.cookie-parser모듈
+npm i cookie-parser
+- 쿠키를 쉽게설정고 사용할수 있게 도와주는 모듈
+- 익스프레스 객체에 미들웨어로 등록
+
+cookieParser() : 일반쿠키를 사용
+cookieParser('암호화 하기위한 문자') : 암호화된 쿠키를 사용
+
+쿠키설정
+res.cookie('키','값'){
+  쿠키생성옵션
+}
+
+- 쿠키생성옵션 : 
+maxAge : 만료시간을 밀리초단위로 설정
+expires : 만료시간을 GMT단위로 설정
+path : cookie의 경로를 설정. 기본설정은 "/"
+
+- 쿠키조회 : 
+req.cookies.cookie : 일반쿠키
+req.signedCookies.cookie : 암호화된 쿠키 
+
+- 쿠키삭제 : 
+res.clearCookie('키', {path:'경로'}) : 
+
+
+16.express-session 모듈
+세션을 관리하기 위한 익스프레스 미들웨어 모듈
+app.user(session({세션모듈의 옵션}));
+
+세션모듈의 옵션
+recret : 쿠키를 임의로 변조하는것을 방지하기 위한 값 , 이 값을 통해 세션을 암호화해서 저장
+resave : 세션을 언제나 저장할지 지정하는값. 이값을 false로하는것을 권장
+saveUninitialized : 세션이 저장되기 전에 saveUninitialized 상태로 미리 만들어서 저장
+
+세션 초기설정
+const 세션객체명 = req.session;
+객체명. 변수 = 값;
+
+세션 변수 사용
+세션객체명.변수;
+
+세션 삭제
+req.session.destroy(()=>{
+  세션 삭제시 처리할 코드...;
+});
