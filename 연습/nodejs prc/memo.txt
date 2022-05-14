@@ -267,10 +267,12 @@ res.clearCookie('키', {path:'경로'}) :
 
 16.express-session 모듈
 세션을 관리하기 위한 익스프레스 미들웨어 모듈
+inm i express-session
+
 app.user(session({세션모듈의 옵션}));
 
 세션모듈의 옵션
-recret : 쿠키를 임의로 변조하는것을 방지하기 위한 값 , 이 값을 통해 세션을 암호화해서 저장
+secret : 쿠키를 임의로 변조하는것을 방지하기 위한 값 , 이 값을 통해 세션을 암호화해서 저장
 resave : 세션을 언제나 저장할지 지정하는값. 이값을 false로하는것을 권장
 saveUninitialized : 세션이 저장되기 전에 saveUninitialized 상태로 미리 만들어서 저장
 
@@ -285,3 +287,22 @@ const 세션객체명 = req.session;
 req.session.destroy(()=>{
   세션 삭제시 처리할 코드...;
 });
+
+
+MongoDB
+
+17. NoSQL
+- Not only SQL의 약자
+- 기존의 RDBMS의 한계를 극복하기 위해  만들어진 새로운형태의 DB
+- 관계형 DB가 아니므로 RDBMS처럼 고정된 스키마 및 JOIN문이 존재하지 않음
+- NOSQL은 속도와 확장성을 중요시함  (RDBMS 는 무결성에 중심)
+
+NoSQL을 사용하는 이유
+- 성능
+- 관계형 데이터베이스는 시스템의 신뢰도를 중요(많은 리소스를 사용, 성능떨어짐)
+- 실시간 대용량 트래픽을 감당(NoSQL은 성능을 최우선)
+- 메시징 시스템 등에 많이 활용
+
+DB랭킹 참고 사이트
+https://db-engines.com/en/rangking
++ 상식 : Redis => {key:value} 형식의 DB
