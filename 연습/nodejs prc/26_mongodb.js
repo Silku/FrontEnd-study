@@ -95,6 +95,28 @@ router.route('/member/login').post((req, res) => {
   }
 });
 
+//정보 수정하기 - http://127.0.0.1:3000/member/edit (put)
+router.route('/member/edit').put((req, res) => {
+  console.log('/member/edit 호출!');
+  const userid = req.body.userid;
+  const userpw = req.body.userpw;
+  const name = req.body.name;
+  const gender = req.body.gender;
+
+  console.log(
+    `userid:${userid}, userpw:${userpw}, name:${name}, gender:${gender}`
+  );
+
+  if (database) {
+    editMember(database, userid, userpw, name, gender, (err, result) => {});
+  } else {
+    res.writeHead('200', { 'content-type': 'text/html;charset=utf-8' });
+    res.write('<h2>데이터베이스 연결 실패!</h2>');
+    res.write('<h2>mongodb 데이터 베이스 연결 안됨!</h2>');
+    res.end();
+  }
+});
+
 const joinMember = function (database, userid, userpw, name, gender, callback) {
   console.log('joinMember 호출됨.');
   const members = database.collection('member');
@@ -139,6 +161,33 @@ const loginMember = function (database, userid, userpw, callback) {
       }
     }
   });
+};
+
+const editMember = function (database, userid, userpw, name, gender, callback) {
+  console.log('editMember 호출!');
+  const members = database.collection('member');
+  //아래에서 $set 뒤에 나머지 파라미터를 안넣어주면 나머지 값들이 지워질수 있으므로 다 넣어줘야함
+  members.updateOne(
+    { userid: userid },
+    { $set: { userid: userid, userpw: userpw, name: name, gender: gender } },
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        callback(err, null);
+        return;
+      } else {
+        //modifiedCount : 수정된 숫자가 들어옴 , 수정된 프로퍼티가 1 이상이라면
+        if (result.modifiedCount > 0) {
+          console.log(
+            `사용자 document ${result.modifiedCount}명 수정되었습니다.`
+          );
+        } else {
+          console.log('수정된 document가 없습니다.');
+        }
+        callback(null, result);
+      }
+    }
+  );
 };
 
 //몽고 db 연결 함수
