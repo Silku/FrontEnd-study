@@ -108,7 +108,61 @@ router.route('/member/edit').put((req, res) => {
   );
 
   if (database) {
-    editMember(database, userid, userpw, name, gender, (err, result) => {});
+    editMember(database, userid, userpw, name, gender, (err, result) => {
+      if (err) {
+        res.writeHead('200', { 'content-type': 'text/html;charset=utf-8' });
+        res.write('<h2>회원정보 수정 실패!</h2>');
+        res.write('<p>오류가 발생했습니다.</p>');
+        res.end();
+      } else {
+        if (result.modifiedCount > 0) {
+          res.writeHead('200', { 'content-type': 'text/html;charset=utf-8' });
+          res.write('<h2>회원정보 수정 성공!</h2>');
+          res.write('<p>회원정보 수정에 성공했습니다.</p>');
+          res.end();
+        } else {
+          res.writeHead('200', { 'content-type': 'text/html;charset=utf-8' });
+          res.write('<h2>회원정보 수정 실패!</h2>');
+          res.write('<p>회원정보 수정에 실패했습니다.</p>');
+          res.end();
+        }
+      }
+    });
+  } else {
+    res.writeHead('200', { 'content-type': 'text/html;charset=utf-8' });
+    res.write('<h2>데이터베이스 연결 실패!</h2>');
+    res.write('<h2>mongodb 데이터 베이스 연결 안됨!</h2>');
+    res.end();
+  }
+});
+
+//회원 삭제하기 - http://127.0.0.1:3000/member/delete (delete)
+router.route('/member/delete').delete((req, res) => {
+  console.log('/member/delete 호출!');
+  const userid = req.body.userid;
+  console.log(`userid:${userid}`);
+
+  if (database) {
+    deleteMember(database, userid, (err, result) => {
+      if (err) {
+        res.writeHead('200', { 'content-type': 'text/html;charset=utf-8' });
+        res.write('<h2>회원 삭제 실패!</h2>');
+        res.write('<p>오류가 발생했습니다.</p>');
+        res.end();
+      } else {
+        if (result.deleteCount > 0) {
+          res.writeHead('200', { 'content-type': 'text/html;charset=utf-8' });
+          res.write('<h2>회원 삭제 성공!</h2>');
+          res.write('<p>회원 삭제에 성공했습니다.</p>');
+          res.end();
+        } else {
+          res.writeHead('200', { 'content-type': 'text/html;charset=utf-8' });
+          res.write('<h2>회원 삭제 실패!</h2>');
+          res.write('<p>회원 삭제에 실패했습니다.</p>');
+          res.end();
+        }
+      }
+    });
   } else {
     res.writeHead('200', { 'content-type': 'text/html;charset=utf-8' });
     res.write('<h2>데이터베이스 연결 실패!</h2>');
@@ -188,6 +242,26 @@ const editMember = function (database, userid, userpw, name, gender, callback) {
       }
     }
   );
+};
+
+const deleteMember = function (database, userid, callback) {
+  console.log(`deleteMember 호출!`);
+  const members = database.collection('member');
+
+  members.deleteOne({ userid: userid }, (err, result) => {
+    if (err) {
+      console.log(err);
+      callback(err, null);
+      return;
+    } else {
+      if (result.deleteCount > 0) {
+        console.log(`사용자 document${result.deleteCount}명 삭제되었습니다.`);
+      } else {
+        console.log('삭제된 사용자가 없습니다.');
+      }
+      callback(null, result);
+    }
+  });
 };
 
 //몽고 db 연결 함수
