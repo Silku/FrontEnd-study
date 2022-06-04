@@ -451,3 +451,28 @@ db.member.update({point:{$gte:3333}}, {$set:{"point":500}},{multi:true});
 6.document의 삭제
 db.컬렉션명.remove(객체)
 db.member.remove({"_id":ObjectId("628cda724a5acf482d5e1fe5")})
+
+
+18.multer 모듈
+npm i multer
+파일을 업로드 하기 위한 익스프레스 미들웨어
+multer.diskStorage(
+  desination : 파일을 저장할 디렉토리 설정
+  //다수의 사용자가 같은이름의 파일을 저장시 절대 중복되지 않도록 filename지정
+  filename : 파일이름을 설정 
+)
+ 
+ multer({
+   storage : diskStorage 설정객체
+   limits : {
+     files : 파일전송개수,
+     fileSize : 파일 전송 용량  
+   }
+ })
+
+serve-static 모듈
+특정 폴더를 요청에 의해 직접 파일에 접근할 수 있도록 기능을 제공하는 익스프레스 미들웨어
+
+//사이트 접속시 로그를 남겨주는 모듈
+ npm i morgan
+ 
