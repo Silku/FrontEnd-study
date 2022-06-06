@@ -470,9 +470,16 @@ multer.diskStorage(
    }
  })
 
+moment.js
+https://momentjs.com/
+날짜와 시간을 쉽게 다룰 수 있도록 도와주는 js 라이브러리
+
+jquery
+https://releases.jquery.com/
+
 serve-static 모듈
 특정 폴더를 요청에 의해 직접 파일에 접근할 수 있도록 기능을 제공하는 익스프레스 미들웨어
 
-//사이트 접속시 로그를 남겨주는 모듈
- npm i morgan
- 
+morgan 모듈
+npm i morgan
+로그를 관리하기 위한 별도의 라이브러리 모듈
