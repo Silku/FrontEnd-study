@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon 27_multer1.js"
+    "start": "nodemon 28_multer2.js"
   },
   "author": "",
   "license": "ISC",

@@ -483,3 +483,17 @@ serve-static 모듈
 morgan 모듈
 npm i morgan
 로그를 관리하기 위한 별도의 라이브러리 모듈
+
+
+19.mongoose 모듈 
+- MongoDB의 ODM(Object data mapping) 모듈
+- 하나의 컬렉션 안에 똑같은 속성을 가진 문서객체를 반복적으로 넣어두면 데이터를 조회할때도 어떤 속성들이있는지 미리 알고 있는 상태에서 조회할 수 있음 -> 스키마 생성
+
+ODM
+데이터베이스와 객체지향 프로그래밍 언어 사이 호환되지 않는 데이터를 변환하는 프로그래밍 기법
+
+mongodb vs mongoose
+mongodb : 예) 자바 jdbc 드라이버
+mongoose : 예) 자바 Mybatis,  Hibernate와 같은 개념
+mongoose 객체.connect(uri[, 옵션, 콜백]);
+uri : mongodb://ip:port/db명
