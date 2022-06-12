@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon 28_multer2.js"
+    "start": "nodemon 29_mongoose1.js"
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +15,7 @@
     "express-session": "^1.17.3",
     "jade": "^1.11.0",
     "mongodb": "^4.6.0",
+    "mongoose": "^6.3.6",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.7.4"
