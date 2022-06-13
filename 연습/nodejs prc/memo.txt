@@ -497,3 +497,14 @@ mongodb : 예) 자바 jdbc 드라이버
 mongoose : 예) 자바 Mybatis,  Hibernate와 같은 개념
 mongoose 객체.connect(uri[, 옵션, 콜백]);
 uri : mongodb://ip:port/db명
+
+스키마
+- mongoose에서는 데이터 유효성 검증을 위해 스키마를 사용
+- 데이터 타입 및 규약 등 설정
+- 스키마 type
+: String , Number, Date, Boolean, Array
+
+모델
+- 데이터베이스에서 데이터를 읽고 생성하고 수정하는 인터페이스를 정의해줌.
+  mongoose객체.model(컬렉션명, 스키마명)
+  //컬렉션 이름을 지정하지 않으면 1번째 매개변수에 s를 붙여 복수형으로 사용함
