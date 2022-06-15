@@ -24,27 +24,62 @@ router.route('/regist').post((req, res) => {
     `userid:${userid},userpw:${userpw},name:${name},gender:${gender}`
   );
   if (database) {
-    joinUser(database, userid, userpw, name, gender, (err, result) => {
+    joinUser(userid, userpw, name, gender, (err, result) => {
       if (err) {
         res.writeHead('200', { 'content-type': 'text/html;charset=utf8' });
         res.write('<h2>회원가입 실패(server error)!</h2>');
-        res.end;
+        res.end();
       } else {
         if (result) {
           res.writeHead('200', { 'content-type': 'text/html;charset=utf8' });
           res.write('<h2>회원가입 성공!</h2>');
-          res.end;
+          res.end();
         } else {
           res.writeHead('200', { 'content-type': 'text/html;charset=utf8' });
           res.write('<h2>회원가입 실패!</h2>');
-          res.end;
+          res.end();
         }
       }
     });
   } else {
     res.writeHead('200', { 'content-type': 'text/html;charset=utf8' });
     res.write('<h2>데이터베이스 연결실패!</h2>');
-    res.end;
+    res.end();
+  }
+});
+
+//127.0.0.1:3000/login
+router.route('/login').post((req, res) => {
+  const userid = req.body.userid;
+  const userpw = req.body.userpw;
+  console.log(`userid:${userid}, userpw:${userpw}`);
+  if (database) {
+    loginUser(userid, userpw, (err, result) => {
+      if (err) {
+        res.writeHead('200', { 'content-type': 'text/html;charset=utf8' });
+        res.write('<h2>로그인 실패(server error)!</h2>');
+        res.end();
+      } else {
+        if (result) {
+          console.log(result);
+          const name = result[0].name;
+          const gender = result[0].gender;
+          res.writeHead('200', { 'content-type': 'text/html;charset=utf8' });
+          res.write(`<p>아이디 : ${userid}</p>`);
+          res.write(`<p>이름 : ${name}</p>`);
+          res.write(`<p>성별 : ${gender}</p>`);
+          res.end();
+        } else {
+          res.writeHead('200', { 'content-type': 'text/html;charset=utf8' });
+          res.write('<h2>로그인 실패!</h2>');
+          res.end();
+        }
+      }
+    });
+  } else {
+    res.writeHead('200', { 'content-type': 'text/html;charset=utf8' });
+    res.write('<h2>데이터베이스 연결실패!</h2>');
+    res.end();
   }
 });
 
@@ -58,8 +93,27 @@ const joinUser = function (userid, userpw, name, gender, callback) {
   users.save((err, result) => {
     if (err) {
       console.log(err);
+      callback(err, null);
+      return;
     } else {
       callback(null, result);
+    }
+  });
+};
+
+const loginUser = function (userid, userpw, callback) {
+  UserModel.find({ userid: userid, userpw: userpw }, (err, result) => {
+    if (err) {
+      console.log(err);
+      callback(err, null);
+    } else {
+      if (result.length > 0) {
+        console.log('일치하는 사용자를 찾음');
+        callback(null, result);
+      } else {
+        console.log('일치하는 사용자가 없음');
+        callback(null, null);
+      }
     }
   });
 };
@@ -83,6 +137,7 @@ function connectDB() {
     console.log('UserSchema 생성완료.');
 
     UserModel = mongoose.model('user', UserSchema);
+    //'user'는 자동으로 s붙여서 users로 몽고db 컬렉션이 만들어짐
     console.log('UserModel이 정의되었습니다.');
   });
 }
