@@ -83,6 +83,41 @@ router.route('/login').post((req, res) => {
   }
 });
 
+//127.0.0.1:3000/list
+router.route('/list').get((req, res) => {
+  if (database) {
+    UserModel.findAll((err, result) => {
+      if (err) {
+        console.log(err);
+        console.log('리스트 조회 실패');
+        return;
+      } else {
+        if (result) {
+          res.writeHead('200', { 'content-type': 'text/html;charset=utf8' });
+          res.write('<h2>회원 리스트</h2>');
+          res.write('<div><ul>');
+          for (let i = 0; i < result.length; i++) {
+            const userid = result[i].userid;
+            const name = result[i].name;
+            const gender = result[i].gender;
+            res.write(`<li>${i}:${userid}/${name}/ ${gender}</li>`);
+          }
+          res.write('</ul></div>');
+          res.end();
+        } else {
+          res.writeHead('200', { 'content-type': 'text/html;charset=utf8' });
+          res.write('<h2>회원정보가 없습니다.</h2>');
+          res.end();
+        }
+      }
+    });
+  } else {
+    res.writeHead('200', { 'content-type': 'text/html;charset=utf8' });
+    res.write('<h2>데이터베이스 연결실패!</h2>');
+    res.end();
+  }
+});
+
 const joinUser = function (userid, userpw, name, gender, callback) {
   const users = new UserModel({
     userid: userid,
@@ -135,6 +170,11 @@ function connectDB() {
       gender: String,
     });
     console.log('UserSchema 생성완료.');
+
+    //ex
+    UserSchema.static('findAll', function (callback) {
+      return this.find({}, callback);
+    });
 
     UserModel = mongoose.model('user', UserSchema);
     //'user'는 자동으로 s붙여서 users로 몽고db 컬렉션이 만들어짐
