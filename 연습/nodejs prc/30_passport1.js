@@ -4,13 +4,13 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const expressSession = require('express-session');
 const static = require('serve-static');
-const path = requrie('path');
+const path = require('path');
+//npm i express-error-handler
 const expressErrorHandler = require('express-error-handler');
 //npm i passport
 const passport = require('passport');
 
 const app = express();
-const port = 3000;
 const router = express.Router();
 
 app.use(cookieParser());
@@ -40,7 +40,12 @@ const errorHandler = expressErrorHandler({
 
 app.use(expressErrorHandler.httpError(404));
 app.use(errorHandler);
-app.listen(port, () => {
-  console.log(`${port}포트로 서버 실행중... `);
-  connectDB();
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+const config = require('./config/config');
+const database = require('./database/database');
+
+app.listen(config.server_port, () => {
+  console.log(`${config.server_port}포트로 서버 실행중... `);
+  database.init(app, config);
 });
