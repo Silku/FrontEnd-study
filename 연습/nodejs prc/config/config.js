@@ -6,7 +6,7 @@ module.exports = {
       file: './member_schema',
       collection: 'member2',
       schemaName: 'MemberSchema',
-      modelName: 'MemberMode',
+      modelName: 'MemberModel',
     },
   ],
   facebook: {

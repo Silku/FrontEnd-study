@@ -33,6 +33,18 @@ function createSchema(app, config) {
     */
     let curItem = config.db_schemas[i];
     let curSchema = require(curItem.file).createSchema(mongoose);
+    console.log(`${curItem.file}모듈을 불러온 후 스키마를 정의함`);
+
+    let curModel = mongoose.model(curItem.collection, curSchema);
+    console.log(`${curItem.collection} 컬렉션을 위해 모델을 정의함`);
+
+    database[curItem.schemaName] = curSchema; // database[MemberSchema] = MemberSchema 객체.
+    database[curItem.modelName] = curModel; //// database[MemberModel] = MemberModel 객체.
+    console.log(
+      `스키마이름[${curItem.schemaName}], 모델이름[${curItem.modelName}]이 데이터베이스 객체의 속성으로 추가됨`
+    );
+    app.set('database', database);
+    console.log('database객체가 app객체의 속성으로 추가됨');
   }
 }
 
