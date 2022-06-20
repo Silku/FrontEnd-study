@@ -41,7 +41,7 @@ Schema.createSchema = function (mongoose) {
     } else {
       //회원가입시 사용되는 로직
       return crypto
-        .createHmac('sha1', this.inSalt)
+        .createHmac('sha1', this.salt)
         .update(plainText)
         .digest('hex');
     }

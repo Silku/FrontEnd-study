@@ -518,3 +518,9 @@ uri : mongodb://ip:port/db명
 페이스북 개발자 센터
 http://developer.facebook.com
 
+
+serializeUser()
+로그인 한 뒤 세션에 데이터를 저장할때 어떤 정보를 저장할 지를 결정
+
+deserializeUser()
+세션에 저장한 데이터로 로그인한 유저정보를 복구하는데 사용

@@ -45,6 +45,12 @@ app.set('view engine', 'ejs');
 const config = require('./config/config');
 const database = require('./database/database');
 
+const configPassport = require('./config/passport');
+configPassport(app, passport);
+
+const userPassport = require('./routes/route_member');
+userPassport(router, passport);
+
 app.listen(config.server_port, () => {
   console.log(`${config.server_port}포트로 서버 실행중... `);
   database.init(app, config);
