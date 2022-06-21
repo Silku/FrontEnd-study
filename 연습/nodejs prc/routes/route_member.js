@@ -36,6 +36,24 @@ module.exports = function (router, passport) {
       return;
     }
     console.log('사용자 인증완료!');
-    res.render('profile-passport.ejs');
+    if (Array.isArray(req.user)) {
+      res.render('profile-passport.ejs', { user: req.user[0] });
+    } else {
+      res.render('profile-passport.ejs', { user: req.user });
+    }
   });
+
+  router.route('/auth/facebook').get(
+    passport.authenticate('facebook', {
+      scope: ['public_profile', 'email'],
+    })
+  );
+
+  //callback 날라오는 url
+  router.route('/auth/facebook/callback').get(
+    passport.authenticate('facebook', {
+      successRedirect: '/profile',
+      failureRedirect: '/',
+    })
+  );
 };

@@ -2,7 +2,7 @@
 //npm i passport-local
 const LocalStrategy = require('passport-local').Strategy;
 
-//passReqToCallback : 패스워드 옳은지 아닌지 여부 응답
+//메모 : passReqToCallback : 패스워드 옳은지 아닌지 여부 응답
 module.exports = new LocalStrategy(
   {
     usernameField: 'userid',

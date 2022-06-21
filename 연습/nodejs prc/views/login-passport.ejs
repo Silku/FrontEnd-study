@@ -13,11 +13,12 @@
 </style>
 <body>
     <h2>로그인 페이지</h2>
-    <form action="/signup" method="post">
+    <form action="/login" method="post">
         <p><label>아이디 : <input type="text" name="userid"></label></p>
         <p><label>비밀번호 : <input type="password" name="userpw"></label></p>
         <p><button type="submit">로그인</button></p>
         <p>계정이 없으신가요? <a href="/signup">회원가입</a> | <a href="/">메인으로</a></p>
+        <p><a href="/auth/facebook">페이스북 로그인</a></p>
     </form>
 </body>
 </html>
