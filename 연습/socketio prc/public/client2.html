@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>클라이언트 2</title>
+</head>
+    <script src="https://cdn.socket.io/4.5.0/socket.io.min.js" integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        'use strict'
+        let host;
+        let port;
+        let socket;
+        $(function(){
+            $("#connectButton").on('click', function(event){
+                console.log('connectButton') 
+                host = $("#hostInput").val();
+                port = $("#portInput").val();
+                connectToServer();
+            })
+            $("#sendButton").on('click', function(event){
+                const data = $('#data').val()
+                const output = {commend : 'chat' , type:'text', data:data };
+                console.log(`서버로보낼 메세지 :${JSON.stringify(output)}`)
+                if(socket == undefined){
+                    alert('서버에 연결되지 않았습니다. 서버에 연결하세요.')
+                    return;
+                }
+                socket.emit('message', output)
+            })
+        });
+        function connectToServer(){
+            const url = `http://${host}:${port}`;
+            socket = io.connect(url);
+            console.log('socket 객체 생성') 
+            socket.on('connect', function(){
+                console.log('웹 소켓 서버에 연결됨!')
+            })
+        }
+    </script>
+<body>
+    <h2>클라이언트 2</h2>
+    </hr>
+    <p>접속 ip : <input type="text" id="hostInput" value="127.0.0.1"></p>
+    <p>port : <input type="text" id="portInput" value="3000"></p>
+    <p><input type="button" id="connectButton" value="서버 접속"></p>
+    </hr>
+    <p>메세지 : <input type="text" id="data"> <input type="button" id="sendButton" value="입력"></p>
+    <p>== Result ==</p>
+    <div id="result"></div>
+</body>
+</html>
