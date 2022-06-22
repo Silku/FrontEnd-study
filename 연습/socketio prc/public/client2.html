@@ -21,8 +21,9 @@
                 connectToServer();
             })
             $("#sendButton").on('click', function(event){
+                const sender = $('#sender').val()
                 const data = $('#data').val()
-                const output = {commend : 'chat' , type:'text', data:data };
+                const output = {sender:sender, commend : 'chat' , type:'text', data:data };
                 console.log(`서버로보낼 메세지 :${JSON.stringify(output)}`)
                 if(socket == undefined){
                     alert('서버에 연결되지 않았습니다. 서버에 연결하세요.')
@@ -37,18 +38,28 @@
             console.log('socket 객체 생성') 
             socket.on('connect', function(){
                 console.log('웹 소켓 서버에 연결됨!')
+                socket.on('message', function(message){ 
+                    // console.log(`테스트 : ${message}`)
+                    console.log(JSON.stringify(message))
+                    println(`${message.sender} : ${message.data}`)
+                })
             })
+        }
+        function println(data){
+            $('#result').append(`<p>${data}</p>`)
         }
     </script>
 <body>
     <h2>클라이언트 2</h2>
-    </hr>
+    <hr>
     <p>접속 ip : <input type="text" id="hostInput" value="127.0.0.1"></p>
     <p>port : <input type="text" id="portInput" value="3000"></p>
     <p><input type="button" id="connectButton" value="서버 접속"></p>
-    </hr>
+    <hr>
+    <p>ID : <input type="text" id="sender"></p>
     <p>메세지 : <input type="text" id="data"> <input type="button" id="sendButton" value="입력"></p>
-    <p>== Result ==</p>
+    <hr>
+    <p>== 채팅 ==</p>
     <div id="result"></div>
 </body>
 </html>

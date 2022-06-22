@@ -24,7 +24,7 @@
         function connectToServer(){
             const url = `http://${host}:${port}`;
             socket = io.connect(url);
-            console.log('socket 객체 생성')
+            console.log('socket 객체 생성') 
             socket.on('connect', function(){
                 console.log('웹 소켓 서버에 연결됨!')
             })
@@ -32,11 +32,11 @@
     </script>
 <body>
     <h2>클라이언트 1</h2>
-    </hr>
+    <hr>
     <p>접속 ip : <input type="text" id="hostInput" value="127.0.0.1"></p>
     <p>port : <input type="text" id="portInput" value="3000"></p>
     <p><input type="button" id="connectButton" value="서버 접속"></p>
-    </hr>
+    <hr>
     <p>== Result ==</p>
     <div id="result"></div>
 </body>

@@ -33,5 +33,8 @@ io.sockets.on('connection', (socket) => {
   socket.on('message', function (message) {
     console.log('message 이벤트를 받았습니다.');
     console.dir(message);
+
+    //모든 접속된 사용자에게 message를 그대로 전달
+    io.sockets.emit('message', message);
   });
 });
