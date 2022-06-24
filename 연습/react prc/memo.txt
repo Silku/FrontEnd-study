@@ -36,6 +36,9 @@ https://ko.reactjs.org/docs/getting-started.html
 
 2. 노드 -  자바스크립트를 실행할수 있는 환경
 
+3. 크롬브라우저 -> react developer tools
+4. vscode에서 react js code snippet
+
 리액트 시작
 1. cdn 이용하는 방법
 
@@ -46,3 +49,39 @@ https://ko.reactjs.org/docs/cdn-links.html
 *babel : 과거 브라우저에 맞도록 스크립트를 변경해주는 기능을 가지고 있음
 https://babeljs.io/docs/en/babel-standalone
  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+ 2. create-react-app
+ npm i -g yarn 
+ (*-g는 글로벌 설치)
+ yarn create react-app test
+ cd test
+ yarn start
+
+프로젝트 구조
+.gitignore 
+    - 명시된 파일들은 git에 저장되지 않음
+package.json
+    - npm에서 버전을 관리할 때 프로젝트에서 외부적으로 쓰고 있는 라이브러리의 버전들과 스크립트들이 명시
+README.md
+    - 프로젝트에 대해 설명하는 파일
+public 디렉토리
+    - 사용자에게 배포할 때 외부적으로 보여지는 리소스들을 표현
+src 디렉토리
+    - 리액트 소스코드를 포함
+
+숨겨진 툴
+babel
+    - 자바스크립트의 트랜스컴파일러
+    - typescript, jsx 등 순수 자바스크립트가 아닌문법을 브라우저가 이해하도록 변환해주는 역활
+webpack
+    - 소스코드나 리소스 이미지들을 한 번에 묶어서 번들단위로 사용자에게 제공
+    - 자바스크립트 코드를 줄여주고 긴 변수나 함수의 이름을 해커들이 알아볼 수 없도록 변경해 주는 역할
+ESlint
+    - 코드에 잘못된점이 있으면 경고를 표시해주는 툴
+Jest
+    - 코드를 작성할 때 유닛테스트를 할 수 있도록 해주는 툴
+PostCSS
+    - CSS 전처리기 중 하나
+    - 정해진 프레임워크에 따라 css를 작성하면 그 css를 브라우저가 이해할 수 있는 css코드로 변환
+    - scss, less와 비슷하지만 PostCSS는 다양한 플러그인이 있어서 확장성이 좋음
