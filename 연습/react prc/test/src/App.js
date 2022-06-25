@@ -1,6 +1,41 @@
-import logo from './logo.svg';
+
+
+import React from 'react';
+import Test from './Test';
 import './App.css';
 
+
+const userid  = '관리자';
+const style = {
+  color : '#f5f5f5',
+  backgroundColor : 'deepskyblue',
+  fontSize : 30,
+  padding : 20
+}
+
+function App() {
+  return (
+    <div>
+      
+      <div style={style}>{userid}님! 안녕하세요?</div>
+      {/*변수를 출력하려면 중괄호를 사용함*/}
+      <div className='box'>Hello React!</div>
+      <Test 
+        //태그안에는 슬러시 주석이 가능
+      /> 
+      <Test /> 
+      <Test /> 
+      <Test /> 
+    </div>
+  );
+}
+
+export default App;
+
+// import logo from './logo.svg';
+// import './App.css';
+
+/*
 function App() {
   return (
     <div className="App">
@@ -21,5 +56,4 @@ function App() {
     </div>
   );
 }
-
-export default App;
+ */
