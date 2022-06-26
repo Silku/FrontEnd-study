@@ -3,7 +3,8 @@
 import React from 'react';
 import Test from './Test';
 import './App.css';
-
+import Hello from './Hello';
+import Wrapper from './wrapper';
 
 const userid  = '관리자';
 const style = {
@@ -16,7 +17,7 @@ const style = {
 function App() {
   return (
     <div>
-      
+      <Hello name="뤼액트" color="hotpink"></Hello>
       <div style={style}>{userid}님! 안녕하세요?</div>
       {/*변수를 출력하려면 중괄호를 사용함*/}
       <div className='box'>Hello React!</div>
@@ -24,8 +25,12 @@ function App() {
         //태그안에는 슬러시 주석이 가능
       /> 
       <Test /> 
-      <Test /> 
-      <Test /> 
+      <Wrapper>
+        <Test /> 
+        <Test />
+      </Wrapper>
+      <Hello/>
+      <Hello name="테스트"/>
     </div>
   );
 }
