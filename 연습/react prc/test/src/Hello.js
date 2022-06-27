@@ -4,8 +4,14 @@ import React from "react";
 //     return <div style={{color:props.color}}>안녕하세요! {props.name}님!</div>
 // }
 
-function Hello({color, name}){
-    return <div style={{color}}>안녕하세요! {name}님!</div>
+function Hello({color, name , isVIP}){
+    return (
+        <div style= {{color}}>
+            안녕하세요! {name}님!
+            {/* {isVIP ? <b>❤😊</b> : null} */}
+            {isVIP && <b>❤😊</b>}
+        </div>
+    )
 }
 
 Hello.defaultProps = {

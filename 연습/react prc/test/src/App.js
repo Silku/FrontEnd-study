@@ -5,6 +5,8 @@ import Test from './Test';
 import './App.css';
 import Hello from './Hello';
 import Wrapper from './wrapper';
+import Counter from './Counter';
+import Input from './Input';
 
 const userid  = '관리자';
 const style = {
@@ -17,7 +19,7 @@ const style = {
 function App() {
   return (
     <div>
-      <Hello name="뤼액트" color="hotpink"></Hello>
+      <Hello name="뤼액트" color="hotpink" isVIP = {true}></Hello>
       <div style={style}>{userid}님! 안녕하세요?</div>
       {/*변수를 출력하려면 중괄호를 사용함*/}
       <div className='box'>Hello React!</div>
@@ -30,7 +32,11 @@ function App() {
         <Test />
       </Wrapper>
       <Hello/>
-      <Hello name="테스트"/>
+      <Hello name="테스트"  isVIP/>
+      {/* hello.js에 있는 isVIP값이 true면 특수문자를 띄워주는건데, isVIP가 삽입되어 있기만 해도 값이 true이기 떄문에 이렇게 써줘도 동작함 */}
+      <hr/>
+      <Counter/>
+      <Input/>
     </div>
   );
 }
