@@ -7,6 +7,8 @@ import Hello from './Hello';
 import Wrapper from './wrapper';
 import Counter from './Counter';
 import Input from './Input';
+import Input2 from './Input2';
+import Input3 from './Input3';
 
 const userid  = '관리자';
 const style = {
@@ -37,6 +39,8 @@ function App() {
       <hr/>
       <Counter/>
       <Input/>
+      <Input2/>
+      <Input3/>
     </div>
   );
 }
