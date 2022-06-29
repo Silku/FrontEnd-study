@@ -234,3 +234,8 @@ const whiteCuteDog = {
 useRef 객체를 생성 -> 가상DOM에 ref값을 설정
 변수명.current.focus();
 *current : 가상 DOM을 가르킴
+
+useRef 할수있는것
+1. setTimeout, setInterval을 통해서 만들어진 id
+2. 외부 라이브러리를 사용하여 생성된 객체 관리
+3. DOM관리
