@@ -24,17 +24,20 @@ function App(){
         {
             idx:1,
             userid:'apple',
-            name:'사과'
+            name:'사과',
+			active:false
         },
         {
             idx:2,
             userid:'banana',
-            name:'바나나'
+            name:'바나나',
+			active:false
         },
         {
             idx:3,
             userid:'watermelon',
-            name:'수박'
+            name:'수박',
+			active:false
         }
 	]);
 
@@ -61,13 +64,19 @@ function App(){
 	}
 
 
-
+	const onToggle = idx =>{
+		 setMember(
+			member.map(member => 
+				member.idx === idx? {...member, active : !member.active} : member
+				)
+		 );
+	}
 
 
 	return (
 		<div>
 			<CreateMember userid={userid} name={name} onChange={onChange} onCreate={onCreate}/>
-			<MemberList2 member={member} onRemove={onRemove}/>
+			<MemberList2 member={member} onRemove={onRemove} onToggle={onToggle}/>
 		</div>
 	);
 }
