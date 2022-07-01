@@ -1,0 +1,47 @@
+*{
+  box-sizing: border-box;
+}
+
+button{
+  outline: none;
+  border : 0;
+  cursor: pointer;
+}
+
+.todo{
+  font-size: 2.5rem;
+  padding :0.5em;
+  list-style: none;
+}
+
+.todo-count{
+  display: inline-block;
+  text-align: center;
+  font-size: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  margin-left: 0.2em;
+  margin-right: 0.5em;
+  background-color: rgb(51, 51, 51);
+  color: #fffe00;
+  border-radius: 50%;
+}
+
+.todo-button{
+  font-size: 2.5rem;
+  margin :0 0.1em;
+  background-color: dodgerblue;
+}
+
+.todo-button:hover{
+  opacity: 0.8;
+}
+
+.todo-increase, .todo-decrease{
+
+}
+
+.todo-delete:hover{
+  color: red;
+}
