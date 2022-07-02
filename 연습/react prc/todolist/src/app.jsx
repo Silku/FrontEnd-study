@@ -1,12 +1,12 @@
 import React from 'react';
 import './app.css';
-import TodoList from './components/todolist';
+import Todo from './components/todo';
 
 function App() {
     return (
         <div>
-            하위
-            <TodoList/>
+            <p><b>TO DO LIST</b></p>
+            <Todo/>
         </div>
     );
 }

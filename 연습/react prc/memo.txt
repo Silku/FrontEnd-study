@@ -90,6 +90,8 @@ PostCSS
 
 
 [2] JSX
+https://ko.reactjs.org/docs/react-without-jsx.html
+
 - 페이스북에서 개발한 확장 구문
 - UI를 화면에 나타내는 파일을 만들어가는것( 실제는 자바스크립트)
 - 태그는 꼭 닫혀야함 
@@ -239,3 +241,19 @@ useRef 할수있는것
 1. setTimeout, setInterval을 통해서 만들어진 id
 2. 외부 라이브러리를 사용하여 생성된 객체 관리
 3. DOM관리
+
+
+public 폴더/robots.txt 설명
+//여기있는 내용은 웹 크롤링 방지하기 위함
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Disallow:
+
+
+폰트어썸 npm
+yarn add @fortawesome/fontawesome-free
+
+폰트어썸 리액트 가이드
+https://fontawesome.com/v5/docs/web/use-with/react
+
+import '@fontawesome/fontawesome-free/js/all.js';

@@ -31,7 +31,8 @@ button{
 .todo-button{
   font-size: 2.5rem;
   margin :0 0.1em;
-  background-color: dodgerblue;
+  color: dodgerblue;
+  background-color: #e2e2e2;
 }
 
 .todo-button:hover{
