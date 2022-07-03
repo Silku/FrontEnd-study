@@ -6,31 +6,33 @@ class Todo extends Component{
     };
     //state 값 바꿀때는 함수형식으로만 바꿀수있음
     handleIncrement = () =>{
-        this.setState({count: this.state.count + 1})
+        this.props.onIncrement(this.props.todo)
     }
     handleDecrement = () =>{
-        const minusCount = this.state.count -1;
-        //minusCount값이 0보다 작으면 0 그렇지않으면 계속 감소
-        this.setState({count: minusCount < 0 ? 0 : minusCount})
+        this.props.onDecrement(this.props.todo)
+    }
+    handleDelete = () =>{
+        this.props.onDelete(this.props.todo)
     }
 
     render(){
+
+        const {name, count} = this.props.todo
+
         return(
-        <>
-        <p>
-            <span className="todo">Study</span>
-            <span className="todo-count">{this.state.count}</span>
+        <li className="todo">
+            <span className="todo-name">{name}</span>
+            <span className="todo-count">{count}</span>
             <button className="todo-button todo-increase" onClick={this.handleIncrement}>
                 <i className="fas fa-plus-square"></i>
             </button>
             <button className="todo-button todo-decrease" onClick={this.handleDecrement}>
             <i className="fas fa-minus-square"></i>
             </button>
-            <button className="todo-button todo-delete">
+            <button className="todo-button todo-delete" onClick={this.handleDelete}>
                 <i className="fas fa-trash"></i>
             </button>
-        </p>
-        </>
+        </li>
         )
     }
 }

@@ -1,14 +1,15 @@
 import React from 'react';
 import './app.css';
-import Todo from './components/todo';
+import Todos from './components/todos';
+
+
 
 function App() {
     return (
-        <div>
-            <p><b>TO DO LIST</b></p>
-            <Todo/>
+        <div className="todo">
+            <Todos/>
         </div>
     );
-}
+} 
 
 export default App;
