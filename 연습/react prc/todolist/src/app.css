@@ -1,11 +1,29 @@
 *{
   box-sizing: border-box;
 }
-
-/* .todos li{
-  list-style: none;
-} */
-
+.navbar{
+  font-size: 2rem;
+  padding : 1em;
+  background-color: rgb(95, 195, 253);
+}
+.navbar-count{
+  display: inline-block;
+  text-align: center;
+  font-size: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  line-height: 2.2rem;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  background-color: rgb(255, 255, 255);
+  color: rgb(72, 184, 248);
+  border-radius: 15%;
+}
+.navbar-logo{
+  color:rgb(0, 177, 0);
+  margin-right: 0.6rem;
+}
+  
 button{
   outline: none;
   border : 0;
