@@ -18,6 +18,7 @@ class Todo extends Component{
     render(){
 
         const {name, count} = this.props.todo
+        console.log(`todo: ${name}`);
 
         return(
         <li className="todo">
