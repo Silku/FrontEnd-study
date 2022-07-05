@@ -257,3 +257,26 @@ yarn add @fortawesome/fontawesome-free
 https://fontawesome.com/v5/docs/web/use-with/react
 
 import '@fontawesome/fontawesome-free/js/all.js';
+
+
+PureComponent 
+- 같은 객체가 있으면 렌더링이 안일어남, 객체 안에 있는건 바뀌어도 렌더 안일어남..?
+- 브라우저 메모리를 덜 먹게 하기 위해 씀
+
+useEffect
+- 컴포넌트가 마운트 됬을때, 언마운트 됬을때 업데이트 될때
+- 리액트 라이프사이클을 다룰떄 쓰는 함수
+- (화면을 넘기거나 db연결하고 끊고 할 때)
+
+import React, {useEffect} from 'react';
+
+function Member({member, onRemove, onToggle}){
+    useEffect(()=>{
+        console.log('컴포넌트가 화면에 나타남')
+        ...
+        return () =>{
+            console.log('컴포넌트가 화면에서 사라짐');
+            ...
+        };
+    }, []);
+}
