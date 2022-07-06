@@ -263,10 +263,17 @@ PureComponent
 - 같은 객체가 있으면 렌더링이 안일어남, 객체 안에 있는건 바뀌어도 렌더 안일어남..?
 - 브라우저 메모리를 덜 먹게 하기 위해 씀
 
+[5] 최적화를 위한 hook 함수들
+- 주의점 : 잘못 코드를 짤 경우 부분적으로 렌더가 안일어 난다던가 하는 오류가 발생할 수 있으므로 제대로 기능이 동작하도록 구현해놓고 
+아래 함수들을 최적화할 목적으로 사용하는게 좋다.
+
 useEffect
-- 컴포넌트가 마운트 됬을때, 언마운트 됬을때 업데이트 될때
+** test/memberList2.js **
+- 컴포넌트가 마운트 됬을때, 언마운트 됬을때 업데이트 될때 특정작업을 처리할 수 있음.
 - 리액트 라이프사이클을 다룰떄 쓰는 함수
 - (화면을 넘기거나 db연결하고 끊고 할 때)
+- 첫번째 파라미터에는 함수, 두번째 파라미터에는 의존값이 들어가는 배열(deps)
+- deps가 없으면 컴포넌트가 처음 나타날때만useEffect에 등록한 함수가 호출
 
 import React, {useEffect} from 'react';
 
@@ -280,3 +287,23 @@ function Member({member, onRemove, onToggle}){
         };
     }, []);
 }
+* 마운트(연결)
+- props로 받은 값을 컴포넌트의 상태로 설정
+- 외부 api를 요청
+- 라이브러리 사용
+- setInterval, setTimeout 예약
+
+* 언마운트(해제)
+- 라이브러리 제거
+- clearInterval, clearTimeout 
+
+
+useMemo 함수
+**test/app.js useMemo**
+- 성능을 최적화 시키기 위해 사용하는 hook 함수
+- 첫번째 파라미터는 연산할 함수를 넣어줌, 두번째 파라미터는 deps 배열을 넣어주면 됨
+
+useCallback 함수
+**test/app.js useCallback**
+- 성능을 최적화 시키기 위해 사용하는 hook 함수
+- 특정 함수를 새로 만들지 않고 재사용하고 싶을때 사용
