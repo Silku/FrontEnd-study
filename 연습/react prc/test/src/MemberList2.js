@@ -2,7 +2,7 @@
 // CreateMember.js , App.js
 import React, {useEffect} from 'react';
 
-function Member({member, onRemove, onToggle}){
+const Member = React.memo(function Member({member, onRemove, onToggle}){
 
     /* 
         deps 파라미터를 생략하면 컴포넌트가 리렌더링될때 마다 호출. 
@@ -40,7 +40,7 @@ function Member({member, onRemove, onToggle}){
             <button onClick={()=> onRemove(member.idx)}>삭제</button>
         </div>
     )
-}
+})
 
 function MemberList2({member, onRemove, onToggle}){
     return(
@@ -54,4 +54,4 @@ function MemberList2({member, onRemove, onToggle}){
     )
 }
 
-export default MemberList2;
+export default React.memo(MemberList2);

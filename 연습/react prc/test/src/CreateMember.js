@@ -12,4 +12,4 @@ function CreateMember({userid, name, onChange, onCreate}){
 }
 
 
-export default CreateMember;
+export default React.memo(CreateMember);

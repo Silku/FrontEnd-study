@@ -1,0 +1,23 @@
+$pink:#f08080; //핑크색상 변수 선언
+
+.Button{
+    display: inline-block;
+    color: white;
+    font-weight: bold;
+    outline: none;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    
+    height:2.25rem;
+    padding:1rem auto;
+    font-size: 1rem;
+    background: $pink;
+    &:hover{
+        background: lighten($pink, 10%);// $pink색상보다 10% 밝게
+    }
+    &:active{
+        background: darken($pink, 10%);// $pink색상보다 10% 어둡게
+    }
+}
+
