@@ -1,4 +1,25 @@
 $pink:#f08080; //핑크색상 변수 선언
+$gray: #868e96;
+$violet: #7950f2;
+
+@mixin button-color($color){
+    background-color: $color;
+    &:hover{
+        background: lighten($pink, 10%);
+    }
+    &:active{
+        background: darken($pink, 10%);
+    }
+    &.outline{
+        color:$color;
+        background:none;
+        border: 1px solid $color;
+        &:hover{
+            background-color: $color;
+            color:white
+        }
+    }
+}
 
 .Button{
     display: inline-block;
@@ -9,15 +30,85 @@ $pink:#f08080; //핑크색상 변수 선언
     border: none;
     cursor: pointer;
     
-    height:2.25rem;
-    padding:1rem auto;
-    font-size: 1rem;
-    background: $pink;
-    &:hover{
-        background: lighten($pink, 10%);// $pink색상보다 10% 밝게
+    &.large{
+        height:3rem;
+        margin: 1rem 0;
+        padding:1rem auto;
+        font-size: 1.25rem;
     }
-    &:active{
-        background: darken($pink, 10%);// $pink색상보다 10% 어둡게
+
+    &.medium{
+        height:2.25rem;
+        margin: 1rem 0;
+        padding:1rem auto;
+        font-size: 1rem;
+    }
+
+    &.small{
+        height:1.75rem;
+        margin: 1rem 0;
+        padding:1rem auto;
+        font-size: 0.75rem;
+    }
+    
+    //3단계
+    // @minxin
+    &.pink{
+        @include button-color($pink)
+    }
+
+    &.gray{
+        @include button-color($gray)
+    }
+
+    &.violet{
+        @include button-color($violet)
+    }
+
+    // 2단계
+    // &.pink{
+    //     background-color: #f08080;
+    //         &:hover{
+    //             background: lighten($pink, 10%);
+    //         }
+    // }
+
+    // &.gray{
+    //     background-color: #868e96;
+    //         &:hover{
+    //             background: lighten($gray, 10%);
+    //         }
+    // }
+
+    // &.violet{
+    //     background-color: #7950f2;
+    //         &:hover{
+    //             background: lighten($violet, 10%);
+    //         }
+    // }
+
+
+    // 1단계
+    // background: $pink;
+    // &:hover{
+    //     background: lighten($pink, 10%);// $pink색상보다 10% 밝게
+    // }
+    // &:active{
+    //     background: darken($pink, 10%);// $pink색상보다 10% 어둡게
+    // }
+
+    // 형제노드일때 아래와 같이 css 세팅 가능
+    &+&{
+        margin-left: 1rem;
+    }
+
+    &.fullWidth{
+        width: 100%;
+        justify-content: center;
+        & + &{
+            margin-left: 0;
+            margin-top:1rem;
+        }
     }
 }
 

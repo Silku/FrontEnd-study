@@ -325,3 +325,25 @@ dispatch : 액션을 발생시키는 함수
 dispatch({type:'INCREMENT'})
 
 useReducer의 첫번째 파라미터는 reduecer함수, 두번째 파라미터는 초기 상태
+
+
+
+[6] SCSS
+**test2폴더/src/button.js button.scss ** 
+CSS pre-processor(=전처리)
+1.Sass(scss/sass)
+- 복잡한 css 작업을 쉽게 할 수 있게 해주고 코드의 재 활용성을 높여줄 뿐만 아니라 가동성도 높여주기 떄문에 유지보수를 쉽게 해줌.
+https://sass-guidelin.es/ko
+
+설치;
+yarn add node-sass
+
+조건부 css 클래스 이름 모듈
+yarn add classnames
+
+예)
+일반적인 리액트
+classNames('Button', 'color'); -> 'Button color'
+
+classnames 쓸때
+classNames('Button', {outline:true}); -> 'Button outline'
