@@ -17,4 +17,4 @@ Button.defaultProps = {
     color : 'pink'
 }
 
-export default Button;
+export default Button; 

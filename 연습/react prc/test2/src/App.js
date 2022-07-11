@@ -2,6 +2,7 @@ import React from 'react';
 import Counter from './Counter';
 import Button from './components/button';
 import './App.css';
+import Box from './box'
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
 				<Button  color='gray' fullWidth>클릭하기 </Button>
 				<Button  color='violet' fullWidth>클릭하기 </Button>
         </div>
+		<Box/>
     </div>
 
   );

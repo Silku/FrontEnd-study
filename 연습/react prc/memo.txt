@@ -347,3 +347,19 @@ classNames('Button', 'color'); -> 'Button color'
 
 classnames 쓸때
 classNames('Button', {outline:true}); -> 'Button outline'
+
+
+2.CSS Module
+**test2폴더/box.module.css box.js**
+- 리액트 프로젝트에서 컴포넌트를 스타일링할때 CSS클래스가 중첩되는 것을 방지 
+- CRA  (= Create React App) 프로젝트에서 CSS Module을 사용 할 때에는 CSS 파일의 확장자를 .module.css
+- 파일경로, 파일이름, 클래스이름, 해쉬값등 사용
+- 여럿이서 작업할때 css가 겹치는 일이 없도록 할 수 있는 장점
+
+https://postcss.org 
+
+
+styled-components
+- JS안에 CSS를 작성하는 것
+- styled-components 라이브러리를 사용(emotion, styled-jsx)
+- Tagged Template Literal 문법을 사용
