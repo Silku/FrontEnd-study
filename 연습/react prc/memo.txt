@@ -360,6 +360,21 @@ https://postcss.org
 
 
 styled-components
+yarn add styled-components
+**test2폴더/scr/components/styledButton.js**
 - JS안에 CSS를 작성하는 것
 - styled-components 라이브러리를 사용(emotion, styled-jsx)
 - Tagged Template Literal 문법을 사용
+- css 코드를 조건부로 보여주고 싶다면, css 함수를 불러와 사용해야 스타일 내부에서도 css를 사용할 수있음
+**import styled, {css} from 'styled-components';
+
+참고 : 
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Template_literals
+
+
+
+
+polished 모듈
+-Sass 형식을 유틸함수로 변화를 줄 수 있음
+yarn add polished
+import {darken, lighten} from 'polished'
