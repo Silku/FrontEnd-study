@@ -5,6 +5,7 @@ import './App.css';
 import Box from './box';
 import styled, {css, ThemeProvider} from 'styled-components';
 import Button2 from './components/styledButton';
+import Dialog from './components/dialog';
 
 // 백틱 주의
 const Circle = styled.div`
@@ -28,6 +29,11 @@ const AppBlock = styled.div`
 	padding : 1rem;
 `;
 
+const ButtonGroup = styled.div`
+	& + & {
+		margin-top:1rem;
+	}
+`
 function App() {
   return (
     <div className='App'>
@@ -71,10 +77,29 @@ function App() {
 			<Circle color="deeppink"/>
 			<Circle color="gold" big/>
 			<AppBlock>
-				<Button2 color="gray">클릭하기</Button2>
-				<Button2 color="pink">클릭하기</Button2>
-				<Button2 color="green">클릭하기</Button2>
+				<ButtonGroup >
+					<Button2 color="gray" size="large">클릭하기</Button2>
+					<Button2 color="pink">클릭하기</Button2>
+					<Button2 color="green"size="small">클릭하기</Button2>
+				</ButtonGroup>
+				<ButtonGroup>
+					<Button2 color="gray" size="large">클릭하기</Button2>
+					<Button2 color="pink">클릭하기</Button2>
+					<Button2 color="green"size="small" >클릭하기</Button2>
+				</ButtonGroup>
+				<ButtonGroup>
+					<Button2  color="gray" size="large">클릭하기</Button2>
+					<Button2 color="pink">클릭하기</Button2>
+					<Button2 color="green" size="small">클릭하기</Button2>
+				</ButtonGroup>
 			</AppBlock>
+			<Dialog className="cancel"
+				title="정말로 삭제하시겠습니까?"
+				confirmText="삭제"
+				cancelText="취소"
+				>
+				데이터를 정말로 삭제하시겠습니까?
+			</Dialog>
 		</ThemeProvider>
     </div>
 
