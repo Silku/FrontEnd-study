@@ -1,3 +1,5 @@
+스벨트 시작하기
+
 npm init svelte@next my-app
 cd my-app
 npm install
@@ -16,3 +18,7 @@ svelte 핵심 = router
 
 페이지는 일반적으로 사용자에게 표시할 html을 생성함.(css, js 포함)
 기본적으로 서버와 클라이언트 양쪽 어디서든 설정이 가능하다.
+
+
+
+// 느낀점 document.querySelector 안먹힘

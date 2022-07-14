@@ -378,3 +378,8 @@ polished 모듈
 -Sass 형식을 유틸함수로 변화를 줄 수 있음
 yarn add polished
 import {darken, lighten} from 'polished'
+
+
+ThemeProvider 모듈
+색상 관련 모듈
+- styled-components에서 색상코드를 지닌 변수를 모든 컴포넌트에서 조회하여 전역적으로 사용할 수 있음
