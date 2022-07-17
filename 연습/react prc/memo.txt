@@ -383,3 +383,97 @@ import {darken, lighten} from 'polished'
 ThemeProvider 모듈
 색상 관련 모듈
 - styled-components에서 색상코드를 지닌 변수를 모든 컴포넌트에서 조회하여 전역적으로 사용할 수 있음
+
+
+
+
+[7] YouTube API (Application Programming Interface)
+https://developers.google.com/youtube/v3/docs?hl=ko
+
+
+API : 애플리케이션 소프트웨어를 구축하고 통합하기 위한 정의 및 프로토콜
+
+REST 
+: Representational State Transfer
+- Http URI를 통해 자원을 명시하고 HTTP Method를 통해 자원에 대한 CRUD를 적용
+- REST 형식을 따른 시스템을 RESTful이라 부름
+
+GraphQL : SQL을 REST방식으로 변형해서 만든거
+https://graphql.org/
+
+
+Youtube API 사용하기
+1. https://developers.google.com/youtube/v3/docs?hl=ko
+2. api console 클릭으로 이동
+3. 새프로젝트 생성
+4. API 개요 -> +api 및 서비스 사용설정 -> YouTube Data API v3
+5. 사용자 인증정보 만들기
+6. api키 복사 : AIzaS~~~~~
+7. ex) reference -> search -> list
+7-1. try this API -> maxResult(컨텐츠 갯수), q(검색어) 값 입력 후 -> execute(200: 정상출력상태)
+7-2. showcode -> http에 있는 내용 복사
+
+api 키 : AIzaSyAmAA8pD07oj5RG0J3OURiqQvlz917W-Fk
+
+--------------------------------------------------------------------------------------------------
+GET https://youtube.googleapis.com/youtube/v3/search?maxResults=20&q=epl&key=[YOUR_API_KEY] HTTP/1.1
+
+Authorization: Bearer [YOUR_ACCESS_TOKEN]
+Accept: application/json
+
+==>
+https://youtube.googleapis.com/youtube/v3/search?maxResults=20&q=epl&key=AIzaSyAmAA8pD07oj5RG0J3OURiqQvlz917W-Fk
+--------------------------------------------------------------------------------------------------
+
+
+
+8. reference -> videos -> list
+8-1. try this API -> chart:mostPopular, maxResult:20 -> execute -> showcode
+8-2. part:snippet 추가 하면 상세정보를 호출할 수 있음.
+--------------------------------------------------------------------------------------------------
+GET https://youtube.googleapis.com/youtube/v3/videos?chart=mostPopular&maxResults=20&key=[YOUR_API_KEY] HTTP/1.1
+
+Authorization: Bearer [YOUR_ACCESS_TOKEN]
+Accept: application/json
+
+https://youtube.googleapis.com/youtube/v3/videos?chart=mostPopular&maxResults=20&key=AIzaSyAmAA8pD07oj5RG0J3OURiqQvlz917W-Fk
+
+
+part - snippet 추가한거
+GET https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=20&key=[YOUR_API_KEY] HTTP/1.1
+
+Authorization: Bearer [YOUR_ACCESS_TOKEN]
+Accept: application/json
+
+https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=20&key=AIzaSyAmAA8pD07oj5RG0J3OURiqQvlz917W-Fk
+--------------------------------------------------------------------------------------------------
+
+
+1.postman사용  -> collenctions 
+2.Authorization -> type:api
+    key:key, 
+    value:api키 삽입
+    add to : query Params
+3.Variables ->
+    Variable : base,
+    initial value : https://youtube.googleapis.com/youtube/v3
+
+4. add a Request -> 이름변경
+4-1.  GET {{base}}하면 굉장히 짧게 쓸수있다. (3번에서 만들어준 base)
+    part:snippet,
+    maxResult : 20,
+    q:EPL
+
+번외 : github pages
+- 정적 웹사이트 호스팅
+- Jekyll을 지원
+- 1GB초과 불가, 대역폭제한 1달/100GB
+
+깃헙페이지 등록법 (생활코딩)
+https://opentutorials.org/course/3084/18891
+
+
+https://silku.github.io/FrontEnd-Study/tree/main/%EC%97%B0%EC%8A%B5/react%20prc
+
+https://github.com/Silku/FrontEnd-Study/tree/main/%EC%97%B0%EC%8A%B5/react%20prc 
+
