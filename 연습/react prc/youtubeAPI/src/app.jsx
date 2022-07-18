@@ -11,8 +11,8 @@ function App() {
 			};
 			
 			fetch("https://youtube.googleapis.com/youtube/v3/videos?part=snippet&maxResult=20&chart=mostPopular&key=AIzaSyAmAA8pD07oj5RG0J3OURiqQvlz917W-Fk", requestOptions)
-			.then(response => response.text())
-			.then(result => setVideos(result.item))
+			.then(response => response.json())
+			.then(result => setVideos(result.items))
 			.catch(error => console.log('error', error));
 	},[])
 	return (

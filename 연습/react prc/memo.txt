@@ -464,6 +464,18 @@ https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&
     maxResult : 20,
     q:EPL
 
+자바스크립트 fetch()
+** app.jsx **
+- 비동기 HTTP통신 Ajax
+- 라이브러리 -> request, axios, jQuery
+- fetch() : HTTP 비통기통신, 자바스크립트(브라우저) 내장
+    fetch(url, options)
+        .then((response) => ...)
+        .catch((error) => ...)
+첫번째 매개변수 : url
+두번쨰 매개변수 : 옵션객체
+return : Promise 타입의 객체(API호출이 성공했을경우 reponse객체, 실패했을경우 error객체)
+
 번외 : github pages
 - 정적 웹사이트 호스팅
 - Jekyll을 지원
