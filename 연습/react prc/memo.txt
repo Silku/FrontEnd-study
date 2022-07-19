@@ -464,6 +464,8 @@ https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&
     maxResult : 20,
     q:EPL
 
+
+=========================================================
 자바스크립트 fetch()
 ** app.jsx **
 - 비동기 HTTP통신 Ajax
