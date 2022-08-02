@@ -413,7 +413,7 @@ Youtube API 사용하기
 7-1. try this API -> maxResult(컨텐츠 갯수), q(검색어) 값 입력 후 -> execute(200: 정상출력상태)
 7-2. showcode -> http에 있는 내용 복사
 
-api 키 : AIzaSyAmAA8pD07oj5RG0J3OURiqQvlz917W-Fk
+api 키 : [API키 입력자리]
 
 --------------------------------------------------------------------------------------------------
 GET https://youtube.googleapis.com/youtube/v3/search?maxResults=20&q=epl&key=[YOUR_API_KEY] HTTP/1.1
@@ -422,7 +422,7 @@ Authorization: Bearer [YOUR_ACCESS_TOKEN]
 Accept: application/json
 
 ==>
-https://youtube.googleapis.com/youtube/v3/search?maxResults=20&q=epl&key=AIzaSyAmAA8pD07oj5RG0J3OURiqQvlz917W-Fk
+https://youtube.googleapis.com/youtube/v3/search?maxResults=20&q=epl&key=[API키 입력자리]
 --------------------------------------------------------------------------------------------------
 
 
@@ -436,7 +436,7 @@ GET https://youtube.googleapis.com/youtube/v3/videos?chart=mostPopular&maxResult
 Authorization: Bearer [YOUR_ACCESS_TOKEN]
 Accept: application/json
 
-https://youtube.googleapis.com/youtube/v3/videos?chart=mostPopular&maxResults=20&key=AIzaSyAmAA8pD07oj5RG0J3OURiqQvlz917W-Fk
+https://youtube.googleapis.com/youtube/v3/videos?chart=mostPopular&maxResults=20&key=[API키 입력자리]
 
 
 part - snippet 추가한거
@@ -445,7 +445,7 @@ GET https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopu
 Authorization: Bearer [YOUR_ACCESS_TOKEN]
 Accept: application/json
 
-https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=20&key=AIzaSyAmAA8pD07oj5RG0J3OURiqQvlz917W-Fk
+https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=20&key=[API키 입력자리]
 --------------------------------------------------------------------------------------------------
 
 
@@ -477,6 +477,11 @@ https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&
 첫번째 매개변수 : url
 두번쨰 매개변수 : 옵션객체
 return : Promise 타입의 객체(API호출이 성공했을경우 reponse객체, 실패했을경우 error객체)
+
+
+.env
+외부의 파일을 저장하고 여기에 쓴 변수들은 process 객체(노드 내장된)가 접근해서 사용할 수 있다.
+
 
 번외 : github pages
 - 정적 웹사이트 호스팅
