@@ -1,0 +1,22 @@
+.app{
+	text-align: center;
+}
+.container{
+	display: flex;
+	margin:  2rem auto;
+	width: 80%;
+	height: 50rem;
+
+	/* 조정필요 */
+	text-align: center;
+	line-height: 50rem;
+}
+.canvas{
+	flex: 1 1 80%;
+	background-color: aqua;
+}
+
+.list{
+	flex: 1 1 20%;
+	background-color: aquamarine;
+}
