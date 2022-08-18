@@ -2,12 +2,14 @@
     max-width: 80rem;
 }
 
-.contend {
+.content{
     display: flex;
+    /* css .선택자 오타로 화면 출력안될수 있음ㅋㅋㅋㅋㅋ */
 }
 
 .detail{
     flex : 1 1 70%;
+    /* 1 1 은 확대 축소 배율임 */
 }
 
 .list{

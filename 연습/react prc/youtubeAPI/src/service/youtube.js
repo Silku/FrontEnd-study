@@ -20,7 +20,7 @@ class YouTube{
 			`https://youtube.googleapis.com/youtube/v3/search?maxResults=20&regionCode=KR&q=${query}&key=${this.key}&type=video`, this.getRequestoptions
 		)
 		const result = await response.json();
-		return result.items.map(item=>({...item, id:item.id.videoId}));
+		return result.items.map(item=>({...item, id: item.id.videoId}));
 	}
 }
 

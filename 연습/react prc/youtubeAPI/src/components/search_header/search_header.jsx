@@ -12,7 +12,7 @@ const SearchHeader = ({onSearch}) => {
         handleSearch();
     }
     const onKeyPress = e => {
-        if(e.key === '13'){
+        if(e.key === 'Enter'){
             handleSearch();
         }
     }

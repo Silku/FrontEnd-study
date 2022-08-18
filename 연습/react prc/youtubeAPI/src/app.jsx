@@ -13,12 +13,12 @@ function App({youtube}) {
 	};
 
 	const search = query =>{
+		setSelectedVideo(null);
 		youtube.search(query).then(videos => setVideos(videos));
 	}
 
 	useEffect(()=>{
-	youtube.mostPopular().then(videos => setVideos(videos));
-
+		youtube.mostPopular().then(videos => setVideos(videos));
 		// :: search값으로 query 받아오기 이전
 		// const requestOptions = {
 		// 	method: 'GET',
@@ -29,7 +29,7 @@ function App({youtube}) {
 		// 	.then(response => response.json())
 		// 	.then(result => setVideos(result.items))
 		// 	.catch(error => console.log('error', error));
-	},[])
+	},[]);
 	return (
 		<div className={styles.app}>
 			<SearchHeader onSearch={search}/>
@@ -47,7 +47,6 @@ function App({youtube}) {
 					/>
 				</div>
 			</section>
-			<VideoList videos={videos}/>
 		</div>
 	)
 }
