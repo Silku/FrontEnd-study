@@ -13,6 +13,7 @@ function App({youtube}) {
 	};
 
 	const search = query =>{
+		// null값을 넣어줌으로써 새로 검색할때 화면 초기화
 		setSelectedVideo(null);
 		youtube.search(query).then(videos => setVideos(videos));
 	}
