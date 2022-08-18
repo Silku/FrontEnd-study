@@ -3,6 +3,7 @@ import styles from './video_item.module.css';
 
 const VideoItem = ({video, video : {snippet}, onVideoClick, display}) => {
         const displayType = display === 'list' ? styles.list : styles.grid;
+
         return(
             <li 
                 className={`${styles.container} ${displayType}`}  
@@ -19,6 +20,7 @@ const VideoItem = ({video, video : {snippet}, onVideoClick, display}) => {
             </div>
         </li>
         );
+        
     }
 
 export default VideoItem;

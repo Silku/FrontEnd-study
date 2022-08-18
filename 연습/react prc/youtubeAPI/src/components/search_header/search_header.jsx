@@ -20,7 +20,7 @@ const SearchHeader = ({onSearch}) => {
         <header className={styles.header}>
             <div className={styles.logo}>
                 <img className={styles.img} src="./images/logo_youtube_64.png" alt="logo"/>
-                <h1 className={styles.title}>YouTube</h1>
+                <h1 className={styles.title}>MyTube</h1>
             </div>
             <input ref={inputRef} className={styles.input} type="search"
                 placeholder='검색어를 입력하세요' onKeyPress={onKeyPress}/>

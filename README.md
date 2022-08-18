@@ -20,6 +20,9 @@
   
 - [`svelte`](https://github.com/Silku/FrontEnd-Study/tree/main/%EC%97%B0%EC%8A%B5/svelte)
 
-- [`socketio`](https://github.com/Silku/FrontEnd-Study/tree/main/%EC%97%B0%EC%8A%B5/socketio%20prc)
-  
+- [`socketio`](https://github.com/Silku/FrontEnd-Study/tree/main/%EC%97%B0%EC%8A%B5/socketio%20p)
+
+### 프로젝트
+- - [`youtube API 활용하기 (React)`](https://github.com/Silku/FrontEnd-Study/tree/main/%EC%97%B0%EC%8A%B5/react%20prc/youtubeAPI)
+
 ### 기타

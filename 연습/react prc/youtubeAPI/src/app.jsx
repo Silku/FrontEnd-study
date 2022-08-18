@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import styles from 	'./app.module.css';
 import SearchHeader from './components/search_header/search_header';
 import VideoList from './components/video_list/video_list';
@@ -12,12 +12,14 @@ function App({youtube}) {
 		setSelectedVideo(video);
 	};
 
-	const search = query =>{
-		// null값을 넣어줌으로써 새로 검색할때 화면 초기화
-		setSelectedVideo(null);
-		youtube.search(query).then(videos => setVideos(videos));
-	}
-
+	const search = useCallback(
+		query =>{
+			// null값을 넣어줌으로써 새로 검색할때 화면 초기화
+			setSelectedVideo(null);
+			youtube.search(query).then(videos => setVideos(videos));
+		},
+		[youtube]
+	)
 	useEffect(()=>{
 		youtube.mostPopular().then(videos => setVideos(videos));
 		// :: search값으로 query 받아오기 이전
