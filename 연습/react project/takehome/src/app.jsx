@@ -1,6 +1,7 @@
 import './app.css';
 import Canvas from './components/canvas/canvas';
 import List from './components/list/list';
+import Test from './components/test/canvas';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
         <section className='container'>
             <Canvas/>
             <List/>
+            <Test/>
         </section>
     </div>
   );
