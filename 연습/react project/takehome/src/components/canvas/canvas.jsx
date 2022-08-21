@@ -14,18 +14,40 @@ import { useOndraw } from "./canvasHook";
 
         const setCanvasRef = useOndraw(onDraw);
  
-        function onDraw(ctx, point){
-            ctx.fillStyle = '#000'
-            ctx.beginPath();
-            // x,y, 반지름, 시작각도, 끝각도
-            ctx.arc(point.x, point.y, 2, 0, 2*Math.PI);   
-            ctx.fill()
+        function onDraw(ctx, point, prevPoint){
+            // ctx.fillStyle = '#000'
+            // ctx.beginPath();
+            // // x,y, 반지름, 시작각도, 끝각도
+            // ctx.arc(point.x, point.y, 1, 0, 2*Math.PI);   
+            // ctx.fill()
+            drawLine(prevPoint, point, ctx, '#000', 1.5)
         }
  
+        function drawLine(
+            start,
+            end,
+            ctx,
+            color,
+            width
+        ){
+            start = start ?? end;
+            ctx.beginPath();
+            ctx.lineWidth = width;
+            ctx.strokeStyle = color;
+            ctx.moveTo(start.x, start.y);
+            ctx.lineTo(end.x, end.y);
+            ctx.stroke();
+
+            ctx.fillStyle = color;
+            ctx.beginPath();
+            ctx.arc(start.x, start.y, 0.2, 0, 2*Math.PI);
+            ctx.fill();
+        }
+
         return(
             <canvas className="canvas" 
-                width={width}
-                height={height}
+                width="1000px"
+                height="600px"
                 ref={setCanvasRef}
             >
                 {/* <button>DELETE</button>

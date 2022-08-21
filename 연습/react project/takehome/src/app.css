@@ -7,17 +7,16 @@
 	width: 80%;
 	height: 100%;
 	background-color: red;
-
 	/* 조정필요 */
 	text-align: center;
-	line-height: 50rem;
+	/* line-height: 50rem; */
 }
 .canvas{
-	flex: 1 1 80%;
+	/* flex: 1 1 80%; */
 	background-color: aqua;
 }
 
-.list{
+/* .list{
 	flex: 1 1 20%;
 	background-color: aquamarine;
-}
+} */
