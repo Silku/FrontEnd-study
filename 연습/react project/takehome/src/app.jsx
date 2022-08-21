@@ -9,8 +9,8 @@ function App() {
         <h3>Project Canvas</h3>
         <section className='container'>
             <Canvas/>
-            <List/>
-            <Test/>
+            {/* <List/> */}
+            {/* <Test/> */}
         </section>
     </div>
   );

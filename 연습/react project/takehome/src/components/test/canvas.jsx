@@ -9,7 +9,7 @@ import React, {Component, useState} from "react";
 
         class Test extends Component{
         mousehandler(){
-            const [mouseEvent, setMouseEvent] = useState();
+            // const [mouseEvent, setMouseEvent] = useState();
 
             console.log('캔버스에 마우스 올라옴')
         }

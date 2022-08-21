@@ -5,7 +5,8 @@
 	display: flex;
 	margin:  2rem auto;
 	width: 80%;
-	height: 50rem;
+	height: 100%;
+	background-color: red;
 
 	/* 조정필요 */
 	text-align: center;
