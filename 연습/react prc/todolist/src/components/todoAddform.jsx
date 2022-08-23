@@ -4,7 +4,7 @@ class TodoAddform extends Component{
 
     formRef = React.createRef();
     inputRef = React.createRef();
-    
+    listItemRef = React.createRef();
 
     //submit 이벤트가 발생했을때 데이터가 지워지지 않게 하기 위함
     //실제 db가 아닌 객체 받아와서 배열로 처리했기떄문

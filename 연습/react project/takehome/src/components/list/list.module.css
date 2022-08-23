@@ -1,0 +1,16 @@
+.list{
+    margin-left: 1.5rem;
+    min-width: 300px;
+    height: 606px;
+    border: 1px solid black;
+    background-color: #eee;
+}
+
+.list ul{
+    margin: 0.5rem;
+}
+.list ul li{
+    margin: 0.2rem;
+    text-align: left;
+    list-style: none;
+}

@@ -1,3 +1,32 @@
+.canvasContainer{
+    position: relative;
+    border: 1px solid black;
+    overflow: hidden;
+}
 .canvas{
-    background-color: aqua;
+    margin: 0 auto;
+    background-color: #ffe;
+}
+
+
+.deleteBtn{
+    position:absolute;
+    left: 20px;
+    top: 30px;
+    z-index: 1;
+}
+
+.buttomBtnCont{
+    position:absolute;
+    right: 20px;
+    bottom: 30px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-end;
+
+}
+.buttomBtnCont button{
+    width: 30px;
+    height: 30px;
+    margin: 0.2rem;
 }
