@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root">
+
+    </div>
+    <script type="text/babel">
+        'use strict'
+
+        function LikeButton() {
+            const [liked, setLiked] = React.useState(false);
+
+            if (liked) {
+                return '좋아요를 눌렀습니다';
+            }
+
+            return (
+                <button onClick={() => { setLiked(true) }}>좋아요!</button>
+            )
+        }
+    </script>
+    <script type="text/babel">
+        ReactDOM.createRoot(document.querySelector('#root')).render(<LikeButton />);
+    </script>
+</body>
+
+</html>
