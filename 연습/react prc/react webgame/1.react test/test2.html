@@ -18,8 +18,12 @@
     <script type="text/babel">
         'use strict'
 
-        function LikeButton() {
-            const [liked, setLiked] = React.useState(false);
+        function LikeButton() { //함수형 컴포넌트 X  , 함수 컴포넌트라 해야함
+            const [liked, setLiked] = React.useState(false); //JS 구조분해 문법
+
+            // 아래와 같은 배열을 위와 같이 구조분해로 표현할수 있음.
+            // const liked = result[0];
+            // const setLiked = result[1];
 
             if (liked) {
                 return '좋아요를 눌렀습니다';
