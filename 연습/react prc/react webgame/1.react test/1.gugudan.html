@@ -23,6 +23,7 @@
 <body>
     <script type="text/babel">
         class GuGuDan extends React.Component {
+            //constuctor(props) 받아주는 부분 지우고 state={} 형식으로 써도 상관없음.
             constructor(props) {
                 super(props);
                 this.state = {
@@ -30,7 +31,7 @@
                     secondNum: Math.ceil(Math.random() * 9),
                     value: '',
                     result: '',
-                    inputValue: ''
+                    inputtedValue: ''
                 }
             }
 
@@ -38,17 +39,32 @@
                 e.preventDefault();
 
                 if (parseInt(this.state.value) === this.state.firstNum * this.state.secondNum) {
-                    this.setState({
-                        result: '정답입니다!',
-                        firstNum: Math.ceil(Math.random() * 9),
-                        secondNum: Math.ceil(Math.random() * 9),
-                        inputValue: "입력하신 값은 " + this.state.value,
-                        value: ''
+                    // (prevState)=>{} 써주는 방식으로 this.state.value일 때보다 코드 가독성을 높이고 예외 상황도 줄일 수 있음.
+
+                    /* 예외상황을 예로들면, 
+
+                        this.setState(){
+                            value : this.state.value + 1
+                        } 
+                        
+                        위처럼 this.state.value + 1을 여러 번(3회라고 가정) 호출 시키는 형태로 코드를 짰을때  
+                        +3을 예상하고 코드를 짰으나,
+                        setState의 경우 비동기로 처리되기 때문에, 결과값은 +1로 호출 될 수도 있음.
+                        (prevState)=>{} 형태로 코딩하면 예외 상황을 줄일 수 있음.
+                    */
+                    this.setState((prevState) => {
+                        return {
+                            result: '정답입니다!',
+                            firstNum: Math.ceil(Math.random() * 9),
+                            secondNum: Math.ceil(Math.random() * 9),
+                            inputtedValue: "입력하신 값은 " + prevState.value,
+                            value: ''
+                        }
                     })
                 } else {
                     this.setState({
                         result: '틀렸습니다!!',
-                        inputValue: "입력하신 값은 " + this.state.value,
+                        inputtedValue: "입력하신 값은 " + this.state.value,
                         value: ''
                     })
                 }
@@ -68,7 +84,7 @@
                             <input type="number" value={this.state.value} onChange={this.onChange} />
                             <button >입력하기</button>
                         </form>
-                        <p>{this.state.inputValue} </p>
+                        <p>{this.state.inputtedValue} </p>
                         <p>{this.state.result}</p>
                     </React.Fragment>
                 )
