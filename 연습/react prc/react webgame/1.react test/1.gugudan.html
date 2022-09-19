@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>구구단 practice</title>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
@@ -68,12 +68,15 @@
                         value: ''
                     })
                 }
+                this.input.focus();
             }
 
             onChange = (e) => {
                 this.setState({ value: e.target.value })
             }
-
+            onFocus = (e) => {
+                this.input = e;
+            }
             render() {
                 return (
                     // 감싸주기 위한  <div></div> 태그를 빈 태그로 해줄수도있는데 babel2가 설치되어있어야 함,
@@ -81,7 +84,7 @@
                     <React.Fragment>
                         <div>{this.state.firstNum} * {this.state.secondNum} = ?</div>
                         <form onSubmit={this.onSubmit}>
-                            <input type="number" value={this.state.value} onChange={this.onChange} />
+                            <input ref={this.onFocus} type="number" value={this.state.value} onChange={this.onChange} />
                             <button >입력하기</button>
                         </form>
                         <p>{this.state.inputtedValue} </p>
