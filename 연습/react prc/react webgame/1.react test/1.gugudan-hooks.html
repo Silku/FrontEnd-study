@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>구구단 practice, Hooks</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <style>
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+    </style>
+</head>
+<div id="root"></div>
+
+<body>
+    <script type="text/babel">
+        /* 
+            [React Hooks]
+            1.기존 class Component 형식에서 setState나 ref를 쓰지 않는 경우 아래와 같이 함수 형태로 썼었음.
+            2.class 형식에서 this.state를 ----> hooks에선 const [state, setState] = React.useState(); 처럼 쓸 수 있게 됨.
+        */
+        const GuGuDan = () => {
+            //비구조화 할당 문법
+            const [firstNum, setFirstNum] = React.useState(Math.ceil(Math.random() * 9));
+            const [secondNum, setSecondNum] = React.useState(Math.ceil(Math.random() * 9));
+            const [value, setValue] = React.useState('');
+            const [result, setResult] = React.useState('');
+            const inputRef = React.useRef(null);
+
+            const onChangeInput = (e) => {
+                setValue(e.target.value)
+            }
+            const onSubmitForm = (e) => {
+                e.preventDefault();
+
+                if (parseInt(value) === firstNum * secondNum) {
+                    setResult('정답입니다! , 입력한 값 : ' + value);
+                    setFirstNum(Math.ceil(Math.random() * 9));
+                    setSecondNum(Math.ceil(Math.random() * 9));
+                    setValue('');
+                } else {
+                    setResult('틀렸습니다!! , 입력한 값 : ' + value)
+                    setValue('');
+                }
+                inputRef.current.focus();
+            }
+
+            return (
+                <React.Fragment>
+                    <div>Hello, Hooks</div>
+                    <div>
+                        {firstNum} * {secondNum} = ?
+                    </div>
+                    <form onSubmit={onSubmitForm}>
+                        <input ref={inputRef} type="number" onChange={onChangeInput} value={value} />
+                        <button>입력하기</button>
+                        <div>{result}</div>
+                    </form>
+                </React.Fragment>
+            )
+        }
+
+    </script>
+    <script type="text/babel">
+        ReactDOM.createRoot(document.querySelector('#root')).render(<GuGuDan />);
+    </script>
+</body>
+
+</html>
