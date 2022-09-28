@@ -42,6 +42,7 @@
                 e.preventDefault();
 
                 if (parseInt(value) === firstNum * secondNum) {
+                    //setState가 4번 호출되기 때문에 렌더가 4번 일어날거라 착각하기 쉽지만 state는 비동기로 동작하기 때문에 한번 렌더됨.
                     setResult('정답입니다! , 입력한 값 : ' + value);
                     setFirstNum(Math.ceil(Math.random() * 9));
                     setSecondNum(Math.ceil(Math.random() * 9));

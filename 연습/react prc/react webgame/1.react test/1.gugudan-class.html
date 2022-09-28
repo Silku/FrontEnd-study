@@ -81,6 +81,8 @@
                 return (
                     // 감싸주기 위한  <div></div> 태그를 빈 태그로 해줄수도있는데 babel2가 설치되어있어야 함,
                     // => React.Fragment 써주는 걸로 처리가 가능
+
+                    //리액트에서는 태그 선택자로 넣는 'class'와, label과 함께쓰는 'for'의 경우 className, htmlFor로 각각 다르게 사용해줘야 함
                     <React.Fragment>
                         <div>{this.state.firstNum} * {this.state.secondNum} = ?</div>
                         <form onSubmit={this.onSubmit}>
