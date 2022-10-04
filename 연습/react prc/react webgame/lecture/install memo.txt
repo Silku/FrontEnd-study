@@ -13,9 +13,23 @@
 
 ********* 
     -D 는 개발용으로 쓰인다는것을 의미함.
-    package.json에도 아래처럼 devDependencies라고 따로 등록됨.
+    package.json에도 아래처럼 webpack이 devDependencies라고 따로 등록됨.
   "devDependencies": {
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
   }
 *********
+
+
+
+[2] 빌드하기
+1.package.json에서 스크립트 부분을 아래와 같이 지정
+  "scripts": {
+    "dev": "webpack"
+  },
+
+2.터미널에서 아래와 같이 실행
+npm run webpack 
+npx webpack
+
+==> webpack.config.js 에서 output 설정해준것과 같이 dist/app.js 가 생성됨
