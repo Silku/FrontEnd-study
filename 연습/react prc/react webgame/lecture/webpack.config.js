@@ -16,6 +16,17 @@ module.exports = {
     entry : {
         app : './client',
     },
+    
+    module:{
+        rules :[{
+            test : /\.jsx?/,
+            loader : 'babel-loader',
+            options : {
+                presets:['@babel/preset-env', '@babel/preset-react'],
+            }
+        }]
+    },
+
     // output : 출력하는 부분
     output : {
         path: path.join(__dirname, 'dist'),

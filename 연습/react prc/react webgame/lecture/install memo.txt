@@ -29,7 +29,15 @@
   },
 
 2.터미널에서 아래와 같이 실행
-npm run webpack 
+npm run dev
 npx webpack
 
 ==> webpack.config.js 에서 output 설정해준것과 같이 dist/app.js 가 생성됨
+
+3.babel이 있어야 jsx파일을 읽을 수 있고 babel에서 jsx를 읽을 수 있도록 설정해야한다.
+npm i -D @babel/core @babel/preset-env @babel/preset-react babel-loader
+아래처럼 나눠서 설치해도 됨
+npm i -D @babel/core            //기본 바벨, 최신문법
+npm i @babel/preset-env       //바벨을 환경에 맞게 바꿔줌
+npm i @babel/preset-react     // react -> jsx를 읽는 역할 
+npm i babel-loader                //바벨과 웹팩을 연결하는 역할
