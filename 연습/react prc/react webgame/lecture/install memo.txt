@@ -41,3 +41,10 @@ npm i -D @babel/core            //기본 바벨, 최신문법
 npm i @babel/preset-env       //바벨을 환경에 맞게 바꿔줌
 npm i @babel/preset-react     // react -> jsx를 읽는 역할 
 npm i babel-loader                //바벨과 웹팩을 연결하는 역할
+
+
+babel/preset-env 설정 :: 브라우저 지원 관련 참조 링크
+https://github.com/browserslist/browserslist
+
+웹팩 공식문서
+https://webpack.js.org/concepts/
