@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="EUC-KR">
+    <title>Insert title here</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        {{ message }}
+    </div>
+    <div id="button">
+        <div v-if="liked">좋아요!</div>
+        <button v-else v-on:click="onClickButton">Like</button>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello World!'
+            }
+        })
+
+        const app = new Vue({
+            el: '#button',
+            data: {
+                liked: false,
+            },
+            methods: {
+                onClickButton() {
+                    this.liked = true;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
