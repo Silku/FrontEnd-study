@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="EUC-KR">
+    <title>구구단</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <p>{{number1}} * {{number2}}= ?</p>
+        <form v-on:submit="onSubmitForm">
+            <input type="number" v-model="value"><button>입력</button>
+        </form>
+        <div id="result">
+            <p>{{result}}</p>
+        </div>
+    </div>
+    <script>
+        const app = new Vue({
+            el: '#root',
+            data: {
+                number1: Math.ceil(Math.random() * 9),
+                number2: Math.ceil(Math.random() * 9),
+                value: '',
+                result: ''
+            },
+            methods: {
+                onSubmitForm(e) {
+                    e.preventDefault();
+                    if (this.number1 * this.number2 === parseInt(this.value)) {
+                        this.result = '정답'
+                    } else {
+                        this.result = "오답"
+                    }
+                }
+            }
+        })
+        const result = new Vue({
+            el: 'result',
+            data: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>
