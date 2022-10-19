@@ -11,7 +11,7 @@
     <div id="root">
         <p>{{number1}} * {{number2}}= ?</p>
         <form v-on:submit="onSubmitForm">
-            <input type="number" v-model="value"><button>입력</button>
+            <input ref="inputRef" type="number" v-model="value"><button>입력</button>
         </form>
         <div id="result">
             <p>{{result}}</p>
@@ -31,8 +31,14 @@
                     e.preventDefault();
                     if (this.number1 * this.number2 === parseInt(this.value)) {
                         this.result = '정답'
+                        this.number1 = Math.ceil(Math.random() * 9),
+                            this.number2 = Math.ceil(Math.random() * 9)
+                        this.value = ""
+                        // vue에서 ref쓰는법
+                        this.$refs.inputRef.focus();
                     } else {
                         this.result = "오답"
+                        this.value = ""
                     }
                 }
             }

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="EUC-KR">
+    <title>끌말잇기</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <div>{{word}}</div>
+        <form v-on:submit="onSubmitForm">
+            <input ref="inputRef" type="text" v-model="value">
+            <button type="submit">입력</button>
+        </form>
+        <div>{{result}}</div>
+    </div>
+    <script>
+        const app = new Vue({
+            el: '#root',
+            data: {
+                word: '서대문',
+                result: '',
+                value: '',
+            },
+            methods: {
+                onSubmitForm(e) {
+                    e.preventDefault();
+                    if (this.word[this.word.length - 1] === this.value[0]) {
+                        this.result = '😀';
+                        this.word = this.value;
+                        this.value = ''
+                        this.$ref.inputRef.focus();
+                    } else {
+                        this.result = '😥'
+                        this.value = ''
+                        this.$ref.inputRef.focus();
+                    }
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
