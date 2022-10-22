@@ -9,20 +9,35 @@
 
 <body>
     <div id="root">
-        <div>{{word}}</div>
-        <form v-on:submit="onSubmitForm">
-            <input ref="inputRef" type="text" v-model="value">
-            <button type="submit">입력</button>
-        </form>
-        <div>{{result}}</div>
+        <word-relay start-word="서대문"></word-relay>
+        <word-relay start-word="남가좌"></word-relay>
+        <word-relay start-word="명지대"></word-relay>
     </div>
     <script>
-        const app = new Vue({
-            el: '#root',
-            data: {
-                word: '서대문',
-                result: '',
-                value: '',
+        // vue쓸때 html에서 케밥케이스로 해야 대부분 인식함 (-로 변수짓는거)
+
+        // 컴포넌트로 사용하기 위해서는 data를 객체형식으로 쓸게 아니라,
+        // 데이터 객체를 return하는 함수형으로 만들어야 함.
+        // (각 컴포넌트 마다 새로운 객체를 생성할 수 있게끔)
+
+        Vue.component('word-relay', {
+            template: `
+            <div>
+                <div>{{word}}</div>
+                    <form v-on:submit="onSubmitForm">
+                        <input ref="inputRef" type="text" v-model="value">
+                        <button type="submit">입력</button>
+                    </form>
+                <div>{{result}}</div>
+            </div>
+            `,
+            props: ['start-word'],
+            data() {
+                return {
+                    word: this.startWord,
+                    result: '',
+                    value: '',
+                }
             },
             methods: {
                 onSubmitForm(e) {
@@ -38,8 +53,39 @@
                         this.$ref.inputRef.focus();
                     }
                 }
-            },
+            }
         })
+    </script>
+    <script>
+        const app = new Vue({
+            el: '#root',
+        })
+
+        // @@ 컴포넌트화 이전 코드
+
+        // const app = new Vue({
+        //     el: '#root',
+        //     data: {
+        //         word: '서대문',
+        //         result: '',
+        //         value: '',
+        //     },
+        //     methods: {
+        //         onSubmitForm(e) {
+        //             e.preventDefault();
+        //             if (this.word[this.word.length - 1] === this.value[0]) {
+        //                 this.result = '😀';
+        //                 this.word = this.value;
+        //                 this.value = ''
+        //                 this.$ref.inputRef.focus();
+        //             } else {
+        //                 this.result = '😥'
+        //                 this.value = ''
+        //                 this.$ref.inputRef.focus();
+        //             }
+        //         }
+        //     },
+        // })
     </script>
 </body>
 
