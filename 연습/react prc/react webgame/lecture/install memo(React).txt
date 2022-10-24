@@ -42,22 +42,5 @@ https://webpack.js.org/concepts/
 
 
 
-[1] 순서
-==================
-기본 명령어 : 
-npm -v
-node -v
-
-package.json 생성
-npm init
-
-1.뷰 설치
-npm i vue 
-
-
-2. webpack 생성
-    - npm i -D webpack webpack-cli
-  ** : -D 는 개발용 옵션.
-
 
 
