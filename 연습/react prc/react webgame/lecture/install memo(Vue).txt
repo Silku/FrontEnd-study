@@ -44,3 +44,42 @@ vue파일을 만나면 vue-loader가 처리해라.
 npm i vue-template-compiler -D
 
 ** vue랑 vue-template-compiler는 버전 동일하게 맞춰줘야 함.
+
+
+
+
+
+
+[3] vue 반복문
+===================================
+참조파일 : 3.numberBaseball.vue
+
+<li v-for="t in tries">
+
+v-for 안에 들어가는 구문은 자바스크립트로 동작하는데, 
+try catch , if 등은 예약어므로 쓸수가 없음 따라서 t 로 쓰게됨.
+
+
+[4] vue 기타 팁
+===================================
+
+1. submit 표현식
+
+<form v-on:submit="onSubmitForm">
+
+onSubmitFrom(e){
+   e.preventDefault();
+}
+
+위와 같은 코드를 아래와 같이 축약가능
+
+<form @submit.prevent="onSubmitForm">
+
+onSubmitFrom(){
+
+}
+
+---------------------------------------------------------------
+
+
+2.
