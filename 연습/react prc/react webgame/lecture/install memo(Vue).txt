@@ -83,3 +83,16 @@ onSubmitFrom(){
 
 
 2.
+
+
+[5] webpack 기타 팁
+===================================
+
+1. --watch 명령어
+package.json 에서..
+아래와 같이 --watch를 붙여줄 경우 작업파일에 내용이 갱신되면 자동으로 다시 빌드하게끔 만들어줌
+
+  "scripts": {
+    "build": "webpack --watch"
+  },
+
