@@ -81,7 +81,7 @@
                     this.value = '';
                     this.$refs.answer.focus();
                 }
-                // ㅁㄴㅇㄴㅁㅇㄴ
+                
             }
         }
 
