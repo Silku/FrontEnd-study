@@ -79,10 +79,24 @@ onSubmitFrom(){
 
 }
 
+추가로 v-bind:class="state" 같은경우도 
+:class="state" 형식으로 축약가능
 ---------------------------------------------------------------
 
+2. template 
+div 대신 사용가능, 개발자 도구로 볼때 아예 안보이지만 v-if 등의 속성은 여전히 사용가능.
 
-2.
+!! 아래 같은 형식 불가능. 최상위 template 바로 아래에는 그냥 div써야됨. 
+   태그 중간중간에 template써서 가려주는건 가능.
+<template>
+  <template>
+  </template>
+</template>
+
+3. v-show
+v-if 쓰는거랑 다를바 없지만 v-if의 경우 개발자도구에서 <-- -->(주석) 형태로 아예 보이지 않지만
+v-show는 태그는 존재하되 display:none 속성이 적용된 상태로 있음.
+
 
 
 [5] webpack 기타 팁
