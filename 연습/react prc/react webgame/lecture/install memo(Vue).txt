@@ -154,3 +154,5 @@ package.json과 webpack.config.js에 각각 아래 코드 추가하면 동작하
 
 [8] vue LifeCycle
 ===================================
+크게 4단계로 구분됨. 
+created ,mounted , updated, destroyed
