@@ -156,3 +156,16 @@ package.json과 webpack.config.js에 각각 아래 코드 추가하면 동작하
 ===================================
 크게 4단계로 구분됨. 
 created ,mounted , updated, destroyed
+
+
+[9] vue 스타일 가이드
+===================================
+https://v3.ko.vuejs.org/style-guide/
+
+우선순위 A:필수
+1.컴포넌트의 이름은 항상 두단어 이상 합성
+2.컴포넌트의 data는 반드시 함수
+3.props는 반드시 type을 정의해야함.
+4.v-for에는 key값이 반드시 필요
+5.v-if와 v-for 절대 동시에 사용하면 안된다.
+등등..
