@@ -14,13 +14,17 @@
 
 <script>
 import LottoBall from './LottoBall.vue';
-
+    /**
+        비동기 코드
+        대표적으로 timer, eventListner 등
+        
+     */
     function getWinNumbers(){
         console.log('getWinNubers');
-        const candidate = Array(45).fill().map((v,i) => i +1);
+        const candidate = Array(45).fill().map((v,i) => i +1); //fill로 무작위 배열을 채운다음, map()으로 정렬
         const shuffle = [];
         while(candidate.length > 0){
-            shuffle.push(candidate.splice(Math.floor(Math.random()*candidate.length),1)[0]);
+            shuffle.push(candidate.splice(Math.floor(Math.random()*candidate.length),1)[0]);  
         }
         const bonusNumber = shuffle[shuffle.length -1];
         const winNumbers = shuffle.slice(0,6).sort((p,c) => p-c);
@@ -89,7 +93,17 @@ import LottoBall from './LottoBall.vue';
             console.log('destroyed')
         },
         watch:{
-            
+            // watch : 어떠한 값이 바뀌었을떄 감시하는 기능, 비동기로 동작
+            winBalls(value, oldValue){
+                if(value.length ===0){
+                    this.showBalls();
+                }
+            },
+            // redo(value, oldValue){
+            //     if(value === false ){
+            //         this.showBalls();
+            //     }
+            // }
         }
     };
 </script>
