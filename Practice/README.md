@@ -1,9 +1,9 @@
 ## 구분
 
-- [`node`](https://github.com/Silku/FrontEnd-Study/tree/main/%EC%97%B0%EC%8A%B5/nodejs%20prc)
+- [`node`](https://github.com/Silku/FrontEnd-Study/tree/main/Practice/nodejs%20prc)
   
-- [`react`](https://github.com/Silku/FrontEnd-Study/tree/main/%EC%97%B0%EC%8A%B5/react%20prc)
+- [`react`](https://github.com/Silku/FrontEnd-Study/tree/main/Practice/react%20prc)
   
-- [`svelte`](https://github.com/Silku/FrontEnd-Study/tree/main/%EC%97%B0%EC%8A%B5/svelte)
+- [`svelte`](https://github.com/Silku/FrontEnd-Study/tree/main/Practice/svelte)
 
-- [`socketio`](https://github.com/Silku/FrontEnd-Study/tree/main/%EC%97%B0%EC%8A%B5/socketio%20prc)
+- [`socketio`](https://github.com/Silku/FrontEnd-Study/tree/main/Practice/socketio%20prc)

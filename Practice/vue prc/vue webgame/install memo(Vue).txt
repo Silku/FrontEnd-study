@@ -169,3 +169,8 @@ https://v3.ko.vuejs.org/style-guide/
 4.v-for에는 key값이 반드시 필요
 5.v-if와 v-for 절대 동시에 사용하면 안된다.
 등등..
+
+[10]vue 특징 : 7.틱택토..중
+this.$root , this.$parent
+$표시를 사용해 자식컴포넌트에서 부모 루트의 데이터 조작이 가능하게 됨
+(vue에서 제공하는기능)

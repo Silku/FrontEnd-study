@@ -14,18 +14,18 @@
 - [`클론코딩`](https://github.com/Silku/FrontEnd-Study/tree/main/KoreaITAcademy/clone%20coding)
 
 ### 개인 학습
-- [`node`](https://github.com/Silku/FrontEnd-Study/tree/main/%EC%97%B0%EC%8A%B5/nodejs%20prc)
+- [`node`](https://github.com/Silku/FrontEnd-Study/tree/main/Practice/nodejs%20prc)
   
-- [`react`](https://github.com/Silku/FrontEnd-Study/tree/main/%EC%97%B0%EC%8A%B5/react%20prc)
+- [`react`](https://github.com/Silku/FrontEnd-Study/tree/main/Practice/react%20prc)
   
-- [`svelte`](https://github.com/Silku/FrontEnd-Study/tree/main/%EC%97%B0%EC%8A%B5/svelte)
+- [`svelte`](https://github.com/Silku/FrontEnd-Study/tree/main/Practice/svelte)
 
-- [`socketio`](https://github.com/Silku/FrontEnd-Study/tree/main/%EC%97%B0%EC%8A%B5/socketio%20p)
+- [`socketio`](https://github.com/Silku/FrontEnd-Study/tree/main/Practice/socketio%20p)
 
 
 ### 프로젝트
--  [`youtube API 활용하기 (React)`](https://github.com/Silku/FrontEnd-Study/tree/main/%EC%97%B0%EC%8A%B5/react%20prc/youtubeAPI)
+-  [`youtube API 활용하기 (React)`](https://github.com/Silku/FrontEnd-Study/tree/main/Practice/react%20prc/youtubeAPI)
 
 ### 기타
- - [WebGame 만들기(React / zerocho](https://github.com/Silku/FrontEnd-Study/tree/main/%EC%97%B0%EC%8A%B5/react%20prc/react%20webgame)
-- [WebGame 만들기(Vue / zerocho](https://github.com/Silku/FrontEnd-Study/tree/main/%EC%97%B0%EC%8A%B5/react%20prc/react%20webgame/99.vuePractice)
+ - [`WebGame 만들기(React / zerocho)`](https://github.com/Silku/FrontEnd-Study/tree/main/Practice/react%20prc/react%20webgame)
+- [`WebGame 만들기(Vue / zerocho)`](https://github.com/Silku/FrontEnd-Study/tree/main/Practice/vue%prc/vue%webgame)
