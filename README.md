@@ -28,4 +28,4 @@
 
 ### 기타
  - [`WebGame 만들기(React / zerocho)`](https://github.com/Silku/FrontEnd-Study/tree/main/Practice/react%20prc/react%20webgame)
-- [`WebGame 만들기(Vue / zerocho)`](https://github.com/Silku/FrontEnd-Study/tree/main/Practice/vue%prc/vue%webgame)
+- [`WebGame 만들기(Vue / zerocho)`](https://github.com/Silku/FrontEnd-Study/tree/main/Practice/vue%20prc/vue%20webgame)

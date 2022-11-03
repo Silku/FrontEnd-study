@@ -10,6 +10,7 @@
 </template>
 
 <script>
+// TableComponent
 import TrComponent from './TrComponent'
 
     export default{

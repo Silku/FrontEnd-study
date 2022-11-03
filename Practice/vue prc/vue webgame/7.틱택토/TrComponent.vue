@@ -11,6 +11,7 @@
 </template>
 
 <script>
+// TrComponent
 import TdComponent from './TdComponent'
 
 export default {
