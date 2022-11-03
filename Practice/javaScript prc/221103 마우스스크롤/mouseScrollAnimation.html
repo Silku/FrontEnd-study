@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마우스 스크롤 애니메이션</title>
+    <style>
+        body {
+            background-color: #000;
+            height: 6000px;
+            font-family: 'nanumsquare';
+        }
+
+        div {
+            margin-top: 500px;
+            margin-bottom: 1000px;
+            color: #fff;
+            text-align: center;
+            opacity: 0;
+            transition: all 2s;
+            transform: translate(-1000px, 0);
+        }
+    </style>
+</head>
+<div>
+    <h1>스크롤바를 내려볼게요</h1>
+</div>
+<div>
+    <h1>안녕하세요.ㅎㅎ</h1>
+</div>
+<div>
+    <h1>IntersectionObserver()</h1>
+</div>
+<div><img src="./lg_image2.jpg" width="1000px"></div>
+
+<body>
+    <script>
+        // Intersection Observer API는 타겟 요소와 상위 요소 또는 최상위 document 의 viewport 사이의 intersection 내의 변화를 비동기적으로 관찰하는 방법입니다.
+
+        // isIntersecting => boolean
+        let observer = new IntersectionObserver((e) => {
+            e.forEach((box) => {
+                // console.log(box)
+                if (box.isIntersecting) {
+                    box.target.style.opacity = 1;
+                    // box.target.style.transform = 'rotate(360deg)';
+                    box.target.style.transform = 'translate(0px, 0)';
+
+                } else {
+                    box.target.style.opacity = 0;
+                    box.target.style.transform = 'translate(-1000px, 0)';
+                }
+            })
+        })
+
+        let div = document.querySelectorAll('div');
+        for (let i = 0; i < div.length; i++) {
+            observer.observe(div[i])
+        }
+        // observer.observe(div[0]);
+        // observer.observe(div[1]);
+        // observer.observe(div[2]);
+        // observer.observe(div[3]);
+
+
+        // 그외 옵션
+        /*
+        entries : IntersectionObserverEntry 인스턴스의 배열입니다.
+            boundingClientRect: 관찰 대상의 사각형 정보(DOMRectReadOnly)
+            intersectionRect: 관찰 대상의 교차한 영역 정보(DOMRectReadOnly)
+            intersectionRatio: 관찰 대상의 교차한 영역 백분율(intersectionRect 영역에서 boundingClientRect 영역까지 비율, Number)
+            isIntersecting: 관찰 대상의 교차 상태(Boolean)
+            rootBounds: 지정한 루트 요소의 사각형 정보(DOMRectReadOnly)
+            target: 관찰 대상 요소(Element)
+            time: 변경이 발생한 시간 정보(DOMHighResTimeStamp)
+        */
+    </script>
+</body>
+
+</html>
