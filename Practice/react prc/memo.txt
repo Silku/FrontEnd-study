@@ -57,7 +57,7 @@ https://babeljs.io/docs/en/babel-standalone
  (*-g는 글로벌 설치)
  yarn create react-app test
  cd test
- yarn start
+ (실행 : yarn start)
 
 프로젝트 구조
 .gitignore 
@@ -329,7 +329,8 @@ useReducer의 첫번째 파라미터는 reduecer함수, 두번째 파라미터�
 
 
 [6] SCSS
-**test2폴더/src/button.js button.scss ** 
+** 내 작업경로 : test2폴더/src/button.js button.scss ** 
+
 CSS pre-processor(=전처리)
 1.Sass(scss/sass)
 - 복잡한 css 작업을 쉽게 할 수 있게 해주고 코드의 재 활용성을 높여줄 뿐만 아니라 가동성도 높여주기 떄문에 유지보수를 쉽게 해줌.
@@ -350,7 +351,7 @@ classNames('Button', {outline:true}); -> 'Button outline'
 
 
 2.CSS Module
-**test2폴더/box.module.css box.js**
+** 내 작업경로 : test2폴더/box.module.css box.js**
 - 리액트 프로젝트에서 컴포넌트를 스타일링할때 CSS클래스가 중첩되는 것을 방지 
 - CRA  (= Create React App) 프로젝트에서 CSS Module을 사용 할 때에는 CSS 파일의 확장자를 .module.css
 - 파일경로, 파일이름, 클래스이름, 해쉬값등 사용
@@ -467,7 +468,7 @@ https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&
 
 =========================================================
 자바스크립트 fetch()
-** app.jsx **
+** 내 작업경로 : app.jsx **
 - 비동기 HTTP통신 Ajax
 - 라이브러리 -> request, axios, jQuery
 - fetch() : HTTP 비통기통신, 자바스크립트(브라우저) 내장

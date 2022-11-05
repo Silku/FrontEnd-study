@@ -20,7 +20,7 @@
   
 - [`svelte`](https://github.com/Silku/FrontEnd-Study/tree/main/Practice/svelte)
 
-- [`socketio`](https://github.com/Silku/FrontEnd-Study/tree/main/Practice/socketio%20p)
+- [`socketio`](https://github.com/Silku/FrontEnd-Study/tree/main/Practice/socketio%20prc)
 
 
 ### 프로젝트

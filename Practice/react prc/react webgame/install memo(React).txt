@@ -1,0 +1,121 @@
+[1] Webpack . 시작하기.
+-------------------------------------------------------------
+1. 시작하기
+npm init  => package.json 생성.
+npm i react react-dom  //react , react-dom 설치
+npm i -D webpack webpack-cli //웹팩 및 웹팩cli 설치, -D는 개발용("devDependencies")
+*메모사항 : ******** 
+    -D 는 개발용으로 쓰인다는것을 의미함.
+    package.json에도 아래처럼 webpack이 devDependencies라고 따로 등록됨.
+  "devDependencies": {
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+*********
+
+2. webpack.config.js 파일 생성 후 아래 코드 추가
+// (webpack.config.js 거의 기본형)
+// entry, output, module, plugins + @ 일단 이정도로 알아두기
+
+const path = require('path');
+
+module.exports  ={
+    entry:{
+
+    },
+    module:{
+
+    },
+    plugins:[ ],
+    output:{
+      path: path.join(__dirnamem, 'dist'),
+    },
+}
+
+2-1. path에 대한 설명
+const path = require('path');
+
+output:{
+  path: path.join(__dirname, 'dist'),
+},
+
+node의 path를 불러온다음 path.join(__dirname, 'dist'), 이런식으로 해주면
+해당 디렉토리에 'dist' 폴더에 접근하게끔 해주는것임.
+이렇게 쓰지 않을경우, C://progamfiles.... 다 찾아서 들어가는 엄청 복잡한 경로를 직접 세팅해줘야함.
+
+
+
+3.jsx 파일 생성 후 아래코드 추가
+const React = require('react')
+const ReactDOM = require('react-dom')
+
+
+
+
+
+[2] 빌드하기
+1.package.json에서 스크립트 부분을 아래와 같이 지정
+  "scripts": {
+    "dev": "webpack"
+  },
+
+2.터미널에서 아래와 같이 실행
+npm run dev
+npx webpack
+
+==> webpack.config.js 에서 output 설정해준것과 같이 dist/app.js 가 생성됨
+
+3.babel이 있어야 jsx파일을 읽을 수 있고 babel에서 jsx를 읽을 수 있도록 설정해야한다.
+npm i -D @babel/core @babel/preset-env @babel/preset-react babel-loader
+아래처럼 나눠서 설치해도 됨
+npm i -D @babel/core            //기본 바벨, 최신문법
+npm i @babel/preset-env       //바벨을 환경에 맞게 바꿔줌
+npm i @babel/preset-react     // react -> jsx를 읽는 역할 
+npm i babel-loader                //바벨과 웹팩을 연결하는 역할
+
+
+babel/preset-env 설정 :: 브라우저 지원 관련 참조 링크
+https://github.com/browserslist/browserslist
+
+웹팩 공식문서
+https://webpack.js.org/concepts/
+
+
+
+[3] 웹팩 4버전 변경점 관련... webpack dev server 등
+** webpack-cli가 3 -> 4에서 변경점이 있으므로 알아둘것.**
+
+npm i react-refresh @pmmmwh/react-refresh-webpack-plugin -D
+npm i webpack-dev-server -D
+
+
+기존 package.json
+scripts : {
+  "dev" : "webpack-dev-server --hot"
+}
+
+변경점 ==> 
+scripts : {
+  "dev" : "webpack serve --env development"
+}
+
+
+기존 webpack.config.js
+module 에서 loader : 'babel-loader'.....
+options : {
+    plugins:[
+      'react-hot-loader/babel',
+  ],
+}
+
+변경점 ==> 
+plugins:[
+    'react-refesh/babel',
+],
+
+새로 추가 ==>
+devServer:{
+    publicPath: '/dist',
+    hot:true
+}
+

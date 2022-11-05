@@ -1,4 +1,7 @@
 const path = require('path');
+const { webpack } = require('webpack');
+const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
+const RefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 // path 조작을 도와주는 node
 
 
@@ -37,18 +40,34 @@ module.exports = {
                         },
                         debug: true,
                     }], 
-                    '@babel/preset-react'],
+                    '@babel/preset-react'
+                ],
+                plugins:[
+                    'react-refesh/babel',
+                ],
             }
         }]
     },
     //plugins 기본적으로 babel에서 지원하는것 외에 더 붙이고 싶을때 사용
     plugins: [
+        new LoaderOptionsPlugin ({ debug : true }),
+        new RefreshWebpackPlugin()
     ],
     // output : 출력하는 부분
     output : {
         path: path.join(__dirname, 'dist'),
         filename: 'app.js',
+        publicPath: '/dist/',
     },
- 
+    devServer:{
+        port:3000,
+        devMiddleware:{
+            publicPath:'/dist',
+        }, 
+        static:{
+            directory : path.resolve(__dirname),
+        },
+        hot:true,
+    }
 };
 
