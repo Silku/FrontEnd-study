@@ -1,8 +1,8 @@
 const path = require('path');
-const { webpack } = require('webpack');
+// path 조작을 도와주는 node
+
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const RefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-// path 조작을 도와주는 node
 
 
 //웹팩 설정  entry, module, plugins, output + mode 등 기타설정 흐름 잘 기억하기!
@@ -43,7 +43,7 @@ module.exports = {
                     '@babel/preset-react'
                 ],
                 plugins:[
-                    'react-refesh/babel',
+                    'react-refresh/babel',
                 ],
             }
         }]
@@ -57,12 +57,12 @@ module.exports = {
     output : {
         path: path.join(__dirname, 'dist'),
         filename: 'app.js',
-        publicPath: '/dist/',
+        publicPath: '/dist',
     },
     devServer:{
         port:3000,
         devMiddleware:{
-            publicPath:'/dist',
+            publicPath: '/dist',
         }, 
         static:{
             directory : path.resolve(__dirname),

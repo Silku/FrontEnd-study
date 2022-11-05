@@ -83,6 +83,19 @@ https://webpack.js.org/concepts/
 
 
 [3] 웹팩 4버전 변경점 관련... webpack dev server 등
+// 제일 중요한거. 
+/**
+react-refresh, @pmmmwh 둘의 버전 차이라던지 webpack cli 버전이라던지 에러를 유발하는 상황이 너무 많음.
+짜증나니 지금 당장은 이렇게 버전 맞춰서 사용.
+
+"@pmmmwh/react-refresh-webpack-plugin": "^0.5.1",
+"react-refresh": "^0.10.0",
+"webpack": "^5.74.0",
+"webpack-cli": "^4.10.0",
+"webpack-dev-server": "^4.3.1"
+
+ **/ 
+
 ** webpack-cli가 3 -> 4에서 변경점이 있으므로 알아둘것.**
 
 npm i react-refresh @pmmmwh/react-refresh-webpack-plugin -D
