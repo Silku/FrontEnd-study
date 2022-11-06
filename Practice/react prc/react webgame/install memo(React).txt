@@ -132,3 +132,13 @@ devServer:{
     hot:true
 }
 
+
+[4]controlled input & uncontrolled input
+참고 사이트 : https://goshacmd.com/controlled-vs-uncontrolled-inputs-react/
+
+controlled input 쓸때 가능한것
+instant field validation = 비밀번호 조건
+conditionally disabling submit input = 비밀번호 8자리 입력해야되는데 4자리 입력한 경우 submit disable 시킴
+enforcing input format = 비밀번호 조건 강제
+several inputs for one piece of data = setState로 여러 input data를 컨트롤 하게할 경우
+dynamic inputs = 비밀번호 잘못썼을때 빨간테두리 등
