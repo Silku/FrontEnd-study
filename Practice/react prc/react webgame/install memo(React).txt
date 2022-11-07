@@ -83,6 +83,7 @@ https://webpack.js.org/concepts/
 
 
 [3] 웹팩 4버전 변경점 관련... webpack dev server 등
+// 연습파일 : NumberBaseBall
 // 제일 중요한거. 
 /**
 react-refresh, @pmmmwh 둘의 버전 차이라던지 webpack cli 버전이라던지 에러를 유발하는 상황이 너무 많음.
@@ -136,9 +137,39 @@ devServer:{
 [4]controlled input & uncontrolled input
 참고 사이트 : https://goshacmd.com/controlled-vs-uncontrolled-inputs-react/
 
-controlled input 쓸때 가능한것
+-- controlled input 쓸때 가능한것
 instant field validation = 비밀번호 조건
 conditionally disabling submit input = 비밀번호 8자리 입력해야되는데 4자리 입력한 경우 submit disable 시킴
 enforcing input format = 비밀번호 조건 강제
 several inputs for one piece of data = setState로 여러 input data를 컨트롤 하게할 경우
 dynamic inputs = 비밀번호 잘못썼을때 빨간테두리 등
+
+
+[5] React 배열과 key
+
+html에 대략 이런 배열이 있으면 이렇게 반복문 사용가능.
+
+<ul>
+  {['사과', '바나나','귤', '포도'].map((v)=>{
+      return (
+          <li>{v}</li>
+      )
+  })} 
+
+
+여기서 map() 다음 중괄호를 지워서도 사용이 가능함.
+<ul>
+  {['사과', '바나나',  '귤', '포도'].map((v)=>
+          <li>{v}</li>
+  )}
+</ul>
+
+다음처럼 '절대 쓰지말것' ... key값 정하기 까다로워서 i값을 줘버리면 성능최적화에 안좋으니 다음처럼 쓰지마라 .. 
+아래처럼 바뀌면 뭐가 바꼈는지 리액트가 인식을 못할수 있다.
+근데 리액트 반복문을 쓸떄는 key값이 중요한데
+key값은 고유한값을 줘야되고 정하는게 좀 골치아픈 작업이다.
+<ul>
+  {['사과', '바나나',  '귤', '포도'].map((v,i)=>
+          <li key={i}>{v,i}</li>
+  )}
+</ul>
