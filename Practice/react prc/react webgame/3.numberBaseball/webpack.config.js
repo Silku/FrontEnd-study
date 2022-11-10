@@ -1,5 +1,8 @@
-const path = require('path');
 // path 조작을 도와주는 node
+const path = require('path');
+
+// production.env.NODE_ENV = 'production'
+
 
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const RefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');

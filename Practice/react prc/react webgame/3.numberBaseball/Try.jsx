@@ -1,6 +1,6 @@
-import React from "react";
+import React, { memo } from "react";
 
-const Try = ({tryInfo}) =>{
+const Try = memo(({tryInfo}) =>{
     // {tryInfo} 쓰던지 대신 (props)넣고  <div>props.tryInfo.try</div> 하던지
     return (
         <li>
@@ -8,7 +8,7 @@ const Try = ({tryInfo}) =>{
             <div>{tryInfo.result}</div>
         </li>
     )
-}
+})
 
 // class Try extends Component{
 //     render(){

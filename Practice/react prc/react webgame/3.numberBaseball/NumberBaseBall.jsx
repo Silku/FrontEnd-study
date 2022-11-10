@@ -1,5 +1,5 @@
 // import로 쓰는법
-import React,{useState} from 'react';
+import React,{useRef, useState} from 'react';
 // import  from 'react'
 import Try from './Try';
 
@@ -19,8 +19,9 @@ const NumberBaseBall = ()=> {
     const [result,setResult] = useState('');
     const [value,setValue] = useState('');
     const [answer,setAnswer] = useState(getNumbers); //lazy init , 늦은 초기화
-    //'useState를 쓸때' getNumbers ,getNumbers() 차이 : getNumbers로넣어주면 리렌더링 될때 다시 실행안됨.  getNumbers()이렇게 쓰면 리렝더링될떄 계속 실행되서 비효율적
+    //'useState를 쓸때' getNumbers ,getNumbers() 차이 : getNumbers로넣어주면 리렌더링 될때 다시 실행안됨.  getNumbers()이렇게 쓰면 리렌더링될떄 계속 실행되서 비효율적
     const [tries,setTries] = useState([]);
+    const inputEl = useRef(null);
 
     const onSubmitForm = (e) =>{
         e.preventDefault();
@@ -36,7 +37,7 @@ const NumberBaseBall = ()=> {
             setAnswer(getNumbers());
             setTries([]);
             alert('성공! 게임을 다시 실행합니다!')
-            // e.current.focus();
+            inputEl.current.focus(); 
         } else {
             // 정답이 아닐때
             let strike = 0;
@@ -48,6 +49,7 @@ const NumberBaseBall = ()=> {
                 setValue('');
                 setAnswer(getNumbers());
                 setTries([]);
+                inputEl.current.focus();
             }else{
                 // 10번 이하로 틀릴때
                 const answerArray = value.split('').map(v => parseInt(v));
@@ -63,6 +65,7 @@ const NumberBaseBall = ()=> {
                 setTries((prevTries) => 
                     [...prevTries, {try:value, result:`${strike} 스트라이크 , ${ball} 볼입니다.`}]);
                 setValue('');
+                inputEl.current.focus();
             }
         }
     }
@@ -76,7 +79,9 @@ const NumberBaseBall = ()=> {
         <>
             <h2>{result}</h2>
             <form onSubmit={onSubmitForm}>
-                <input maxLength={4} 
+                <input 
+                ref={inputEl}
+                maxLength={4} 
                 value={value}
                 onChange={onChangeInput}></input>
             </form>

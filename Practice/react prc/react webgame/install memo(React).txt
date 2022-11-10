@@ -173,3 +173,22 @@ key값은 고유한값을 줘야되고 정하는게 좀 골치아픈 작업이�
           <li key={i}>{v,i}</li>
   )}
 </ul>
+
+
+[6] React dev tools
+...
+
+실제 서비스할때 : webpack.config.js 에서,,
+아래 두개 붙여주면됨
+
+production.env.NODE_ENV = 'production'
+
+module.exports = {
+mode: ' production'
+}
+
+[7] react Memo.
+class 형태로 쓸때는 pureComponent, 함수컴포넌트(hooks)로 쓸때는 Memo()로 감싸주는 형태로 쓰면됨.
+- 자식 컴포넌트가 언제 리렌더링 되나 ? 
+=> state가 바뀌었을때, props가 바뀌었을때, 부모컴포넌트가 리렌더링 됬을때.
+=> memo는 부모컴포넌트가 리렌더링될때 자식컴포넌트가 리렌더링되는걸 막아주는 역할.
