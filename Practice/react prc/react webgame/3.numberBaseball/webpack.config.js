@@ -1,6 +1,7 @@
 // path 조작을 도와주는 node
 const path = require('path');
 
+// 배포할때는 환경변수 설정해줘야한다.
 // production.env.NODE_ENV = 'production'
 
 

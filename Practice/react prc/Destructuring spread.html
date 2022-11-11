@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        let person = {
+            name: "홍길동",
+            age: 20
+        }
+
+        //Destructuring Assignment
+        let { name, age } = person
+
+        // console.log(name, age)
+
+        // spread
+        let array = ["치킨", "피자", "햄버거", "떡볶이"]
+        let [a, b, ...rest] = array
+        console.log(a)
+        console.log(array[2])
+
+        let person2 = { ...person, name: "임꺽정" };
+        console.log(person2);
+
+
+        let person3 = { ...person, job: "학생" }
+        console.log(person3);
+
+        let person4 = { ...person2, ...person3 }
+        console.log(person4)
+
+
+        // iterable이 아니므로 사용불가능
+        // console.log(...{ a: 1, b: 2 });
+
+
+        let person5 = person;
+        console.log(person5 == person)
+        let person6 = { ...person }
+        console.log(person6 == person)
+
+
+    </script>
+</body>
+
+</html>
