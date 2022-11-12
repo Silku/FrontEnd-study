@@ -10,7 +10,7 @@ const Try = memo(({tryInfo}) =>{
     )
 })
 
-// class Try extends Component{
+// class Try extends PureComponent{
 //     render(){
 //         const {tryInfo} = this.props;
 //         return(
