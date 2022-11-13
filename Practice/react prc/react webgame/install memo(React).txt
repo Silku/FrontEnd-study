@@ -198,3 +198,74 @@ class 형태로 쓸때는 pureComponent, 함수컴포넌트(hooks)로 쓸때는 
 useRef 쓰는 경우 : dom에 직접 접근이 필요할때, hooks에서 this속성에 접근할때
 !!!!useRef쓰는데는 current 항상붙음. !!!!!
 useRef는 렌더링을 일으키지 않음, 값이 바뀌긴 하지만 화면에 영향을 주지 않는것에 사용.
+
+[9] useTransition , useDeferredValue
+- 성능개선을 도와주는 react18버전 신기능
+- useTransition : 트랜지션 효과를 주어 성능저하 되는 부분을 나중에 처리해줌.
+  startTransition() : 문제되는 코드를 startTransition()으로 감싸준다.
+  isPending : startTransition이 처리중일때 true로 변함, 로딩할떄 쓰기 유용.
+
+
+ex) useTransition
+------------------------------------------------------------
+
+let [isPending, startTransition] = useTransition();
+let [name, setName] = useState('')
+
+<input onChange={(e)=>{
+  startTransition(){
+    setName(e.target.value);
+  }
+}}
+/>
+//<div/> 부분이 1만개라 가정
+{ isPending ? '로딩중..' :  <div>{name}</div>}
+
+------------------------------------------------------------
+
+ex) useDeferredValue : 마찬가지로 느린컴포넌트 성능개선.
+------------------------------------------------------------
+
+let [name, setName] = useState('')
+let deferredState = useDeferredValue(name);
+
+<input onChange={(e)=>{
+  startTransition(){
+    setName(e.target.value);
+  }
+}}
+/>
+//<div/> 부분이 1만개라 가정
+{ <div>{deferredState}</div>}
+------------------------------------------------------------
+
+
+[10] REACT LifeCycle
+1. class component 의 경우 리액트 라이프사이클 
+=> constuctor -> render -> ref ->componentDidMount -> (setState/props 바뀌면) -> render -> componentDidUpdate
+부모에서 나를 없앴을때 -> componentWillUnmount -> 소멸
+
+componentDidMount, componentWillUnmount 가 한쌍
+
+const componentDidMount = () => {//컴포넌트가 첫 렌더링된 후 , 비동기 요청을 많이함.
+}
+
+const componentDidUpdate = () => {//state나 props 변경으로 리렌더링될때
+}
+
+const componentWillUnmount = () => {//컴포넌트가 제거되기 직전 , 비동기 요청을 정리하는데 많이 쓰임.
+}
+
+
+2.Hooks 쓰는 경우. useEffect를 사용
+useEffectt(()=>{
+
+},[])
+
+useEffect(()=>{//componentDidMount,componentDidUpdate 역할
+    interval.current = setInterval(changeHand, 100);
+    return () =>{ //componentWillUnmount역할
+        clearInterval(interval.current);
+    }
+    //아래에 있는 imgCoord가 바뀔때마다 useEffect안에 있는 함수들이 계속 실행됨.
+}, [imgCoord]);
