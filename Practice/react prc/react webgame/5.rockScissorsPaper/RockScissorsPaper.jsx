@@ -1,4 +1,5 @@
 import React,{useEffect, useRef, useState} from 'react';
+import useInterval from './useInterval';
 
 const rspCoords = {
     가위:'-139px',
@@ -22,15 +23,19 @@ const RockScissorsPaper = () =>{
     const [result, setResult] = useState('');
     const [score,setScore] = useState(0);
     const [imgCoord, setImgCoord] = useState(rspCoords.바위);
-    const interval = useRef(null);
+    
+    // useInterval 커스텀 훅으로 대체
+    // const interval = useRef(null);
 
-    useEffect(()=>{//componentDidMount,componentDidUpdate 역할
-        interval.current = setInterval(changeHand, 100);
-        return () =>{ //componentWillUnmount역할
-            clearInterval(interval.current);
-        }
-        //아래에 있는 imgCoord가 바뀔때마다 useEffect안에 있는 함수들이 계속 실행됨.
-    }, [imgCoord]);
+    // useEffect(()=>{//componentDidMount,componentDidUpdate 역할
+    //     interval.current = setInterval(changeHand, 100);
+    //     return () =>{ //componentWillUnmount역할
+    //         clearInterval(interval.current);
+    //     }
+    //     //아래에 있는 imgCoord가 바뀔때마다 useEffect안에 있는 함수들이 계속 실행됨.
+    // }, [imgCoord]);
+
+    const [isRunning, setIsRunning] = useState(true);
 
     const changeHand = () =>{
         if(imgCoord == rspCoords.바위){
@@ -42,23 +47,49 @@ const RockScissorsPaper = () =>{
         }
     };
 
-    const onClickButton = (choice) =>  () =>{
-        clearInterval(interval.current);
-        const myScore = scores[choice];
-        const cpuScore = scores[computerChoice(imgCoord)];
-        const diff = myScore - cpuScore;
-        if(diff === 0){
-            setResult('비겼습니다.');
-        }else if ([-1, 2].includes(diff)){
-            setResult('이겼습니다.') ;
-            setScore((prevScore) => prevScore+1);
-        }else {
-            setResult('졌습니다.') 
-            setScore((prevScore) => prevScore-1);
-        }
-        setTimeout(()=>{
-            interval.current = setInterval(changeHand, 1000)
-        },1000)
+    useInterval(changeHand , isRunning ? 100 : null);
+
+
+
+     // useInterval 커스텀 훅으로 대체
+    // const onClickButton = (choice) =>  () =>{
+    //     clearInterval(interval.current);
+    //     const myScore = scores[choice];
+    //     const cpuScore = scores[computerChoice(imgCoord)];
+    //     const diff = myScore - cpuScore;
+    //     if(diff === 0){
+    //         setResult('비겼습니다.');
+    //     }else if ([-1, 2].includes(diff)){
+    //         setResult('이겼습니다.') ;
+    //         setScore((prevScore) => prevScore+1);
+    //     }else {
+    //         setResult('졌습니다.') 
+    //         setScore((prevScore) => prevScore-1);
+    //     }
+    //     setTimeout(()=>{
+    //         interval.current = setInterval(changeHand, 100)
+    //     },1000)
+    // };
+
+        const onClickButton = (choice) =>  () =>{
+            if(isRunning){
+                setIsRunning(false);
+                const myScore = scores[choice];
+                const cpuScore = scores[computerChoice(imgCoord)];
+                const diff = myScore - cpuScore;
+                if(diff === 0){
+                    setResult('비겼습니다.');
+                }else if ([-1, 2].includes(diff)){
+                    setResult('이겼습니다.') ;
+                    setScore((prevScore) => prevScore+1);
+                }else {
+                    setResult('졌습니다.') 
+                    setScore((prevScore) => prevScore-1);
+                }
+            }
+            setTimeout(()=>{
+                setIsRunning(true);
+            },1000)
     };
 
 
