@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>and or 연산자 test</title>
+</head>
+
+<body>
+    <script>
+        const person = {
+            name: "한국인",
+            age: 20,
+            job: "student"
+        }
+        // if (person.name === undefined ||
+        //     person.name === false ||
+        //     person.name === null ||
+        //     person.name === '' ||
+        //     person.name === 0) {
+        //     console.log('이름이 없습니다.ㅎㅎ')
+        // }
+
+
+        /*
+        or연산자는
+        첫번째 값이 존재하면 첫째값을 return , 
+        그렇지 않으면 두번째 값을 리턴
+
+        기본값 설정할때 많이 사용
+        */
+        console.log(person.name || '이름이 없습니다.')  //한국인
+        console.log(person.address || '주소가 없습니다.') //주소가 없습니다.
+
+
+        /*
+        && 연산자는 
+        두개의 값이 모두 참이면 마지막값을 return,
+        둘중에 하나라도 false면 false를 리턴
+
+        특수한 상황의 조건문에 많이 사용
+        */
+
+        console.log(person.age < 20 && '운전불가능'); //false
+        console.log(person.age > 19 && '운전가능'); //운전가능
+
+
+    </script>
+</body>
+
+</html>
