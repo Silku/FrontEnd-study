@@ -12,7 +12,7 @@ const RefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 //웹팩 설정  entry, module, plugins, output + mode 등 기타설정 흐름 잘 기억하기!
 
 module.exports = {
-    name: 'wordrelay',
+    name: 'webgame',
     mode: 'development', // 실서비스: production
     devtool: 'eval', // 실서비스: hidden-source-map
     //resolve : entry에 등록된 파일명에 해당하는 확장자를 웹팩에서 자동으로 찾아줌

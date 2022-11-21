@@ -271,3 +271,24 @@ useEffect(()=>{//componentDidMount,componentDidUpdate 역할
     }
     //아래에 있는 imgCoord가 바뀔때마다 useEffect안에 있는 함수들이 계속 실행됨.
 }, [imgCoord]);
+
+
+
+[11]useMemo, useEffect, useCallback 정리
+useMemo : component형태로 쓸때의 pureComponent
+useEffect : component mount, unmount 시점 관리
+useCallback : memo랑 비슷한데 memo는 값에 중점이 있다면 useCallback은 함수에 중점.
+
+1.useCallback 꼭 써줘야할떄 : 자식컴포넌트에 props로 함수를 넘겨줄때, 
+실질적으로 바뀌는건 없는데 자식컴포넌트에서 계속 물려받으면서 리렌더링 발생하는 경우가 생김.
+이때 리렌더링 방지를 위해 써줌
+
+2. 셋다 2번째 인자를 갖는함수들(뒤에 배열형태로)
+2번째 인자(배열요소)가 바뀌면 다시 렌더가 됨. 
+useMemo(()=>{} ,[])
+
+3.useMemo, useCallback 차이 
+useMemo는 설정해준 함수의 retrun '값'을 기억하는거고
+useCallback은 '함수' 자체를 기억
+값을 기억하는거랑 함수를 기억하는 차이
+
