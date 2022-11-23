@@ -292,3 +292,7 @@ useMemo는 설정해준 함수의 retrun '값'을 기억하는거고
 useCallback은 '함수' 자체를 기억
 값을 기억하는거랑 함수를 기억하는 차이
 
+
+
+[12] useReducer, useContext,
+useDispatch, useAction, useStore
