@@ -296,3 +296,34 @@ useCallback은 '함수' 자체를 기억
 
 [12] useReducer, useContext,
 useDispatch, useAction, useStore
+
+1.useReducer
+const [state, dispatch] = useReducer(reducer, initialState); //3번쨰 인자:  lazyinitialize
+
+reducer()는 action을 받아서 처리하는 역할.
+initialState()는 state 초기값 설정
+dispatch는 action 객체를 담고 있는 action이 일어날지점.
+
+
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+const reducer = (state, action) =>{
+switch(action.type){
+case SET_WINNER : 
+return{
+  ...state,
+  winner : action.winner,
+}
+
+const initialState = {
+	winner : '',
+	turn : 'o',
+	tableData: [['','',''],['','',''],['','','']],
+}
+
+dispatch({type: SET_WINNER, winner:'O'});
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+
+reducer를 사용할때 얕은복사를 계속 해줘야해서 가독성 문제가 있는데 
+immer라는 라이브러리로 가독성 해결할수 있음
+
+계속해서 아래컴포넌트로 값을 전달해줘야되는데 이것때문에 contextAPI를 쓰게됨.

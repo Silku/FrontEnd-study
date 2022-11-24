@@ -7,15 +7,33 @@ const initialState = {
 	tableData: [['','',''],['','',''],['','','']],
 }
 
-const SET_WINNER = 'SET_WINNER'
+export const SET_WINNER = 'SET_WINNER'
+// td로 전달해야되니 모듈화하는게 좋다.
+export const CLICK_CELL = 'CLICK_CELL'
+export const CHANGE_TURN= 'CHANGE_TURN'
 
 const reducer = (state, action) =>{
-	switch(action, type){
+	switch(action.type){
 		case SET_WINNER : 
 		// 이건직접 바꾸면 안됨, 여기서 직접적으로  state.winner = action.winner하면 안됨. 
 		return{
 			...state,
 			winner : action.winner,
+		}
+		case CLICK_CELL : {
+			const tableData = [...state.tableData]; //얕은복사 , 데이터 불변성을 위함
+			tableData[action.row] = [...tableData[action.row]];
+			tableData[action.row][action.cell] = state.turn; //현재 턴
+			return{
+				...state,
+				tableData
+			}
+		}
+		case CHANGE_TURN:{
+			return {
+				...state,
+				turn: state.turn === 'O' ? 'X' : 'O',
+			}
 		}
 	}
 }
@@ -35,7 +53,7 @@ const TicTacToe = () =>{
 
 	return (
 		<>
-			<Table onClick={onClickTable} tableData={state.tableData}></Table>
+			<Table onClick={onClickTable} tableData={state.tableData } dispatch={dispatch}></Table>
 			<div>{}님의 턴입니다.</div>
 			{state.winner &&  <div>{state.winner} 님의 승리!</div>}
 		</>
