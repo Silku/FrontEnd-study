@@ -307,11 +307,14 @@ dispatch는 action 객체를 담고 있는 action이 일어날지점.
 
 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 const reducer = (state, action) =>{
-switch(action.type){
-case SET_WINNER : 
-return{
-  ...state,
-  winner : action.winner,
+  switch(action.type){
+  case SET_WINNER : 
+    return{
+      ...state,
+    winner : action.winner,
+    }
+  default :
+    return state;
 }
 
 const initialState = {
@@ -327,3 +330,26 @@ reducer를 사용할때 얕은복사를 계속 해줘야해서 가독성 문제�
 immer라는 라이브러리로 가독성 해결할수 있음
 
 계속해서 아래컴포넌트로 값을 전달해줘야되는데 이것때문에 contextAPI를 쓰게됨.
+
+
+[13] contextAPI
+React.createContext  
+useReducer쓸때 dispatch를 props로 여러번 물려주는 단계를 줄여줄수 있음.
+
+단점 : contextAPI는 성능최적화에 힘들다. 
+main.jsx가 새로 리렌더링 될때마다 provider로 감싸준 컴포넌트에 value(객체)가 있으면 매번 새로 생김. 또한 아래에 있는 자식컴포넌트들도 새로 리렌더링 됨
+=> useMemo 사용해줘야한다.
+
+사용법
+1. 선언 
+const TableContext = createContext({
+
+})
+
+2. 접근하고 싶은 Component들을 ContextAPI.Provider로 묶어 준다, 전달할 value는 Provider에 넣는다.
+  <TableContext.Provider value={{}}>
+    <Form dispatch={dispatch} />
+    <div>{state.timer}</div>
+    <Table/>
+    <div>{state.result}</div>
+  </TableContext.Provider>
