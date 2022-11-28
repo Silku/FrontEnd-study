@@ -353,3 +353,7 @@ const TableContext = createContext({
     <Table/>
     <div>{state.result}</div>
   </TableContext.Provider>
+
+
+  [14]
+  onContextMenu : 마우스 우클릭이벤트를 사용할때

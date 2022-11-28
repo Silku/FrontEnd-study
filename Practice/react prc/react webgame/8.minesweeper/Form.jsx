@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useContext, } from 'react'
-import { TableContext } from './MineSweeper';
+import {START_GAME, TableContext } from './MineSweeper';
 
 const Form = () => {
     const [cell,setCell] = useState(10);
@@ -8,7 +8,7 @@ const Form = () => {
     const {dispatch} = useContext(TableContext);
 
     const onChangeCell = useCallback((e)=>{
-        setRow(e.target.value);
+        setCell(e.target.value);
     },[])
 
     const onChangeRow = useCallback((e) =>{
@@ -16,7 +16,7 @@ const Form = () => {
     },[])
 
     const onChangeMine = useCallback((e) =>{
-        setRow(e.target.value);
+        setMine(e.target.value);
     },[])
 
     const onClickBtn = useCallback(()=>{
@@ -25,9 +25,9 @@ const Form = () => {
 
     return (
         <div>
-            <input type="number" placeholder="가로" value={cell} onChange={onChangeCell}></input>
-            <input type="number" placeholder="세로" value={row} onChange={onChangeRow}></input>
-            <input type="number" placeholder="지뢰" value={mine} onChange={onChangeMine}></input>
+            <label >가로 <input type="number" placeholder="가로" value={cell} onChange={onChangeCell}></input></label>            
+            <label >세로 <input type="number" placeholder="세로" value={row} onChange={onChangeRow}></input></label>
+            <label>지뢰 <input type="number" placeholder="지뢰" value={mine} onChange={onChangeMine}></input></label>
             <button onClick={onClickBtn}>시작</button>
         </div>
     )
