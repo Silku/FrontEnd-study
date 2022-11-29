@@ -62,7 +62,7 @@ const getTdText = (code) =>{
 		case CODE.CLICKED_MINE : 
 		return '💥';
 		default : 
-			return '';
+			return code || '';
 	}
 }
 
@@ -77,7 +77,7 @@ const Td = ({rowIndex, cellIndex}) => {
 		switch(tableData[rowIndex][cellIndex]){
 			case CODE.MINE : 
 			dispatch({type:CLICK_MINE, row:rowIndex, cell:cellIndex})
-			return ''
+			return 	
 			case CODE.NORMAL : 
 			dispatch({type:OPEN_CELL, row:rowIndex, cell:cellIndex})
 			return;
