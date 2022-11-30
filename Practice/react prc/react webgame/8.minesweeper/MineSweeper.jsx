@@ -1,4 +1,4 @@
-import React, { useReducer, createContext, useMemo}  from 'react'
+import React, { useReducer, createContext, useMemo, useEffect}  from 'react'
 import Form from './Form'
 import Table from './Table'
 
@@ -22,9 +22,15 @@ export const TableContext = createContext({
 
 const initialState = {
 	tableData:[],
+	data : {
+		row:0,
+		cell:0,	
+		mine:0,
+	},
 	timer:0,
 	result:'',
-	gameStop : false,
+	gameStop : true,
+	openedCount : 0,
 }
 
 const plantMine = (row,cell, mine) =>{
@@ -60,21 +66,33 @@ export const CLICK_MINE = 'CLICK_MINE'
 export const FLAG_CELL = 'FLAG_CELL'
 export const QUESTION_CELL = 'QUESTION_CELL'
 export const NORMALIZE_CELL = 'NORMALIZE_CELL'
+export const INCREMENT_TIMER = 'INCREMENT_TIMER'
 
 const reducer = (state, action) => {
 	switch(action.type){
 		case START_GAME:
 			return{
 				...state,
+				data : {
+					row: action.row,
+					cell: action.cell,
+					mine: action.mine,
+				},
+				openedCount : 0,
 				tableData:plantMine(action.row, action.cell, action.mine),
 				gameStop: false,
+				timer:0,
+				result:''
 			}
 		case OPEN_CELL: {
 			const tableData = [...state.tableData];
 			tableData.forEach((row,i)=>{
 				tableData[i] = [...row];
 			})
+
 			const checked = [];
+			let openedCount = 0;
+
 			//주변칸이 비었을때 열기,  총 8칸
 			const checkAround = (row,cell) =>{
 				//상하좌우칸이 아닌경우 필터링
@@ -114,7 +132,7 @@ const reducer = (state, action) => {
 					)
 				}
 				const count = around.filter((v)=>[CODE.MINE, CODE.FLAG_MINE, CODE.QUESTION_MINE].includes(v)).length;
-				
+
 				// 주변칸 오픈
 				if(count === 0){
 					if(row > -1){
@@ -138,12 +156,26 @@ const reducer = (state, action) => {
 						});
 					}
 				}
+				if(tableData[row][cell] === CODE.NORMAL){
+					openedCount += 1;
+				}
 				tableData[row][cell] = count;
 			}
 			checkAround(action.row, action.cell)
+			// 승리시
+			let gameStop = false;
+			let result = '';
+			console.log(state.data.row * state.data.cell - state.data.mine, state.openedCount, openedCount)
+			if(state.data.row * state.data.cell - state.data.mine === state.openedCount + openedCount){
+				gameStop = true;
+				result = `승리!! 소요시간 : ${state.timer}초`
+			}
 			return {
 				...state,
 				tableData,
+				openedCount : state.openedCount + openedCount,
+				gameStop,
+				result
 			}
 		}
 
@@ -155,6 +187,7 @@ const reducer = (state, action) => {
 				...state,
 				tableData,
 				gameStop : true,
+				result : `패배..`
 			}
 		}
 		case FLAG_CELL:{
@@ -196,6 +229,12 @@ const reducer = (state, action) => {
 				tableData,
 			}
 		}
+		case INCREMENT_TIMER : {
+			return{
+				...state,
+				timer : state.timer + 1,
+			}
+		}
 		default:
 			return state; 
 	}
@@ -206,12 +245,25 @@ const MineSweeper = () =>{
 	const {tableData, gameStop, timer, result} = state
 	const value = useMemo(()=>({tableData : tableData, gameStop:gameStop, dispatch}),[tableData, gameStop])
 
+	// 타이머
+	useEffect(()=>{
+		let timer;
+		if(gameStop === false){
+			timer = setInterval(()=>{
+				dispatch({type: INCREMENT_TIMER}) 
+			}, 1000)
+		}
+		return () =>{
+			clearInterval(timer)
+		}
+	},[gameStop])
+
 	return (
 		<TableContext.Provider value={value}>
 			<Form />
-			<div>{timer}</div>
+			<div>{gameStop == false && timer + '초'}</div>
 			<Table/>
-			<div>{result}</div>
+			<h3>{result}</h3>
 		</TableContext.Provider>
 	);
 }

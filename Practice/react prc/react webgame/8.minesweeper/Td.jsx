@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from 'react'
+import React, { useCallback, useContext, memo, useMemo } from 'react'
 import {  CODE, CLICK_MINE, OPEN_CELL, FLAG_CELL, QUESTION_CELL, NORMALIZE_CELL, TableContext } from './MineSweeper'
 
 /**
@@ -67,7 +67,7 @@ const getTdText = (code) =>{
 }
 
 
-const Td = ({rowIndex, cellIndex}) => {
+const Td = memo(({rowIndex, cellIndex}) => {
 	const {tableData, gameStop, dispatch} = useContext(TableContext)
 
 	const onClickTd = useCallback(()=>{
@@ -118,14 +118,19 @@ const Td = ({rowIndex, cellIndex}) => {
 				return;
 		}
 	},[tableData[rowIndex][cellIndex],gameStop])
+	// console.log('td rendered')
+	return <RenderTd onClickTd={onClickTd} onRightClickTd={onRightClickTd} data={tableData[rowIndex][cellIndex]}/>
+})
 
-	return (
+const RenderTd = memo(({onClickTd, onRightClickTd, data})=>{
+	console.log('rendered Td')
+	return(
 		<td
-			style={getTdStyle(tableData[rowIndex][cellIndex])}
-			onClick={onClickTd}
-			onContextMenu={onRightClickTd} //우클릭시
-		>{getTdText(tableData[rowIndex][cellIndex])}</td>
+		style={getTdStyle(data)}
+		onClick={onClickTd}
+		onContextMenu={onRightClickTd} //우클릭시
+	>{getTdText(data)}</td>
 	)
-}
+});
 
 export default Td

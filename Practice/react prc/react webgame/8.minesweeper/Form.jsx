@@ -1,7 +1,7 @@
-import React, { useState, useCallback, useContext, } from 'react'
+import React, { useState, useCallback, useContext, memo} from 'react'
 import {START_GAME, TableContext } from './MineSweeper';
 
-const Form = () => {
+const Form = memo(() => {
     const [cell,setCell] = useState(10);
     const [row,setRow] = useState(10);
     const [mine,setMine] = useState(20);
@@ -31,6 +31,6 @@ const Form = () => {
             <button onClick={onClickBtn}>시작</button>
         </div>
     )
-}
+});
 
 export default Form
