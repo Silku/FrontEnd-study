@@ -1,0 +1,52 @@
+[1] next.js
+SSR을 위한 react 프레임워크
+npm i next@12
+
+
+특징 : 
+pages 폴더가 반드시 필요.
+import React .. 없어도 상관없음.
+
+
+components 추가하는법 
+디렉토리에 components 폴더 추가 (pages와는 다르게 폴더명 달라도 상관없음)
+
+[2] prop-types
+npm i prop-types
+타입스크립트면 prop-types가 필요없음. 자바스크립트면 필요
+PropTypes는 부모로부터 전달받은 prop의 데이터 type을 검사한다. 자식 컴포넌트에서 명시해 놓은 데이터 타입과 부모로부터 넘겨받은 데이터 타입이 일치하지 않으면 콘솔에 에러 경고문이 띄워진다.
+
+MyComponent.propTypes = {
+  // 리액트 요소
+  // <div>123</div> , <Component />
+  menu: PropTypes.element,
+  
+  // 컴포넌트 함수가 반환할 수 있는 모든 것(비추)
+  // <SomeComponent />, 123
+  description: PropTypes.node,
+  
+  // Message 클래스로 생성된 모든 객체
+  // new Messages() -> 참, new Car() -> 거짓
+  message: PropTypes.instanceOf(Message),
+  
+  // 배열에 포함된 값 중에서 하나를 만족
+  name: PropTypes.oneOf(["jake", "olivia"]),
+
+  // 배열에 포함된 타입 중에서 하나를 만족
+  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+
+  // 특정 타입만 포함하는 배열
+  // [1, 5, 7] -> 참, ['a', 'b'] -> 거짓
+  ages: PropTypes.arrayOf(PropTypes.number),
+
+  // 객체의 속성값 타입을 정의
+  // {color: 'red', weight: 123} -> 참
+  info: PropTypes.shape({
+    color: PropTypes.string,
+    weight: PropTypes.number
+  })
+
+  // 객체에서 모든 속성값의 타입이 같은 경우
+  // {prop1: 123, prop2: 456}
+  infos: PropTypes.objectOf(PropTypes.number)
+}
