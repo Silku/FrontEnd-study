@@ -1,8 +1,14 @@
 import React from 'react'
-
+import Head from 'next/head'
 const Profile = () => {
   return (
-    <div>프로필</div>
+    <>
+        <Head>
+            <title>My Profile | Next Board</title>
+        </Head>
+        <div>프로필</div>
+    </>
+
   )
 }
 

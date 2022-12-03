@@ -7,9 +7,33 @@ npm i next@12
 pages 폴더가 반드시 필요.
 import React .. 없어도 상관없음.
 
-
-components 추가하는법 
+1.components 추가하는법 
 디렉토리에 components 폴더 추가 (pages와는 다르게 폴더명 달라도 상관없음)
+//components 폴더
+import PropTypes from 'prop-types';
+
+const AppLayout = ({children}) => {
+  return (
+    <>
+        <div>공통메뉴</div>
+        {children}
+    </>
+  )
+}
+
+AppLayout.propTypes = {
+    children : PropTypes.node.isRequired
+    // 화면에 그릴수 있는 모든게 node, 'React의 node임' node.js의 node 아님!
+};
+
+
+2.pages/_app.js에 전역으로 사용할 내용을 작성,
+특정 컴포넌트에서만 쓰는경우는 components/~~layout.js로 만드는 식으로
+
+3. Header를 수정하고 싶을때, (title 등)
+넥스트에서 제공하는 head 기능이 있다.
+import Head from 'next/head'
+
 
 [2] prop-types
 npm i prop-types
@@ -50,3 +74,61 @@ MyComponent.propTypes = {
   // {prop1: 123, prop2: 456}
   infos: PropTypes.objectOf(PropTypes.number)
 }
+
+
+[3] es-lint
+npm i eslint -D
+npm i eslint-plugin-import -D
+eslint-plugin-react -D
+eslint-plugin-react-hooks -D
+
+협업시 코딩컨벤션을 일관되게 되도록 도와주는 도구
+
+
+[4]antDesign / styled-components
+npm i antd @ant-design/icons
+비슷한 계열 : andDesign/bootStrap/Material-UI/Semantic UI
+
+[5] 반응형 그리드
+반응형 제작할때 모바일 -> 태블릿 -> 데스크탑 순으로 작업하는게 좋다. 
+
+gutter : 그리드로 제작할때 컬럼 양쪽에 padding을 주는 단위
+ex) gutter={16}  
+=> 한컬럼에 양쪽으로 8px씩 padding 들어감
+
+[5-1]. 앤트디 그리드시스템
+https://ant.design/components/grid
+xs : (모바일) screen < 576px
+sm  : 태블릿
+md : 작은 데스크탑
+lg : 
+xl : 
+사이즈 n/24 기준으로 하는데 8/12/40 등등 가능함
+
+
+
+
+===기타 상식 
+CSR/ SSR 관련 : 
+1. SSR할떄, 
+브라우저 / 프론트서버 / 백엔드 서버 이렇게 있다고 치면
+프론트서버에서 백엔드서버 요청할때 도메인이 다르면 CORS설정 해줘야 한다. 
+
+2.CSR에서 요청하면, 프론트 서버는 html/js로  로딩을 띄우고 데이터 없이 render. => 백엔드에서 데이터를 받아와서 브라우저로 데이터를 채워줌
+SSR에서 요청하면 프론트 서버가 백엔드 서버로 요청하고 응답을 프론트서버에서 html/js 합쳐서 브라우저로 넘겨줌
+
+SQL/ noSQL 관련 : 
+회원정보/구매내역 이런 관계가 있다하면 무조건 SQL
+정해지지 않은 데이터가 무작위로 들어올때 noSQL 
+대부분의 서비스의 경우 SQL이 좋다
+
+
+<a>관련 : 
+target="_blank"는 보안에 취약하다.
+rel='noopener noreferrer' 꼭 써줘야한다. 
+
+noopener 지정하면, 링크된 페이지에서 window.opener을 사용해서 링크를 건 페이지를 참조(reference)할 수 없게 됨.
+링크된 페이지와 링크를 건 페이지는 별개의 프로세스로 취급되기 때문에 서로 연결되어 퍼포먼스가 떨어지는 일도 없게 됨.
+
+noreferrer(노리퍼러)를 지정하면 다른 페이지로 이동할 때,
+링크를 건 페이지의 주소 등의 정보를 브라우저가 Referer: HTTP 헤더로 리퍼러(referer 또는 referrer)로서 송신하지 않음.
