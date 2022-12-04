@@ -105,6 +105,11 @@ lg :
 xl : 
 사이즈 n/24 기준으로 하는데 8/12/40 등등 가능함
 
+[6] style을 적용할때..
+<Button style={{margin:'10px'}}/>
+이런식으로 스타일을 주면 문제점이.. Button안에 객체가 들어가 있기 때문에 리렌더링을 유발함.
+useMemo(()=>{(margin:10)},[]) 하거나
+stlyedComponent로 감싸주는게 좋음.
 
 
 
