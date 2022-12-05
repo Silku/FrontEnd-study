@@ -12,8 +12,8 @@ const UserProfile = ({setIsLogIn}) => {
         <Card
             actions={[
                 <div key="goodMark">좋아요<br/>0</div>,
-                <div key="fallowing">팔로잉<br/>0</div>,
-                <div key="fallower">팔로워<br/>0</div>,
+                <div key="following">팔로잉<br/>0</div>,
+                <div key="follower">팔로워<br/>0</div>,
             ]}
         >
             <Card.Meta

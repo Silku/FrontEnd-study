@@ -5,9 +5,8 @@ import {Menu, Input, Row, Col} from 'antd'
 import styled from 'styled-components';
 import UserProfile from './UserProfile';
 import LoginForm from './LoginForm';
-import App from './menutest';
 
-import CardTest from './cardTest';
+
 
 const SearchInput = styled(Input.Search)`
     vertical-align: middle;
@@ -18,7 +17,7 @@ const AppLayout = ({children}) => {
         <>
             <Menu mode="horizontal">
                 <Menu.Item>
-                    <Link href=""><a>메인 게시판</a></Link>
+                    <Link href="/"><a>메인 게시판</a></Link>
                 </Menu.Item>
                 <Menu.Item>
                     <Link href="profile"><a>프로필</a></Link>
@@ -30,7 +29,6 @@ const AppLayout = ({children}) => {
                     <Link href="signup"><a>회원가입</a></Link>
                 </Menu.Item>
             </Menu>
-            <App/>
             <Row gutter={8}>
                 <Col xs={24} md={6}>
                     {isLogIn ? <UserProfile setIsLogIn={setIsLogIn}/> : <LoginForm setIsLogIn={setIsLogIn}/> }
@@ -41,7 +39,6 @@ const AppLayout = ({children}) => {
                 </Col>
             </Row> 
             {children}
-            <CardTest/>
         </>
     )
 }
