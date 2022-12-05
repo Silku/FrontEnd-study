@@ -87,7 +87,7 @@ eslint-plugin-react-hooks -D
 
 [4]antDesign / styled-components
 npm i antd @ant-design/icons
-비슷한 계열 : antDesign/bootStrap/Material-UI/Semantic UI
+비슷한 계열 : andDesign/bootStrap/Material-UI/Semantic UI
 
 [5] 반응형 그리드
 반응형 제작할때 모바일 -> 태블릿 -> 데스크탑 순으로 작업하는게 좋다. 
@@ -112,10 +112,6 @@ useMemo(()=>{(margin:10)},[]) 하거나
 stlyedComponent로 감싸주는게 좋음.
 
 
-[7] 커스텀 훅
-커스텀훅 사용 규칙 : 
-1. 훅은 오직 리액트 함수 내에서만 사용되어야 한다. 일반적인 js 함수에서는 호출하면 안된다.
-2. 리액트 함수 '최상위'에서 호출해야 한다.  -> 반복문, 조건문, 중첩된 함수 내에서 hook을 호출하면 안된다.
 
 ===기타 상식 
 CSR/ SSR 관련 : 
