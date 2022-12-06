@@ -17,8 +17,8 @@ const UserProfile = ({setIsLogIn}) => {
             ]}
         >
             <Card.Meta
-                avatar={<Avatar>Silku</Avatar>}
-                title="silku"
+                avatar={<Avatar>H</Avatar>}
+                title="myHome"
             />
             <Button onClick={onLogOut}>로그아웃</Button>
         </Card>

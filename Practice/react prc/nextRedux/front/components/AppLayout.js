@@ -33,12 +33,11 @@ const AppLayout = ({children}) => {
                 <Col xs={24} md={6}>
                     {isLogIn ? <UserProfile setIsLogIn={setIsLogIn}/> : <LoginForm setIsLogIn={setIsLogIn}/> }
                 </Col>
-                <Col xs={24} md={12}>가운데</Col>
+                <Col xs={24} md={12}>{children}</Col>
                 <Col xs={24} md={6}>
                     <a href="https://github.com/Silku" target="_blank" rel="noreferrer noopener">Github</a>    
                 </Col>
             </Row> 
-            {children}
         </>
     )
 }
