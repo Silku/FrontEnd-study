@@ -1,6 +1,7 @@
-import React, {useState} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types';
 import Link from 'next/link'
+import {createSelectorHook, useSelector} from 'react-redux'
 import {Menu, Input, Row, Col} from 'antd'
 import styled from 'styled-components';
 import UserProfile from './UserProfile';
@@ -12,7 +13,9 @@ const SearchInput = styled(Input.Search)`
     vertical-align: middle;
 `
 const AppLayout = ({children}) => {
-    const [isLogIn, setIsLogIn ] = useState(false);
+    
+    const  isLogIn = useSelector((state) => state.user.isLogIn);
+
     return (
         <>
             <Menu mode="horizontal">
@@ -31,14 +34,14 @@ const AppLayout = ({children}) => {
             </Menu>
             <Row gutter={8}>
                 <Col xs={24} md={6}>
-                    {isLogIn ? <UserProfile setIsLogIn={setIsLogIn}/> : <LoginForm setIsLogIn={setIsLogIn}/> }
+                    {isLogIn ? <UserProfile/> : <LoginForm /> }
                 </Col>
-                <Col xs={24} md={12}>가운데</Col>
+                <Col xs={24} md={12}>{children}</Col>
                 <Col xs={24} md={6}>
                     <a href="https://github.com/Silku" target="_blank" rel="noreferrer noopener">Github</a>    
                 </Col>
             </Row> 
-            {children}
+
         </>
     )
 }

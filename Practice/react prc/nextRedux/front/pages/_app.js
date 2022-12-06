@@ -2,6 +2,7 @@ import React from 'react'
 import Proptypes from 'prop-types'
 import Head from 'next/head'
 // import 'antd/dist/antd.css'
+import wrapper from '../store/configureStore'
 
 const NextBoard = ({Component}) => {
   return (
@@ -22,4 +23,4 @@ NextBoard.Proptypes = {
 }
 
 
-export default NextBoard
+export default wrapper.withRedux(NextBoard)

@@ -117,6 +117,66 @@ stlyedComponent로 감싸주는게 좋음.
 1. 훅은 오직 리액트 함수 내에서만 사용되어야 한다. 일반적인 js 함수에서는 호출하면 안된다.
 2. 리액트 함수 '최상위'에서 호출해야 한다.  -> 반복문, 조건문, 중첩된 함수 내에서 hook을 호출하면 안된다.
 
+[8] Next-Redux
+일반 redux다루는 법이랑 다름.
+directory/store/configureStore.js
+npm i next-redux-wrapper react-redux
+
+기존 redux는 _app.js에서 
+return 최상단에 아래처럼 감싸주는데 
+<Provider store={store}></Provider>
+next 6버전에서는 자동으로 provider로 감싸주기때문에 따로 쓰면 오히려 중복으로 에러가난다.
+
+[8-1] redux필요한 이유 : 
+데이터 관리를 중앙에서 용이하게 하기 위함
+React - ContextAPI, 
+Redux , 
+Mobx, (redux보다 생산성이 좋다.)
+Apollo GraphQ
+
+[8-2] redux 개념
+데이터를 조회,수정,삭제 등등 할떄 
+action -> dispatch 하는 원리가 핵심
+reducer에서 switch문으로 어떻게 바뀔건지 로직 작성
+
+[8-3] redux의 불변성
+switch(action.type){
+  case 'ACTION_ONE'
+    return{
+      ...state,
+      name : action.data,
+    }
+}
+
+js에서 새로 만든 객체는 항상 false인데 대입관계가되면 true가 됨.
+{} === {} // false
+const a = {};
+const b = a;
+a === b //true
+
+위의 switch문 처럼
+...spread 문법을 쓰면 ...spread를 참조하는 새로운 객체를 생성하는것이 가능해짐.
+따라서 메모리 활용면에서 유연하고 새로운 객체를 생성한것이기 떄문에 히스토리 관리가 수월해짐.
+예를 들어 next라는 객체가 새로 생성되었어도 
+prev라는 객체 또한 메모리상에 남아있기때문에 prev로 돌아가는것이 가능. 
+일반적인 b=a처럼 대입관계였다면 불가능.
+
+** : 적용방법
+
+** props로 받을 필요가 없기때문에 props로 받은것들 지우고, propTypes도 필요없다.
+** 사용할 개별 페이지에 -
+       import { useDispatch } from 'react-redux'
+      useDispatch({id,pw}) 처럼 사용
+
+** reducer/index.js에서 -
+    import { HYDRATE } from "next-redux-wrapper"
+    
+    아래 스위치 문에서 HYDRATE는 아래와 같이 적용
+    switch(action.type){
+    case HYDRATE : 
+    console.log('HYDRATE' , action)
+        return {...state, ...action.payload}
+
 ===기타 상식 
 CSR/ SSR 관련 : 
 1. SSR할떄, 

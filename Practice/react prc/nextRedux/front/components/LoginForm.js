@@ -3,6 +3,8 @@ import { Button, Form, Input } from 'antd'
 import Link from 'next/link'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import { useDispatch } from 'react-redux'
+import { loginAction } from '../reducer'
 
 const ButtonWrapper = styled.div`
     margin-top: 10px;
@@ -11,11 +13,12 @@ const LoginFormStyle = styled(Form)`
     padding : 10px;
 `
 
-const LoginForm = ({setIsLogIn}) => {
+const LoginForm = () => {
+    const dispatch = useDispatch()
     const [id, setId] = useState('')
     const [pw, setPw] = useState('')
     const [pwChk, setPwChk] = useState('')
-    let password = ''
+
 
     // 컴포넌트에 props로 넘기면 usecallback 쓰기!!
     const onChangeId = useCallback((e) =>{
@@ -29,7 +32,7 @@ const LoginForm = ({setIsLogIn}) => {
     const onSubmitForm = useCallback(() =>{
     // andt에는 e.preventDefault가 기본적용되있음
         console.log(id,pw);
-        setIsLogIn(true)
+        dispatch(loginAction({id, pw}))
     },[id,pw])
 
     return (
@@ -63,8 +66,6 @@ const LoginForm = ({setIsLogIn}) => {
         </LoginFormStyle>
     )
 }
-LoginForm.PropTypes = {
-    setIsLogIn : PropTypes.func.isRequired,
-}
+
 
 export default LoginForm
