@@ -4,7 +4,7 @@ import Link from 'next/link'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
-import { loginAction } from '../reducer'
+import { loginAction } from '../reducers/user'
 
 const ButtonWrapper = styled.div`
     margin-top: 10px;

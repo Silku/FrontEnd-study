@@ -177,6 +177,19 @@ prev라는 객체 또한 메모리상에 남아있기때문에 prev로 돌아가
     console.log('HYDRATE' , action)
         return {...state, ...action.payload}
 
+HYDRATE는 무엇? : 
+HYDRATE가 생긴 이유는 getInitialProps가 요즘 거의 안쓰이고
+getStaticProps, getServerSideProps 두개로 바껴서 SSR이 기존과 완전히 달라졌기 떄문.
+
+
+[8-4] redux-devtools-extension
+npm i redux-devtools-extension
+
+[8-5] reducer 분할
+combineReducers() //redux
+코드가 분할된만큼 switch문에서 depth 낮춰줘야함.
+
+
 ===기타 상식 
 CSR/ SSR 관련 : 
 1. SSR할떄, 

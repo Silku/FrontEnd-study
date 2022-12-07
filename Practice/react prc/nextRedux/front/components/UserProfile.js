@@ -1,7 +1,7 @@
 import React, {useCallback }from 'react'
 import { Card ,Button ,Avatar} from 'antd'
 import { useDispatch } from 'react-redux'
-import {logoutAction} from '../reducer'
+import {logoutAction} from '../reducers/user'
 
 const UserProfile = () => {
     const dispatch = useDispatch();
@@ -22,7 +22,9 @@ const UserProfile = () => {
                 avatar={<Avatar>Silku</Avatar>}
                 title="silku"
             />
-            <Button onClick={onLogOut}>로그아웃</Button>
+            <Button 
+            style={{marginTop:'15px'}}
+            onClick={onLogOut}>로그아웃</Button>
         </Card>
     )
 }

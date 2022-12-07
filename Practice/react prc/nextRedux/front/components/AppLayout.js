@@ -14,7 +14,8 @@ const SearchInput = styled(Input.Search)`
 `
 const AppLayout = ({children}) => {
     
-    const  isLogIn = useSelector((state) => state.user.isLogIn);
+    // const  isLogIn = useSelector((state) => state.user.isLogIn); // 구조분해하던지 2가지 방법중 하나 사용
+    const {isLogIn} = useSelector((state) => state.user);
 
     return (
         <>
@@ -41,7 +42,6 @@ const AppLayout = ({children}) => {
                     <a href="https://github.com/Silku" target="_blank" rel="noreferrer noopener">Github</a>    
                 </Col>
             </Row> 
-
         </>
     )
 }

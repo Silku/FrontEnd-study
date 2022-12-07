@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"dev": "next"
+		"dev": "next -p 8080"
 	},
 	"author": "Silku",
 	"license": "ISC",
@@ -24,6 +24,7 @@
 		"eslint": "^8.28.0",
 		"eslint-plugin-import": "^2.26.0",
 		"eslint-plugin-react": "^7.31.11",
-		"eslint-plugin-react-hooks": "^4.6.0"
+		"eslint-plugin-react-hooks": "^4.6.0",
+		"redux-devtools-extension": "^2.13.9"
 	}
 }
