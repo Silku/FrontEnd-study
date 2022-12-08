@@ -42,11 +42,11 @@ export const addPost = {
 }
 
 const dummyPost = {
-    id : '22',
+    id : '1234',
     content: '데미 데이터.',
     User : {
-        id : 222,
-        nickname : '아이디22'
+        id : 1234,
+        nickname : '아이디23'
     },  
     Images : [],
     Contents : [],

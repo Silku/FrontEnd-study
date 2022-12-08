@@ -190,6 +190,27 @@ combineReducers() //redux
 코드가 분할된만큼 switch문에서 depth 낮춰줘야함.
 
 
+
+[9] jsx에서 배열 써서 엘레멘트 생성할떄는 key값 항상 필요!!
+ex) PostCard.js
+//post를 props로 받아오는 상황
+        <Card
+            cover={post.Images[0] && <PostImages images={post.Images}/>}
+            actions={[
+                <RetweetOutlined key="reply"/>,
+                <HeartOutlined key="heart"/>,
+                <MessageOutLined key="comment"/>,
+                <Popover>
+                    <EllipsisOutlined/>
+                </Popover>
+            ]}
+        >
+
+[10] react 토글버튼
+  const onToggleLike = useCallback(()=>{
+      setLiked((prev) =>!prev);
+  },[])
+
 ===기타 상식 
 CSR/ SSR 관련 : 
 1. SSR할떄, 
@@ -214,3 +235,24 @@ noopener 지정하면, 링크된 페이지에서 window.opener을 사용해서 �
 
 noreferrer(노리퍼러)를 지정하면 다른 페이지로 이동할 때,
 링크를 건 페이지의 주소 등의 정보를 브라우저가 Referer: HTTP 헤더로 리퍼러(referer 또는 referrer)로서 송신하지 않음.
+
+
+
+[?.] optional chaining 연산자 :   
+왼쪽이 null이 아니면 오른쪽값 보여줌
+//?. 없이 빈값이 들어오면 원래는 에러메세지를 뱉는다. 그러나 ?.를 쓰면 undefined를 남겨준다.
+//사용법 : 값이 안들어와서 에러날때 임시로 가리는 용도로 사용할수 있다.
+
+user ?. user.name
+//user가 null이면  user.name이 표시되지 않음
+//그리고 값이 없을 떄 에러를 남기는 대신 undefined를 남겨줌
+
+|| 와 ?? 의 차이
+||
+0, false, undefined같은 boolean으로 'false인 값을 전부 검사'한다.
+??
+undefined, null같은 nullish만 검사하는 연산자
+
+[??] nullish coalescing 연산자
+//사용법 :  데이터 가져오는데 지연시간 때문에 다른걸 띄우고 싶을때 사용
+user ?? '로딩중'
