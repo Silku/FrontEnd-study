@@ -1,10 +1,65 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
+import { PlusOutlined } from '@ant-design/icons';
+import ImageZoom from './ImageZoom'
+// 폴더 import해도 자동으로 index 파일로 불러옴, 경로에 따로 index쓸필요없음
 
-const PostImages = () => {
-  return (
-    <div>PostImages</div>
-  )
+const PostImages = ({images}) => {
+    const [showImagesZoom, setShowImagesZoom] = useState(false);
+
+    const onZoom = useCallback(()=>{
+        setShowImagesZoom(true);
+    },[])
+
+    const onClose = useCallback(()=>{
+        setShowImagesZoom(false);
+    },[])
+
+    if(images.length === 1){
+        <>
+            <img 
+                role="presentation"
+                src={images[0].src} alt={images[0].src} onClick={onZoom}/>
+            {showImagesZoom && <ImageZoom images={images} onClose={onClose}/>}
+        </>
+    }
+    if(images.length === 2){
+        return(
+            <>
+                <div style={{display:'flex', textAlign:'center', justifyContent:'center', alignItems:'center'}}>
+                    <img 
+                    role="presentation"
+                    style={{width:'50%',height:'100%', objectFit:'cover'}}
+                    src={images[0].src} alt={images[0].src} onClick={onZoom}/>
+                    <img 
+                    role="presentation"
+                    style={{width:'50%', height:'100%', objectFit:'cover'}}
+                    src={images[1].src} alt={images[1].src} onClick={onZoom}/>
+                </div>
+                {showImagesZoom && <ImageZoom images={images} onClose={onClose}/>}
+            </>
+        )
+    }
+    return (
+        <>
+            <div style={{display:'flex', textAlign:'center', justifyContent:'center', alignItems:'center'}}>
+                <img 
+                    style={{width:'50%'}}
+                    role="presentation"
+                    src={images[0].src} alt={images[0].src} onClick={onZoom}/>
+                <div 
+                    role="presentation"
+                    style={{width:'50%'}}
+                    onClick={onZoom}
+                >
+                    <PlusOutlined/>
+                    <br/>
+                    {images.length-1}개의 사진 더보기 
+                </div> 
+            </div>
+            {showImagesZoom && <ImageZoom images={images} onClose={onClose}/>}
+        </>
+    )
 }
 
 PostImages.PropTypes ={

@@ -211,6 +211,35 @@ ex) PostCard.js
       setLiked((prev) =>!prev);
   },[])
 
+
+[11] Image 관련 CSS 위주 메모
+[11-1] Carousel
+npm i react-slick
+캐루셀 지원하는 유명한 컴포넌트임.
+
+[11-2]  styled-Component // createGlobalStyle
+작업경로 : components/ImageZoom
+Global하게 css적용할수 있게 해줌. 
+slick 처럼 이미 만들어져 있는거 스타일링 할때 사용
+<Global/>은 그냥 갖다 붙이면 됨.
+
+const Global = createGlobalStyle`
+    .slick-slide {
+        display: inline-block;
+    }
+`
+[11-3] antd 아이콘 커스텀하기 
+import { CloseOutlined } from '@ant-design/icons'
+export const CloseBtn = styled(CloseOutlined)`
+    position: absolute;
+    top:0;
+    right: 0;
+    padding: 15px;
+    line-height: 14px;
+    cursor: pointer;
+`
+
+
 ===기타 상식 
 CSR/ SSR 관련 : 
 1. SSR할떄, 

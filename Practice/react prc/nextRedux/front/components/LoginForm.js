@@ -17,7 +17,7 @@ const LoginForm = () => {
     const dispatch = useDispatch()
     const [id, setId] = useState('')
     const [pw, setPw] = useState('')
-    const [pwChk, setPwChk] = useState('')
+    // const [pwChk, setPwChk] = useState('')
 
 
     // 컴포넌트에 props로 넘기면 usecallback 쓰기!!
