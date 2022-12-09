@@ -40,11 +40,11 @@ export const SlickWrapper = styled.div`
     background: #090909;
 `
 export const ImgWrapper = styled.div`
-    padding :32px;
+    /* padding :32px; */
     text-align: center;
 
     & img{
-        margin:0 auto;
+        margin:32px auto;
         max-height: 750px;
     }
 `
@@ -65,5 +65,6 @@ export const Indicator = styled.div`
 export const Global = createGlobalStyle`
     .slick-slide {
         display: inline-block;
+        padding: 0;
     }
 `
