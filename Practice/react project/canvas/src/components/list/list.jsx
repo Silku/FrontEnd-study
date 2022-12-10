@@ -5,14 +5,12 @@ import styles from "./list.module.css"
 
 const List = () => {
     const [itemList, setItemList] = useState([]);
-    const [itemIdx, setItemIdx] = useState('');
+    const [itemIdx, setItemIdx] = useState(1);
 
 
 
     const addItemList = useCallback(()=>{
-            for(let i = 0; i < itemList.length; i++){
-                setItemIdx(i)
-            }
+            setItemIdx(itemIdx+1)
             setItemList([...itemList, itemIdx])
             // console.log(itemLists)
     },[itemList])
