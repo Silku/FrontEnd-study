@@ -12,12 +12,11 @@ import { useOndraw } from "./canvasHook";
             캔버스 확대축소
         */
 
-    const Canvas = ({
-        width,
-        height
-    }) => {
+    const Canvas = ({width, height }) => {
 
         const [zoom, setZoom] = useState(0)
+        const zoomInRef = useRef();
+        const zoomOutRef = useRef();
 
         const zoomCanvasRef = useRef(null)
 
@@ -58,20 +57,11 @@ import { useOndraw } from "./canvasHook";
         
         //@@ zoom 관련
         const zoomIn = () => {
-            setZoom(zoom+1);
-            // console.log(zoom)
-            const zoomValue = zoom/4;
-            console.log(zoomValue)
-            // jsCanvas.style.scale=(1.25,1.25)
-            // console.log("확대")
+            zoomInRef.current.click();
         }
 
         const zoomOut = () => {
-            if(zoom<0) return;
-            setZoom(zoom-1);
-            const zoomValue = (zoom/4);
-            console.log(zoomValue)
-            // jsCanvas.style.scale=(1,1)
+
         }
 
 
@@ -88,8 +78,8 @@ import { useOndraw } from "./canvasHook";
                     >
                     </canvas>
                 <div className={`${styles.buttomBtnCont}`}>
-                        <button onClick={zoomIn}>+</button>
-                        <button onClick={zoomOut}>-</button>
+                        <button ref={zoomInRef} onClick={zoomIn}> +</button>
+                        <button ref={zoomOutRef} onClick={zoomOut}>-</button>
                 </div>
             </div>
         )

@@ -4,10 +4,6 @@ import Canvas from './components/canvas/canvas';
 import List from './components/list/list';
 
 function App() {
-	const [item,setItem] = useState({
-		itemIdx:"",
-		itemName:""
-	})
 
 	const addList = () => {
 		
@@ -24,7 +20,7 @@ function App() {
 
 	return (
 		<div className='app'>
-			<h3>Project Canvas</h3>
+			<h3 style={{marginTop:'30px'}}>Project Canvas</h3>
 			<section className='container'>
 				<Canvas/>
 				<List addList={addList}/> 

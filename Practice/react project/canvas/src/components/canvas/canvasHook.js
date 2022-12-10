@@ -57,7 +57,7 @@ export function useOndraw(onDraw){
     function initMouseDownListener(){
         if(!canvasRef.current) return;
         const listner =()=>{
-            console.log("마우스 눌름")
+            // console.log("마우스 눌름")
             isDrawingRef.current = true;
         }
         mouseDownListnerRef.current = listner;
@@ -68,7 +68,7 @@ export function useOndraw(onDraw){
         const listner = ()=>{
             isDrawingRef.current =false;
             prevPointRef.current = null;
-            console.log("마우스 손뗌")
+            // console.log("마우스 손뗌")
             //@todo : 손 뗄떼 리스트에 추가
         }
         mouseUpListnerRef.current = listner;

@@ -1,26 +1,34 @@
 import React,  { useState,  useEffect  } from "react";
+import { useCallback } from "react";
 import styles from "./list.module.css"
 
 
-const List = ({addList}) => {
+const List = () => {
+    const [itemList, setItemList] = useState([]);
+    const [itemIdx, setItemIdx] = useState('');
 
-    // const [listItem, setListItem] = useState(0);
 
-    // const listItemRef = React.createRef();
+
+    const addItemList = useCallback(()=>{
+            for(let i = 0; i < itemList.length; i++){
+                setItemIdx(i)
+            }
+            setItemList([...itemList, itemIdx])
+            // console.log(itemLists)
+    },[itemList])
 
     // useEffect(()=>{
-    //     console.log("호출")
-    //     setListItem(addList());
-    // },[addList])
+    //         console.log("호출")
+    //         setItemList('1');
+    // },[itemLists])
 
     return(
         <div className={styles.list}>
             <ul>
-                {/* <li ref={this.listItemRef}>리스트</li> */}
-                <li>리스트</li>
-                <li>리스트</li>
+                {itemList.map((itemList, i)=><li key={i}>Item {itemList}</li>)}
+                {/* {itemLists} */}
             </ul>
-            {/* <button>+</button> */}
+            <button onClick={addItemList}>+</button>
         </div>
     );
 }
