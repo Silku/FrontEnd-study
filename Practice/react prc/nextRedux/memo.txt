@@ -312,9 +312,70 @@ s? => 다음에 s는 없거나, 있고,
 redux 미들웨어 (비동기처리)
 npm i redux-thunk
 
+thunk는 action을 함수로 바꿔주는데 함수는 지연이 가능해서 비동기처리 동작이 가능하게 해줌.
+근데 thunk는 딱 기본만 있어서 saga씀.
 
 
+[14] redux-saga
 
+[14-1] generator에 대해
+export default function* rootSaga(){
+
+function*는 generator라는 자바스크립트 기능 
+const gen = function*(){
+    console.log(1)
+    yield
+    console.log(2)
+    yield
+    console.log(3)
+    yield
+}
+
+gen.next()로 실행시킬수 있는데 
+yield 지점에서 한번 멈춤
+
+특징1. while 반복문을 넣어서 무한루프 시켜도 제너레이터 안에서는 한번 멈춤
+
+무한히 증가하는걸 표현하거나 이벤트리스너 같은걸로 쓸수 있음
+
+[14-2] saga Effects
+import {all, call, fork, take, put, delay, debounce, throttle, takeLatest, takeLeading, takeMaybe }from 'redux-saga/effects'
+- all : 전부실행
+- call : 호출 (동기)
+- fork : 호출(비동기)
+- take , takeEvery : 이벤트리스너 같은 역할을 함. take는 딱 한번, takeEvery는 반복(비동기) 
+//밑에 처럼 쓰면 제네레이터 특성상 무한루프가 아닌 반복이 가능(take를 반복하면서 동기적으로 쓸수있다는 점)
+while(true){
+  take...
+}
+- takeLatest : 마지막 이벤트 하나만 실행 
+//예를들어 더블클릭하면 takeEvery같은경우 두번을 실행하는데 takeLastest는 마지막 이벤트 한번만 실행
+//원리 : front에서 요청을 두번날렸는데 back에서는 응답을 한번만 해주게끔 하는것임. 실제로 요청은 두번이 갔으므로 데이터는 2개가 남아있다던가하는 상황이 있을수 있음. 새로고침하면 글이 2개가 뜬다던가.
+- takeLeading : 맨 처음 이벤트 하나만 실행
+- throttle : 요청이 반복해서 안가도록 지연시간 설정할수있음.      
+//예시(5초 지연): yield throttle('ADD_POST_REQUEST', addPost, 50000)
+- put : 실행문 (..? : redux쓸떄 dispatch라 생각하면 편함)
+- delay : 단순 지연시간
+
+아래 같은 패턴을 기억해 두면 좋음.
+function logInAPI(){
+    return axios.post('/api/logIn')
+}
+
+function* logIn(){
+    try{
+        const result = yield call(logInAPI)
+        yield put({
+            type:'LOG_IN_SUCCESS',
+            data:result.data
+        })
+    }catch(err){
+        yield put({
+            type:'LOG_IN_FAILURE',
+            data:err.response.data
+        })
+    }
+}
 
 
 

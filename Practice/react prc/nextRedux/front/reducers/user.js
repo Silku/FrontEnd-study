@@ -8,21 +8,29 @@ export const initialState = {
 
 // thunk 코드 예시, 
 // 실무에서 login 만들면 보통 request,success, failure로 구분해서 만들게 되는데 대략적인 thunk 활용 예.
-export const loginAction = (data) =>{
-    return (dispatch, getState) =>{
-    const state = getState() // 이부분엔 initialState를 전달받게되는것임. reducer/index.js
-        setTimeout(()=>{
-            dispatch(loginRequestAction());
-        },2000)
-        axios.post('api/login')
-            .then((res)=>{
-                dispatch(loginSuccessAction(res.data))
-            })
-            .catch((err)=>{
-                dispatch(loginFailureAction(err))
-            })
+// export const loginAction = (data) =>{
+//     return (dispatch, getState) =>{
+//     const state = getState() // 이부분엔 initialState를 전달받게되는것임. reducer/index.js
+//         setTimeout(()=>{ //ex) dispatch를 지연시키고 싶다던가 한다면..
+//             dispatch(loginRequestAction());
+//         },2000)
+//         axios.post('api/login')
+//             .then((res)=>{
+//                 dispatch(loginSuccessAction(res.data))
+//             })
+//             .catch((err)=>{
+//                 dispatch(loginFailureAction(err))
+//             })
+//     }
+// }
+
+export const loginAction =(data) =>{
+    return {
+        type: 'LOG_IN',
+        data,
     }
 }
+
 
 export const loginRequestAction =(data) =>{
     return {
