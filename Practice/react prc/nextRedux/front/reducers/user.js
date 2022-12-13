@@ -1,59 +1,65 @@
 export const initialState = {
-    isLogIn : false,
+    logInLoading: false, // 로그인 시도중
+    logInDone: false,
+    logInError: null,
+    logOutLoading: false, // 로그아웃 시도중
+    logOutDone: false,
+    logOutError: null,
+    signUpLoading: false, // 회원가입 시도중
+    signUpDone: false,
+    signUpError: null,
+    followLoading: false, // 팔로우 시도중
+    followDone: false,
+    followError: null, 
+    unfollowLoading: false, // 언팔로우 시도중
+    unfollowDone: false,
+    unfollowError: null,
     user: null,
     signUpData : {},
     loginData : {},
 }
 
+export const LOG_IN_REQUEST = 'LOG_IN_REQUEST'
+export const LOG_IN_SUCCESS = 'LOG_IN_SUCCESS'
+export const LOG_IN_FAILURE = 'LOG_IN_FAILURE'
 
-// thunk 코드 예시, 
-// 실무에서 login 만들면 보통 request,success, failure로 구분해서 만들게 되는데 대략적인 thunk 활용 예.
-// export const loginAction = (data) =>{
-//     return (dispatch, getState) =>{
-//     const state = getState() // 이부분엔 initialState를 전달받게되는것임. reducer/index.js
-//         setTimeout(()=>{ //ex) dispatch를 지연시키고 싶다던가 한다면..
-//             dispatch(loginRequestAction());
-//         },2000)
-//         axios.post('api/login')
-//             .then((res)=>{
-//                 dispatch(loginSuccessAction(res.data))
-//             })
-//             .catch((err)=>{
-//                 dispatch(loginFailureAction(err))
-//             })
-//     }
-// }
+export const LOG_OUT_REQUEST = 'LOG_OUT_REQUEST'
+export const LOG_OUT_SUCCESS = 'LOG_OUT_SUCCESS'
+export const LOG_OUT_FAILURE = 'LOG_OUT_FAILURE'
 
-export const loginAction =(data) =>{
+export const SIGN_UP_REQUEST = 'SIGN_UP_REQUEST'
+export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS'
+export const SIGN_UP_FAILURE = 'SIGN_UP_FAILURE'
+
+export const FOLLOW_REQUEST = 'FOLLOW_REQUEST'
+export const FOLLOW_SUCCESS = 'FOLLOW_SUCCESS'
+export const FOLLOW_FAILURE = 'FOLLOW_FAILURE'
+
+export const UNFOLLOW_REQUEST = 'UNFOLLOW_REQUEST'
+export const UNFOLLOW_SUCCESS = 'UNFOLLOW_SUCCESS'
+export const UNFOLLOW_FAILURE = 'UNFOLLOW_FAILURE'
+
+const dummyUser = (data) =>({
+    ...data,
+    nickname:'Silku',
+    id : 1,
+    Posts:[],
+    Followings : [],
+    Followers: [],
+})
+
+
+export const loginRequestAction = (data) =>{
     return {
-        type: 'LOG_IN',
+        type: LOG_IN_REQUEST,
         data,
+
     }
 }
 
-
-export const loginRequestAction =(data) =>{
+export const logoutRequsetAction =() =>{
     return {
-        type: 'LOG_Request',
-        data,
-    }
-}
-export const loginSuccessAction =(data) =>{
-    return {
-        type: 'LOG_Success',
-        data,
-    }
-}
-export const loginFailureAction =(data) =>{
-    return {
-        type: 'LOG_Failure',
-        data,
-    }
-}
-
-export const logoutAction =() =>{
-    return {
-        type: 'LOG_OUT',
+        type: LOG_OUT_REQUEST,
     }
 }
 
@@ -61,21 +67,69 @@ export const logoutAction =() =>{
 const reducer = (state=initialState, action) =>{
     // reducer 분할 이전보다 depth가 낮아져서 한 단계 빼줌
     switch(action.type){
-        case 'LOG_IN' : 
+        case LOG_IN_REQUEST : 
+            console.log('reducer 로그인요청')
             return {
                 ...state,
-                isLogIn : true,
-                user : action.data, 
+                logInLoading : true,
+                logInError : null,
+                logInDone : false,
             }
-    case 'LOG_OUT' : 
+        case LOG_IN_SUCCESS : 
+            return {
+                ...state,
+                logInLoading :false,
+                logInDone : true,
+                user : dummyUser(action.data), 
+            }
+        case LOG_IN_FAILURE : 
+            return {
+                ...state,
+                logInLoading : false,
+                logInDone : action.error,
+            }
+        case LOG_OUT_REQUEST : 
+            return {
+                ...state,
+                logOutLoading: true,
+                logOutDone : false,
+                logOutError : null,
+            }
+        case LOG_OUT_SUCCESS : 
+            return {
+                ...state,
+                logOutLoading: false,
+                logOutDone : true,
+                user : null,
+            }
+        case LOG_OUT_FAILURE : 
+            return {
+                ...state,
+                logOutLoading: false,
+                logOutError : action.error,
+            }
+        case SIGN_UP_REQUEST : 
         return {
             ...state,
-            isLogIn : false,
-            user : null, 
+            signUpLoading: true,
+            signUpDone : false,
+            signUpError : null,
+        }
+    case SIGN_UP_SUCCESS : 
+        return {
+            ...state,
+            signUpLoading: false,
+            signUpDone : true,
+        }
+    case SIGN_UP_FAILURE : 
+        return {
+            ...state,
+            signUpLoading: false,
+            signUpError : action.error,
         }
     default :
         return state;
     }
 }
 
-export default reducer;
+export default reducer;  

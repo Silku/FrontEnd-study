@@ -84,6 +84,13 @@ eslint-plugin-react-hooks -D
 
 협업시 코딩컨벤션을 일관되게 되도록 도와주는 도구
 
+추가적으로...
+npm i -D 
+babel-eslint  //바벨이 해석해서 최신문법도 에러안나게끔해줌..
+eslint-config-airbnb //airbnb가 문법에 엄격한편
+eslint-plugin-import
+eslint-plugin-jsx-a11y //a11y는 장애인을 위한 플러그인(스크린리더 관련)
+
 
 [4]antDesign / styled-components
 npm i antd @ant-design/icons
@@ -316,6 +323,25 @@ thunk는 action을 함수로 바꿔주는데 함수는 지연이 가능해서 �
 근데 thunk는 딱 기본만 있어서 saga씀.
 
 
+// thunk 코드 예시,  reducers/user.js
+// 실무에서 login 만들면 보통 request,success, failure로 구분해서 만들게 되는데 대략적인 thunk 활용 예.
+// export const loginAction = (data) =>{
+//     return (dispatch, getState) =>{
+//     const state = getState() // 이부분엔 initialState를 전달받게되는것임. reducer/index.js
+//         setTimeout(()=>{ //ex) dispatch를 지연시키고 싶다던가 한다면..
+//             dispatch(loginRequestAction());
+//         },2000)
+//         axios.post('api/login')
+//             .then((res)=>{
+//                 dispatch(loginSuccessAction(res.data))
+//             })
+//             .catch((err)=>{
+//                 dispatch(loginFailureAction(err))
+//             })
+//     }
+// }
+
+
 [14] redux-saga
 
 [14-1] generator에 대해
@@ -356,6 +382,10 @@ while(true){
 //예시(5초 지연): yield throttle('ADD_POST_REQUEST', addPost, 50000)
 - put : 실행문 (..? : redux쓸떄 dispatch라 생각하면 편함)
 - delay : 단순 지연시간
+
+// 쓰로틀링과 디바운싱
+쓰로틀링 : 마지막함수가 호출된후 일정시간이 지나기전에 다시 호출되지 않도록 하는것. (스크롤을 내릴떄)
+디바운싱 : 연이어 호출되는 함수들 중 마지막함수(또는 제일 처음)만 호출하도록 하는것. (검색창에 입력했을때 단어가 완성됬을때 뭔가 실행시키고플때)
 
 아래 같은 패턴을 기억해 두면 좋음.
 function logInAPI(){

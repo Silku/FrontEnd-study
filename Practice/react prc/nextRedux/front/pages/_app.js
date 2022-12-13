@@ -23,4 +23,6 @@ NextBoard.Proptypes = {
 }
 
 
+
+
 export default wrapper.withRedux(NextBoard)

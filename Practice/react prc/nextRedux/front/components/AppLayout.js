@@ -15,7 +15,7 @@ const SearchInput = styled(Input.Search)`
 const AppLayout = ({children}) => {
     
     // const  isLogIn = useSelector((state) => state.user.isLogIn); // 구조분해하던지 2가지 방법중 하나 사용
-    const {isLogIn} = useSelector((state) => state.user);
+    const {user} = useSelector((state) => state.user);
 
     return (
         <>
@@ -35,7 +35,7 @@ const AppLayout = ({children}) => {
             </Menu>
             <Row gutter={8}>
                 <Col xs={24} md={6}>
-                    {isLogIn ? <UserProfile/> : <LoginForm /> }
+                    {user ? <UserProfile/> : <LoginForm /> }
                 </Col>
                 <Col xs={24} md={12}>{children}</Col>
                 <Col xs={24} md={6}>

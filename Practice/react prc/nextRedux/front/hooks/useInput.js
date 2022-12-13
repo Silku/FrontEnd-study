@@ -7,11 +7,11 @@ import React, {useState, useCallback} from 'react'
  * 
  *  */ 
 
-
+// state, input에 바인딩할 값, setState를 리턴 
 export default (initialValue=null) =>{
     const [value, setValue] = useState(initialValue)
     const handler = useCallback((e) =>{
         setValue(e.target.value);
     },[])
-    return [value, handler]
+    return [value, handler, setValue]
 }
