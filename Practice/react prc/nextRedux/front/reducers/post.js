@@ -15,19 +15,26 @@ export const initialState = {
         },
         content: '첫 게시글 #해시태그 #Next Board',
         Images : [{
+            id : shortId.generate(),
             src : 'https://cdn.pixabay.com/photo/2013/07/12/17/49/landscape-152502__340.png'
         },{ 
+            id : shortId.generate(),
             src : 'https://cdn.pixabay.com/photo/2018/01/31/16/12/beach-3121393__340.png'
         },{
+            id : shortId.generate(),
             src : 'https://cdn.pixabay.com/photo/2017/11/06/08/45/greeting-card-2923054__340.jpg'
         }],
         Comments: [{
+            id : shortId.generate(),
             User : {
+                id : shortId.generate(),
                 nickname : 'nickname',
             },
             content : '안녕하세요',
         },{
+            id : shortId.generate(),
             User : {
+                id : shortId.generate(),
                 nickname : 'onetwo',
             },
             content : '반가워요~',
@@ -37,6 +44,9 @@ export const initialState = {
     addPostLoading : false,
     addPostDone : false,
     addPostError : null,
+    removePostLoading : false,
+    removePostDone : false,
+    removePostError : null,
     addCommentLoading : false,
     addCommentDone : false,
     addCommentError : null,
@@ -46,6 +56,10 @@ export const initialState = {
 export const ADD_POST_REQUEST = 'ADD_POST_REQUEST'
 export const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS'
 export const ADD_POST_FAILURE = 'ADD_POST_FAILURE'
+
+export const REMOVE_POST_REQUEST = 'REMOVE_POST_REQUEST'
+export const REMOVE_POST_SUCCESS = 'REMOVE_POST_SUCCESS'
+export const REMOVE_POST_FAILURE = 'REMOVE_POST_FAILURE'
 
 export const ADD_COMMENT_REQUEST = 'ADD_COMMENT_REQUEST'
 export const ADD_COMMENT_SUCCESS = 'ADD_COMMENT_SUCCESS'
@@ -63,8 +77,8 @@ export const addComment = (data) =>({
 }) 
 
 const dummyPost = (data) => ({
-    id : shortId.generate(),
-    content: data,
+    id : data.id,
+    content: data.content,
     User : {
         id : 1,
         nickname : '더미아이디'
@@ -106,6 +120,26 @@ const reducer = (state=initialState, action) =>{
                 addPostLoading : false,
                 addPostError : action.error,
             }
+        case REMOVE_POST_REQUEST :
+            return {
+                ...state,
+                removePostLoading : true,
+                removePostDone : false,
+                removePostError : null,
+            }
+        case REMOVE_POST_SUCCESS : 
+            return {
+                ...state,
+                mainPosts : state.mainPosts.filter((v) => v.id !== action.data),
+                removePostLoading : false,
+                removePostDone : true,
+            }
+        case REMOVE_POST_FAILURE :
+            return {
+                ...state,
+                removePostLoading : false,
+                removePostError : action.error,
+            }
         case ADD_COMMENT_REQUEST :
             return {
                 ...state,
@@ -117,7 +151,7 @@ const reducer = (state=initialState, action) =>{
             console.log(action.data)
             const postIndex = state.mainPosts.findIndex((v) => v.id === action.data.postId);
             const post = {...state.mainPosts[postIndex]};
-            post.Comments =[dummyComment(action.data.content),  ...post, Comments];
+            post.Comments =[dummyComment(action.data.content),  ...post.Comments];
             const mainPosts = [...state.mainPosts];
             mainPosts[postIndex] = post; 
             return {
