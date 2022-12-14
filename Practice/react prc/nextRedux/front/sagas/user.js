@@ -16,7 +16,7 @@ function* logIn(action){
     console.log('saga 로그인요청')
     try{
         // const result = yield call(loginAPI, action.data)
-        yield delay(1000);
+        yield delay(500);
         yield put({
             type:LOG_IN_SUCCESS,
             data: action.data,

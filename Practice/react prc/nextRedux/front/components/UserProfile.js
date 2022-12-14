@@ -14,7 +14,7 @@ const UserProfile = () => {
     return (
         <Card
             actions={[
-                <div key="goodMark">좋아요<br/>{user.Post.length}</div>,
+                <div key="goodMark">좋아요<br/>{user.Posts.length}</div>,
                 <div key="following">팔로잉<br/>{user.Followings.length}</div>,
                 <div key="follower">팔로워<br/>{user.Followers.length}</div>,
             ]}

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import useInput from '../hooks/useInput';
 import { Button, Form, Input } from 'antd'
@@ -8,7 +8,7 @@ import { ADD_COMMENT_REQUEST } from '../reducers/post';
 const CommentForm = ({post}) => {
     const dispatch = useDispatch();
     const id = useSelector((state) => state.user.user?.id)
-    const {addCommentDone} = useSelector((state) => state.post)
+    const {addCommentDone, addCommentLoading} = useSelector((state) => state.post)
 
     const [commentText, onChangeCommentText, setCommentText] = useInput();
 
@@ -35,7 +35,7 @@ const CommentForm = ({post}) => {
                 rows={4} />
                 <Button 
                 style={{position:'absolute', right:0, bottom:-40}}
-                type="primary" htmlType="submit">댓글남기기</Button>
+                type="primary" htmlType="submit" loading={addCommentLoading}>댓글남기기</Button>
             </Form.Item>
         </Form>
     )

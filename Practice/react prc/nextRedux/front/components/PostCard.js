@@ -14,6 +14,7 @@ const PostCard = ({post}) => {
     // optional chaining 연산자 : ?. 왼쪽이 null undefined면 오른쪽을 보여주지 않음
     const id = user?.id;
 
+
     const [liked, setLiked] = useState(false);
     const [commentFormOpened, setCommentFormOpened] = useState(false);
     const onToggleLike = useCallback(()=>{
@@ -39,7 +40,7 @@ const PostCard = ({post}) => {
                         {id && post.User.id === id 
                         ? (<>
                                 <Button>수정</Button>
-                                <Button type="danger">삭제</Button> 
+                                <Button type='danger'>삭제</Button> 
                             </>) 
                         : <Button>신고</Button>}
 
@@ -58,8 +59,7 @@ const PostCard = ({post}) => {
         </Card>
         {commentFormOpened &&(
             <>
-                <CommentForm 
-                post={post}/>
+                <CommentForm post={post}/>
                 <List 
                     style={{marginTop:'40px'}}
                     header={`${post.Comments.length}개의 댓글`}
@@ -69,7 +69,7 @@ const PostCard = ({post}) => {
                         <li>
                             <Comment 
                                 author={item.User.nickname}
-                                avatar={<Avatar>{post.User.nickname[0]}</Avatar>}
+                                avatar={<Avatar>{item.User.nickname[0]}</Avatar>}
                                 content={item.content}
                             />
                         </li>
