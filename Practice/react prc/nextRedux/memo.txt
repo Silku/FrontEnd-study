@@ -125,6 +125,7 @@ stlyedComponent로 감싸주는게 좋음.
 2. 리액트 함수 '최상위'에서 호출해야 한다.  -> 반복문, 조건문, 중첩된 함수 내에서 hook을 호출하면 안된다.
 
 [8] Next-Redux
+reducer() : 이전상태를 액션을 통해 다음 상태로 만들어내는 함수(불변성은 지키면서)
 일반 redux다루는 법이랑 다름.
 directory/store/configureStore.js
 npm i next-redux-wrapper react-redux
@@ -413,6 +414,36 @@ import하고 더미id를 써줄부분에 아래와 같이 사용
 shortId.generate()
 
 랜덤id값을 생성해주는 라이브러리
+
+[16] immer
+## immer 주의사항 ##
+## switch문에 반드시 break 넣을것 !!##
+## default도 return state;가 아닌 break;
+
+npm i immer
+react, redux 불변성을 지켜주는 라이브러리
+(hooks로도 쓰는법있음)
+
+import produce from 'immer'
+
+const reducer = (state = initialState, action) => produce(state, (draft) => {
+    switch....
+});
+
+immer 쓰는 법 : 기존 state 대신 draft로 사용
+
+[17] faker
+npm i -D @faker-js/faker 
+가짜 데이터 삽입해주는데 ..망했음
+
+
+[18] redux-toolkit
+switch문을 간단한 코드로 줄일수있음
+
+
+[19] react-virtualized 
+ex) 인피니트 스크롤할때 화면이 올라가면 위에있던 게시글들 지워주고 아래에 새로 게시글 랜더하는 방식을 구현하는데 도움주는 라이브러리
+
 
 
 ===기타 상식 
