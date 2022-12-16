@@ -22,8 +22,9 @@ const Home = () => {
 			let scrollY = window.scrollY 
 			let clientHeight = document.documentElement.clientHeight
 			let scrollHeight = document.documentElement.scrollHeight
-			if(scrollY+ clientHeight >scrollHeight -300){
+			if(scrollY+ clientHeight >= scrollHeight -100){
 				if(hasMorePosts && !loadPostsLoading){
+					console.log(hasMorePosts, !loadPostsLoading)
 					dispatch({
 						type:LOAD_POSTS_REQUEST,
 					})

@@ -26,7 +26,6 @@ function loadPostsAPI(data){
 
 function* loadPosts(action){
     try{
-        yield delay(500)
         const id = shortid.generate();
         // const result = yield call(loadPostsAPI, action.data)
         yield put({
@@ -114,7 +113,7 @@ function* addComment(action){
 }
 
 function* watchLoadPosts(){
-    yield takeLatest(LOAD_POSTS_REQUEST, loadPosts)
+    yield throttle(2000, LOAD_POSTS_REQUEST, loadPosts)
 }
 
 function* watchAddPost(){
