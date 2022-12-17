@@ -1,0 +1,56 @@
+const http = require('http')
+const server = http.createServer((req,res)=>{
+    res.end('hello')
+})
+server.listen(8080, ()=>{
+    console.log('서버실행 ..')
+});
+
+
+[1] .express
+app.get
+app.post //생성 
+app.delete
+app.put  //전체수정
+app.patch //부분수정
+app.options //찔러보기(?)
+app.head // 헤더만 가져오기(Headers/body)
+
+※ swagger : api문서를 만들때 도와주는 툴
+const express = require('express')
+
+const app = express();
+
+app.get('/', (req,res)=>{
+    res.send('hello express')
+})
+
+app.listen(3300, ()=>{
+    console.log('서버실행중...')
+});
+
+[1-2] rotuer 분리하기
+불러올 파일 app.js에서 app.use()에서 '/post' 를 프리픽스로 붙여주면
+post.js에서 route로 동작하는 코드를 '/'로 해줘도 정상적으로 불러올수 있음
+
+파일 : app.js ..
+const postRouter = require('./routes/post')
+app.use('/post', postRouter);
+
+파일 : routes/post.js
+const express = require('express')
+const router = express.Router();
+
+router.post('/', (req,res)=>{
+    res.json([
+        {id:1 , content:'hello1'},
+        {id:2 , content:'hello2'},
+        {id:3 , content:'hello3'}
+    ])  
+})
+
+router.delete('/', (req,res)=>{
+    res.send({id:1})
+})
+
+module.exports = router;
