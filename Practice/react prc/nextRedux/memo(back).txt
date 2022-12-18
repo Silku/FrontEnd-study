@@ -54,3 +54,56 @@ router.delete('/', (req,res)=>{
 })
 
 module.exports = router;
+
+
+[2] Sequelize / mySQL
+mysql workbench
+npm i sequelize sequelize-cli //js로 sql을 조작하게해주는 라이브러리
+npm i mysql2   //node랑 mysql을 연결해주는 드라이버
+
+npx sequelize init //시퀄라이즈 세팅 명령어
+config/models/migrations/seeders 생성
+
+config/config.js 설정
+{
+  "development": {
+    "username": "root",
+    "password": 0000,
+    "database": "nodeboard",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": 0000,
+    "database": "nodeboard",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": 0000,
+    "database": "nodeboard",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
+
+사용자 정보 저장할 user.js 작성 :
+sequelize에서는 database table을 model로 부름
+
+데이터 관계에 대한 로직은 associate()에 작성
+Post.associate = (db) =>{
+    db.Post.belongsTo(db.User)     // belongsTo (속해있다. 게시글은 유저에 속해있는거니까, belongsTo를 쓰면 나중에 db에 UserId, PostId등이 삽입됨)
+    db.Post.belongsToMany(db.Hashtag); //belongsToMany(다대다 관계)
+    db.Post.hasMany(db.Comment); ////hasMany(1:N관계, 여러개 가질수있다. 게시글에 여러 댓글이 달릴수있다.)
+    db.Post.belongsToMany(db.User, {through : 'Like' ,as : 'Likers'});  
+
+    db.User.belongsToMany(db.User, {through : 'Follow', as : 'Followers', foreignKey : 'FollowingId'});
+    db.User.belongsToMany(db.User, {through : 'Follow', as : 'Followings', foreignKey : 'FollowerId'});
+    //throught : N:N관계일경우 중간테이블의 이름,  
+    //as : db.User면 중복이기때문에 Likers로 바꿔 저장되게끔
+    //foreignKey : 컬럼내에서의 관계를 정하기 위해 사용
+};
+
+N : N 관계이면 중간테이블이 생긴다.
