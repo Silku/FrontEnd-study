@@ -107,3 +107,8 @@ Post.associate = (db) =>{
 };
 
 N : N 관계이면 중간테이블이 생긴다.
+
+
+시퀄라이즈로 DB생성 
+npx sequelize db:create
+config.json에 int들어가면 안된다 전부 다 string으로만 설정!
