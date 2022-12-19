@@ -1,4 +1,5 @@
-import { all, delay, fork, put, takeLatest } from "redux-saga/effects";
+import axios from "axios";
+import { all, call, delay, fork, put, takeLatest } from "redux-saga/effects";
 
 import { 
     LOG_IN_REQUEST,  LOG_IN_SUCCESS, LOG_IN_FAILURE,
@@ -56,14 +57,14 @@ function* logOut(){
     }
 }
 
-function signUpAPI(){
-    return axios.post('/api/signUp')
+function signUpAPI(data){
+    return axios.post('http://localhost:3065/user', data)
 }
 
-function* signUp(){
+function* signUp(action){
     try{
-        yield delay(1000)
-        // const result = yield call(signUpAPI)
+        const result = yield call(signUpAPI, action.data)
+        console.log(result)
         // throw new Error('')   // 이런식으로 써주면 success 넘기고 에러로 바로 감
         yield put({
             type:SIGN_UP_SUCCESS,

@@ -1,6 +1,9 @@
 const express = require('express')
+const cors = require('cors')
 const postRouter = require('./routes/post')
-const db = require('./models')
+const userRouter = require('./routes/user')
+const db = require('./models');
+const { urlencoded } = require('express');
 
 const app = express();
 db.sequelize.sync()
@@ -8,6 +11,15 @@ db.sequelize.sync()
         console.log('db 연결 성공 !')
     })
     .catch(console.error)
+
+//이 부분은 다른 라우터들보다 상단에 위치해야함.\
+app.use(cors({
+    origin:'*',
+    credentials : 'false',
+}))
+app.use(express.json()) //json데이터 처리 
+app.use(urlencoded({extended:true})) //form(url)데이터 처리
+
 
 app.get('/', (req,res)=>{
     res.send('hello express')
@@ -23,7 +35,10 @@ app.get('/api', (req,res)=>{
 })
 
 app.use('/post', postRouter);
+app.use('/user', userRouter);
 
-app.listen(3300, ()=>{
+// http://localhost:3065/user
+
+app.listen(3065, ()=>{
     console.log('서버실행 ..')
 });
