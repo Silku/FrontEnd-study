@@ -14,8 +14,8 @@ import {
 } from "../reducers/user";
 
 function loginAPI(data){
-    // 얘는 * 아님 주의.
-    return axios.post('/api/login',data)
+    // 얘는 * 제네레이터 함수 아님 주의.
+    return axios.post('/user/login',data)
 }
 
 // saga effect : call과 fork의 차이
@@ -23,11 +23,11 @@ function loginAPI(data){
 function* logIn(action){
     console.log('saga 로그인요청')
     try{
-        // const result = yield call(loginAPI, action.data)
-        yield delay(500);
+        const result = yield call(loginAPI, action.data)
+        console.log('로그인data : ' + result)
         yield put({
             type:LOG_IN_SUCCESS,
-            data: action.data,
+            data: result.data,
         });
     }catch(err){
         yield put({
@@ -38,13 +38,13 @@ function* logIn(action){
 }
 
 function logoutAPI(){
-    return axios.post('/api/logout')
+    return axios.post('/user/logout')
 }
 
 function* logOut(){
     try{
         yield delay(1000)
-        // const result = yield call(logoutAPI)
+        const result = yield call(logoutAPI)
         yield put({
             type:LOG_OUT_SUCCESS,
             // data:result.data
@@ -58,7 +58,7 @@ function* logOut(){
 }
 
 function signUpAPI(data){
-    return axios.post('http://localhost:3065/user', data)
+    return axios.post('/user', data)
 }
 
 function* signUp(action){

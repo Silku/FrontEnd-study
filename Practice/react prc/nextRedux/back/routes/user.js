@@ -1,8 +1,51 @@
 const express = require('express')
 const bcrypt = require('bcrypt')
-const {User} = require('../models')
+const passport = require('passport')
+
+const {User, Post} = require('../models');
 
 const router = express.Router();
+
+//로그인
+router.post('/login', (req,res,next)=>{
+    passport.authenticate('local', (err,user,info)=>{ //POST/user/login
+        //passport/local.js 에서 전달받은 매개변수 
+        //서버에러 , 성공여부, 클라이언트에러  : null,false,{} => (err,user,info)
+        if(err){
+            console.error(err);
+            return next(error);
+        }
+        if(info){
+            return res.status(401).send(info.reason);
+        }
+        return req.login(user, async(loginErr)=>{ //passport 로그인
+            if(loginErr){
+                console.err(loginErr)
+                return(loginErr);
+            }
+
+            // 사용자 정보 가져오기(게시물 ,팔로잉 등)
+            const userInfoWithoutPassword = await User.findOne({
+                where:{id:user.id},
+                // attributes : ['email', 'password'] 처럼 db로부터 원하는 키워드의 컬럼만 가져올수 있음, exclude는 해당 컬럼 제외하기
+                attributes : {
+                    exclude:['password']
+                },
+                include : [{
+                    model:Post
+                },{
+                    model:User,
+                    as:'Followings',
+                },{
+                    model:User,
+                    as:'Followers',
+                }]
+            })
+            return res.json(userInfoWithoutPassword)
+        })
+    })(req,res,next) //미들웨어 확장,express 기법
+})
+
 
 router.post('/', async (req,res, next)=>{ //POST/user
     try{
@@ -25,15 +68,17 @@ router.post('/', async (req,res, next)=>{ //POST/user
             })
         // res.json();
         // res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3060')
-        res.status(200).send('ok')
+        res.status(201).send('ok')
     }catch(error){
         console.log(error)
         next(error);
     }
-})
+}) 
 
-router.delete('/', (req,res)=>{
-    res.send({id:1})
+router.post('/user/logout', (req,res,next)=>{
+    req.logout();
+    req.session.destroy();
+    res.send('ok');
 })
 
 

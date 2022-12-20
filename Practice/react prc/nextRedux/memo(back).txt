@@ -155,3 +155,59 @@ await User.create({
         nickname : req.body.nickname,
         password : hashedPassword,
     })
+
+[5]로그인 기능 구현
+baseURL 설정
+sagas/index.js...
+import axios...
+axios.defaults.baseURL = 'http://localhost:3065'
+baseURL 설정해주면 axios로 처리하는 url에 기본값을 설정할 수있음.
+
+ex)
+function loginAPI(data){
+    return axios.post('http://localhost:3065/user/login',data)
+}
+
+ex)baseURL 설정후
+function loginAPI(data){
+    return axios.post('/user/login',data)
+}
+
+[5-1] passport / passport-local 
+https://www.npmjs.com/package/passport
+로그인 관련 도구/ 구글,네이버,카카오 로그인등..
+passport-local은 email로그인 등 지원
+npm i  passport
+npm i  passport-local
+
+기본 코드
+const passport = require('passport')
+const local = require('./local')
+
+module.exports = () =>{
+    passport.serializeUser(()=>{
+
+    })
+    passport.deserializeUser(()=>{
+
+    })
+}
+
+serializeUser() : 사용자 정보, 쿠키를 저장
+deserializeUser() : 쿠카에 저장된 connect.sid값으로 부터 일치하는 사용자 정보를 찾고 httpRequest를 돌려줌 (재방문 로그인시)
+
+
+[5-2] 세션/쿠키
+npm i express-session
+npm i cookie-parser
+
+
+
+[5-3] dotenv
+비밀 키 관리
+npm i dotenv
+
+const dotenv = require('dotenv')
+dotenv.config();
+
+비밀키 입력할곳 : process.env.비밀키
