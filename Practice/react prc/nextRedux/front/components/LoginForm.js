@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import { Button, Form, Input } from 'antd'
 import Link from 'next/link'
 import styled from 'styled-components'
@@ -16,11 +16,16 @@ const LoginFormStyle = styled(Form)`
 
 const LoginForm = () => {
     const dispatch = useDispatch()
-    const {logInLoading} = useSelector((state) => state.user) 
+    const {logInLoading, logInError} = useSelector((state) => state.user) 
 
     const [email, onChangeemail] = useInput('');
     const [password, onChangePassword] = useInput('')
-    // const [pwChk, setPwChk] = useState('')
+    
+    useEffect(()=>{
+        if(logInError){
+            alert(logInError)
+        }
+    },[logInError])
 
     const onSubmitForm = useCallback(() =>{
     // andt에는 e.preventDefault가 기본적용되있음

@@ -3,11 +3,12 @@ const bcrypt = require('bcrypt')
 const passport = require('passport')
 
 const {User, Post} = require('../models');
+const {isLoggedIn, isNotLoggedIn} =require('./middlewares')
 
 const router = express.Router();
 
 //로그인
-router.post('/login', (req,res,next)=>{
+router.post('/login', isNotLoggedIn, (req,res,next)=>{
     passport.authenticate('local', (err,user,info)=>{ //POST/user/login
         //passport/local.js 에서 전달받은 매개변수 
         //서버에러 , 성공여부, 클라이언트에러  : null,false,{} => (err,user,info)
@@ -46,8 +47,8 @@ router.post('/login', (req,res,next)=>{
     })(req,res,next) //미들웨어 확장,express 기법
 })
 
-
-router.post('/', async (req,res, next)=>{ //POST/user
+// 회원가입
+router.post('/', isNotLoggedIn, async (req,res, next)=>{ //POST/user
     try{
         const exUser = await User.findOne({
             where : {
@@ -75,10 +76,13 @@ router.post('/', async (req,res, next)=>{ //POST/user
     }
 }) 
 
-router.post('/user/logout', (req,res,next)=>{
-    req.logout();
-    req.session.destroy();
-    res.send('ok');
+router.post('/logout', isLoggedIn, (req, res) => {
+    req.logout(()=>{
+        res.redirect('/');
+    });
+    // passport 0.6 변경점 logout은 위처럼, rediect랑 send를 같이 못 씀
+    // req.session.destroy();
+    // res.send('ok');
 })
 
 

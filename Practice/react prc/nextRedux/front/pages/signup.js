@@ -17,7 +17,7 @@ const ErrorMessage = styled.div`
 
 const Signup = () => {
 	const dispatch = useDispatch();
-	const {signUpLoading, signUpDone, signUpError} = useSelector((state) => state.user);
+	const {signUpLoading, signUpDone, signUpError, user} = useSelector((state) => state.user);
 
 	const [email, onChangeEmail] = useInput('')
 	const [nickname, onChangeNickname] = useInput('')
@@ -29,8 +29,15 @@ const Signup = () => {
 	const [termError, setTermError] = useState(false);
 
 	useEffect(()=>{
+		if(user && user.id){
+			// push()는 뒤로가기 페이지에 저장됨, replace가 여기선 좋음
+			Router.replace('/')
+		}
+	},[user && user.id])
+
+	useEffect(()=>{
 		if(signUpDone){
-			Router.push('/')
+			Router.replace('/')
 		}
 	},[signUpDone])
 
