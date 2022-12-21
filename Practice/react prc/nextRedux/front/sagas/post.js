@@ -1,6 +1,6 @@
 import axios from 'axios'
 import shortid from "shortid";
-import { all, delay, fork, put, takeLatest, throttle } from "redux-saga/effects";
+import { all, call, delay, fork, put, takeLatest, throttle } from "redux-saga/effects";
 
 import {
     ADD_COMMENT_REQUEST ,
@@ -43,24 +43,21 @@ function* loadPosts(action){
 
 
 function addPostAPI(data){
-    return axios.post('/api/post',data)
+    return axios.post('/post', {content : data},{
+        withCredentials:true, //쿠키허용
+    })
 }
 
 function* addPost(action){
     try{
-        yield delay(500)
-        const id = shortid.generate();
-        // const result = yield call(addPostAPI, action.data)
+        const result = yield call(addPostAPI, action.data)
         yield put({
             type:ADD_POST_SUCCESS,
-            data:{
-                id,
-                content: action.data,
-            }
+            data: result.data,
         })
         yield put({
             type:ADD_POST_TO_MINE,
-            data:id,
+            data:result.data.id,
         })
     }catch(err){
         yield put({
@@ -68,6 +65,12 @@ function* addPost(action){
             data:err.response.data
         })
     }
+}
+
+function removePostAPI(data){
+    return axios.post(`/post`,data, {
+        withCredentials : true,
+    })
 }
 
 function* removePost(action){
@@ -93,16 +96,17 @@ function* removePost(action){
 
 
 function addCommentAPI(data){
-    return axios.post(`/api/post/${data.postId}/comment`,data)
+    return axios.post(`/post/${data.postId}/comment`,data, {
+        withCredentials : true,
+    })
 }
 
 function* addComment(action){
     try{
-        yield delay(500)
-        // const result = yield call(addCommentAPI, action.data)
+        const result = yield call(addCommentAPI, action.data)
         yield put({
             type:ADD_COMMENT_SUCCESS,
-            data:action.data,
+            data:result.data,
         })
     }catch(err){
         yield put({

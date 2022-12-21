@@ -142,7 +142,24 @@ res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3060')
 또는 ..
 app.js에 적용하면 더 쉬움..
 npm i cors
-app.use(cors())
+app.use(cors(
+    origin : '*', //모두허용
+    credentials : true, //쿠키 허용
+))
+
+
+saga에서 비동기 요청 보낼때...
+axios.post('/post', data, {
+  withCredentials: true
+})
+
+withCredentials 뜻 : 서로 다른 도메인(크로스 도메인)에 요청을 보낼 때 요청에 credential 정보를 담아서 보낼 지를 결정
+credential : 1.쿠키를 첨부해서 보내는 요청, 2.헤더에 Authorization 항목이 있는 요청
+
+saga/index.js에서..
+axios.defaults.withCredentials = true;
+위처럼 해주면 항상 credential이 true로 가지게끔 설정해줄수있는데, 
+node에서는 cors 전부허용이 안됨. (origin : '*') 
 
 [4] bcrypt
 비밀번호 암호화 라이브러리
@@ -194,7 +211,7 @@ module.exports = () =>{
 }
 
 serializeUser() : 사용자 정보, 쿠키를 저장
-deserializeUser() : 쿠카에 저장된 connect.sid값으로 부터 일치하는 사용자 정보를 찾고 httpRequest를 돌려줌 (재방문 로그인시)
+deserializeUser() : 쿠카에 저장된 connect.sid값으로 부터 일치하는 사용자 정보를 찾고 httpRequest를 돌려줌 (로그인 이후 활동시(?))
 
 
 [5-2] 세션/쿠키
@@ -211,3 +228,6 @@ const dotenv = require('dotenv')
 dotenv.config();
 
 비밀키 입력할곳 : process.env.비밀키
+
+
+
