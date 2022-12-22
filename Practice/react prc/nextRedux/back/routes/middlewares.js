@@ -5,7 +5,7 @@ exports.isLoggedIn = (req,  res, next) => {
         // next()에 아무 매개변수가 없으면 다음미들웨어로 감
         next()
     }else{
-        res.status(401).send('로그인이 필요합니다.')
+        res.status(401).send('권한이 필요합니다.')
     }
 }
 exports.isNotLoggedIn = (req,  res, next) => {

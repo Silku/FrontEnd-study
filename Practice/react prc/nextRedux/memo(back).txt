@@ -159,7 +159,18 @@ credential : 1.쿠키를 첨부해서 보내는 요청, 2.헤더에 Authorizatio
 saga/index.js에서..
 axios.defaults.withCredentials = true;
 위처럼 해주면 항상 credential이 true로 가지게끔 설정해줄수있는데, 
-node에서는 cors 전부허용이 안됨. (origin : '*') 
+node에서는 cors 전부허용이 안됨. (origin : '*')  =>
+app.use(cors({
+    origin: true, //또는 프론트서버 주소입력 origin: 'http://localhost:8080/' 
+    credentials : true,
+}))
+
+** 요청이 get, delete 일경우 withCredentials는 항상 붙여줘야함
+axios.get('/user', data, {
+  withCredentials: true
+})
+
+
 
 [4] bcrypt
 비밀번호 암호화 라이브러리
@@ -230,4 +241,10 @@ dotenv.config();
 비밀키 입력할곳 : process.env.비밀키
 
 
+[6] 브라우저 관련...
 
+[6-1] 브라우저 새로고침시 로그인이 풀리는 현상..
+개발자도구-application-cookies에 프론트서버 url을 확인하면 connect.sid라는 쿠키/세션 값을 갖고있음.
+즉 connect.sid값을 서버로 전달만 해주면 로그인이 된 상태가 될 수 있음.
+
+**reducer든 node/routes든 실행순서에 주의하자..

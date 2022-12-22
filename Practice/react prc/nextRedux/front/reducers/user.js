@@ -19,6 +19,9 @@ export const initialState = {
     changeNicknameLoading: false, // 닉네임 변경 시도중
     changeNicknameDone: false,
     changeNicknameError: null,
+    loadMyInfoLoading: false, // 유저정보 가져오기 시도중
+    loadMyInfoDone: false,
+    loadMyInfoError: null,
     user: null,
     signUpData : {},
     loginData : {},
@@ -48,8 +51,13 @@ export const UNFOLLOW_REQUEST = 'UNFOLLOW_REQUEST'
 export const UNFOLLOW_SUCCESS = 'UNFOLLOW_SUCCESS'
 export const UNFOLLOW_FAILURE = 'UNFOLLOW_FAILURE'
 
+export const LOAD_MY_INFO_REQUEST = 'LOAD_MY_INFO_REQUEST'
+export const LOAD_MY_INFO_SUCCESS = 'LOAD_MY_INFO_SUCCESS'
+export const LOAD_MY_INFO_FAILURE = 'LOAD_MY_INFO_FAILURE'
+
 export const ADD_POST_TO_MINE = 'ADD_POST_TO_MINE';
 export const REMOVE_POST_OF_MINE = 'REMOVE_POST_OF_MINE';
+
 
 
 const dummyUser = (data) =>({
@@ -79,6 +87,20 @@ export const logoutRequsetAction =() =>{
 const reducer = (state = initialState, action) => produce(state, (draft) => {
      // reducer 분할 이전보다 depth가 낮아져서 한 단계 빼줌
     switch(action.type){
+        case LOAD_MY_INFO_REQUEST:
+            draft.loadMyInfoLoading = true;
+            draft.loadMyInfoError = null;
+            draft.loadMyInfoDone = false;
+            break;
+        case LOAD_MY_INFO_SUCCESS:
+            draft.loadMyInfoLoading = false;
+            draft.user = action.data;
+            draft.loadMyInfoDone = true;
+            break;
+        case LOAD_MY_INFO_FAILURE:
+            draft.loadMyInfoLoading = false;
+            draft.loadMyInfoError = action.error;
+            break;
         case LOG_IN_REQUEST:
             draft.logInLoading = true;
             draft.logInError = null;

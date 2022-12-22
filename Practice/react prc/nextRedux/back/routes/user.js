@@ -7,6 +7,42 @@ const {isLoggedIn, isNotLoggedIn} =require('./middlewares')
 
 const router = express.Router();
 
+router.get('/', async (req,res,next) => {
+    try{
+        // 새로고침시에도 로그인 유지,
+        // 항상 이 router가 호출되므로 req.user값이 있을때만 유저값을 전달, 없다면 null
+        if(req.user){
+            const userInfoWithoutPassword = await User.findOne({
+                where:{id: req.user.id},
+                attributes : {
+                    exclude:['password']
+                },
+                include : [{
+                    model:Post,
+                    attributes : ['id'], //성능을 위해 id값만 가져오기
+                },{
+                    model:User,
+                    as:'Followings',
+                    attributes : ['id'],
+                },{
+                    model:User,
+                    as:'Followers',
+                    attributes : ['id'],
+                }]
+            })
+            await User.findOne({
+                where:{id:req.user.id}
+            })
+            res.status(200).json(userInfoWithoutPassword);
+        }else{
+            res.status(200).json(null);
+        }
+    }catch(err){
+        console.error(err)
+        next(err)
+    }
+})
+
 //로그인
 router.post('/login', isNotLoggedIn, (req,res,next)=>{
     passport.authenticate('local', (err,user,info)=>{ //POST/user/login
@@ -33,13 +69,16 @@ router.post('/login', isNotLoggedIn, (req,res,next)=>{
                     exclude:['password']
                 },
                 include : [{
-                    model:Post
+                    model:Post,
+                    attributes : ['id'],
                 },{
                     model:User,
                     as:'Followings',
+                    attributes : ['id'],
                 },{
                     model:User,
                     as:'Followers',
+                    attributes : ['id'],
                 }]
             })
             return res.json(userInfoWithoutPassword)
