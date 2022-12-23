@@ -15,6 +15,12 @@ import {
     LOAD_POSTS_REQUEST,
     LOAD_POSTS_SUCCESS,
     LOAD_POSTS_FAILURE,
+    LIKE_POST_REQUEST,
+    LIKE_POST_SUCCESS,
+    LIKE_POST_FAILURE,
+    DISLIKE_POST_REQUEST,
+    DISLIKE_POST_SUCCESS,
+    DISLIKE_POST_FAILURE,
     // generateDummyPost, 
 } from "../reducers/post";
 import { ADD_POST_TO_MINE, REMOVE_POST_OF_MINE } from "../reducers/user";
@@ -93,6 +99,46 @@ function* removePost(action){
     }
 }
 
+function likePostAPI(data){
+    return axios.patch(`/post/${data}/like`)
+}
+
+function* likePost(action){
+    try{
+        const result = yield call(likePostAPI, action.data)
+        yield put({
+            type:LIKE_POST_SUCCESS,
+            data:result.data,
+        })
+    }catch(err){
+        console.error(err)
+        yield put({
+            type:LIKE_POST_FAILURE,
+            data:err.response.data
+        })
+    }
+}
+
+function dislikePostAPI(data){
+    return axios.delete(`/post/${data}/like`)
+}
+
+function* dislikePost(action){
+    try{
+        const result = yield call(dislikePostAPI, action.data)
+        yield put({
+            type:DISLIKE_POST_SUCCESS,
+            data:result.data,
+        })
+    }catch(err){
+        console.error(err)
+        yield put({
+            type:DISLIKE_POST_FAILURE,
+            data:err.response.data
+        })
+    }
+}
+
 
 function addCommentAPI(data){
     return axios.post(`/post/${data.postId}/comment`,data)
@@ -114,6 +160,8 @@ function* addComment(action){
     }
 }
 
+
+
 function* watchLoadPosts(){
     yield throttle(2000, LOAD_POSTS_REQUEST, loadPosts)
 }
@@ -130,10 +178,19 @@ function* watchAddComment(){
     yield takeLatest(ADD_COMMENT_REQUEST, addComment)
 }
 
+function* watchLikePost(){
+    yield takeLatest(LIKE_POST_REQUEST, likePost)
+}
+function* watchDislikePost(){
+    yield takeLatest(DISLIKE_POST_REQUEST, dislikePost)
+}
+
 export default function* postSaga(){
     yield all([
         fork(watchLoadPosts),
         fork(watchAddPost),
+        fork(watchLikePost),
+        fork(watchDislikePost),
         fork(watchRemovePost),
         fork(watchAddComment),
     ])

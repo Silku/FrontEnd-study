@@ -114,6 +114,15 @@ npx sequelize db:create
 config.json에 int들어가면 안된다 전부 다 string으로만 설정!
 
 
+// 아래 주석처리는  sequelize에서 자동으로 생성하는 형식 =>  
+// belongsTo 는 단수형, belongsToMany는 복수형 등등..
+db.Post.belongsTo(db.User) //post.addUser , post.getUser , post.setUser
+db.Post.belongsToMany(db.Hashtag, {through : 'PostHashtag'});
+db.Post.hasMany(db.Comment); //post.addComments, post.getComments
+db.Post.hasMany(db.Image); //post.addImages , post.getImages
+db.Post.belongsToMany(db.User, {through : 'Like' ,as : 'Likers'});  //post.addLikers, post.removeLikers
+
+
 req/res.. 
 헤더(상태 , 용량, 시간, 형식 쿠키 등)와
 바디(데이터)로 구성되있음
@@ -251,9 +260,15 @@ dotenv.config();
 
 
 [DB (mysql관련..)]
+//DB 조작할떄는 await 붙인다고 보면 됨.
 const posts = await Post.findAll({
     // where : {Userid : 1}
+
+    order : [['createAt', 'DESC']], // 게시글 생성일, 내림차순(최신글)
+
+    //offset으로 게시물 갯수 제어하는 방식은 잘 안쓴다. 누군가 게시글 추가/삭제했다면 꼬여버릴수 있기때문
     limit : 5, //불러올 게시글 제한
     offset : 0, //0 : 1~10번게시글...,  10 : 11~20번 게시글
-    order : [['createAt', 'DESC']], // 게시글 생성일, 내림차순
 })
+
+
