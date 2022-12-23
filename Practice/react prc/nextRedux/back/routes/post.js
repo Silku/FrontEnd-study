@@ -1,6 +1,6 @@
 const express = require('express')
 
-const {Post, User} = require('../models')
+const {Post, User, Comment, Image} = require('../models')
 const {isLoggedIn} = require('./middlewares')
 
 const router = express.Router();
@@ -19,8 +19,13 @@ router.post('/', isLoggedIn, async (req,res ,next)=>{ //Post/post
                 model : Image,
             },{
                 model : Comment,
+                include : [{
+                    model : User,
+                    attributes : ['id', 'nickname'], 
+                }]
             },{
                 model : User,
+                attributes : ['id', 'nickname'],
             }]
         })
         res.status(201).json(fullPost);
@@ -31,7 +36,7 @@ router.post('/', isLoggedIn, async (req,res ,next)=>{ //Post/post
 })
 
 // 댓글작성
-router.post('/:postId/comment', isLoggedIn, async (req,res ,next)=>{ //Post/comment
+router.post('/:postId/comment', isLoggedIn, async (req,res ,next)=>{ // post/1/comment
     // :변수명 해주면 동적으로 값 바뀜
     // redux-saga값 : axios.post(`/post/${data.postId}/comment`,data)
     try{
@@ -42,13 +47,22 @@ router.post('/:postId/comment', isLoggedIn, async (req,res ,next)=>{ //Post/comm
         if(!post){
             return res.status(403).send('존재하지 않는 게시글 입니다.')
         }
+        console.log(parseInt("십"+req.params.postId, 10)) 
+        console.log(parseInt("노"+req.params.postId)) 
         // 댓글작성
-        const comment = await Post.create({
+        const comment = await Comment.create({
             content : req.body.content,
-            PostId : req.params.postId,
+            PostId : parseInt(req.params.postId, 10),
             UserId : req.user.id,
         })
-        res.status(201).json(comment);
+        const fullComment =  await Comment.findOne({
+            where : {id : comment.id},
+            include : [{
+                model:User,
+                attributes : ['id', 'nickname'],
+            }]
+        })
+        res.status(201).json(fullComment);
     }catch(err){
         console.error(err)
         next(err)

@@ -9,41 +9,7 @@ export const initialState = {
     postAdded : 게시자 추가가 완료 되었을때
      */
     //redux 데이터 구조는 서버개발자랑 잘 의논하고 정해야한다. 대소문자 등등
-    mainPosts:[
-    //     {
-    //     id:11,
-    //     User:{
-    //         id:11,
-    //         nickname : 'tang'
-    //     },
-    //     content: '첫 게시글 #해시태그 #Next Board',
-    //     Images : [{
-    //         id : shortId.generate(),
-    //         src : 'https://cdn.pixabay.com/photo/2013/07/12/17/49/landscape-152502__340.png'
-    //     },{ 
-    //         id : shortId.generate(),
-    //         src : 'https://cdn.pixabay.com/photo/2018/01/31/16/12/beach-3121393__340.png'
-    //     },{
-    //         id : shortId.generate(),
-    //         src : 'https://cdn.pixabay.com/photo/2017/11/06/08/45/greeting-card-2923054__340.jpg'
-    //     }],
-    //     Comments: [{
-    //         id : shortId.generate(),
-    //         User : {
-    //             id : shortId.generate(),
-    //             nickname : 'nickname',
-    //         },
-    //         content : '안녕하세요',
-    //     },{
-    //         id : shortId.generate(),
-    //         User : {
-    //             id : shortId.generate(),
-    //             nickname : 'onetwo',
-    //         },
-    //         content : '반가워요~',
-    //     }],        
-    // }
-],
+    mainPosts:[],
     imagePaths : [],
     hasMorePosts : true,
     loadPostsLoading: false,
@@ -60,29 +26,29 @@ export const initialState = {
     addCommentError : null,
 }
 
-export const generateDummyPost = (number) =>  Array(number).fill().map(() => ({
-    id: shortId.generate(),
-    User:{
-        id:shortId.generate(),
-        nickname : faker.name.findName(),
-    },
-    content: faker.lorem.paragraph(),
-    Images : [{
-        src:faker.image.image()
-    },{
-        src:faker.image.image()
-    },
-    {
-        src:faker.image.image()
-    }],
-    Comments : [{
-        User:{
-            id:shortId.generate(),
-            nickname : faker.name.findName(),
-        },
-        content : faker.lorem.sentence(),
-    }] 
-}));
+// export const generateDummyPost = (number) =>  Array(number).fill().map(() => ({
+//     id: shortId.generate(),
+//     User:{
+//         id:shortId.generate(),
+//         nickname : faker.name.findName(),
+//     },
+//     content: faker.lorem.paragraph(),
+//     Images : [{
+//         src:faker.image.image()
+//     },{
+//         src:faker.image.image()
+//     },
+//     {
+//         src:faker.image.image()
+//     }],
+//     Comments : [{
+//         User:{
+//             id:shortId.generate(),
+//             nickname : faker.name.findName(),
+//         },
+//         content : faker.lorem.sentence(),
+//     }] 
+// }));
 
 // initialState.mainPosts = initialState.mainPosts.concat(
 //     generateDummyPost(10)

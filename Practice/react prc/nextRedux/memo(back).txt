@@ -248,3 +248,12 @@ dotenv.config();
 즉 connect.sid값을 서버로 전달만 해주면 로그인이 된 상태가 될 수 있음.
 
 **reducer든 node/routes든 실행순서에 주의하자..
+
+
+[DB (mysql관련..)]
+const posts = await Post.findAll({
+    // where : {Userid : 1}
+    limit : 5, //불러올 게시글 제한
+    offset : 0, //0 : 1~10번게시글...,  10 : 11~20번 게시글
+    order : [['createAt', 'DESC']], // 게시글 생성일, 내림차순
+})

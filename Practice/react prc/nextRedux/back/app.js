@@ -4,8 +4,10 @@ const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const passport = require('passport')
 const dotenv = require('dotenv')
+const morgan = require('morgan')
 
 const postRouter = require('./routes/post')
+const postsRouter = require('./routes/posts')
 const userRouter = require('./routes/user')
 const db = require('./models');
 const { urlencoded } = require('express');
@@ -25,6 +27,7 @@ passportConfig();
 
 
 //이 부분은 다른 라우터들보다 상단에 위치해야함.\
+app.use(morgan('dev'))
 app.use(cors({
     origin: true,
     credentials : true,
@@ -44,12 +47,12 @@ app.use(passport.session());
 
 app.get('/', (req,res)=>{
     res.send('hello express')
-    res.send('hello express')
 })
 
 
 
 app.use('/post', postRouter);
+app.use('/posts', postsRouter);
 app.use('/user', userRouter);
 
 // 에러처리 미들웨어 커스텀하기

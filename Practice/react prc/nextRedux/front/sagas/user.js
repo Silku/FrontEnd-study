@@ -24,7 +24,6 @@ function loginAPI(data){
 // saga effect : call과 fork의 차이
 // call은 동기, fork는 비동기 fork로 요청한다면 비동기로 처리되니까 요청만 보내버리고 다음줄이 실행되버림
 function* logIn(action){
-    console.log('saga 로그인요청')
     try{
         const result = yield call(loginAPI, action.data)
         console.log('로그인data : ' + result)
