@@ -16,7 +16,7 @@ import FollowButton from './FollowButton';
 
 const PostCard = ({post}) => {
     const dispatch = useDispatch();
-    const id = useSelector((state)=> state.user?.id);
+    const id = useSelector((state)=> state.user.user?.id);
     // optional chaining 연산자 : ?. 왼쪽이 null undefined면 오른쪽을 보여주지 않음
     const {removePostLoading} = useSelector((state) => state.post);
 

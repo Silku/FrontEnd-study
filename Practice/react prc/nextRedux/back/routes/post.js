@@ -72,7 +72,7 @@ router.post('/:postId/comment', isLoggedIn, async (req,res ,next)=>{ // post/1/c
 })
 
 // 좋아요
-router.patch('/:postId/like', async (req,res,next)=>{
+router.patch('/:postId/like', isLoggedIn, async (req,res,next)=>{
     try{
         const post = await Post.findOne({
             where:{id:req.params.postId}
@@ -88,7 +88,7 @@ router.patch('/:postId/like', async (req,res,next)=>{
 })
 
 //좋아요 취소
-router.delete('/:postId/like', async (req,res,next)=>{
+router.delete('/:postId/like', isLoggedIn, async (req,res,next)=>{
     try{
         const post = await Post.findOne({
             where:{id:req.params.postId}
@@ -103,8 +103,19 @@ router.delete('/:postId/like', async (req,res,next)=>{
     }
 })
 
-router.delete('/', (req,res)=>{
-    res.send({id:1})
+router.delete('/:postId', isLoggedIn, async (req,res)=>{
+    try{
+
+        await Post.destroy({
+            where:{id: req.params.postId},
+            UserId : req.user.id, //내 아이디
+        })
+        console.log('삭제된 포스트 : post/' + req.params.postId)
+        // params는 문자열이다.
+        res.status(200).json({PostId:parseInt(req.params.postId)})
+    }catch(err){
+        console.error(err)
+    }
 })
 
 

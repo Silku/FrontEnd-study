@@ -73,25 +73,22 @@ function* addPost(action){
 }
 
 function removePostAPI(data){
-    return axios.post(`/post`,data, {
-        withCredentials : true,
-    })
+    return axios.delete(`/post/${data}`)
 }
 
 function* removePost(action){
     try{
-        yield delay(500)
-        const id = shortid.generate();
-        // const result = yield call(removePostAPI, action.data)
+        const result = yield call(removePostAPI, action.data)
         yield put({
             type:REMOVE_POST_SUCCESS,
-            data: action.data,
+            data: result.data,
         })
         yield put({
             type:REMOVE_POST_OF_MINE,
             data: action.data
         })
     }catch(err){
+        console.log(err)
         yield put({
             type:REMOVE_POST_FAILURE,
             data:err.response.data

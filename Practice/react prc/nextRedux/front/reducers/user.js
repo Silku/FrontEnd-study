@@ -60,14 +60,14 @@ export const REMOVE_POST_OF_MINE = 'REMOVE_POST_OF_MINE';
 
 
 
-const dummyUser = (data) =>({
-    ...data,
-    nickname:'Silku',
-    id : 1,
-    Posts:[],
-    Followings : [{nickname:'바보'},{nickname:'바보'},{nickname:'바보'}],
-    Followers: [{nickname:'바보'},{nickname:'바보'},{nickname:'바보'}],
-})
+// const dummyUser = (data) =>({
+//     ...data,
+//     nickname:'Silku',
+//     id : 1,
+//     Posts:[],
+//     Followings : [{nickname:'바보'},{nickname:'바보'},{nickname:'바보'}],
+//     Followers: [{nickname:'바보'},{nickname:'바보'},{nickname:'바보'}],
+// })
 
 
 export const loginRequestAction = (data) =>{
@@ -144,8 +144,8 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
             break;
         case CHANGE_NICKNAME_REQUEST:
             draft.changeNicknameLoading = true;
-            draft.changeNicknameError = null;
             draft.changeNicknameDone = false;
+            draft.changeNicknameError = null;
             break;
         case CHANGE_NICKNAME_SUCCESS:
             draft.user.nickname = action.data.nickname;
