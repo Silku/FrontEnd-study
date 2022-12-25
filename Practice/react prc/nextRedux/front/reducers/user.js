@@ -58,6 +58,14 @@ export const LOAD_MY_INFO_FAILURE = 'LOAD_MY_INFO_FAILURE'
 export const ADD_POST_TO_MINE = 'ADD_POST_TO_MINE';
 export const REMOVE_POST_OF_MINE = 'REMOVE_POST_OF_MINE';
 
+export const LOAD_FOLLOWERS_REQUEST = 'LOAD_FOLLOWERS_REQUEST';
+export const LOAD_FOLLOWERS_SUCCESS = 'LOAD_FOLLOWERS_SUCCESS'
+export const LOAD_FOLLOWERS_FAILURE = 'LOAD_FOLLOWERS_FAILURE'
+
+export const LOAD_FOLLOWINGS_REQUEST = 'LOAD_FOLLOWINGS_REQUEST';
+export const LOAD_FOLLOWINGS_SUCCESS = 'LOAD_FOLLOWINGS_SUCCESS'
+export const LOAD_FOLLOWINGS_FAILURE = 'LOAD_FOLLOWINGS_FAILURE'
+
 
 
 // const dummyUser = (data) =>({
@@ -87,6 +95,34 @@ export const logoutRequsetAction =() =>{
 const reducer = (state = initialState, action) => produce(state, (draft) => {
      // reducer 분할 이전보다 depth가 낮아져서 한 단계 빼줌
     switch(action.type){
+        case LOAD_FOLLOWERS_REQUEST:
+            draft.loadFollowersLoading = true;
+            draft.loadFollowersError = null;
+            draft.loadFollowersDone = false;
+            break;
+        case LOAD_FOLLOWERS_SUCCESS:
+            draft.loadFollowersLoading = false;
+            draft.user.Followers = action.data;
+            draft.loadFollowersDone = true;
+            break;
+        case LOAD_FOLLOWERS_FAILURE:
+            draft.loadFollowersLoading = false;
+            draft.loadFollowersError = action.error;
+            break;
+        case LOAD_FOLLOWINGS_REQUEST:
+            draft.loadFollowingsLoading = true;
+            draft.loadFollowingsError = null;
+            draft.loadFollowingsDone = false;
+            break;
+        case LOAD_FOLLOWINGS_SUCCESS:
+            draft.loadFollowingsLoading = false;
+            draft.user.Followings = action.data;
+            draft.loadFollowingsDone = true;
+            break;
+        case LOAD_FOLLOWINGS_FAILURE:
+            draft.loadFollowingsLoading = false;
+            draft.loadFollowingsError = action.error;
+            break;
         case LOAD_MY_INFO_REQUEST:
             draft.loadMyInfoLoading = true;
             draft.loadMyInfoError = null;
@@ -178,12 +214,12 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
         // }
         case FOLLOW_REQUEST:
             draft.followLoading = true;
-            draft.followError = null;
             draft.followDone = false;
+            draft.followError = null;
             break;
         case FOLLOW_SUCCESS:
             draft.followLoading = false;
-            draft.user.Followings.push({id : action.data});
+            draft.user.Followings.push({id : action.data.UserId});
             draft.followDone = true;
             break;
         case FOLLOW_FAILURE:
@@ -197,7 +233,7 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
             break;
         case UNFOLLOW_SUCCESS:
             draft.unfollowLoading = false;
-            draft.user.Followings = draft.user.Followings.filter((v) => v.id !== action.data)
+            draft.user.Followings = draft.user.Followings.filter((v) => v.id !== action.data.UserId)
             draft.unfollowDone = true;
             break;
         case UNFOLLOW_FAILURE:

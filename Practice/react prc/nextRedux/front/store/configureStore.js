@@ -12,9 +12,9 @@ import rootSaga from '../sagas'
 
 // ex) 로그를 찍는 미들웨어
 const loggerMiddleware = ({ dispatch, getState }) => (next) => (action) => {
-  console.log(action)
-  return next(action)
-}
+  console.log(action);
+  return next(action);
+};
 
 
 const configureStore = () => {

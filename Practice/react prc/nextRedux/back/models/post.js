@@ -13,12 +13,14 @@ module.exports = (sequelize, DataTypes) => {
     })    
     Post.associate = (db) =>{
         // belongsTo 속해있다.
-        db.Post.belongsTo(db.User)
+        // 아래 주석은 sequelize에서 자동으로 생성하는 형식 =>  
+        // belongsTo 는 단수형, belongsToMany는 복수형 등등..
+        db.Post.belongsTo(db.User) //post.addUser , post.getUser , post.setUser
         db.Post.belongsToMany(db.Hashtag, {through : 'PostHashtag'});
-        db.Post.hasMany(db.Comment);
-        db.Post.hasMany(db.Image);
-        db.Post.belongsToMany(db.User, {through : 'Like' ,as : 'Likers'}); 
-        db.Post.belongsTo(db.Post, {as :'SharedPost'});
+        db.Post.hasMany(db.Comment); //post.addComments, post.getComments
+        db.Post.hasMany(db.Image); //post.addImages , post.getImages
+        db.Post.belongsToMany(db.User, {through : 'Like' ,as : 'Likers'});  //post.addLikers, post.removeLikers
+        db.Post.belongsTo(db.Post, {as :'SharedPost'}); 
     };
     return Post;
 }
