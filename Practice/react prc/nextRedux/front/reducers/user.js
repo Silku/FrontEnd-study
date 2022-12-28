@@ -22,6 +22,9 @@ export const initialState = {
     loadMyInfoLoading: false, // 유저정보 가져오기 시도중
     loadMyInfoDone: false,
     loadMyInfoError: null,
+    removeFollowerLoading: false, // 팔로워 차단 시도중
+    removeFollowerDone: false,
+    removeFollowerError: null,
     user: null,
     signUpData : {},
     loginData : {},
@@ -50,6 +53,10 @@ export const FOLLOW_FAILURE = 'FOLLOW_FAILURE'
 export const UNFOLLOW_REQUEST = 'UNFOLLOW_REQUEST'
 export const UNFOLLOW_SUCCESS = 'UNFOLLOW_SUCCESS'
 export const UNFOLLOW_FAILURE = 'UNFOLLOW_FAILURE'
+
+export const REMOVE_FOLLOWER_REQUEST = 'REMOVE_FOLLOWER_REQUEST'
+export const REMOVE_FOLLOWER_SUCCESS = 'REMOVE_FOLLOWER_SUCCESS'
+export const REMOVE_FOLLOWER_FAILURE = 'REMOVE_FOLLOWER_FAILURE'
 
 export const LOAD_MY_INFO_REQUEST = 'LOAD_MY_INFO_REQUEST'
 export const LOAD_MY_INFO_SUCCESS = 'LOAD_MY_INFO_SUCCESS'
@@ -239,6 +246,20 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
         case UNFOLLOW_FAILURE:
             draft.unfollowLoading = false;
             draft.unfollowError = action.error;
+            break;
+        case REMOVE_FOLLOWER_REQUEST:
+            draft.removeFollowerLoading = true;
+            draft.removeFollowerError = null;
+            draft.removeFollowerDone = false;
+            break;
+        case REMOVE_FOLLOWER_SUCCESS:
+            draft.removeFollowerLoading = false;
+            draft.user.Followers = draft.user.Followers.filter((v) => v.id !== action.data.UserId)
+            draft.removeFollowerDone = true;
+            break;
+        case REMOVE_FOLLOWER_FAILURE:
+            draft.removeFollowerLoading = false;
+            draft.removeFollowerError = action.error;
             break;
     default :
         break;

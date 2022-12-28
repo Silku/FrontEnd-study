@@ -8,6 +8,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { LOAD_FOLLOWERS_REQUEST, LOAD_FOLLOWINGS_REQUEST } from '../reducers/user'
 
 
+export const followingList = '팔로잉 목록'
+export const followerList = '팔로워 목록'
+
 const Profile = () => {
 	const dispatch = useDispatch();
 	const {user} = useSelector((state) => state.user);
@@ -37,8 +40,8 @@ return (
 		</Head>
 		<AppLayout>
 			<NicknameEditForm/>
-			<FollowList header="팔로잉 목록" data={user?.Followings}/>
-			<FollowList header="팔로워 목록" data={user?.Followers}/>
+			<FollowList header={followingList} data={user?.Followings}/>
+			<FollowList header={followerList} data={user?.Followers}/>
 		</AppLayout>
 	</>
 
