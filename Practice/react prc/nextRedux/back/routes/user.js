@@ -172,7 +172,7 @@ router.delete('/:userId/follow' , isLoggedIn, async(req,res)=>{ //DELETE, /user/
 })
 
 // 팔로워 차단
-router.delete('/follower/:userId' , isLoggedIn, async(req,res)=>{ //DELETE, /user/1/follow
+router.delete('/follower/:userId' , isLoggedIn, async(req,res)=>{ //DELETE, 
     try{
         const user = await User.findOne({
             where:{id:req.user.id}

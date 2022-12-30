@@ -21,6 +21,9 @@ import {
     DISLIKE_POST_REQUEST,
     DISLIKE_POST_SUCCESS,
     DISLIKE_POST_FAILURE,
+    UPLOAD_IMAGES_REQUEST,
+    UPLOAD_IMAGES_SUCCESS,
+    UPLOAD_IMAGES_FAILURE,
     // generateDummyPost, 
 } from "../reducers/post";
 import { ADD_POST_TO_MINE, REMOVE_POST_OF_MINE } from "../reducers/user";
@@ -157,6 +160,27 @@ function* addComment(action){
     }
 }
 
+function uploadImagesAPI(data){
+    return axios.post('post/images',data)
+}
+
+function* uploadImages(action){
+    try{
+        const result = yield call(uploadImagesAPI, action.data)
+        yield put({
+            type:UPLOAD_IMAGES_SUCCESS,
+            data:result.data,
+        })
+    }catch(err){
+        console.error(err)
+        yield put({
+            type:UPLOAD_IMAGES_FAILURE,
+            data:err.response.data
+        })
+    }
+}
+
+
 
 
 function* watchLoadPosts(){
@@ -181,9 +205,13 @@ function* watchLikePost(){
 function* watchDislikePost(){
     yield takeLatest(DISLIKE_POST_REQUEST, dislikePost)
 }
+function* watchUploadImages(){
+    yield takeLatest(UPLOAD_IMAGES_REQUEST, uploadImages)
+}
 
 export default function* postSaga(){
     yield all([
+        fork(watchUploadImages),
         fork(watchLoadPosts),
         fork(watchAddPost),
         fork(watchLikePost),

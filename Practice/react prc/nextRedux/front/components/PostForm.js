@@ -2,7 +2,7 @@ import React, { useCallback, useRef, useEffect } from 'react'
 import { Form ,Input, Button } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { addPost } from '../reducers/post';
+import { addPost, UPLOAD_IMAGES_REQUEST } from '../reducers/post';
 import useInput from '../hooks/useInput';
 
 
@@ -27,6 +27,19 @@ const PostForm = () => {
     const onClickImageUpload = useCallback(() =>{   
         imageInput.current.click();
     },[imageInput.current])
+
+    const onChangeImages = useCallback((e)=>{
+        console.log('images', e.target.files);
+        const imageFormData = new FormData(); //formData를 쓰면 multipart형식으로 보낼수 있고 multer가 처리가능
+        [].forEach.call(e.target.files, (f)=>{
+            imageFormData.append('imageKeyValue', f)
+        })
+        dispatch({
+            type:UPLOAD_IMAGES_REQUEST,
+            data:imageFormData,
+        })
+    },[])
+
   return (
     <>
         <Form style={{margin : '10px 0 20px' , }} encType="multipart/form-data" onFinish={onSubmit}>
@@ -42,7 +55,8 @@ const PostForm = () => {
                 type='file' 
                 multiple
                 style={{display:'none'}}
-                ref={imageInput}/>
+                ref={imageInput}
+                onChange={onChangeImages}/>
                 <Button onClick={onClickImageUpload}>이미지 업로드</Button>
                 <Button type="primary" style={{float:'right'}} htmlType="submit">작성하기</Button>
             </div>

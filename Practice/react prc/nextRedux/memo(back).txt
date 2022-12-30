@@ -337,6 +337,43 @@ dotenv.config();
 **reducer든 node/routes든 실행순서에 주의하자..
 
 
+
+[7] images처리
+multipart...
+
+npm i multer
+파일 업로드 관련 모듈
+
+
+// 이미지 업로드
+
+//프론트
+<input  type='file'  multiple style={{display:'none'}} ref={imageInput} onChange={onChangeImages}/>
+
+const upload = multer({
+    // 하드디스크에 저장
+    storage:multer.diskStorage({
+        destination(req,file,done){
+            done(null, 'uploads')
+        },
+        filename(req,file,done){ //사과.png
+            const ext = path.extname(file.originalname); //확장자추출(.png)
+            const basename = path.basename(file.originalname, ext) //사과
+            done(null, basename + new Date().getTime() + ext) //사과2212300101.png
+        }
+    }),
+    limits : {fileSize:20*1024*1024} //20mb
+});
+router.post('/images', isLoggedIn, upload.array('image'), async(req,res,next)=>{//POST, /post/images
+    // upload.single , 하나올리기
+    // upload.array , 여러개 올리기
+    // upload.none , 이미지 안올림, 텍스트만 올린다 할때
+    // upload.fields, 파일 인풋박스 자체가 여러개일떄
+
+} )
+
+
+
 [DB (mysql관련..)]
 //DB 조작할떄는 await 붙인다고 보면 됨.
 const posts = await Post.findAll({
