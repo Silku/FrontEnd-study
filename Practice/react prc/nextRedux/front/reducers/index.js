@@ -5,6 +5,8 @@ import { combineReducers } from "redux"
 import user from './user'
 import post from './post'
 
+// backend서버 url
+export const baseUrl = 'http://localhost:3065'
 
 
 //async action creator

@@ -350,6 +350,19 @@ npm i multer
 //프론트
 <input  type='file'  multiple style={{display:'none'}} ref={imageInput} onChange={onChangeImages}/>
 
+const onChangeImages = useCallback((e)=>{
+    console.log('images', e.target.files);
+    const imageFormData = new FormData(); //formData를 쓰면 multipart형식으로 보낼수 있고 multer가 처리가능
+    [].forEach.call(e.target.files, (f)=>{
+        imageFormData.append('imageKeyValue', f)
+        //append('키', 밸류) 여기의 키값이랑 multer의 upload.array('키') 키값이 일치해야함.
+    })
+    dispatch({
+        type:UPLOAD_IMAGES_REQUEST,
+        data:imageFormData,
+    })
+},[])
+
 const upload = multer({
     // 하드디스크에 저장
     storage:multer.diskStorage({
@@ -364,7 +377,7 @@ const upload = multer({
     }),
     limits : {fileSize:20*1024*1024} //20mb
 });
-router.post('/images', isLoggedIn, upload.array('image'), async(req,res,next)=>{//POST, /post/images
+router.post('/images', isLoggedIn, upload.array('imageKeyValue'), async(req,res,next)=>{//POST, /post/images
     // upload.single , 하나올리기
     // upload.array , 여러개 올리기
     // upload.none , 이미지 안올림, 텍스트만 올린다 할때
@@ -373,6 +386,22 @@ router.post('/images', isLoggedIn, upload.array('image'), async(req,res,next)=>{
 } )
 
 
+// [TIPS]
+PostForm.js 
+함수안에 매개변수 넣는 식으로 쓸떄...
+<Button onClick={onRemoveImage(i)}>삭제</Button>
+
+//아래처럼 고차함수 활용하기
+const onRemoveImage = useCallback((index) => () =>{
+    dispatch({
+        type:REMOVE_IMAGE,
+        data:index,
+    })
+},[])
+
+
+trim() // 텍스트 양쪽 끝의 공백을 지워줌
+ex ) text.trim();
 
 [DB (mysql관련..)]
 //DB 조작할떄는 await 붙인다고 보면 됨.

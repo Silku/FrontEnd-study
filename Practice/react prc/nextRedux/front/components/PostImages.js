@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
 import { PlusOutlined } from '@ant-design/icons';
 import ImageZoom from './ImageZoom'
+
 // 폴더 import해도 자동으로 index 파일로 불러옴, 경로에 따로 index쓸필요없음
 
 
@@ -21,7 +22,7 @@ const PostImages = ({images}) => {
         <>
             <img 
                 role="presentation"
-                src={images[0].src} alt={images[0].src} onClick={onZoom}/>
+                src={`http://localhost:3065/${images[0].src}`} alt={images[0].src} onClick={onZoom}/>
             {showImagesZoom && <ImageZoom images={images} onClose={onClose}/>}
         </>
     }
@@ -32,11 +33,11 @@ const PostImages = ({images}) => {
                     <img 
                     role="presentation"
                     style={{width:'50%',height:'100%', objectFit:'cover'}}
-                    src={images[0].src} alt={images[0].src} onClick={onZoom}/>
+                    src={`http://localhost:3065/${images[0].src}`} alt={images[0].src} onClick={onZoom}/>
                     <img 
                     role="presentation"
                     style={{width:'50%', height:'100%', objectFit:'cover'}}
-                    src={images[1].src} alt={images[1].src} onClick={onZoom}/>
+                    src={`http://localhost:3065/${images[1].src}`} alt={images[1].src} onClick={onZoom}/>
                 </div>
                 {showImagesZoom && <ImageZoom images={images} onClose={onClose}/>}
             </>
@@ -48,7 +49,7 @@ const PostImages = ({images}) => {
                 <img 
                     style={{width:'50%'}}
                     role="presentation"
-                    src={images[0].src} alt={images[0].src} onClick={onZoom}/>
+                    src={`http://localhost:3065/${images[0].src}`} alt={images[0].src} onClick={onZoom}/>
                 <div 
                     role="presentation"
                     style={{width:'50%'}}

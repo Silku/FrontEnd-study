@@ -2,7 +2,7 @@ import React, { useCallback, useRef, useEffect } from 'react'
 import { Form ,Input, Button } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { addPost, UPLOAD_IMAGES_REQUEST } from '../reducers/post';
+import { ADD_POST_REQUEST, UPLOAD_IMAGES_REQUEST, REMOVE_IMAGE } from '../reducers/post';
 import useInput from '../hooks/useInput';
 
 
@@ -20,8 +20,19 @@ const PostForm = () => {
     },[addPostDone])
 
     const onSubmit = useCallback(() =>{
-        dispatch(addPost(text))
-    },[text])
+        if(!text || !text.trim()){
+            return alert('게시글을 작성하세요.');
+        }
+        const formData = new FormData()
+        imagePaths.forEach((image)=>{
+            formData.append('image', image);
+        })
+        formData.append('content', text)
+        return dispatch({
+            type: ADD_POST_REQUEST,
+            data: formData,
+        })
+    },[text, imagePaths])
 
     const imageInput = useRef();
     const onClickImageUpload = useCallback(() =>{   
@@ -37,6 +48,13 @@ const PostForm = () => {
         dispatch({
             type:UPLOAD_IMAGES_REQUEST,
             data:imageFormData,
+        })
+    },[])
+
+    const onRemoveImage = useCallback((index) => () =>{
+        dispatch({
+            type:REMOVE_IMAGE,
+            data:index,
         })
     },[])
 
@@ -61,11 +79,11 @@ const PostForm = () => {
                 <Button type="primary" style={{float:'right'}} htmlType="submit">작성하기</Button>
             </div>
             <div>
-                {imagePaths.map((v)=>
+                {imagePaths.map((v, i)=>
                     <div key={v} style={{display:'inline-block'}}>
-                        <img src={v} style={{width:'200px'}} alt={v}/>
+                        <img src={`http://localhost:3065/${v}`} style={{width:'200px'}} alt={v}/>
                         <div>
-                            <Button>삭제</Button>
+                            <Button onClick={onRemoveImage(i)}>삭제</Button>
                         </div>
                     </div>
                 )}

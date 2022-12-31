@@ -51,9 +51,7 @@ function* loadPosts(action){
 
 
 function addPostAPI(data){
-    return axios.post('/post', {content : data},{
-        withCredentials:true, //쿠키허용
-    })
+    return axios.post('/post', data)
 }
 
 function* addPost(action){

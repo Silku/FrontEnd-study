@@ -92,6 +92,10 @@ export const DISLIKE_POST_REQUEST = 'DISLIKE_POST_REQUEST'
 export const DISLIKE_POST_SUCCESS = 'DISLIKE_POST_SUCCESS'
 export const DISLIKE_POST_FAILURE = 'DISLIKE_POST_FAILURE'
 
+export const REMOVE_IMAGE = 'REMOVE_IMAGE'
+
+
+
 export const addPost = (data) =>({
     type: ADD_POST_REQUEST,
     data,
@@ -127,6 +131,9 @@ export const addComment = (data) =>({
 const reducer = (state = initialState, action) =>{
     return produce(state, (draft)=>{
         switch(action.type){
+            case REMOVE_IMAGE : 
+                draft.imagePaths = draft.imagePaths.filter((v ,i) => i !== action.data);
+                break;
             case UPLOAD_IMAGES_REQUEST:
                 draft.uploadImagesLoading = true;
                 draft.uploadImagesDone = false;

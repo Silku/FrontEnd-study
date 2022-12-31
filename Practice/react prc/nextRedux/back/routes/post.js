@@ -15,15 +15,39 @@ try{
     fs.mkdirSync('uploads')
 }
 
+// 이미지 업로드
+const upload = multer({
+    // 하드디스크에 저장
+    storage:multer.diskStorage({
+        destination(req,file,done){
+            done(null, 'uploads')
+        },
+        filename(req,file,done){ //사과.png
+            const ext = path.extname(file.originalname); //확장자추출(.png)
+            const basename = path.basename(file.originalname, ext) //사과
+            done(null, basename + '_' +new Date().getTime() + ext) //사과2212300101.png
+        }
+    }),
+    limits : {fileSize:20*1024*1024} //20mb
+});
+
 
 // 게시글 작성
-router.post('/', isLoggedIn, async (req,res ,next)=>{ //Post/post
+router.post('/', isLoggedIn, upload.none(), async (req,res ,next)=>{ //Post/post
     try{
         const post = await Post.create({
             content : req.body.content,
             UserId : req.user.id,
         })
-        
+        if(req.body.image){
+            if(Array.isArray(req.body.image)){ //이미지 여러개 올리면 image : [사과.png, 바나나.png]
+                const images = await Promise.all(req.body.image.map((image)=> Image.create({src:image})));
+                await post.addImages(images);
+                }else{
+                const image = await Image.create({src:req.body.image})
+                await post.addImages(image);
+            }
+        }
         const fullPost = await Post.findOne({
             where:{id:post.id},
             include : [{
@@ -44,29 +68,15 @@ router.post('/', isLoggedIn, async (req,res ,next)=>{ //Post/post
             }]
         })
         res.status(201).json(fullPost);
-    }catch(err){
-        console.error(err)
-        next(err)
+    }catch(error){
+        console.error(error)
+        next(error)
     }
 })
 
 
-// 이미지 업로드
-const upload = multer({
-    // 하드디스크에 저장
-    storage:multer.diskStorage({
-        destination(req,file,done){
-            done(null, 'uploads')
-        },
-        filename(req,file,done){ //사과.png
-            const ext = path.extname(file.originalname); //확장자추출(.png)
-            const basename = path.basename(file.originalname, ext) //사과
-            done(null, basename + new Date().getTime() + ext) //사과2212300101.png
-        }
-    }),
-    limits : {fileSize:20*1024*1024} //20mb
-});
-router.post('/images', isLoggedIn, upload.array('imageKeyValue'), async(req,res,next)=>{//POST, /post/images
+
+router.post('/images', isLoggedIn, upload.array('imageKeyValue'), async(req,res, next)=>{//POST, /post/images
     console.log(req.files);
     res.json(req.files.map((v) => v.filename))
 } )
@@ -97,9 +107,9 @@ router.post('/:postId/comment', isLoggedIn, async (req,res ,next)=>{ // post/1/c
             }]
         })
         res.status(201).json(fullComment);
-    }catch(err){
-        console.error(err)
-        next(err)
+    }catch(error){
+        console.error(error)
+        next(error)
     }
 })
 
