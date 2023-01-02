@@ -3,7 +3,7 @@
 module.exports = (sequelize, DataTypes) => {
     const Image = sequelize.define('Image', {
         // id는 mysql에서 자동생성됨
-        content:{
+        src:{
             type:DataTypes.STRING(200),
             allowNull : true,
         },

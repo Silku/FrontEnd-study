@@ -28,12 +28,13 @@ passportConfig();
 
 
 //이 부분은 다른 라우터들보다 상단에 위치해야함.\
-app.use('/', express.static(path.join(__dirname, 'uploads'))) //__dirname + 'uploads' 처럼 쓰지 않는 이유는 운영체제(mac)에 따라 경로가 달라질수 있기때문
 app.use(morgan('dev'))
 app.use(cors({
     origin: true,
     credentials : true,
 }))
+app.use('/', express.static(path.join(__dirname, 'uploads')))  //__dirname + 'uploads' 처럼 쓰지 않는 이유는 운영체제(mac)에 따라 경로가 달라질수 있기때문
+
 app.use(express.json()) //json데이터 처리 
 app.use(urlencoded({extended:true})) //form(url)데이터 처리
 app.use(cookieParser(process.env.COOKIE_SECRET))

@@ -41,7 +41,7 @@ router.post('/', isLoggedIn, upload.none(), async (req,res ,next)=>{ //Post/post
         })
         if(req.body.image){
             if(Array.isArray(req.body.image)){ //이미지 여러개 올리면 image : [사과.png, 바나나.png]
-                const images = await Promise.all(req.body.image.map((image)=> Image.create({src:image})));
+                const images = await Promise.all(req.body.image.map((image) => Image.create({src:image})));
                 await post.addImages(images);
                 }else{
                 const image = await Image.create({src:req.body.image})
@@ -76,7 +76,7 @@ router.post('/', isLoggedIn, upload.none(), async (req,res ,next)=>{ //Post/post
 
 
 
-router.post('/images', isLoggedIn, upload.array('imageKeyValue'), async(req,res, next)=>{//POST, /post/images
+router.post('/images', isLoggedIn, upload.array('imagefiles'), async(req,res, next)=>{//POST, /post/images
     console.log(req.files);
     res.json(req.files.map((v) => v.filename))
 } )

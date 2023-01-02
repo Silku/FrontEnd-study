@@ -15,7 +15,7 @@ const PostForm = () => {
 
     useEffect(()=>{
         if(addPostDone){
-            setText('');
+            setText(' ');
         }
     },[addPostDone])
 
@@ -43,7 +43,7 @@ const PostForm = () => {
         console.log('images', e.target.files);
         const imageFormData = new FormData(); //formData를 쓰면 multipart형식으로 보낼수 있고 multer가 처리가능
         [].forEach.call(e.target.files, (f)=>{
-            imageFormData.append('imageKeyValue', f)
+            imageFormData.append('imagefiles', f)
         })
         dispatch({
             type:UPLOAD_IMAGES_REQUEST,
