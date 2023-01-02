@@ -3,13 +3,13 @@ const multer = require('multer')
 const path = require('path')
 const fs = require('fs');
 
-const {Post, User, Comment, Image} = require('../models')
+const {Post, User, Comment, Image, Hashtag} = require('../models')
 const {isLoggedIn} = require('./middlewares')
 
 const router = express.Router();
 
 try{
-    fs.accessSync('uploads')
+    fs.accessSync('uploads')     
 }catch(error){
     console.log('업로드 폴더가 없으므로 생성합니다.')
     fs.mkdirSync('uploads')
@@ -35,10 +35,19 @@ const upload = multer({
 // 게시글 작성
 router.post('/', isLoggedIn, upload.none(), async (req,res ,next)=>{ //Post/post
     try{
-        const post = await Post.create({
+        const hashTags = req.body.content.match( /#[^\s#]+/g);
+        const post = await Post.create({ 
             content : req.body.content,
             UserId : req.user.id,
         })
+        if(hashTags){
+            // findOrCreate : db에 있으면 가져오고 없으면 생성
+            // slice()로 #을 떼고 toLowerCase로 대소문자 구분없이 소문자로 치환
+            const result = await Promise.all(hashTags.map((tag) => Hashtag.findOrCreate({
+                where : {content:tag.slice(1).toLowerCase()},
+            })));
+            await post.addHashtags(result.map((v) => v[0]))
+        }
         if(req.body.image){
             if(Array.isArray(req.body.image)){ //이미지 여러개 올리면 image : [사과.png, 바나나.png]
                 const images = await Promise.all(req.body.image.map((image) => Image.create({src:image})));

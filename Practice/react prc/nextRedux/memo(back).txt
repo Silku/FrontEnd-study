@@ -400,6 +400,21 @@ const onRemoveImage = useCallback((index) => () =>{
 },[])
 
 
+[8] node Hashtag
+
+//post.js ... router.post('/') ...
+const hashTags = req.body.content.match( /#[^\s#]+/g);
+if(hashTags){
+    // findOrCreate : db에 있으면 가져오고 없으면 생성
+    // slice()로 #을 떼고 toLowerCase로 대소문자 구분없이 소문자로 치환
+    const result = await Promise.all(hashTags.map((tag) => Hashtag.findOrCreate({
+        //여기서 content는 db의 컬럼명..
+        where : {content:tag.slice(1).toLowerCase()},
+    })));
+    await post.addHashtags(result.map((v) => v[0]))
+}
+
+
 trim() // 텍스트 양쪽 끝의 공백을 지워줌
 ex ) text.trim();
 
