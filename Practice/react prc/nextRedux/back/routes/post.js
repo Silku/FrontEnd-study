@@ -4,7 +4,8 @@ const path = require('path')
 const fs = require('fs');
 
 const {Post, User, Comment, Image, Hashtag} = require('../models')
-const {isLoggedIn} = require('./middlewares')
+const {isLoggedIn} = require('./middlewares');
+const user = require('../models/user');
 
 const router = express.Router();
 
@@ -116,6 +117,73 @@ router.post('/:postId/comment', isLoggedIn, async (req,res ,next)=>{ // post/1/c
             }]
         })
         res.status(201).json(fullComment);
+    }catch(error){
+        console.error(error)
+        next(error)
+    }
+})
+
+// 게시글 공유하기(리트윗)
+router.post('/:postId/retweet', isLoggedIn, async (req,res ,next)=>{ // post/1/retweet
+    try{
+        const post = await Post.findOne({
+            where : {id : req.params.postId},
+            include : [{
+                model:Post,
+                as : 'SharedPost'
+            }]
+        })
+        if(!post){
+            return res.status(403).send('존재하지 않는 게시글 입니다.')
+        }
+        // 방지하기 : 자기 게시글을 리트윗하는것, 자기게시글을 리트윗한 게시글을 다시 자기가 리트윗하는것 
+        if(req.user.id === post.UserId || (post.SharedPost && post.SharedPost.UserId === req.user.id)){
+            return res.status(403).send('본인의 글을 재 공유할 수 없습니다. ㅜㅜ')
+        }
+        const retweetTargetId = post.SharedPostId || post.id
+        const exPost = await Post.findOne({
+            where : {
+                UserId : req.user.id,
+                SharedPostId : retweetTargetId,
+            }
+        })
+        if(exPost){
+            return res.status(403).json('이미 공유된 게시글 입니다.');
+        }
+        const retweet = await Post.create({
+            UserId: req.user.id,
+            SharedPostId : retweetTargetId,
+            content : `@retweet`
+        })
+        const retweetWithPrevPost = await Post.findOne({
+            where : {id : retweet.id},
+            include : [{
+                model:Post,
+                as : 'SharedPost',
+                include : [{
+                    model:User,
+                    attributes:['id', 'nickname'],
+                },{
+                    model:Image
+                }]
+            },{
+                model:User,
+                attributes : ['id', 'nickname'],
+            },{
+                model:Image,
+            },{
+                model:Comment,
+                include:[{
+                    model:User,
+                    attributes : ['id', 'nickname']
+                }]
+            },{
+                model : User, 
+                as : 'Likers',
+                attributes : ['id']
+            }]
+        })
+        res.status(201).json(retweetWithPrevPost);
     }catch(error){
         console.error(error)
         next(error)

@@ -19,6 +19,10 @@ const PostCardContent = ({postData}) => {
                     // slice(1) 앞에 #을 떼도록
                     return <Link href={`/hashtag/${v.slice(1)}`} key={i}><a>{v}</a></Link>
                 }
+                if(v.match(/(@[^\s@]+)/)){
+                    // slice(1) 앞에 #을 떼도록
+                    return <Link href={`/${v.slice(1)}`} key={i}><a>{v}</a></Link>
+                }
                 return v
             })}
         </>

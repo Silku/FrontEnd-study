@@ -1,4 +1,4 @@
-import React, { useCallback , useState} from 'react'
+import React, { useCallback , useEffect, useState} from 'react'
 import PropTypes from 'prop-types'
 import { Avatar, Button, Card, List, Popover } from 'antd'
 import { EllipsisOutlined, HeartOutlined, HeartTwoTone, MessageOutlined, RetweetOutlined } from '@ant-design/icons'
@@ -11,7 +11,9 @@ import PostCardContent from './PostCardContent';
 import { 
             REMOVE_POST_REQUEST, 
             LIKE_POST_REQUEST,
-            DISLIKE_POST_REQUEST, } from '../reducers/post';
+            DISLIKE_POST_REQUEST,
+            RETWEET_REQUEST,
+            } from '../reducers/post';
 import FollowButton from './FollowButton';
 
 const PostCard = ({post}) => {
@@ -24,13 +26,19 @@ const PostCard = ({post}) => {
 
 
     const onLike = useCallback(()=>{
-        dispatch({
+        if(!id){
+            return alert('로그인이 필요합니다.')
+        }
+        return dispatch({
             type:LIKE_POST_REQUEST,
             data:post.id,
         })
     },[id])
     const onDislike = useCallback(()=>{
-        dispatch({
+        if(!id){
+            return alert('로그인이 필요합니다.')
+        }
+        return dispatch({
             type:DISLIKE_POST_REQUEST,
             data:post.id,
         })
@@ -49,6 +57,16 @@ const PostCard = ({post}) => {
         })
     },[])
 
+    const onRetweet = useCallback(() =>{
+        if(!id){
+            return alert('로그인이 필요합니다.')
+        }
+        return dispatch({
+            type:RETWEET_REQUEST,
+            data:post.id,
+        })
+    },[id])
+
     const liked = post.Likers.find((v) => v.id === id);
     return (
     <>
@@ -56,7 +74,7 @@ const PostCard = ({post}) => {
             style={{marginBottom:'10px'}}
             cover={post.Images[0] && <PostImages images={post.Images}/>}
             actions={[
-                <RetweetOutlined key="reply"/>,
+                <RetweetOutlined key="retweet" onClick={onRetweet}/>,
                 liked
                 ? <HeartTwoTone twoToneColor="red" key="heart" onClick={onDislike}/>
                 : <HeartOutlined key="heart" onClick={onLike}/>,
@@ -75,15 +93,30 @@ const PostCard = ({post}) => {
                     <EllipsisOutlined/>
                 </Popover>
             ]}
+            title={post.SharedPostId ? `${post.User.nickname}님이 리트윗하셨습니다` : null}
             extra={id && <FollowButton post={post}/>}
         >
             {/* <Image/> */}
-            <Card.Meta
+            {post.SharedPostId && post.SharedPost
+            ? (
+                <Card
+                cover={post.SharedPost.Images[0] && <PostImages images={post.SharedPost.Images}/>}
+                >
+                <Card.Meta
+                avatar={<Avatar>{post.SharedPost.User.nickname[0]}</Avatar>}
+                title={post.SharedPost.User.nickname}
+                description={<PostCardContent postData={post.SharedPost.content}/>}
+                />
+                </Card>
+            )
+            :(
+                <Card.Meta
                 avatar={<Avatar>{post.User.nickname[0]}</Avatar>}
                 title={post.User.nickname}
                 description={<PostCardContent postData={post.content}/>}
-            />
-        </Card>
+                />
+            )}
+            </Card>
         {commentFormOpened &&(
             <>
                 <CommentForm post={post}/>
@@ -119,6 +152,8 @@ PostCard.PropTypes ={
         Comments : PropTypes.arrayOf(PropTypes.object),
         Images : PropTypes.arrayOf(PropTypes.object), 
         Likers : PropTypes.arrayOf(PropTypes.object),
+        SharedPostId: PropTypes.number,
+        SharedPost: PropTypes.objectOf(PropTypes.any),
     }).isRequired,
 }
 
