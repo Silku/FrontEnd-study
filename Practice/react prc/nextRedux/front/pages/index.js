@@ -37,9 +37,10 @@ const Home = () => {
 			let scrollHeight = document.documentElement.scrollHeight
 			if(scrollY+ clientHeight >= scrollHeight -100){
 				if(hasMorePosts && !loadPostsLoading){
-					console.log(hasMorePosts, !loadPostsLoading)
+					const lastId = mainPosts[mainPosts.length-1]?.id
 					dispatch({
 						type:LOAD_POSTS_REQUEST,
+						lastId,
 					})
 				}
 			}

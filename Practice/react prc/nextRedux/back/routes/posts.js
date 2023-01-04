@@ -1,12 +1,17 @@
 const express = require('express')
+const {Op} = require('sequelize')
 
 const {Post, User, Image, Comment} = require('../models')
 const router = express.Router();
 
 router.get('/', async (req,res,next)=>{
     try{
+        const where = {};
+        if(parseInt(req.query.lastId)){ //초기 로딩이 아닐때
+            where.id = {[Op.lt] : parseInt(req.query.lastId)}
+        }
         const posts = await Post.findAll({
-            // where : {Userid : lastId},
+            where,
             limit : 10, //불러올 게시글 제한 
             // 비밀번호는 '반드시' 제외하고..
             order : [

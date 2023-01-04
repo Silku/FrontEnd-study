@@ -32,8 +32,9 @@ import {
 import { ADD_POST_TO_MINE, REMOVE_POST_OF_MINE } from "../reducers/user";
 
 
-function loadPostsAPI(data){
-    return axios.get('/posts',data)
+function loadPostsAPI(lastId){
+    // 쿼리스트링 방식 , 주소에 데이터를 포함
+    return axios.get(`/posts?lastId=${lastId || 0}`)
 }
 
 function* loadPosts(action){
@@ -204,7 +205,7 @@ function* retweet(action){
 
 
 function* watchLoadPosts(){
-    yield throttle(2000, LOAD_POSTS_REQUEST, loadPosts)
+    yield takeLatest(LOAD_POSTS_REQUEST, loadPosts)
 }
 
 function* watchAddPost(){

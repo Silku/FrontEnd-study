@@ -418,8 +418,42 @@ if(hashTags){
 trim() // 텍스트 양쪽 끝의 공백을 지워줌
 ex ) text.trim();
 
+
+[9] 쿼리스트링..
+sagas/post.js..
+
+// 쿼리스트링 방식 , 주소에 데이터를 포함,
+// get쓸때 2번째 인자에는 withCredentials.. 가 들어가서 데이터를 못넣는데 쿼리스트링방식으로 데이터를 직접 넣는 방식임
+/*
+    예시 : `/posts?lastId=${lastId}&limit=10&offset=10`
+    url의 ? 뒤에 lastId=${lastId} , key=value 형식으로 넣고,
+    & 로 구분지어줌
+*/ 
+function loadPostsAPI(lastId){
+    // lastId가 undefined일경우, 0이 되도록
+    // pages/index.js에서 const lastId = mainPosts[mainPosts.length-1]?.id 처럼 lastId값이 없으면 undefined가 되도록 설정했기 때문에..
+    return axios.get(`/posts?lastId=${lastId || 0}`)
+}
+
+
+[back/route 설정 ..]
+//operator Op를 불러와주고.. (op는 $lt 같은걸 쓸 경우 보안에 안 좋아서 대신 사용하는 모듈)
+const {Op} = require('sequelize') 
+
+//where에 조건을 줘서 findAll에 넣는 형태
+const where = {};
+if (parseInt(req.query.lastId, 10)) { // 초기 로딩이 아닐 때
+    where.id = { [Op.lt]: parseInt(req.query.lastId, 10)}
+} // 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1
+
+
+const posts = await Post.findAll({
+    where,
+
+
+
 [DB (mysql관련..)]
-//DB 조작할떄는 await 붙인다고 보면 됨.
+//DB 조작할떄는 await 붙인다고 보면 됨. 
 const posts = await Post.findAll({
     // where : {Userid : 1}
 
