@@ -5,6 +5,7 @@ import PostCard from "../components/PostCard";
 import { LOAD_POSTS_REQUEST } from "../reducers/post";
 import { LOAD_MY_INFO_REQUEST, LOAD_MY_INFO_SUCCESS } from "../reducers/user";
 import { useEffect } from "react";
+import wrapper from "../store/configureStore";
 
 const Home = () => {
 
@@ -45,7 +46,7 @@ const Home = () => {
 				}
 			}
 		}
-		window.addEventListener('scroll', onScroll)
+		window.addEventListener('scroll', onScroll)	
 		return () =>{
 			window.addEventListener('scroll', onScroll);
 		}
@@ -60,5 +61,21 @@ const Home = () => {
 		</AppLayout>
 	)
 }
+
+export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ req }) => {
+	const cookie = req ? req.headers.cookie : '';
+	axios.defaults.headers.Cookie = '';
+	if (req && cookie) {
+		axios.defaults.headers.Cookie = cookie;
+	}
+	store.dispatch({
+		type: LOAD_MY_INFO_REQUEST,
+	});
+	store.dispatch({
+		type: LOAD_POSTS_REQUEST,
+	});
+	store.dispatch(END);
+	await store.sagaTask.toPromise();
+});
 
 export default Home

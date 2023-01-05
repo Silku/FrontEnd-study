@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import PropTypes from 'prop-types';
 import Link from 'next/link'
 import {createSelectorHook, useSelector} from 'react-redux'
 import {Menu, Input, Row, Col} from 'antd'
 import styled from 'styled-components';
+import { useRouter } from 'next/router';
+
 import UserProfile from './UserProfile';
 import LoginForm from './LoginForm';
 
@@ -13,26 +15,23 @@ const SearchInput = styled(Input.Search)`
     vertical-align: middle;
 `
 const AppLayout = ({children}) => {
-    
+    const router = useRouter();
     // const  isLogIn = useSelector((state) => state.user.isLogIn); // 구조분해하던지 2가지 방법중 하나 사용
     const {user} = useSelector((state) => state.user);
 
+    
     return (
         <>
-            <Menu mode="horizontal">
-                <Menu.Item>
-                    <Link href="/"><a>메인 게시판</a></Link>
-                </Menu.Item>
-                <Menu.Item>
-                    <Link href="profile"><a>프로필</a></Link>
-                </Menu.Item>
-                <Menu.Item>
-                    <SearchInput enterButton />
-                </Menu.Item>
-                <Menu.Item>
-                    <Link href="signup"><a>회원가입</a></Link>
-                </Menu.Item>
-            </Menu>
+            <Menu 
+            mode="horizontal"
+            selectedKeys={[router.pathname]}
+            items={[
+                { label: <Link href="/"><a>메인 게시판</a></Link>, key: '/' },
+                { label: <Link href="/profile"><a>프로필</a></Link>, key: '/profile' },
+                { label: <SearchInput enterButton/>, key: '/search'},
+                { label: <Link href="signup"><a>회원가입</a></Link>, key : 'signup'},
+            ]}
+            />
             <Row gutter={8}>
                 <Col xs={24} md={6}>
                     {user ? <UserProfile/> : <LoginForm /> }

@@ -465,3 +465,32 @@ const posts = await Post.findAll({
 })
 
 
+
+[10] next 9버전 이상 사용법
+
+[10-1] Next.js의 데이터 패칭 방식 : 
+
+getStaticProps : 유저의 요청마다 fetch할 필요가 없는 고정된 내용의 페이지를 렌더링할 때,
+
+getStaticPath : 어떤 페이지를 미리 Static으로 빌드할 지 정하는 api로, getStaticProps + 동적라우팅이 필요할 때 적합,
+
+getServerSideProps : 자주 변경되는 페이지로, 페이지를 렌더링하기전에 반드시 fetch해야 할 데이터가 있을 때 사용
+(성능이 매우 떨어지므로 꼭 필요할때 사용)
+
+
+pages/index.js
+(1) getServerSideProps : 
+페이지가 렌더 되기전에 데이터를 pre-rendering을 해주는 역할
+getServerSideProps를 실행시키면 reducer에있는 HYDRATE가 실행. 
+
+아래와 같이 씀...
+import wrapper from "../store/configureStore";
+import { END } from "redux-saga";
+export const getServerSideProps = wrapper.getServerSideProps((context) =>{ 
+    context.store.dispatch({
+		type: LOAD_MY_INFO_REQUEST,
+	});
+	store.dispatch(END);	
+	await store.sagaTask.toPromise();
+});
+

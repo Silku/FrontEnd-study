@@ -6,7 +6,6 @@ import user from './user'
 import post from './post'
 
 // backend서버 url
-export const baseUrl = 'http://localhost:3065'
 
 
 //async action creator
@@ -22,19 +21,19 @@ const changeNickname = (data) =>{
 
 
 // (이전state , action) => 다음state
-const rootReducer = combineReducers({
-    // combineReducer쓰면 HYDRATE는 아래와 같이 넣어줌.
-    index : (state={}, action) => {
-        switch(action.type){
-            case HYDRATE : 
-            console.log('HYDRATE' , action)
-                return {...state, ...action.payload}
-            default : 
-                return state;
+const rootReducer = (state, action) => {
+    switch (action.type) {
+        case HYDRATE:
+            console.log('HYDRATE', action);
+            return action.payload;
+        default: {
+            const combinedReducer = combineReducers({
+                user,
+                post,
+            });
+            return combinedReducer(state, action);
         }
-    },
-    user,
-    post,
-})
+    }
+};
 
 export default rootReducer;
