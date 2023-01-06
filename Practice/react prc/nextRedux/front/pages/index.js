@@ -3,9 +3,11 @@ import AppLayout from "../components/AppLayout"
 import PostForm from "../components/PostForm";
 import PostCard from "../components/PostCard";
 import { LOAD_POSTS_REQUEST } from "../reducers/post";
-import { LOAD_MY_INFO_REQUEST, LOAD_MY_INFO_SUCCESS } from "../reducers/user";
+import { LOAD_MY_INFO_REQUEST, } from "../reducers/user";
 import { useEffect } from "react";
 import wrapper from "../store/configureStore";
+import { END } from "redux-saga";
+import axios from "axios";
 
 const Home = () => {
 
@@ -26,9 +28,6 @@ const Home = () => {
 			dispatch({
 				type: LOAD_POSTS_REQUEST,
 			});
-			dispatch({
-				type: LOAD_MY_INFO_SUCCESS,
-			})
 		},[]);
 
 	useEffect(()=>{
@@ -74,7 +73,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
 	store.dispatch({
 		type: LOAD_POSTS_REQUEST,
 	});
-	store.dispatch(END);
+	store.dispatch(END);	
 	await store.sagaTask.toPromise();
 });
 

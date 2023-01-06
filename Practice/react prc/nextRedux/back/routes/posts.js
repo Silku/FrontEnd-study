@@ -49,7 +49,7 @@ router.get('/', async (req,res,next)=>{
             },
             ]
         })
-        console.log('실행' + posts)
+        // console.log(posts)
         res.status(200).json(posts);
     }catch(error){
         console.error(error)

@@ -22,10 +22,14 @@ export const initialState = {
     loadMyInfoLoading: false, // 유저정보 가져오기 시도중
     loadMyInfoDone: false,
     loadMyInfoError: null,
+    loadOtherUserLoading: false, // 다른 유저정보 가져오기 시도중
+    loadOtherUserDone: false,
+    loadOtherUserError: null,
     removeFollowerLoading: false, // 팔로워 차단 시도중
     removeFollowerDone: false,
     removeFollowerError: null,
     user: null,
+    otherUser: null,
     signUpData : {},
     loginData : {},
 }
@@ -61,6 +65,10 @@ export const REMOVE_FOLLOWER_FAILURE = 'REMOVE_FOLLOWER_FAILURE'
 export const LOAD_MY_INFO_REQUEST = 'LOAD_MY_INFO_REQUEST'
 export const LOAD_MY_INFO_SUCCESS = 'LOAD_MY_INFO_SUCCESS'
 export const LOAD_MY_INFO_FAILURE = 'LOAD_MY_INFO_FAILURE'
+
+export const LOAD_OTHER_USER_REQUEST = 'LOAD_OTHER_USER_REQUEST'
+export const LOAD_OTHER_USER_SUCCESS = 'LOAD_OTHER_USER_SUCCESS'
+export const LOAD_OTHER_USER_FAILURE = 'LOAD_OTHER_USER_FAILURE'
 
 export const ADD_POST_TO_MINE = 'ADD_POST_TO_MINE';
 export const REMOVE_POST_OF_MINE = 'REMOVE_POST_OF_MINE';
@@ -143,6 +151,20 @@ const reducer = (state = initialState, action) => produce(state, (draft) => {
         case LOAD_MY_INFO_FAILURE:
             draft.loadMyInfoLoading = false;
             draft.loadMyInfoError = action.error;
+            break;
+        case LOAD_OTHER_USER_REQUEST:
+            draft.loadOtherUserLoading = true;
+            draft.loadOtherUserError = null;
+            draft.loadOtherUserDone = false;
+            break;
+        case LOAD_OTHER_USER_SUCCESS:
+            draft.loadOtherUserLoading = false;
+            draft.otherUser = action.data;
+            draft.loadOtherUserDone = true;
+            break;
+        case LOAD_OTHER_USER_FAILURE:
+            draft.loadOtherUserLoading = false;
+            draft.loadOtherUserError = action.error;
             break;
         case LOG_IN_REQUEST:
             draft.logInLoading = true;

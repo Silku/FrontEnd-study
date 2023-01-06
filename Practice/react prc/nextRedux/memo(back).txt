@@ -234,7 +234,6 @@ app.use(cors(
     credentials : true, //쿠키 허용
 ))
 
-
 saga에서 비동기 요청 보낼때...
 axios.post('/post', data, {
   withCredentials: true
@@ -309,7 +308,7 @@ module.exports = () =>{
 }
 
 serializeUser() : 사용자 정보, 쿠키를 저장
-deserializeUser() : 쿠카에 저장된 connect.sid값으로 부터 일치하는 사용자 정보를 찾고 httpRequest를 돌려줌 (로그인 이후 활동시(?))
+deserializeUser() : 쿠키에 저장된 connect.sid값으로 부터 일치하는 사용자 정보를 찾고 httpRequest를 돌려줌 (로그인 이후 활동시(?))
 
 
 [5-2] 세션/쿠키
@@ -438,6 +437,7 @@ function loadPostsAPI(lastId){
 
 [back/route 설정 ..]
 //operator Op를 불러와주고.. (op는 $lt 같은걸 쓸 경우 보안에 안 좋아서 대신 사용하는 모듈)
+//예를들면 SQL injection
 const {Op} = require('sequelize') 
 
 //where에 조건을 줘서 findAll에 넣는 형태
@@ -486,7 +486,7 @@ getServerSideProps를 실행시키면 reducer에있는 HYDRATE가 실행.
 아래와 같이 씀...
 import wrapper from "../store/configureStore";
 import { END } from "redux-saga";
-export const getServerSideProps = wrapper.getServerSideProps((context) =>{ 
+export const getServerSideProps = wrapper.getServerSideProps(async (context) =>{ 
     context.store.dispatch({
 		type: LOAD_MY_INFO_REQUEST,
 	});
@@ -494,3 +494,25 @@ export const getServerSideProps = wrapper.getServerSideProps((context) =>{
 	await store.sagaTask.toPromise();
 });
 
+[10-2] next를 사용할떄 서버간 통신의 문제점
+기존 방식(브라우저 -> 백엔드로 데이터를 보낼때)은 Access-Control-Allow-Origin, withCredentials과 같은 부분을 
+브라우저가 어느정도 해결해 주는 부분이 있는데,
+getServerSideProps를 통해 프론트서버 -> 백엔드서버로 데이터를 전송할떄 직접 쿠키를 전달하는 로직을 써줘야함.
+
+//아래와 같이 사용
+export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ req }) => {
+    //서버에서 실행되면 context.req라는게 존재함. 따라서, axios.defaults.headers.Cookie = cookie;와 같이 요청을 보냄.
+	const cookie = req ? req.headers.cookie : '';
+	axios.defaults.headers.Cookie = '';
+	if (req && cookie) {
+		axios.defaults.headers.Cookie = cookie;
+	}
+
+    /**!!매우 중요한 포인트!!
+        getServerSideProps 이 부분이 서버에서 실행된다는 점이 매우 중요 ,
+        예를들어 aws서버에 axios.defaults.headers.Cookie = cookie;로 되어있으면
+        다른 사람이 접속했는데 내 쿠키의 정보가 공유되는 불상사가 발생할 수 있음.
+        따라서 서버일때,쿠키일때라는 조건을 주고 if (req && cookie) {}
+        기본적으로는 axios.defaults.headers.Cookie = '';로 서버에서 공유하는 쿠키를 지워주기
+    **/
+.......

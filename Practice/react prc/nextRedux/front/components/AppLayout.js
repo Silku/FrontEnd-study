@@ -11,6 +11,7 @@ import LoginForm from './LoginForm';
 
 
 
+
 const SearchInput = styled(Input.Search)`
     vertical-align: middle;
 `
@@ -29,7 +30,7 @@ const AppLayout = ({children}) => {
                 { label: <Link href="/"><a>메인 게시판</a></Link>, key: '/' },
                 { label: <Link href="/profile"><a>프로필</a></Link>, key: '/profile' },
                 { label: <SearchInput enterButton/>, key: '/search'},
-                { label: <Link href="signup"><a>회원가입</a></Link>, key : 'signup'},
+                { label: <Link href="/signup"><a>회원가입</a></Link>, key : '/signup'},
             ]}
             />
             <Row gutter={8}>

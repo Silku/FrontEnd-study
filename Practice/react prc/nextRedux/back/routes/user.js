@@ -8,6 +8,7 @@ const {isLoggedIn, isNotLoggedIn} =require('./middlewares')
 const router = express.Router();
 
 router.get('/', async (req,res,next) => {
+    console.log(req.headers) //헤더로 쿠키전달 확인
     try{
         // 새로고침시에도 로그인 유지,
         // 항상 이 router가 호출되므로 req.user값이 있을때만 유저값을 전달, 없다면 null
@@ -36,6 +37,41 @@ router.get('/', async (req,res,next) => {
             res.status(200).json(userInfoWithoutPassword);
         }else{
             res.status(200).json(null);
+        }
+    }catch(err){
+        console.error(err)
+        next(err)
+    }
+})
+
+router.get('/:userId', async (req,res,next) => {
+    // 특정사용자 데이터 가져오기
+    try{
+        const userInfoWithoutPassword = await User.findOne({
+            where:{id: req.params.userId},
+            attributes : {
+                exclude:['password']
+            },
+            include : [{
+                model:Post,
+                attributes : ['id'], //성능을 위해 id값만 가져오기
+            },{
+                model:User,
+                as:'Followings',
+                attributes : ['id'],
+            },{
+                model:User,
+                as:'Followers',
+                attributes : ['id'],
+            }]
+        })
+        await User.findOne({
+            where:{id:req.user.id}
+        })
+        if(userInfoWithoutPassword){
+            res .status(200).json(userInfoWithoutPassword);
+        }else{
+            res.status(404).json('존재하지 않는 사용자..');
         }
     }catch(err){
         console.error(err)
@@ -140,7 +176,7 @@ router.patch('/nickname' , isLoggedIn, async(req,res)=>{
 
 //팔로우, 언팔로우
 router.patch('/:userId/follow' , isLoggedIn, async(req,res)=>{ //PATCH, /user/1/follow
-    console.log('접근')
+    console.log('follow request')
     try{
         const user = await User.findOne({
             where:{id:req.params.userId}
@@ -156,6 +192,7 @@ router.patch('/:userId/follow' , isLoggedIn, async(req,res)=>{ //PATCH, /user/1/
     }
 })
 router.delete('/:userId/follow' , isLoggedIn, async(req,res)=>{ //DELETE, /user/1/follow
+    console.log('unfollow request')
     try{
         const user = await User.findOne({
             where:{id:req.params.userId}
