@@ -8,6 +8,8 @@ import useInput from '../hooks/useInput'
 import AppLayout from '../components/AppLayout'
 import styled from 'styled-components'
 import { SIGN_UP_REQUEST } from '../reducers/user'
+import wrapper from '../store/configureStore'
+import { END } from 'redux-saga'
 
 
 const ErrorMessage = styled.div`
@@ -117,5 +119,18 @@ const Signup = () => {
 	)
 }
 
-// git Test
+export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ req }) => {
+
+	const cookie = req ? req.headers.cookie : '';
+	axios.defaults.headers.Cookie = '';
+	if (req && cookie) {
+		axios.defaults.headers.Cookie = cookie;
+	}
+	store.dispatch({
+		type: LOAD_MY_INFO_REQUEST,
+	});
+	store.dispatch(END);	
+	await store.sagaTask.toPromise();
+});
+
 export default Signup

@@ -490,7 +490,8 @@ export const getServerSideProps = wrapper.getServerSideProps(async (context) =>{
     context.store.dispatch({
 		type: LOAD_MY_INFO_REQUEST,
 	});
-	store.dispatch(END);	
+    // 아래 END 액션과 sagaTask..부분 넣어줘야 req에서 끝나는게 아니라 응답까지 돌아옴
+	store.dispatch(END);
 	await store.sagaTask.toPromise();
 });
 
@@ -516,3 +517,28 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async ({
         기본적으로는 axios.defaults.headers.Cookie = '';로 서버에서 공유하는 쿠키를 지워주기
     **/
 .......
+
+
+[10-3] 다이나믹 라우팅
+pages에서..
+post폴더/[id].js로 파일을 생성
+아래처럼 해주면 /post/1로 들어가면
+1번 게시글이라는 텍스트를 확인가능
+
+const Post = () => {
+	const router = useRouter();
+	const { id } = router.query;
+
+    return(
+        <div>{id}번 게시글</div>
+    )
+}
+
+---------------------------
+getServerSideProps, getStaticProps에서 
+context.params.id 로 써주면 위의 const { id } = router.query;와 동일한 기능으로 사용할수 있음
+
+store.dispatch({
+    type: LOAD_POST_REQUEST,
+    data: params.id,
+});

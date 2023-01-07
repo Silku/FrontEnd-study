@@ -71,7 +71,7 @@ router.get('/:userId', async (req,res,next) => {
         if(userInfoWithoutPassword){
             res .status(200).json(userInfoWithoutPassword);
         }else{
-            res.status(404).json('존재하지 않는 사용자..');
+            res.status(404).json('존재하지 않는 사용자입니다..ㅜㅜ');
         }
     }catch(err){
         console.error(err)

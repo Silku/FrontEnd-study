@@ -123,6 +123,55 @@ router.post('/:postId/comment', isLoggedIn, async (req,res ,next)=>{ // post/1/c
     }
 })
 
+
+// 게시물 id에 따라 불러오기
+router.get('/:postId', async (req,res ,next)=>{ //GET ,  post/1
+    try{
+        const post = await Post.findOne({
+            where : {id : req.params.postId},
+        })
+        if(!post){
+            return res.status(404).send('존재하지 않는 게시글 입니다.')
+        }
+        const fullPost = await Post.findOne({
+            where : {id : post.id},
+            include : [{
+                model:Post,
+                as : 'SharedPost',
+                include : [{
+                    model:User,
+                    attributes:['id', 'nickname'],
+                },{
+                    model:Image
+                }]
+            },{
+                model:User,
+                attributes : ['id', 'nickname'],
+            },{
+                model:Image,
+            },{
+                model:User,
+                as : 'Likers',
+                attributes : ['id', 'nickname'],
+            },{
+                model:Comment,
+                include:[{
+                    model:User,
+                    attributes : ['id', 'nickname']
+                }]
+            },{
+                model : User, 
+                as : 'Likers',
+                attributes : ['id']
+            }]
+        })
+        res.status(200).json(fullPost);
+    }catch(error){
+        console.error(error)
+        next(error)
+    }
+})
+
 // 게시글 공유하기(리트윗)
 router.post('/:postId/retweet', isLoggedIn, async (req,res ,next)=>{ // post/1/retweet
     try{

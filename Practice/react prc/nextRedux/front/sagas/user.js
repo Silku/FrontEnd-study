@@ -149,8 +149,8 @@ function* loadMyInfo(){
     }
 }
 
-function loadOtherUserAPI(){
-    return axios.get(`/user${data}`)
+function loadOtherUserAPI(data){
+    return axios.get(`/user/${data}`)
 }
 
 function* loadOtherUser(action){

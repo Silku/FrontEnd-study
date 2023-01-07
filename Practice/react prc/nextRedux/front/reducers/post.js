@@ -10,8 +10,12 @@ export const initialState = {
      */
     //redux 데이터 구조는 서버개발자랑 잘 의논하고 정해야한다. 대소문자 등등
     mainPosts:[],
+    singlePost : null,
     imagePaths : [],
     hasMorePosts : true,
+    loadPostLoading: false,
+    loadPostDone: false,
+    loadPostError: null,
     loadPostsLoading: false,
     loadPostsDone: false,
     loadPostsError: null,
@@ -70,6 +74,10 @@ export const initialState = {
 export const UPLOAD_IMAGES_REQUEST = 'UPLOAD_IMAGES_REQUEST';
 export const UPLOAD_IMAGES_SUCCESS = 'UPLOAD_IMAGES_SUCCESS';
 export const UPLOAD_IMAGES_FAILURE = 'UPLOAD_IMAGES_FAILURE';
+
+export const LOAD_POST_REQUEST = 'LOAD_POST_REQUEST';
+export const LOAD_POST_SUCCESS = 'LOAD_POST_SUCCESS';
+export const LOAD_POST_FAILURE = 'LOAD_POST_FAILURE';
 
 export const LOAD_POSTS_REQUEST = 'LOAD_POSTS_REQUEST';
 export const LOAD_POSTS_SUCCESS = 'LOAD_POSTS_SUCCESS';
@@ -170,6 +178,19 @@ const reducer = (state = initialState, action) =>{
                 draft.uploadImagesLoading = false;
                 draft.uploadImagesError = action.error;
                 break;
+            case LOAD_POST_REQUEST:
+                draft.loadPostLoading = true;
+                draft.loadPostDone = false;
+                draft.loadPostError = null;
+                break;
+            case LOAD_POST_SUCCESS:
+                draft.loadPostLoading = false;
+                draft.loadPostDone = true;
+                draft.singlePost = action.data;
+                break;
+            case LOAD_POST_FAILURE:
+                draft.loadPostLoading = false;
+                draft.loadPostError = action.error;
             case LOAD_POSTS_REQUEST:
                 draft.loadPostsLoading = true;
                 draft.loadPostsDone = false;
