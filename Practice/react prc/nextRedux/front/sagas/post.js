@@ -30,6 +30,12 @@ import {
     LOAD_POST_REQUEST,
     LOAD_POST_SUCCESS,
     LOAD_POST_FAILURE,
+    LOAD_HASHTAG_POSTS_REQUEST,
+    LOAD_USER_POSTS_REQUEST,
+    LOAD_HASHTAG_POSTS_SUCCESS,
+    LOAD_HASHTAG_POSTS_FAILURE,
+    LOAD_USER_POSTS_SUCCESS,
+    LOAD_USER_POSTS_FAILURE,
     // generateDummyPost, 
 } from "../reducers/post";
 import { ADD_POST_TO_MINE, REMOVE_POST_OF_MINE } from "../reducers/user";
@@ -75,6 +81,46 @@ function* loadPosts(action){
     }
 }
 
+function loadHashtagPostsAPI(data, lastId) {
+    return axios.get(`/hashtag/${encodeURIComponent(data)}?lastId=${lastId || 0}`);
+}
+
+function* loadHashtagPosts(action) {
+    try {
+    console.log('loadHashtag console');
+    const result = yield call(loadHashtagPostsAPI, action.data, action.lastId);
+    yield put({
+        type: LOAD_HASHTAG_POSTS_SUCCESS,
+        data: result.data,
+    });
+    } catch (err) {
+    console.error(err);
+    yield put({
+        type: LOAD_HASHTAG_POSTS_FAILURE,
+        error: err.response.data,
+    });
+    }
+}
+
+function loadUserPostsAPI(data, lastId) {
+    return axios.get(`/user/${data}/posts?lastId=${lastId || 0}`);
+}
+
+function* loadUserPosts(action) {
+    try {
+    const result = yield call(loadUserPostsAPI, action.data, action.lastId);
+    yield put({
+        type: LOAD_USER_POSTS_SUCCESS,
+        data: result.data,
+    });
+    } catch (err) {
+    console.error(err);
+    yield put({
+        type: LOAD_USER_POSTS_FAILURE,
+        error: err.response.data,
+    });
+    }
+}
 
 
 function addPostAPI(data){
@@ -229,9 +275,17 @@ function* retweet(action){
 
 function* watchLoadPost(){
     yield takeLatest(LOAD_POST_REQUEST, loadPost)
-
-}function* watchLoadPosts(){
+}
+function* watchLoadPosts(){
     yield takeLatest(LOAD_POSTS_REQUEST, loadPosts)
+}
+
+function* watchLoadHashtagPosts() {
+    yield takeLatest(LOAD_HASHTAG_POSTS_REQUEST, loadHashtagPosts);
+}
+
+function* watchLoadUserPosts() {
+    yield takeLatest(LOAD_USER_POSTS_REQUEST, loadUserPosts);
 }
 
 function* watchAddPost(){
@@ -265,6 +319,8 @@ export default function* postSaga(){
         fork(watchUploadImages),
         fork(watchLoadPost),
         fork(watchLoadPosts),
+        fork(watchLoadUserPosts),
+        fork(watchLoadHashtagPosts),
         fork(watchAddPost),
         fork(watchLikePost),
         fork(watchDislikePost),

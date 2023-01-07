@@ -15,7 +15,7 @@ const PostForm = () => {
 
     useEffect(()=>{
         if(addPostDone){
-            setText(' ');
+            setText('');
         }
     },[addPostDone])
 
