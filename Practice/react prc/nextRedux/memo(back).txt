@@ -602,3 +602,60 @@ export default class MyDocument extends Document {
 		);
 	}
 }
+
+[10-5] getStaticPath 
+
+다이나믹라우팅일때 쓸 수 있음 ,getStaticProps랑 같이 사용하게 됨.
+fallback은 true이면 params 외의 페이지를 로드할경우 에러는 안뜨는데 , SSR이 안됨.
+false이면 params이외의 페이지는 에러
+
+//post/[id].js
+	// if (router.isFallback) {
+	//   return <div>로딩중...</div>;
+	// }
+
+export async function getStaticProps(){
+    const result = await axios.get('post/list')
+    return {
+        paths:[
+            {params: {id:1}},
+        ],
+        fallback:false,
+    }
+}
+
+[10-6] swr
+SWR : next 라이브러리 
+redux, redux-saga의 dispatch 대신 사용할 수있음.
+npm i swr
+
+
+pages/profile.js...
+
+import useSWR from 'swr';
+
+// fetcher대신 graphql도 쓸수 있음
+const fetcher = (url) => axios.get(url, {withCredentials:true}).then((result)=> result.data);
+...
+const Profile = () => {
+	const {data, error} = useSWR(`http://localhost:3065/user/follwers`, fetcher)
+}
+
+/*
+여기서 return을 넣어 줄때 주의사항, hooks위에 이 코드가 있으면 
+return 되어서 hooks가 실행이 안되므로 에러가 발생함.
+return 되는 코드는 훅스가 다 실행된 다음 그 아래에 만들어 줘야한다. 
+*/
+if (followerError || followingError) {
+    console.error(followerError || followingError);
+    return <div>팔로잉/팔로워 로딩 중 에러가 발생합니다.</div>;
+}
+
+
+** 매우 중요 **
+미들웨어를 사용할떄 주의점
+back단 router에서 ..
+
+router.get(`/:userId`) 처럼 params or 와일드카드 받는 부분..
+이런 코드들은 router애서 최대한 아래로 내려주는게 좋다. 
+예를들면 /user/1로 요청한거나  /user/follwer로 요청한거나 똑같이 인식해서 오작동할 수 있음.

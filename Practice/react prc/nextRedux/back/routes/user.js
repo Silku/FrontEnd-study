@@ -3,7 +3,8 @@ const bcrypt = require('bcrypt')
 const passport = require('passport')
 
 const {User, Post} = require('../models');
-const {isLoggedIn, isNotLoggedIn} =require('./middlewares')
+const {isLoggedIn, isNotLoggedIn} =require('./middlewares');
+const {Op} = require('sequelize')
 
 const router = express.Router();
 
@@ -41,94 +42,6 @@ router.get('/', async (req,res,next) => {
     }catch(err){
         console.error(err)
         next(err)
-    }
-})
-
-router.get('/:userId', async (req,res,next) => {
-    // 특정사용자 데이터 가져오기
-    try{
-        const userInfoWithoutPassword = await User.findOne({
-            where:{id: req.params.userId},
-            attributes : {
-                exclude:['password']
-            },
-            include : [{
-                model:Post,
-                attributes : ['id'], //성능을 위해 id값만 가져오기
-            },{
-                model:User,
-                as:'Followings',
-                attributes : ['id'],
-            },{
-                model:User,
-                as:'Followers',
-                attributes : ['id'],
-            }]
-        })
-        await User.findOne({
-            where:{id:req.user.id}
-        })
-        if(userInfoWithoutPassword){
-            res .status(200).json(userInfoWithoutPassword);
-        }else{
-            res.status(404).json('존재하지 않는 사용자입니다..ㅜㅜ');
-        }
-    }catch(err){
-        console.error(err)
-        next(err)
-    }
-})
-
-router.get('/:userId/posts', async (req,res,next)=>{
-    try{
-        const where = {};
-        if(parseInt(req.query.lastId)){ //초기 로딩이 아닐때
-            where.id = {[Op.lt] : parseInt(req.query.lastId)}
-        }
-        const posts = await Post.findAll({
-            where,
-            limit : 10, //불러올 게시글 제한 
-            // 비밀번호는 '반드시' 제외하고..
-            order : [
-                ['createdAt', 'DESC'],
-                [Comment, 'createdAt', 'DESC']
-            ],
-            include : [{
-                model:User,
-                attributes:{
-                    exclude:['password']
-                }
-            },{
-                model : Image,
-            },{
-                model: Comment,
-                include:[{
-                    model:User,
-                    attributes : {
-                        exclude:['password']
-                    }
-                }]
-            },{
-                model : User, //좋아요 누른 사람
-                as : 'Likers', //(model: post)에서 Likers라고 생성해준대로 가져와야됨
-                attributes : ['id',]
-            },{
-                model:Post,
-                as : 'SharedPost',
-                include : [{
-                    model:User,
-                    attributes:['id', 'nickname'],
-                },{
-                    model:Image
-                }]
-            },
-            ]
-        })
-        // console.log(posts)
-        res.status(200).json(posts);
-    }catch(error){
-        console.error(error)
-        next(error)
     }
 })
 
@@ -228,6 +141,135 @@ router.patch('/nickname' , isLoggedIn, async(req,res)=>{
     }
 })
 
+
+//팔로워 불러오기
+router.get('/followers' , isLoggedIn, async(req,res)=>{ //GET, /user/followers
+    try{
+        const user = await User.findOne({
+            where:{id:req.user.id}
+        })
+        if(!user){
+            res.status(403).send('존재하지 않는 사용자 입니다.')
+        }
+        const Followers = await user.getFollowers({
+            limit : 3,
+        });
+        res.status(200).json(Followers)
+    }catch(err){
+        console.error(err)
+        next(err)
+    }
+})
+
+//팔로잉 불러오기
+router.get('/followings' , isLoggedIn, async(req,res)=>{ //GET, /user/followings
+    try{
+        const user = await User.findOne({
+            where:{id:req.user.id}
+        })
+        if(!user){
+            res.status(403).send('존재하지 않는 사용자 입니다.')
+        }
+        const Followings = await user.getFollowings({
+            limit : 3,
+        });
+        res.status(200).json(Followings)
+    }catch(err){
+        console.error(err)
+        next(err)
+    }
+})
+
+
+router.get('/:userId', async (req,res,next) => {
+    // 특정사용자 데이터 가져오기
+    try{
+        const userInfoWithoutPassword = await User.findOne({
+            where:{id: req.params.userId},
+            attributes : {
+                exclude:['password']
+            },
+            include : [{
+                model:Post,
+                attributes : ['id'], //성능을 위해 id값만 가져오기
+            },{
+                model:User,
+                as:'Followings',
+                attributes : ['id'],
+            },{
+                model:User,
+                as:'Followers',
+                attributes : ['id'],
+            }]
+        })
+        await User.findOne({
+            where:{id:req.user.id}
+        })
+        if(userInfoWithoutPassword){
+            res .status(200).json(userInfoWithoutPassword);
+        }else{
+            res.status(404).json('존재하지 않는 사용자입니다..ㅜㅜ');
+        }
+    }catch(err){
+        console.error(err)
+        next(err)
+    }
+})
+
+router.get('/:userId/posts', async (req,res,next)=>{
+    try{
+        const where = {UserId : req.params.userId};
+        if(parseInt(req.query.lastId)){ //초기 로딩이 아닐때
+            where.id = {[Op.lt] : parseInt(req.query.lastId)}
+        }
+        const posts = await Post.findAll({
+            where,
+            limit : 10, 
+            order : [
+                ['createdAt', 'DESC'],
+                [Comment, 'createdAt', 'DESC']
+            ],
+            include : [{
+                model:User,
+                attributes:{
+                    exclude:['password']
+                }
+            },{
+                model : Image,
+            },{
+                model: Comment,
+                include:[{
+                    model:User,
+                    attributes : {
+                        exclude:['password']
+                    }
+                }]
+            },{
+                model : User, //좋아요 누른 사람
+                as : 'Likers', //(model: post)에서 Likers라고 생성해준대로 가져와야됨
+                attributes : ['id',]
+            },{
+                model:Post,
+                as : 'SharedPost',
+                include : [{
+                    model:User,
+                    attributes:['id', 'nickname'],
+                },{
+                    model:Image
+                }]
+            },
+            ]
+        })
+        // console.log(posts)
+        res.status(200).json(posts);
+    }catch(error){
+        console.error(error)
+        next(error)
+    }
+})
+
+
+
 //팔로우, 언팔로우
 router.patch('/:userId/follow' , isLoggedIn, async(req,res)=>{ //PATCH, /user/1/follow
     console.log('follow request')
@@ -278,42 +320,6 @@ router.delete('/follower/:userId' , isLoggedIn, async(req,res)=>{ //DELETE,
         next(err)
     }
 })
-
-//팔로워 불러오기
-router.get('/followers' , isLoggedIn, async(req,res)=>{ //GET, /user/followers
-    try{
-        const user = await User.findOne({
-            where:{id:req.user.id}
-        })
-        if(!user){
-            res.status(403).send('존재하지 않는 사용자 입니다.')
-        }
-        const Followers = await user.getFollowers();
-        res.status(200).json(Followers)
-    }catch(err){
-        console.error(err)
-        next(err)
-    }
-})
-
-//팔로잉 불러오기
-router.get('/followings' , isLoggedIn, async(req,res)=>{ //GET, /user/followings
-    try{
-        const user = await User.findOne({
-            where:{id:req.user.id}
-        })
-        if(!user){
-            res.status(403).send('존재하지 않는 사용자 입니다.')
-        }
-        const Followings = await user.getFollowings();
-        res.status(200).json(Followings)
-    }catch(err){
-        console.error(err)
-        next(err)
-    }
-})
-
-
 
 
 
