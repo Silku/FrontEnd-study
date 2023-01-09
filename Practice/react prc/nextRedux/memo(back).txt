@@ -659,3 +659,7 @@ back단 router에서 ..
 router.get(`/:userId`) 처럼 params or 와일드카드 받는 부분..
 이런 코드들은 router애서 최대한 아래로 내려주는게 좋다. 
 예를들면 /user/1로 요청한거나  /user/follwer로 요청한거나 똑같이 인식해서 오작동할 수 있음.
+
+SWR documnet
+https://swr.vercel.app/ko/docs/pagination
+참고로 페이지네이션할때는 useSWRInfinite를 사용하게 된다.

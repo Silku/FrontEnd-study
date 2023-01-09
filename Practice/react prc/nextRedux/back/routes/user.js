@@ -146,13 +146,16 @@ router.patch('/nickname' , isLoggedIn, async(req,res)=>{
 router.get('/followers' , isLoggedIn, async(req,res)=>{ //GET, /user/followers
     try{
         const user = await User.findOne({
-            where:{id:req.user.id}
+            where:{id:req.user.id},
+            attributes : {
+                exclude:['password']
+            }
         })
         if(!user){
             res.status(403).send('존재하지 않는 사용자 입니다.')
         }
         const Followers = await user.getFollowers({
-            limit : 3,
+            limit : parseInt(req.query.limit),
         });
         res.status(200).json(Followers)
     }catch(err){
@@ -165,13 +168,16 @@ router.get('/followers' , isLoggedIn, async(req,res)=>{ //GET, /user/followers
 router.get('/followings' , isLoggedIn, async(req,res)=>{ //GET, /user/followings
     try{
         const user = await User.findOne({
-            where:{id:req.user.id}
+            where:{id:req.user.id},
+            attributes : {
+                exclude:['password']
+            }
         })
         if(!user){
             res.status(403).send('존재하지 않는 사용자 입니다.')
         }
         const Followings = await user.getFollowings({
-            limit : 3,
+            limit :parseInt(req.query.limit),
         });
         res.status(200).json(Followings)
     }catch(err){

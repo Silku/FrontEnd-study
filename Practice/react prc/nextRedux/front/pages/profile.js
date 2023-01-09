@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import useSWR from 'swr';
@@ -21,15 +21,23 @@ const fetcher = (url) => axios.get(url, {withCredentials:true}).then((result)=> 
 
 const Profile = () => {
 	const dispatch = useDispatch();
-	const {user} = useSelector((state) => state.user);
 	const router = useRouter();
+	const {user} = useSelector((state) => state.user);
+	const [followersLimit, setFollowersLimit] = useState(3);
+	const [followingsLimit, setFollowingsLimit] = useState(3);
 
-	const { data: followersData, error: followerError } = useSWR(`http://localhost:3065/user/followers`, fetcher);
-	const { data: followingsData, error: followingError } = useSWR(`http://localhost:3065/user/followings`, fetcher); 
 
-	// const { data: followersData, error: followerError } = useSWR(`${backUrl}/user/followers?limit=${followersLimit}`, fetcher);
-	// const { data: followingsData, error: followingError } = useSWR(`${backUrl}/user/followings?limit=${followingsLimit}`, fetcher); 
-	// const {data, error} = useSWR(`http://localhost:3065/user/follwers`, fetcher)
+	const { data: followersData, error: followerError } = useSWR(`http://localhost:3065/user/followers?limit=${followersLimit}`, fetcher);
+	const { data: followingsData, error: followingError } = useSWR(`http://localhost:3065/user/followings?limit=${followingsLimit}`, fetcher); 
+
+	const loadMoreFollowings = useCallback(() => {
+		setFollowingsLimit((prev) => prev + 3);
+	}, []);
+
+	const loadMoreFollowers = useCallback(() => {
+		setFollowersLimit((prev) => prev + 3);
+	}, []);
+
 
 	useEffect(()=>{
 		if(!(user && user.id)){
@@ -57,25 +65,28 @@ const Profile = () => {
 			</Head>
 			<AppLayout>
 				<NicknameEditForm/>
-				<FollowList header={followingList} data={user?.followingsData}/>
-				<FollowList header={followerList} data={user?.followersData}/>
+				<FollowList header={followingList} data={followingsData} onClickMore = {loadMoreFollowings} 
+				loading={!followingsData && !followingError}/>
+				<FollowList header={followerList} data={followersData} onClickMore = {loadMoreFollowers}
+				loading={!followersData && !followerError}
+				/>
 			</AppLayout>
 		</>
 
 	)
 }
 
-export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ req }) => {
-	// const cookie = req ? req.headers.cookie : '';
-	// axios.defaults.headers.Cookie = '';
-	// if (req && cookie) {
-	// 	axios.defaults.headers.Cookie = cookie;
-	// }
-	store.dispatch({
-		type: LOAD_MY_INFO_REQUEST,
-	});
-	// store.dispatch(END);	
-	// await store.sagaTask.toPromise();
-});
+// export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ req }) => {
+// 	const cookie = req ? req.headers.cookie : '';
+// 	axios.defaults.headers.Cookie = '';
+// 	if (req && cookie) {
+// 		axios.defaults.headers.Cookie = cookie;
+// 	}
+// 	store.dispatch({
+// 		type: LOAD_MY_INFO_REQUEST,
+// 	});
+// 	store.dispatch(END);	
+// 	await store.sagaTask.toPromise();
+// });
 
 export default Profile
