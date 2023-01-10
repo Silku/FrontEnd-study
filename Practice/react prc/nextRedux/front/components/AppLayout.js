@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 
 import UserProfile from './UserProfile';
 import LoginForm from './LoginForm';
+import useInput from '../hooks/useInput';
 
 
 
@@ -17,9 +18,13 @@ const SearchInput = styled(Input.Search)`
 `
 const AppLayout = ({children}) => {
     const router = useRouter();
+    const [searchInput, onChangeSearchInput] = useInput('');
     // const  isLogIn = useSelector((state) => state.user.isLogIn); // 구조분해하던지 2가지 방법중 하나 사용
     const {user} = useSelector((state) => state.user);
 
+    const onSearch = useCallback(() => {
+        router.push(`/hashtag/${searchInput}`);
+    }, [searchInput]);
     
     return (
         <>
@@ -29,7 +34,11 @@ const AppLayout = ({children}) => {
             items={[
                 { label: <Link href="/"><a>메인 게시판</a></Link>, key: '/' },
                 { label: <Link href="/profile"><a>프로필</a></Link>, key: '/profile' },
-                { label: <SearchInput enterButton/>, key: '/search'},
+                { label: <SearchInput 
+                    enterButton
+                    value={searchInput}
+                    onChange={onChangeSearchInput}
+                    onSearch={onSearch}/>, key: '/search'},
                 { label: <Link href="/signup"><a>회원가입</a></Link>, key : '/signup'},
             ]}
             />

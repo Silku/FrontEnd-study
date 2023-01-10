@@ -4,6 +4,7 @@ import { Avatar, Button, Card, List, Popover } from 'antd'
 import { EllipsisOutlined, HeartOutlined, HeartTwoTone, MessageOutlined, RetweetOutlined } from '@ant-design/icons'
 import { Comment } from '@ant-design/compatible';
 import { useDispatch, useSelector } from 'react-redux'
+import Link from 'next/link';
 
 import PostImages from './PostImages'
 import CommentForm from './CommentForm';
@@ -15,6 +16,7 @@ import {
             RETWEET_REQUEST,
             } from '../reducers/post';
 import FollowButton from './FollowButton';
+
 
 const PostCard = ({post}) => {
     const dispatch = useDispatch();
@@ -103,7 +105,9 @@ const PostCard = ({post}) => {
                 cover={post.SharedPost.Images[0] && <PostImages images={post.SharedPost.Images}/>}
                 >
                 <Card.Meta
-                avatar={<Avatar>{post.SharedPost.User.nickname[0]}</Avatar>}
+                avatar={<Link href={`/user/${post.SharedPost.User.id}`}>
+                                <a><Avatar>{post.SharedPost.User.nickname[0]}</Avatar></a>
+                            </Link>}
                 title={post.SharedPost.User.nickname}
                 description={<PostCardContent postData={post.SharedPost.content}/>}
                 />
@@ -111,7 +115,11 @@ const PostCard = ({post}) => {
             )
             :(
                 <Card.Meta
-                avatar={<Avatar>{post.User.nickname[0]}</Avatar>}
+                avatar={
+                    <Link href={`/user/${post.User.id}`}>
+                        <a><Avatar>{post.User.nickname[0]}</Avatar></a>
+                    </Link>   
+                }
                 title={post.User.nickname}
                 description={<PostCardContent postData={post.content}/>}
                 />
@@ -129,7 +137,10 @@ const PostCard = ({post}) => {
                         <li>
                             <Comment 
                                 author={item.User.nickname}
-                                avatar={<Avatar>{item.User.nickname[0]}</Avatar>}
+                                avatar={
+                                <Link href={`/user/${item.User.id}`}>
+                                    <a><Avatar>{item.User.nickname[0]}</Avatar></a>
+                                </Link>}
                                 content={item.content}
                             />
                         </li>
