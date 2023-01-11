@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import propTypes from 'prop-types'
 import Link from 'next/link'
 
 
@@ -29,8 +29,8 @@ const PostCardContent = ({postData}) => {
     )
 }
 
-PostCardContent.PropTypes ={
-    postData : PropTypes.string.isRequired
+PostCardContent.propTypes ={
+    postData : propTypes.string.isRequired
 }
 
 

@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 import Link from 'next/link'
 import {createSelectorHook, useSelector} from 'react-redux'
 import {Menu, Input, Row, Col} from 'antd'
@@ -58,7 +58,7 @@ const AppLayout = ({children}) => {
 
 
 AppLayout.propTypes = {
-    children : PropTypes.node.isRequired
+    children : propTypes.node.isRequired
     // 화면에 그릴수 있는 모든게 node, React의 node임
 };
 

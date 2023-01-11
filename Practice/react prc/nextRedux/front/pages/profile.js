@@ -89,4 +89,5 @@ const Profile = () => {
 // 	await store.sagaTask.toPromise();
 // });
 
+
 export default Profile

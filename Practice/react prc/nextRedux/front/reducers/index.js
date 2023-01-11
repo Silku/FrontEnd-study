@@ -10,13 +10,6 @@ import post from './post'
 
 //async action creator
 
-//action creator 예시
-const changeNickname = (data) =>{
-    return {
-        type : 'CHANGE_NICKNAME',
-        data
-    }
-}
 
 
 
@@ -24,7 +17,7 @@ const changeNickname = (data) =>{
 const rootReducer = (state, action) => {
     switch (action.type) {
         case HYDRATE:
-            console.log('HYDRATE', action);
+            // console.log('HYDRATE', action);
             return action.payload;
         default: {
             const combinedReducer = combineReducers({

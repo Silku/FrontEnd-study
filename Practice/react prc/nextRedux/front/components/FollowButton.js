@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import PropTypes from 'prop-types'
+import propTypes from 'prop-types'
 import { Button } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import { FOLLOW_REQUEST, UNFOLLOW_REQUEST } from '../reducers/user'
@@ -38,7 +38,7 @@ const FollowButton = ({post}) => {
 
 
 FollowButton.propTypes = {
-    post:PropTypes.object.isRequired,
+    post:propTypes.object.isRequired,
 }
 
 export default FollowButton

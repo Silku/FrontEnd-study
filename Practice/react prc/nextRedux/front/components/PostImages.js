@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import PropTypes from 'prop-types'
+import propTypes from 'prop-types'
 import { PlusOutlined } from '@ant-design/icons';
 import ImageZoom from './ImageZoom'
 
@@ -66,8 +66,8 @@ const PostImages = ({images}) => {
     )
 }
 
-PostImages.PropTypes ={
-    images : PropTypes.arrayOf(PropTypes.object)
+PostImages.propTypes ={
+    images : propTypes.arrayOf(propTypes.object)
 }
 
 export default PostImages

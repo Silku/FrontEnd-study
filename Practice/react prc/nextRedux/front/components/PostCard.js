@@ -1,10 +1,11 @@
 import React, { useCallback , useEffect, useState} from 'react'
-import PropTypes from 'prop-types'
+import propTypes from 'prop-types'
 import { Avatar, Button, Card, List, Popover } from 'antd'
 import { EllipsisOutlined, HeartOutlined, HeartTwoTone, MessageOutlined, RetweetOutlined } from '@ant-design/icons'
 import { Comment } from '@ant-design/compatible';
 import { useDispatch, useSelector } from 'react-redux'
 import Link from 'next/link';
+import moment from 'moment'
 
 import PostImages from './PostImages'
 import CommentForm from './CommentForm';
@@ -16,6 +17,8 @@ import {
             RETWEET_REQUEST,
             } from '../reducers/post';
 import FollowButton from './FollowButton';
+
+moment.locale('ko')
 
 
 const PostCard = ({post}) => {
@@ -70,6 +73,8 @@ const PostCard = ({post}) => {
     },[id])
 
     const liked = post.Likers.find((v) => v.id === id);
+
+
     return (
     <>
         <Card 
@@ -104,6 +109,7 @@ const PostCard = ({post}) => {
                 <Card
                 cover={post.SharedPost.Images[0] && <PostImages images={post.SharedPost.Images}/>}
                 >
+                <div style={{float:'right'}}>{moment(post.createdAt, 'YYYYMMDD').fromNow()}</div>
                 <Card.Meta
                 avatar={<Link href={`/user/${post.SharedPost.User.id}`}>
                                 <a><Avatar>{post.SharedPost.User.nickname[0]}</Avatar></a>
@@ -114,15 +120,18 @@ const PostCard = ({post}) => {
                 </Card>
             )
             :(
-                <Card.Meta
-                avatar={
-                    <Link href={`/user/${post.User.id}`}>
-                        <a><Avatar>{post.User.nickname[0]}</Avatar></a>
-                    </Link>   
-                }
-                title={post.User.nickname}
-                description={<PostCardContent postData={post.content}/>}
-                />
+                <>
+                    <div style={{float:'right'}}>{moment(post.createdAt, 'YYYYMMDD').fromNow()}</div>
+                    <Card.Meta
+                    avatar={
+                        <Link href={`/user/${post.User.id}`}>
+                            <a><Avatar>{post.User.nickname[0]}</Avatar></a>
+                        </Link>   
+                    }
+                    title={post.User.nickname}
+                    description={<PostCardContent postData={post.content}/>}
+                    />
+                </>
             )}
             </Card>
         {commentFormOpened &&(
@@ -153,18 +162,18 @@ const PostCard = ({post}) => {
     </>
   )
 }
-PostCard.PropTypes ={
+PostCard.propTypes ={
     // object안에 속성들 표기해주고싶다면 shape
-    post : PropTypes.shape({
-        id : PropTypes.number,
-        User : PropTypes.object,
-        Content : PropTypes.string,
-        createdAt : PropTypes.string,
-        Comments : PropTypes.arrayOf(PropTypes.object),
-        Images : PropTypes.arrayOf(PropTypes.object), 
-        Likers : PropTypes.arrayOf(PropTypes.object),
-        SharedPostId: PropTypes.number,
-        SharedPost: PropTypes.objectOf(PropTypes.any),
+    post : propTypes.shape({
+        id : propTypes.number,
+        User : propTypes.object,
+        Content : propTypes.string,
+        createdAt : propTypes.string,
+        Comments : propTypes.arrayOf(propTypes.object),
+        Images : propTypes.arrayOf(propTypes.object), 
+        Likers : propTypes.arrayOf(propTypes.object),
+        SharedPostId: propTypes.number,
+        SharedPost: propTypes.objectOf(propTypes.any),
     }).isRequired,
 }
 

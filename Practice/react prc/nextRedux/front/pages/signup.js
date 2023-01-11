@@ -30,12 +30,12 @@ const Signup = () => {
 	const [term,setTerm] = useState('');
 	const [termError, setTermError] = useState(false);
 
-	useEffect(()=>{
-		if(user && user.id){
-			// push()는 뒤로가기 페이지에 저장됨, replace가 여기선 좋음
-			Router.replace('/')
-		}
-	},[user && user.id])
+	// useEffect(()=>{
+	// 	if(user && user.id){
+	// 		// push()는 뒤로가기 페이지에 저장됨, replace가 여기선 좋음
+	// 		Router.replace('/')
+	// 	}
+	// },[user && user.id])
 
 	useEffect(()=>{
 		if(signUpDone){
@@ -119,18 +119,17 @@ const Signup = () => {
 	)
 }
 
-export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ req }) => {
-
-	const cookie = req ? req.headers.cookie : '';
-	axios.defaults.headers.Cookie = '';
-	if (req && cookie) {
-		axios.defaults.headers.Cookie = cookie;
-	}
-	store.dispatch({
-		type: LOAD_MY_INFO_REQUEST,
-	});
-	store.dispatch(END);	
-	await store.sagaTask.toPromise();
-});
+// export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ req }) => {
+// 	const cookie = req ? req.headers.cookie : '';
+// 	axios.defaults.headers.Cookie = '';
+// 	if (req && cookie) {
+// 		axios.defaults.headers.Cookie = cookie;
+// 	}
+// 	store.dispatch({
+// 		type: LOAD_MY_INFO_REQUEST,
+// 	});
+// 	store.dispatch(END);	
+// 	await store.sagaTask.toPromise();
+// });
 
 export default Signup
