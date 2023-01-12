@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 
 import axios from 'axios';
 import { LOAD_POSTS_REQUEST, LOAD_USER_POSTS_REQUEST } from '../../reducers/post';
-import { LOAD_MY_INFO_REQUEST, LOAD_USER_REQUEST } from '../../reducers/user';
+import { LOAD_MY_INFO_REQUEST, LOAD_OTHER_USER_REQUEST } from '../../reducers/user';
 import PostCard from '../../components/PostCard';
 import wrapper from '../../store/configureStore';
 import AppLayout from '../../components/AppLayout';
@@ -53,7 +53,7 @@ function User() {
 			<meta property="og:url" content={`https://nodebird.com/user/${id}`} />
 			</Head>
 		)}
-		{otherUser && (otherUser.id !== me?.id)
+		{otherUser && (otherUser.id !== user?.id)
 			? (
 			<Card
 				style={{ marginBottom: 20 }}
@@ -104,7 +104,7 @@ function User() {
 			type: LOAD_MY_INFO_REQUEST,
 		});
 		store.dispatch({
-			type: LOAD_USER_REQUEST,
+			type: LOAD_OTHER_USER_REQUEST,
 			data: params.id,
 		});
 		store.dispatch(END);

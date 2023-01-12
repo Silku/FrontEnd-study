@@ -446,6 +446,34 @@ ex) 인피니트 스크롤할때 화면이 올라가면 위에있던 게시글�
 
 
 
+[20] 웹팩 커스텀 / 빌드 관련.. 
+next.config.js 에서 함.
+next의 기본 웹팩설정이 있기떄문에 config에서 기본웹팩설정을 바꾸듯이 설정해야함.
+https://nextjs.org/docs/api-reference/next.config.js/introduction
+
+
+//배포할때 hidden source map 안해주면 코드 다 보임
+devtool: prod ? 'hidden-source-map' : 'eval',
+
+npm i cross-env
+동적으로 process.env(환경 변수)를 변경할 수 있으며 모든 운영체제에서 동일한 방법으로 환경 변수를 변경할 수 있게 됨.
+
+npm i @next/bundle-analyzer
+웹팩으로 번들링되는 모듈들을 분석해서 보기좋게 시각적으로 표현해주는 모듈
+
+moment locale tree shakingg하기
+tree shaking : 사용하지 않는 코드를 제거하는 방식
+
+
+[Error]
+-----------------------------------------------------------------------
+info  - Linting and checking validity of types .error - ESLint:
+
+=> 빌드옵션
+next build (--no-lint)
+
+
+
 ===기타 상식 
 CSR/ SSR 관련 : 
 1. SSR할떄, 

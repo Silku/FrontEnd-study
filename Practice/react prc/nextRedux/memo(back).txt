@@ -672,3 +672,20 @@ https://swr.vercel.app/ko/docs/pagination
 [11] moment
 날짜관련 라이브러리
 npm i moment 
+https://momentjs.com/
+
+import moment from 'moment'
+
+moment.locale('ko')
+
+<div>안에
+{moment(post.createdAt).format()}...
+
+
+
+[Error]
+-----------------------------------------------------------------------
+info  - Linting and checking validity of types .error - ESLint:
+
+=> 빌드옵션
+next build (--no-lint)

@@ -5,15 +5,17 @@
 	"main": "index.js",
 	"scripts": {
 		"dev": "next -p 8080",
-		"build": "next build"
+		"build": "cross-env NODE_ENV=production ANALYZE=true next build --no-lint"
 	},
 	"author": "Silku",
 	"license": "ISC",
 	"dependencies": {
 		"@ant-design/compatible": "^5.1.1",
 		"@ant-design/icons": "^4.8.0",
+		"@next/bundle-analyzer": "^13.1.1",
 		"antd": "^5.0.3",
 		"axios": "^1.2.1",
+		"cross-env": "^7.0.3",
 		"immer": "^9.0.16",
 		"moment": "^2.29.4",
 		"next": "^12.3.4",
@@ -30,6 +32,7 @@
 		"swr": "^2.0.0"
 	},
 	"devDependencies": {
+		"@babel/eslint-parser": "^7.19.1",
 		"@faker-js/faker": "^5.5.3",
 		"babel-eslint": "^10.1.0",
 		"eslint": "^8.28.0",
