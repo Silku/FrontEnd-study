@@ -100,22 +100,22 @@ const PostCard = ({post}) => {
                     <EllipsisOutlined/>
                 </Popover>
             ]}
-            title={post.SharedPostId ? `${post.User.nickname}님이 리트윗하셨습니다` : null}
+            title={post.RetweetId ? `${post.User.nickname}님이 리트윗하셨습니다` : null}
             extra={id && <FollowButton post={post}/>}
         >
             {/* <Image/> */}
-            {post.SharedPostId && post.SharedPost
+            {post.RetweetId && post.Retweet
             ? (
                 <Card
-                cover={post.SharedPost.Images[0] && <PostImages images={post.SharedPost.Images}/>}
+                cover={post.Retweet.Images[0] && <PostImages images={post.Retweet.Images}/>}
                 >
                 <div style={{float:'right'}}>{moment(post.createdAt, 'YYYYMMDD').fromNow()}</div>
                 <Card.Meta
-                avatar={<Link href={`/user/${post.SharedPost.User.id}`}>
-                                <a><Avatar>{post.SharedPost.User.nickname[0]}</Avatar></a>
+                avatar={<Link href={`/user/${post.Retweet.User.id}`}>
+                                <a><Avatar>{post.Retweet.User.nickname[0]}</Avatar></a>
                             </Link>}
-                title={post.SharedPost.User.nickname}
-                description={<PostCardContent postData={post.SharedPost.content}/>}
+                title={post.Retweet.User.nickname}
+                description={<PostCardContent postData={post.Retweet.content}/>}
                 />
                 </Card>
             )
@@ -172,8 +172,8 @@ PostCard.propTypes ={
         Comments : propTypes.arrayOf(propTypes.object),
         Images : propTypes.arrayOf(propTypes.object), 
         Likers : propTypes.arrayOf(propTypes.object),
-        SharedPostId: propTypes.number,
-        SharedPost: propTypes.objectOf(propTypes.any),
+        RetweetId: propTypes.number,
+        Retweet: propTypes.objectOf(propTypes.any),
     }).isRequired,
 }
 

@@ -465,6 +465,8 @@ moment locale tree shakingg하기
 tree shaking : 사용하지 않는 코드를 제거하는 방식
 
 
+
+
 [Error]
 -----------------------------------------------------------------------
 info  - Linting and checking validity of types .error - ESLint:
@@ -519,3 +521,15 @@ undefined, null같은 nullish만 검사하는 연산자
 [??] nullish coalescing 연산자
 //사용법 :  데이터 가져오는데 지연시간 때문에 다른걸 띄우고 싶을때 사용
 user ?? '로딩중'
+
+
+
+
+
+
+
+
+
+
+[Add_1] intersection observer
+npm i react-intersection-observer

@@ -683,9 +683,3 @@ moment.locale('ko')
 
 
 
-[Error]
------------------------------------------------------------------------
-info  - Linting and checking validity of types .error - ESLint:
-
-=> 빌드옵션
-next build (--no-lint)

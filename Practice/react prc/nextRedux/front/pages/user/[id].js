@@ -4,6 +4,7 @@ import { Avatar, Card } from 'antd';
 import { END } from 'redux-saga';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { useInView } from 'react-intersection-observer';
 
 import axios from 'axios';
 import { LOAD_POSTS_REQUEST, LOAD_USER_POSTS_REQUEST } from '../../reducers/post';
@@ -19,26 +20,17 @@ function User() {
 	const { mainPosts, hasMorePosts, loadPostsLoading } = useSelector((state) => state.post);
 	const { otherUser, user } = useSelector((state) => state.user);
 
+	const [ref, inView] = useInView();
+
 	useEffect(()=>{
-		function onScroll(){
-			let scrollY = window.scrollY 
-			let clientHeight = document.documentElement.clientHeight
-			let scrollHeight = document.documentElement.scrollHeight
-			if(scrollY+ clientHeight >= scrollHeight -100){
-				if(hasMorePosts && !loadPostsLoading){
-					const lastId = mainPosts[mainPosts.length-1]?.id
-					dispatch({
-						type:LOAD_POSTS_REQUEST,
-						lastId,
-					})
-				}
-			}
+		if(inView && hasMorePosts && !loadPostsLoading){
+			const lastId = mainPosts[mainPosts.length-1]?.id;
+			dispatch({
+				type:LOAD_POSTS_REQUEST,
+				lastId,
+			})
 		}
-		window.addEventListener('scroll', onScroll)	
-		return () =>{
-			window.addEventListener('scroll', onScroll);
-		}
-	},[hasMorePosts, loadPostsLoading])
+	},[inView, hasMorePosts, loadPostsLoading, mainPosts, id])
 
 	return (
 		<AppLayout>
@@ -85,7 +77,7 @@ function User() {
 		{mainPosts.map((c) => (
 			<PostCard key={c.id} post={c} />
 		))}
-		{/* <div ref={hasMorePosts && !loadPostsLoading ? ref : undefined} style={{ height: 10 }} /> */}
+		<div ref={hasMorePosts && !loadPostsLoading ? ref : undefined} style={{height:10}}></div>
 		</AppLayout>
 	);
 	}

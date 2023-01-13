@@ -36,7 +36,7 @@ router.get('/:hashtag', async (req, res, next) => { // GET,  /hashtag/노드
                 attributes: ['id'],
             }, {
                 model: Post,
-                as: 'SharedPost',
+                as: 'Retweet',
                 include: [{
                 model: User,
                 attributes: ['id', 'nickname'],

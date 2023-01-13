@@ -119,17 +119,19 @@ const Signup = () => {
 	)
 }
 
-// export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ req }) => {
-// 	const cookie = req ? req.headers.cookie : '';
-// 	axios.defaults.headers.Cookie = '';
-// 	if (req && cookie) {
-// 		axios.defaults.headers.Cookie = cookie;
-// 	}
-// 	store.dispatch({
-// 		type: LOAD_MY_INFO_REQUEST,
-// 	});
-// 	store.dispatch(END);	
-// 	await store.sagaTask.toPromise();
-// });
+export const getServerSideProps = wrapper.getServerSideProps((store) => async ({ req }) => {
+	console.log('getServerSideProps start');
+	const cookie = req ? req.headers.cookie : '';
+	axios.defaults.headers.Cookie = '';
+	if (req && cookie) {
+		axios.defaults.headers.Cookie = cookie;
+	}
+	store.dispatch({
+		type: LOAD_MY_INFO_REQUEST,
+	});
+	store.dispatch(END);	
+	console.log('getServerSideProps end');
+	await store.sagaTask.toPromise();
+});
 
 export default Signup

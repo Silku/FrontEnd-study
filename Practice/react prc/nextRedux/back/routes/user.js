@@ -256,7 +256,7 @@ router.get('/:userId/posts', async (req,res,next)=>{
                 attributes : ['id',]
             },{
                 model:Post,
-                as : 'SharedPost',
+                as : 'Retweet',
                 include : [{
                     model:User,
                     attributes:['id', 'nickname'],

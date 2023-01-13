@@ -137,7 +137,7 @@ router.get('/:postId', async (req,res ,next)=>{ //GET ,  post/1
             where : {id : post.id},
             include : [{
                 model:Post,
-                as : 'SharedPost',
+                as : 'Retweet',
                 include : [{
                     model:User,
                     attributes:['id', 'nickname'],
@@ -179,21 +179,21 @@ router.post('/:postId/retweet', isLoggedIn, async (req,res ,next)=>{ // post/1/r
             where : {id : req.params.postId},
             include : [{
                 model:Post,
-                as : 'SharedPost'
+                as : 'Retweet'
             }]
         })
         if(!post){
             return res.status(403).send('존재하지 않는 게시글 입니다.')
         }
         // 방지하기 : 자기 게시글을 리트윗하는것, 자기게시글을 리트윗한 게시글을 다시 자기가 리트윗하는것 
-        if(req.user.id === post.UserId || (post.SharedPost && post.SharedPost.UserId === req.user.id)){
+        if(req.user.id === post.UserId || (post.Retweet && post.Retweet.UserId === req.user.id)){
             return res.status(403).send('본인의 글을 재 공유할 수 없습니다. ㅜㅜ')
         }
-        const retweetTargetId = post.SharedPostId || post.id
+        const retweetTargetId = post.RetweetId || post.id
         const exPost = await Post.findOne({
             where : {
                 UserId : req.user.id,
-                SharedPostId : retweetTargetId,
+                RetweetId : retweetTargetId,
             }
         })
         if(exPost){
@@ -201,14 +201,14 @@ router.post('/:postId/retweet', isLoggedIn, async (req,res ,next)=>{ // post/1/r
         }
         const retweet = await Post.create({
             UserId: req.user.id,
-            SharedPostId : retweetTargetId,
+            RetweetId : retweetTargetId,
             content : `@retweet`
         })
         const retweetWithPrevPost = await Post.findOne({
             where : {id : retweet.id},
             include : [{
                 model:Post,
-                as : 'SharedPost',
+                as : 'Retweet',
                 include : [{
                     model:User,
                     attributes:['id', 'nickname'],

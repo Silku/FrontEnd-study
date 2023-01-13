@@ -12,7 +12,7 @@ router.get('/', async (req,res,next)=>{
         }
         const posts = await Post.findAll({
             where,
-            limit : 10, //불러올 게시글 제한 
+            limit : 5, //불러올 게시글 제한 
             // 비밀번호는 '반드시' 제외하고..
             order : [
                 ['createdAt', 'DESC'],
@@ -39,7 +39,7 @@ router.get('/', async (req,res,next)=>{
                 attributes : ['id',]
             },{
                 model:Post,
-                as : 'SharedPost',
+                as : 'Retweet',
                 include : [{
                     model:User,
                     attributes:['id', 'nickname'],
