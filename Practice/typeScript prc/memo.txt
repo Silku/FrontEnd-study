@@ -1,0 +1,39 @@
+type 오버로딩해서 해줬는데 any일때...
+$npm install -g typescript 
+$tsc --init 
+
+
+//타입스크립트 js로 변환해볼수있는 사이트
+https://www.typescriptlang.org/
+
+
+void 타입 : 아무것도 return 하지 않을때.
+
+
+
+
+
+/********************************/
+- tsconfig.json 
+// tsconfig.json 이 파일명은 다른걸로 바꿀수없음
+
+{
+    "include": [
+        "src"
+    ],
+    // include : typescipt가 컴파일할 디렉토리를 넣어준다
+    "compilerOptions": {
+        "outDir": "build", // outDir : 컴파일한 JS파일을 output할 경로 
+        /****
+            => package.json에는 아래처럼 설정하면 빌드됨.
+            "scripts": {
+                "build" : "tsc"
+            }, 
+        *****/
+
+
+        target:{ //js로 컴파일할 버전
+            "ES6"
+        }
+    }
+}

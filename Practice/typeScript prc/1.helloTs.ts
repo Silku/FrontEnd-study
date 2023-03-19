@@ -14,7 +14,7 @@ if(player.age && player.age < 10){ //age가 undefined거나 number일수있으�
 }
 
 /*********************************/
-//Alias 라고 함
+//Alias 라고 함 , 타입 별칭
 type Age = number;
 type Player = {
     name : string,
