@@ -1,0 +1,24 @@
+# install 
+npm i nodemon -D
+git init
+npm i @babel/core @babel/cli @babel/node -D
+npm i @babel/preset-env -D
+npm i express
+npm i pug
+
+##babel.config.json
+{
+    "presets": ["@babel/preset-env"]
+}
+
+##nodemon.json
+{
+    "exec" : "babel-node src/server.js"
+}
+
+
+
+## package.json
+"dev": "nodemon" 
+->
+nodemon.json 에 있는 코드실행
