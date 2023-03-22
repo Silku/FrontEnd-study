@@ -7,24 +7,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="./js/api_key.js" type="module"></script>
+    <style>
+        .weather {
+            border-collapse: collapse;
+        }
+
+        .weather thead td {
+            border: 1px solid #000;
+            background-color: #ccc;
+            padding: 5px;
+        }
+
+        .weather tbody td {
+            border: 1px solid #000;
+            padding: 5px;
+            border-right: 1px solid #ccc;
+        }
+
+        .weather tbody td:first-child {
+            text-align: center;
+        }
+    </style>
+
 </head>
 
 <body>
+    <table class="weather">
+        <thead>
+            <td>지역</td>
+            <td>날씨</td>
+            <td>온도</td>
+            <td>풍향/풍속</td>
+        </thead>
+        <tbody>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tbody>
+    </table>
     <h2>
-        <table class="weather">
-            <thead>
-                <td>지역</td>
-                <td>날씨</td>
-                <td>온도</td>
-                <td>풍향/풍속</td>
-            </thead>
-            <tbody>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tbody>
-        </table>
         <div class="clock"></div>
     </h2>
     <script src="./js/clock.js"></script>
