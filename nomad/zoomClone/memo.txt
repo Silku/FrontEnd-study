@@ -16,9 +16,61 @@ npm i pug
     "exec" : "babel-node src/server.js"
 }
 
-
-
 ## package.json
 "dev": "nodemon" 
 ->
 nodemon.json 에 있는 코드실행
+
+
+
+
+# mvp css
+https://unpkg.com/mvp.css
+
+
+# ws (webSocket Library)
+npm i ws
+
+
+# socket 
+
+## Server Side
+
+=======================================
+const wss = new WebSocket.Server()
+ 
+wss.on("connection", (socket)=>{
+    socket.on("close", ()=>{console.log("disconnected from the Browser")})
+    socket.on("message", (message)=>{
+        console.log(message.toString('utf-8'))
+    })
+    socket.send("hi")
+})
+=======================================
+
+socket.on("event" , callback) : 이벤트리스너
+socket.send(data)
+
+
+## Client Side
+
+=======================================
+const myLocation = window.location.host //host location 정보
+const socket = new WebSocket(`ws://${myLocation}`)
+
+
+socket.addEventListener("open", ()=>{
+    console.log("Connected to server ✅")
+})
+
+socket.addEventListener("message", (message) =>{
+    console.log("서버응답 : ", message)
+})
+
+socket.addEventListener("close", ()=>{
+    console.log("Disconnected to server ❌")
+})
+
+setInterval(()=>{
+    socket.send("안녕하세요") // 매초 서버로 이렇게 보냄.
+},1000)
