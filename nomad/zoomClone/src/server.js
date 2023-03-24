@@ -23,16 +23,36 @@ const server = http.createServer(app);
 
 // server는 원래 빼도됨. wss랑 http server랑 둘다 돌아가게 하기 위한 작업.
 const wss = new WebSocket.Server({server})
- 
+
+const onSocketClose = () =>{
+    console.log("disconnected from the Browser")
+}
+
+// 서로다른 브라우저를 연결하기 위한 db역할
+const sockets = [];
 
 wss.on("connection", (socket)=>{
     // console.log(socket)
+    sockets.push(socket);
+    socket["nickname"] = "익명"
     console.log("connected to Browser ✅")
-    socket.on("close", ()=>{console.log("disconnected from the Browser")})
-    socket.on("message", (message)=>{
-        console.log(message.toString('utf-8'))
+    // socket.send("connected to Browser ✅")
+    socket.on("close", onSocketClose)
+    socket.on("message", (msg)=>{
+        // console.log(message.toString('utf-8'))
+        // socket.send(message.toString('utf-8'))
+        // sockets.forEach(v => v.send(message.toString('utf-8')));
+        const message = JSON.parse(msg)
+        switch(message.type){
+            case "new_message" :
+                sockets.forEach((v)=> v.send(`${socket.nickname} : ${message.payload}`))
+                break;
+            case "nickname" : 
+                // console.log(message.payload)
+                socket["nickname"] = message.payload;
+                break;
+        }
     })
-    socket.send("hi")
 })
 
 server.listen(port, handleListen);

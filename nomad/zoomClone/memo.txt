@@ -31,6 +31,27 @@ https://unpkg.com/mvp.css
 # ws (webSocket Library)
 npm i ws
 
+/* 
+    문제 1. 프론트 app.js에서 아래 세팅했을때 blob으로 나오는 경우와 해결방법.
+
+      "dependencies": {
+        "ws": "^8.13.0"
+     }
+     이것을 7.5.3이하버전으로 다운그레이드한다.
+
+     또는 
+     
+     서버쪽에서 보낼떄 utf-8로보내기.
+        socket.on("message", (message)=>{
+        socket.send(message.toString('utf-8'))
+    })
+
+*/
+socket.addEventListener("message", (message) =>{
+    console.log("서버응답 : ", message.data)
+})
+
+
 
 # socket 
 
