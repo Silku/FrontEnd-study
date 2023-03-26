@@ -1,7 +1,6 @@
-const { Socket } = require('dgram');
 const express = require('express')
 const http = require('http')
-const WebSocket = require('ws');
+const SocketIO = require("socket.io");
 
 const app = express();
 const hostname = 'localhost'
@@ -13,46 +12,53 @@ app.use("/public", express.static(__dirname + "/public"))
 
 app.get("/", (req,res) => res.render("home"))
 app.get("/*", (req,res) => res.redirect("/"))
-// app.get("/*", (req,res) => res.render("404"))
 
 
 const handleListen = () => console.log(`Listening on http://${hostname}:${port}`)
-// app.listen(port, handleListen)
 
-const server = http.createServer(app);
 
-// server는 원래 빼도됨. wss랑 http server랑 둘다 돌아가게 하기 위한 작업.
-const wss = new WebSocket.Server({server})
+const httpServer = http.createServer(app);
+const io = SocketIO(httpServer)
 
-const onSocketClose = () =>{
-    console.log("disconnected from the Browser")
-}
-
-// 서로다른 브라우저를 연결하기 위한 db역할
-const sockets = [];
-
-wss.on("connection", (socket)=>{
+io.on("connection", socket =>{
     // console.log(socket)
-    sockets.push(socket);
-    socket["nickname"] = "익명"
-    console.log("connected to Browser ✅")
-    // socket.send("connected to Browser ✅")
-    socket.on("close", onSocketClose)
-    socket.on("message", (msg)=>{
-        // console.log(message.toString('utf-8'))
-        // socket.send(message.toString('utf-8'))
-        // sockets.forEach(v => v.send(message.toString('utf-8')));
-        const message = JSON.parse(msg)
-        switch(message.type){
-            case "new_message" :
-                sockets.forEach((v)=> v.send(`${socket.nickname} : ${message.payload}`))
-                break;
-            case "nickname" : 
-                // console.log(message.payload)
-                socket["nickname"] = message.payload;
-                break;
-        }
+    socket.on("room", (msg, done)=>{
+        console.log(msg)
+        setTimeout(()=>{
+            done("이게 되네?")
+        },2000)
     })
 })
 
-server.listen(port, handleListen);
+// 서로다른 브라우저를 연결하기 위한 db역할
+/*
+
+    const sockets = [];
+
+    wss.on("connection", (socket)=>{
+        // console.log(socket)
+        sockets.push(socket);
+        socket["nickname"] = "익명"
+        console.log("connected to Browser ✅")
+        // socket.send("connected to Browser ✅")
+        socket.on("close", onSocketClose)
+        socket.on("message", (msg)=>{
+            // console.log(message.toString('utf-8'))
+            // socket.send(message.toString('utf-8'))
+            // sockets.forEach(v => v.send(message.toString('utf-8')));
+            const message = JSON.parse(msg)
+            switch(message.type){
+                case "new_message" :
+                    sockets.forEach((v)=> v.send(`${socket.nickname} : ${message.payload}`))
+                    break;
+                case "nickname" : 
+                    // console.log(message.payload)
+                    socket["nickname"] = message.payload;
+                    break;
+            }
+        })
+    })
+
+*/
+
+httpServer.listen(port, handleListen);

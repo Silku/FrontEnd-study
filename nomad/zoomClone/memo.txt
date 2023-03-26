@@ -95,3 +95,10 @@ socket.addEventListener("close", ()=>{
 setInterval(()=>{
     socket.send("안녕하세요") // 매초 서버로 이렇게 보냄.
 },1000)
+
+
+# socket.IO
+npm i socket.io
+docs : https://socket.io/docs/v4/server-initialization/#with-express
+Framework , 실시간,양방향,event기반 통신 제공
+

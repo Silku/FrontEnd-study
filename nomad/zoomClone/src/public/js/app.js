@@ -1,52 +1,15 @@
-const myLocation = window.location.host 
-const socket = new WebSocket(`ws://${myLocation}`)
+const socket = io();
 
-const messageList = document.querySelector('ul');
-const nickNameForm = document.querySelector('#nick');
-const messageForm = document.querySelector('#message');
+const welcome = document.querySelector('#welcome')
+const form =document.querySelector("form")
 
-const makeMessage = (type, payload) =>{
-    const msg = {type, payload}
-    return JSON.stringify(msg)
-}
-
-const handleConnect = () =>{
-    console.log("Connected to server ✅")
-}
-
-socket.addEventListener("open", handleConnect)
-
-socket.addEventListener("message", (message) =>{
-    // console.log("서버응답 : ", message.data)
-    const li = document.createElement('li')
-    li.innerText =message.data;
-    messageList.append(li)
-})
-
-
-socket.addEventListener("close", ()=>{
-    console.log("Disconnected to server ❌")
-})
-
-
-
-const handleSubmit = (e) =>{
+const handleRoomSubmit = (e) =>{
     e.preventDefault();
-    const input = messageForm.querySelector('input');
-    // console.log(input.value)
-    socket.send(makeMessage("new_message", input.value))
-    input.value=""
+    const input = form.querySelector("input")
+    socket.emit("room", {payload:input.value}, (done)=>{
+        console.log(`서버에 펑션을 보낼수있다고 ?! ${done}`)    
+    })
+    input.value ="" 
 }
 
-
-const handleNickSubmit = (e) =>{
-    e.preventDefault();
-    const input = nickNameForm.querySelector("input");
-    socket.send(makeMessage("nickname", input.value))
-    input.value=""
-}
-
-
-
-messageForm.addEventListener("submit", handleSubmit);
-nickNameForm.addEventListener("submit", handleNickSubmit);
+form.addEventListener("submit", handleRoomSubmit)
