@@ -21,14 +21,27 @@ const httpServer = http.createServer(app);
 const io = SocketIO(httpServer)
 
 io.on("connection", socket =>{
-    // console.log(socket)
-    socket.on("room", (msg, done)=>{
-        console.log(msg)
-        setTimeout(()=>{
-            done("이게 되네?")
-        },2000)
+    socket.onAny((e)=>{
+        console.log(`socket Event : ${e}`)
+    })
+    socket.on("room", (roomName, done)=>{
+        socket.join(roomName)
+        done();
+        //to: 지정된 방에 연결된 모두에게 메세지를 전송할 수 있음.
+        socket.to(roomName).emit("welcome")
+    })
+    //"disconnecting" : 연결이 끊겼을때 발생하는 이벤트 
+    socket.on("disconnecting", ()=>{
+        socket.rooms.forEach((room)=>{
+            socket.to(room).emit("bye")
+        })
+    })
+    socket.on("new_message", (msg, room, done)=>{
+        socket.to(room).emit("new_message", msg)
+        done();
     })
 })
+
 
 // 서로다른 브라우저를 연결하기 위한 db역할
 /*

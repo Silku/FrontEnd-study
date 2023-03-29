@@ -102,3 +102,28 @@ npm i socket.io
 docs : https://socket.io/docs/v4/server-initialization/#with-express
 Framework , 실시간,양방향,event기반 통신 제공
 
+
+socketio 패키지 설치후, 
+서버에서는 
+const SocketIO = require("socket.io");
+view에서는 이렇게 불러오면 됨.
+<script src="/socket.io/socket.io.js"></script>
+
+
+
+## methods..
+
+socket.emit(event, [data], [callback]): 클라이언트에서 서버로 이벤트를 전송.
+이벤트는 이름과 데이터를 가질 수 있으며, 필요한 경우 콜백 함수를 등록할 수도 있다.
+
+socket.on(event, callback): 서버나 클라이언트에서 이벤트를 수신할 때 사용.
+이벤트 이름과 처리 함수를 등록한다.
+
+socket.join(room, [callback]): 클라이언트가 특정 방(room)에 참가할 수 있도록 함.
+방 이름을 지정하고, 필요한 경우 콜백 함수를 등록할 수 있다.
+
+socket.to(room).emit(event, data): 지정된 방에 연결된 모든 클라이언트에게 이벤트를 전송.
+
+socket.leave(room, [callback]): 클라이언트가 방에서 나가도록 함.
+방 이름을 지정하고, 필요한 경우 콜백 함수를 등록할 수 있음.
+
