@@ -16,11 +16,19 @@ const addMessage = (message) =>{
 
 const handleMessageSubmit = (e) =>{
     e.preventDefault();
-    const input = room.querySelector("input")
+    const input = room.querySelector("#msg input")
     const value =  input.value
     socket.emit("new_message", input.value, roomName, ()=>{
         addMessage(`you : ${value}`)
     });
+    input.value = "";
+}
+
+const handleNicknameSubmit = (e) =>{
+    e.preventDefault();
+    const input = room.querySelector("#name input")
+    const value =  input.value
+    socket.emit("nickname", value);
     input.value = "";
 }
 
@@ -29,8 +37,10 @@ const showRoom = () =>{
     room.hidden = false
     const h3 = room.querySelector("h3");
     h3.innerText = `현재 참가중인 채팅 : ${roomName}`
-    const form = room.querySelector("form")
-    form.addEventListener("submit", handleMessageSubmit)
+    const msgForm = room.querySelector("#msg")
+    const nameForm = room.querySelector("#name")
+    msgForm.addEventListener("submit", handleMessageSubmit)
+    nameForm.addEventListener("submit", handleNicknameSubmit)
 }
 
 const handleRoomSubmit = (e) =>{
@@ -43,12 +53,29 @@ const handleRoomSubmit = (e) =>{
 
 form.addEventListener("submit", handleRoomSubmit)
 
-socket.on("welcome", ()=>{
-    addMessage("Someone Joined!");
+socket.on("welcome", (user, newCount)=>{
+    const h3 = room.querySelector("h3")
+    h3.innerText = `Room ${roomName} (${newCount})`
+    addMessage(`${user} is Joined!`);
 })
 
-socket.on("bye", ()=>{
-    addMessage("Someone Left...");
+socket.on("bye", (user, newCount)=>{
+    const h3 = room.querySelector("h3")
+    h3.innerText = `Room ${roomName} (${newCount})`
+    addMessage(`${user} is Left...`);
 })
 
 socket.on("new_message", addMessage)
+
+socket.on("room_changes", (rooms) => {
+    const roomList = welcome.querySelector("ul");
+    roomList.innerHTML =""
+    if(rooms.length === 0){
+        return;
+    }
+    rooms.forEach((room) =>{
+        const li = document.createElement("li")
+        li.innerText = room
+        roomList.append(li)
+    })
+})
