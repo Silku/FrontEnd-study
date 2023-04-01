@@ -127,3 +127,31 @@ socket.to(room).emit(event, data): 지정된 방에 연결된 모든 클라이�
 socket.leave(room, [callback]): 클라이언트가 방에서 나가도록 함.
 방 이름을 지정하고, 필요한 경우 콜백 함수를 등록할 수 있음.
 
+socket.onAny(callback) : 클라이언트에서 서버로 전송된 모든 이벤트를 수신하고,
+이벤트를 처리하기 위해 등록된 콜백 함수를 호출
+
+
+## Adapter 
+어댑터는 모든 클라이언트 또는 클라이언트 하위 집합에 이벤트를 브로드캐스팅하는 서버 측 구성 요소.
+room 등의 핵심기능을 확장하는 역할
+
+
+ex)
+const SocketIO = require("socket.io");
+const io = SocketIO()
+io.on("connection", socket =>{
+    socket.onAny((e)=>{
+        console.log(io.sockets.adapter)
+    })
+})
+
+server에서 위의 코드를 실행시켰을때 콘솔에서 rooms, sids.. 와 같은 객체를 확인할수 있음
+
+
+
+## adimin UI
+Socket.IO 배포 상태에 대한 개요를 확인 툴
+https://socket.io/docs/v4/admin-ui/
+npm i @socket.io/admin-ui
+
+const { instrument } = require("@socket.io/admin-ui"); 로 사용 ...docs 참조
