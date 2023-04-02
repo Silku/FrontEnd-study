@@ -1,4 +1,4 @@
-# install 
+[1] # install 
 npm i nodemon -D
 git init
 npm i @babel/core @babel/cli @babel/node -D
@@ -24,11 +24,11 @@ nodemon.json 에 있는 코드실행
 
 
 
-# mvp css
+[2] # mvp css
 https://unpkg.com/mvp.css
 
 
-# ws (webSocket Library)
+[3] #  ws (webSocket Library)
 npm i ws
 
 /* 
@@ -53,7 +53,7 @@ socket.addEventListener("message", (message) =>{
 
 
 
-# socket 
+[4] # socket 
 
 ## Server Side
 
@@ -97,7 +97,7 @@ setInterval(()=>{
 },1000)
 
 
-# socket.IO
+[5] # socket.IO
 npm i socket.io
 docs : https://socket.io/docs/v4/server-initialization/#with-express
 Framework , 실시간,양방향,event기반 통신 제공
@@ -127,3 +127,79 @@ socket.to(room).emit(event, data): 지정된 방에 연결된 모든 클라이�
 socket.leave(room, [callback]): 클라이언트가 방에서 나가도록 함.
 방 이름을 지정하고, 필요한 경우 콜백 함수를 등록할 수 있음.
 
+socket.onAny(callback) : 클라이언트에서 서버로 전송된 모든 이벤트를 수신하고,
+이벤트를 처리하기 위해 등록된 콜백 함수를 호출
+
+
+## Adapter 
+어댑터는 모든 클라이언트 또는 클라이언트 하위 집합에 이벤트를 브로드캐스팅하는 서버 측 구성 요소.
+room 등의 핵심기능을 확장하는 역할
+
+
+ex)
+const SocketIO = require("socket.io");
+const io = SocketIO()
+io.on("connection", socket =>{
+    socket.onAny((e)=>{
+        console.log(io.sockets.adapter)
+    })
+})
+
+server에서 위의 코드를 실행시켰을때 콘솔에서 rooms, sids.. 와 같은 객체를 확인할수 있음
+
+
+
+## adimin UI
+Socket.IO 배포 상태에 대한 개요를 확인 툴
+https://socket.io/docs/v4/admin-ui/
+npm i @socket.io/admin-ui
+
+const { instrument } = require("@socket.io/admin-ui"); 로 사용 ...docs 참조
+
+
+
+[7] # Video Call 
+
+## todos..
+1.화면에 비디오 가져오기.
+2.버튼 마이크 음소거, 카메라  
+
+
+## getUserMedia
+미디어 입력장치 권한 요청, 실행
+https://developer.mozilla.org/ko/docs/Web/API/MediaDevices/getUserMedia
+
+async function getMedia(constraints) {
+  let stream = null;
+
+  try {
+    stream = await navigator.mediaDevices.getUserMedia(constraints);
+    /* 스트림 사용 */
+  } catch(err) {
+    /* 오류 처리 */
+  }
+}
+
+
+## enumerateDevices
+사용 가능한 모든 미디어 입력 및 출력 장치에 대한 정보 호출
+
+... navigator.mediaDevices.enumerateDevices()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+    "ignore" : ["src/public/*"],
+    "exec" : "babel-node src/server.js"
+}

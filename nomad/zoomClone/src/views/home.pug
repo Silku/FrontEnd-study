@@ -11,6 +11,12 @@ html(lang="en")
             h1 Noom
         main   
             h2 welcome to Noom
+            div#myStream
+                video#myFace(autoplay, playsinline, width="400", height="400", backgroundColor="red") 
+                button#mute(type="button") 음소거
+                button#cameraControl(type="button") 카메라 끄기 
+                label 카메라 선택
+                    select#cameras(name="") 
 
         script(src="/socket.io/socket.io.js") 
         script(src="/public/js/app.js") 
