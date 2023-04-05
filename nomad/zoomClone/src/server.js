@@ -19,7 +19,17 @@ const handleListen = () => console.log(`Listening on http://${hostname}:${port}`
 
 const httpServer = http.createServer(app);
 const io = SocketIO(httpServer)
+io.on("connection", socket =>{
+    socket.on("join_room", (roomName, done) =>{
+        socket.join(roomName)
+        done();
+        socket.to(roomName).emit("welcome")
+    })
 
+    socket.on("offer", (offer, roomName) =>{
+        socket.to(roomName).emit("offer", offer)
+    })
+})
 
 
 httpServer.listen(port, handleListen);

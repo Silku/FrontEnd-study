@@ -191,11 +191,17 @@ async function getMedia(constraints) {
 [8] #webRTC (Real-Time Communication)
 https://developer.mozilla.org/ko/docs/Web/API/WebRTC_API
 
+영상, 오디오, 텍스트 등 전송이 가능.
+서버를 거치는 형식이 아닌 peer-to-peer, 클라이언트 간의 연결 형식을 가진다.
+signaling 과정을 거쳐야함.
+signaling : location , settings, configuration 방화벽,라우터 등등의 정보를 매개 해주는 역할
 
 
+== RTC STEP == 
 
-
-
+Peer A          ||          Signaling Server         ||         Peer B
+        -> send Offer
+                                                            <- send Answer
 
 
 
