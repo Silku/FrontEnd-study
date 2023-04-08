@@ -198,12 +198,22 @@ signaling : location , settings, configuration 방화벽,라우터 등등의 정
 
 
 == RTC STEP == 
+//web RTC flow.png 참조하기
 
 Peer A          ||          Signaling Server         ||         Peer B
-        -> send Offer
+getUserMedia()
+createOffer()
+setLocalDescription
+            -> send Offer
+                                                                        setRemoteDescription
                                                             <- send Answer
+            ->send Candidate
+                                                            <- send Candidate
 
+offer(초대장)를 보내고 상대방과 Description을 주고 받으며 answer 보내고 서로간에 연결
 
+IceCandidate : webRTC에 필요한 프로토콜들을 의미, 멀리 떨어진 장치와 소통할수 있게 하기 위함.
+다수의 후보(Candidate)가 제안되고 사용자의 동의하에 그것을 소통방식으로 사용한다.
 
 
 

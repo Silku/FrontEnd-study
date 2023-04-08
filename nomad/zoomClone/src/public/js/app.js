@@ -23,7 +23,7 @@ async function getCameras(){
         const devices = await navigator.mediaDevices.enumerateDevices();
         // console.log(devices)
         const cameras = devices.filter(device => device.kind === "videoinput")
-        console.log(cameras)
+        // console.log(cameras)
         cameras.forEach((camera)=>{
             const option = document.createElement("option")
             option.value = camera.deviceId;
@@ -41,7 +41,7 @@ async function getMedia(constraints) {
             audio:true,
             video:true,
         });
-        console.log(myStream)
+        // console.log(myStream)
         myFace.srcObject = myStream;
         await getCameras();
         /* 스트림 사용 */
@@ -83,17 +83,18 @@ cameraBtn.addEventListener("click", handleCameraClick)
 const welcome = document.querySelector("#welcome");
 const welcomeForm = welcome.querySelector("form")
 
-async function startMedia(){
+async function initCall(){
     welcome.hidden = true;
     call.hidden = false;
     await getMedia();
     makeConnection();
 }
 
-function handleWelcomeSubmit(e){
+async function handleWelcomeSubmit(e){
     e.preventDefault();
     const input = welcomeForm.querySelector("input");
-    socket.emit("join_room", input.value, startMedia);
+    await initCall()
+    socket.emit("join_room", input.value);
     roomName = input.value;
     input.value=""
 }
@@ -110,21 +111,53 @@ socket.on("welcome", async()=>{
     // console.log(offer)
 
     // 어떤방이 이 offer를 emit할건지 socket서버로 보내주기
+    console.log("sent the offer")
     socket.emit("offer", offer, roomName)
 })
 
 // Peer B에서 실행되는 코드
-socket.on("offer", offer =>{
-    console.log(offer)
+socket.on("offer", async(offer) =>{
+    // console.log(offer)
+    console.log("recieved the offer")
+    myPeerConnection.setRemoteDescription(offer)
+    const answer = await myPeerConnection.createAnswer();
+    // console.log(answer)
+    myPeerConnection.setLocalDescription(answer);
+    socket.emit("answer", answer, roomName);
+    console.log("sent the answer")
+})
+
+socket.on("answer", answer =>{
+    console.log("recieved the answer")
+    myPeerConnection.setRemoteDescription(answer);
+})
+
+socket.on("ice", ice =>{
+    console.log("recieved candidate")
+    myPeerConnection.addIceCandidate(ice)
 })
 
 //RTC Code
 function makeConnection(){
     myPeerConnection = new RTCPeerConnection();
+    myPeerConnection.addEventListener("icecandidate", handleIce)
     // console.log(myStream.getTracks())
+    myPeerConnection.addEventListener("addstream", handleAddStream);
     myStream
         .getTracks()
         .forEach(track=> myPeerConnection.addTrack(track, myStream));
-
 }
 
+function handleIce(data){
+    // console.log("got ice candidate")
+    // console.log(data)
+    console.log("sent candidate")
+    socket.emit("ice", data.candidate, roomName)
+}
+
+function handleAddStream(data){
+    console.log("got an event from my peer") 
+    // console.log(data)
+    console.log("Peer's Stream", data.stream);
+    console.log("My Stream", myStream)
+}
