@@ -17,11 +17,14 @@ html(lang="en")
                     button Enter Room
             div#call
                 div#myStream
-                    video#myFace(autoplay, playsinline, width="400", height="400", backgroundColor="red") 
+                    video#myFace(autoplay, playsinline, width="400", height="400") 
                     button#mute(type="button") 음소거
                     button#cameraControl(type="button") 카메라 끄기 
                     label 카메라 선택
-                        select#cameras(name="") 
+                        select#cameras(name="")
+                    label 오디오 선택
+                        select#audios(name="")
+                video#peersFace(autoplay, playsinline, width="400", height="400") 
 
         script(src="/socket.io/socket.io.js") 
         script(src="/public/js/app.js") 

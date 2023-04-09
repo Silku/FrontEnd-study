@@ -5,6 +5,7 @@ const myFace = document.querySelector('#myFace');
 const muteBtn = document.querySelector("#mute")
 const cameraBtn = document.querySelector("#cameraControl")
 const cameraSelect = document.querySelector("#cameras")
+const audioSelect = document.querySelector("#audios")
 
 const call = document.querySelector("#call");
 
@@ -18,32 +19,81 @@ let cameraOff = false;
 let roomName;
 let myPeerConnection;
 
-async function getCameras(){
+
+// 카메라 및 오디오 선택 설정
+async function getDevices(){
     try{
         const devices = await navigator.mediaDevices.enumerateDevices();
-        // console.log(devices)
-        const cameras = devices.filter(device => device.kind === "videoinput")
-        // console.log(cameras)
+        const cameras = devices.filter(device => device.kind === "videoinput");
+        const audios = devices.filter(device => device.kind === "audioinput");
         cameras.forEach((camera)=>{
             const option = document.createElement("option")
             option.value = camera.deviceId;
             option.innerText = camera.label;
             cameraSelect.appendChild(option)
         })
+        audios.forEach((audio)=>{
+            const option = document.createElement("option")
+            option.value = audio.deviceId;
+            option.innerText = audio.label;
+            audioSelect.appendChild(option)
+        })
     }catch(err){
         console.log(err)
     }
 }
 
-async function getMedia(constraints) {
+// async function getCameras(){
+//     try{
+//         const devices = await navigator.mediaDevices.enumerateDevices();
+//         console.log(devices, "디바이스")
+//         const cameras = devices.filter(device => device.kind === "videoinput")
+//         // console.log(cameras)
+//         cameras.forEach((camera)=>{
+//             const option = document.createElement("option")
+//             option.value = camera.deviceId;
+//             option.innerText = camera.label;
+//             cameraSelect.appendChild(option)
+//         })
+//     }catch(err){
+//         console.log(err)
+//     }
+// }
+
+// async function getAudios(){
+//     try{
+//         const devices = await navigator.mediaDevices.enumerateDevices();
+//         const cameras = devices.filter(device => device.kind === "audioinput")
+//         cameras.forEach((audio)=>{
+//             const option = document.createElement("option")
+//             option.value = audio.deviceId;
+//             option.innerText = audio.label;
+//             audioSelect.appendChild(option)
+//         })
+//     }catch(err){
+//         console.log(err)
+//     }
+// }
+
+// Stream 가져오기
+async function getMedia(deviceId) {
+    const initialConstrains = {
+        audio: true,
+        video: { facingMode: "user" },
+    };
+    const cameraConstraints = {
+    audio: true,
+    video: { deviceId: { exact: deviceId } },
+    };
     try {
-        myStream = await navigator.mediaDevices.getUserMedia({
-            audio:true,
-            video:true,
-        });
+        myStream = await navigator.mediaDevices.getUserMedia(
+            deviceId ? cameraConstraints : initialConstrains
+        );
         // console.log(myStream)
         myFace.srcObject = myStream;
-        await getCameras();
+        if(!deviceId){
+            await getDevices();
+        }
         /* 스트림 사용 */
     } catch(err) {
         /* 오류 처리 */
@@ -75,9 +125,25 @@ function handleCameraClick(){
     }
 }
 
+async function handleCameraChange() {
+    await getMedia(cameraSelect.value);
+    if (myPeerConnection) {
+        // console.log(myPeerConnection.getSenders())
+
+        // Sender : 
+        // Peea A가 Peer B에 보내는 비디오&오디오 데이터를 컨트롤하는 부분
+        const videoTrack = myStream.getVideoTracks()[0];
+        const videoSender = myPeerConnection
+            .getSenders()
+            .find((sender) => sender.track.kind === "video");
+        // console.log(videoSender)
+        videoSender.replaceTrack(videoTrack);
+    }
+}
+
 muteBtn.addEventListener("click", handleMuteClick)
 cameraBtn.addEventListener("click", handleCameraClick)
-
+cameraSelect.addEventListener("input", handleCameraChange);
 
 // room 입장 && call getUserMedia API
 const welcome = document.querySelector("#welcome");
@@ -139,7 +205,20 @@ socket.on("ice", ice =>{
 
 //RTC Code
 function makeConnection(){
-    myPeerConnection = new RTCPeerConnection();
+    myPeerConnection = new RTCPeerConnection({
+        // google에서 제공하는 STUN server, 테스트 용도로만 사용하고, 실제 production? 하고 싶다면 고유 STUN server가 필요함.
+        iceServers: [
+            {
+                urls: [
+                    "stun:stun.l.google.com:19302",
+                    "stun:stun1.l.google.com:19302",
+                    "stun:stun2.l.google.com:19302",
+                    "stun:stun3.l.google.com:19302",
+                    "stun:stun4.l.google.com:19302",
+                ],
+            },
+        ],
+    });
     myPeerConnection.addEventListener("icecandidate", handleIce)
     // console.log(myStream.getTracks())
     myPeerConnection.addEventListener("addstream", handleAddStream);
@@ -156,8 +235,10 @@ function handleIce(data){
 }
 
 function handleAddStream(data){
-    console.log("got an event from my peer") 
+    // console.log("got an event from my peer")
     // console.log(data)
-    console.log("Peer's Stream", data.stream);
-    console.log("My Stream", myStream)
+    // console.log("Peer's Stream", data.stream);
+    // console.log("My Stream", myStream)
+    const peersFace = document.querySelector("#peersFace");
+    peersFace.srcObject = data.stream;
 }
