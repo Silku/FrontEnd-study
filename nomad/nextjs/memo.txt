@@ -1,0 +1,37 @@
+# [1] install
+npx create-next-app@latest
+
+(+typescript)
+npx create-next-app@latest --typescript
+
+
+# [2] next.js 특징 
+Framework, 파일 이름이나 구조 등을 정해진 규칙에 따라 만들고 따름
+
+ =>
+
+ 1. 파일명에 따른 자동 라우팅
+pages 폴더에 about.js라는 파일을 만들고 export default  ~~~ return 하면
+ component명을 뭐라고 짓든 관계없이
+/about 과 같이 url 주소창에 입력하면 자동으로 라우팅이 된다.
+예외로 , index.js 의 경우 root
+
+2. 리액트 컴포넌트를 만들기위한 import react from "react" 구문을 생략해도 문제 없다.
+
+
+
+# error : 
+
+[#error 1]: can't find module next/babel
+
+root 폴더에 .babelrc 생성 후..
+{
+    "presets": ["next/babel"],
+    "plugins": []
+}
+
+.eslintrc.json에는 다음과 같이 설정
+{
+  "extends": ["next/babel","next/core-web-vitals"]
+}
+
