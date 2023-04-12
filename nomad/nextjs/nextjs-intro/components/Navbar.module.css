@@ -1,0 +1,14 @@
+.nav{
+    display: flex;
+    justify-content: flex-start;
+    background-color: skyblue;
+}    
+
+.link{
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.active{
+    color: red;
+}
