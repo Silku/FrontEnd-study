@@ -38,6 +38,17 @@ nextjs v13이후 :
 <Link className="hello"></Link>
 
 
+또는 a태그 쓰되, Link에 legacyBehavior 삽입하기
+  <Link 
+      href="/"
+      legacyBehavior
+      >
+      <a className={router.pathname==="/" ? "active" : "" } >Home</a>
+  </Link>
+https://nextjs.org/docs/api-reference/next/link
+https://nextjs.org/docs/messages/invalid-new-link-with-extra-anchor
+
+
 4) useRouter
 nextjs에서 제공하는 hooks 현재 페이지의 url 정보를 가져오는데 사용.
 URL과 쿼리 매개변수, 라우트 매개변수 등의 정보를 쉽게 가져올 수 있음
@@ -48,6 +59,25 @@ const router = useRouter();
     About
 </Link>
 
+
+5) nextjs에서 css입히기
+module.css 
+styled jsx (nextjs 고유)
+
+<style jsx global>{`
+  a{
+    color:red
+  }
+`}</style>
+
+기본적으로 jsx가 붙고 해당 div내에서 적용이됨.
+global 속성을 붙여주면 해당 페이지 내에서 global임. 따라서 page를 이동했다면 css가 적용되지 않는 현상을 볼 수 있음
+
+
+6)_app.js
+1.전체 페이지에 공통적으로 적용되는 레이아웃 구성
+2.페이지간의 상태 공유
+3.데이터 가져오기
 
 
 # error : 

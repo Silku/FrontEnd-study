@@ -6,10 +6,14 @@ export default function Home(){
 
 	return(
 		<>
-			<Navbar/>
 			<h1>Hello</h1>
 			<div>카운터 : {counter}</div>
 			<button type="button" onClick={()=>{setCounter((prev)=>prev+1)}}>+</button>
+			<style jsx global>{`
+				a{
+					color:red
+				}
+			`}</style>
 		</>
 	)
 }
