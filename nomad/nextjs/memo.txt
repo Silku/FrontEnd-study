@@ -100,12 +100,45 @@ const Layout = ({children}) => {
 export default Layout
 
 
+## 헤드
 [Head] : 메타데이터 설정, title, description, autuor, link, script 등
 
 import Head from "next/head";
   <Head>
     <title>About  | next Movies</title>
   </Head>
+
+
+
+## next.config.js
+
+- redirects, rewrites 설정하기
+redirects -> URL변경됨
+rewrites -> URL변경X
+
+const nextConfig = {
+	reactStrictMode: false
+	async redirects() {
+		return [
+		{
+			source: "/old-blog/:path*", //request가 들어오는 경로
+			destination: "/new-sexy-blog/:path*", //redirect할 경로
+			permanent: false, //영구성 설정, true이면 브라우저와 검색엔진에 redirect를 캐싱, false일 경우 일시적.
+		},
+		];
+	},
+	async rewrites() {
+		return [
+		{
+			source: "/api/movies",
+			destination: `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`,
+		},
+		];
+	},
+}
+module.exports = nextConfig
+
+
 
 
 
@@ -129,3 +162,8 @@ root 폴더에 .babelrc 생성 후..
 [#error 2]: Invalid with child. Please remove or use 
 next13버전 이후, Link 태그안에 a 태그를 쓸수 없다.
 https://nextjs.org/docs/messages/invalid-new-link-with-extra-anchor
+
+
+
+tmdb API (영화 데이터 API)
+https://developers.themoviedb.org/3/movies/get-popular-movies
