@@ -79,6 +79,8 @@ global 속성을 붙여주면 해당 페이지 내에서 global임. 따라서 pa
 2.페이지간의 상태 공유
 3.데이터 가져오기
 
+
+
 # [3] next.js 
 
 ## 패턴
@@ -137,6 +139,15 @@ const nextConfig = {
 	},
 }
 module.exports = nextConfig
+
+
+## getServerSideProps
+ - Next.js는 getServerSideProps에서 반환된 데이터를 사용하여 각 request에서 이 페이지를 pre-render합니다.
+    getServerSideProps는 서버 측에서만 실행되며 브라우저에서는 실행되지 않습니다.
+
+export async function getServerSideProps(){
+
+} 
 
 
 

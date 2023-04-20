@@ -6,24 +6,13 @@ import { BarLoader } from "react-spinners";
 
 
 
-export default function Home(){
+export default function Home({ results }){
 
-	const [movies, setMovies] = useState();
-
-	useEffect(()=>{
-		(async ()=>{
-			const { results } = await (
-				await fetch(`/api/movies`)
-				).json();
-			setMovies(results);
-			console.log(results);
-		})()
-	},[])
 	return(
 		<>
 			<SEO title="Home"/>
 			<div className="container">
-			{!movies && (
+			{!results && (
 			<>
 				<BarLoader
 				width={100}
@@ -33,7 +22,7 @@ export default function Home(){
 				size={150}
 				aria-label="Loading Spinner"/>
 			</>)}
-			{movies?.map((movie) => (
+			{results?.map((movie) => (
 				<div className="movie" key={movie.id}>
 					<h4>{movie.title}</h4>
 					<img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
@@ -63,4 +52,16 @@ export default function Home(){
 			</div>
 		</>
 	)
+}
+
+export async function getServerSideProps() {
+	const { results } = await (
+		await fetch(`http://localhost:3000/api/movies`)
+	).json();
+	
+	return {
+		props: {
+			results,
+		},
+	};
 }
