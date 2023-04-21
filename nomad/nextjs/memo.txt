@@ -150,7 +150,32 @@ export async function getServerSideProps(){
 } 
 
 
+## Dynamic Routes
+Next.js에서는 page에 대괄호([param])를 추가하여 Dynamic Route를 생성할 수 있다.
 
+ex)
+/movies/1, /movies/abc 등 같은 모든 경로를
+=> 
+pages/movies/[id].js 와 같이 만들어 줄 수 있음
+
+
+## router.push(url, as, options)
+라우터 처리, next/link로 충분하지 않은 경우에 유용하게 쓸 수 있다.
+
+ex) 아래 코드 같은 경우 url 자리에 String 뿐만 아니라 object형식으로도 넣을 수 있고,
+as 부분은 브라우저 url 표시줄에 해당 경로명으로 마스킹(지저분한 경로명을 감추게끔)을 시켜줄수 있다.
+
+	const router = useRouter();
+	const handleOnClick = (id, title) =>{
+		//useRouter로 navigate하기
+		router.push({
+			pathname : `/movies/${id}`,
+			query : {
+				id,
+				title
+			}
+		}, `/movies/${id}`)
+	}
 
 
 # error : 
