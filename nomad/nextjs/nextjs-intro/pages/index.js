@@ -10,15 +10,9 @@ import { BarLoader } from "react-spinners";
 
 export default function Home({ results }){
 	const router = useRouter();
-	const handleOnClick = (id, title) =>{
+	const handleOnClick = (id, title, img) =>{
 		//useRouter로 navigate하기
-		router.push({
-			pathname : `/movies/${id}`,
-			query : {
-				id,
-				title
-			}
-		}, `/movies/${id}`)
+		router.push(`/movies/${title}/${id}/${img}/`)
 	}
 	 
 	return(
@@ -36,7 +30,7 @@ export default function Home({ results }){
 				aria-label="Loading Spinner"/>
 			</>)}
 			{results?.map((movie) => (
-				<div onClick={()=>handleOnClick(movie.id, movie.title)}className="movie" key={movie.id}>
+				<div onClick={()=>handleOnClick(movie.id, movie.title, movie.poster_path)}className="movie" key={movie.id}>
 					<h4>
 						<Link 
 						key={movie.id}
